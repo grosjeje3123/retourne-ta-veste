@@ -8,7 +8,7 @@ var CANDIDATS = [
     etiquette: 'Candidate · déc. 2025', tampon: '4<sup>e</sup> candidature',
     role: 'Porte-parole de Lutte ouvrière', valeurs: [7, 1, 5, 1],
     phrase: 'Le véritable pouvoir n’est pas à l’Élysée.', quand: '26 septembre 2026 · premier meeting, Paris',
-    annees: ['2012', '2017', '2022', '2027'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['2012', '2017', '2022', '2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (LO)', verifie: '25/11/2026',
     sources: [
       ['Slate', 'https://www.slate.fr/politique/election-presidentielle-2027-liste-candidats-declares-interesses-primaire-gauche-droite-extreme-lfi-rn-lr-ps-macron'],
@@ -22,10 +22,9 @@ var CANDIDATS = [
     role: 'Leader de La France insoumise', valeurs: [9, 10, 8, 10],
     phrase: 'Nous c’est carré. Il y a une équipe, un programme, un seul candidat.', quand: '3 mai 2026 · annonce de candidature, TF1',
     annees: ['2012', '2017', '2022', '2027'],
-    justice: 'Condamné en 2019 pour rébellion (3 mois avec sursis, définitif). Trois condamnations pour diffamation ou injure (2021-2022), caractère définitif non établi.',
+    justice: 'Condamné en 2019 pour rébellion (3 mois avec sursis, définitif). Trois condamnations pour diffamation ou injure (2021-2022), caractère définitif non établi&nbsp;; présumé innocent.',
     blocSource: 'nuancier 2026 (LFI), validé par le Conseil d’État', verifie: '25/11/2026',
     horsCarte: [
-      ['Emplois d’assistants d’eurodéputés LFI (enquête élargie à lui en 2017, confiée à des juges en 2018)', 'Fin des investigations le 7&nbsp;mai 2026, sans qu’il ait été mis en examen&nbsp;; décision finale non publiée', [['Club des juristes', 'https://www.leclubdesjuristes.com/en-bref/quatre-mises-en-examen-dans-laffaire-des-comptes-de-campagnes-de-lfi-de-2017-16141/'], ['Public Sénat (2017)', 'https://www.publicsenat.fr/actualites/non-classe/assistants-d-eurodeputes-l-enquete-elargie-a-jean-luc-melenchon-76177']]],
       ['Plainte pour injure d’une adversaire politique (propos de 2011)', 'Relaxe définitive (Cour de cassation, 28&nbsp;février 2017)', [['Politis', 'https://www.politis.fr/articles/2014/04/fasciste-marine-le-pen-deboutee-de-sa-plainte-contre-melenchon-26558'], ['Public Sénat', 'https://www.publicsenat.fr/actualites/politique/fasciste-marine-le-pen-definitivement-deboutee-contre-jean-luc-melenchon-56342']]]
     ],
     sources: [
@@ -42,7 +41,7 @@ var CANDIDATS = [
     role: 'Secrétaire national du PCF · maire de Saint‑Amand‑les‑Eaux', valeurs: [8, 6, 6, 2],
     phrase: 'Candidat à 85&nbsp;%.', quand: 'Juillet 2026 · congrès du PCF, avant le vote des militants',
     annees: ['2022', '2027'],
-    justice: 'Enquête du PNF (2022) pour détournement de fonds publics, sur son emploi d’assistant parlementaire (2009-2014). Sans suite publique connue&nbsp;; présumé innocent.',
+    justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (PCF)', verifie: '25/11/2026',
     sources: [
       ['LCP', 'https://lcp.fr/actualites/fabien-roussel-officiellement-candidat-du-pcf-a-l-election-presidentielle-de-2027-441389'],
@@ -56,7 +55,7 @@ var CANDIDATS = [
     etiquette: 'Candidat · janv. 2026', tampon: '1<sup>re</sup> candidature',
     role: 'Député de la Somme · président de Debout&nbsp;!', valeurs: [5, 6, 1, 7],
     phrase: 'République cherche candidat&nbsp;? CDD de 5 ans, nourri, logé, blanchi.', quand: 'Avril 2026 · annonce de son meeting de Lyon',
-    annees: ['2027'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuance UG aux législatives 2024 (règle à valider)', verifie: '25/11/2026',
     sources: [
       ['Slate', 'https://www.slate.fr/politique/election-presidentielle-2027-comment-francois-ruffin-retrouve-marginalise-gauche-lfi-france-insoumise-melenchon-candidat'],
@@ -69,7 +68,7 @@ var CANDIDATS = [
     etiquette: 'Candidate · oct. 2025', tampon: '1<sup>re</sup> candidature',
     role: 'Secrétaire nationale des Écologistes', valeurs: [3, 1, 6, 7],
     phrase: 'Convaincue que le chemin existe pour une victoire de notre camp.', quand: '22 octobre 2025 · annonce de candidature, L’Obs',
-    annees: ['2027'], justice: 'Aucune procédure en cours identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (Les Écologistes)', verifie: '25/11/2026',
     horsCarte: [
       ['Action en diffamation de deux présentateurs de CNews (propos de 2023 sur la chaîne)', 'Demandeurs déboutés par le tribunal judiciaire de Nanterre (17&nbsp;février 2026)&nbsp;; aucun appel connu', [['Puremédias (jugement)', 'https://www.ozap.com/actu/j-espere-que-ca-leur-passera-l-envie-de-baillonner-les-critiques-marine-tondelier-annonce-avoir-gagne-son-proces-contre-christine-kelly/654117'], ['Puremédias (plainte, 2023)', 'https://www.ozap.com/actu/-cnews-laisse-prosperer-une-ideologie-neonazie-christine-kelly-et-marc-menant-portent-plainte-contre-marine-tondelier-eelv/634309']]]
@@ -85,7 +84,7 @@ var CANDIDATS = [
     etiquette: 'Pas déclarée', tampon: 'Pro-alliance LFI',
     role: 'Députée de Paris', valeurs: [6, 4, 4, 6],
     phrase: 'Je prône l’alliance vers LFI.', quand: '22 août 2026 · franceinfo',
-    annees: ['aucune candidature'], justice: 'Assignée au civil par la Fédération nationale des chasseurs pour «&nbsp;dénigrement&nbsp;» (propos de 2022)&nbsp;: la fédération a été déboutée en octobre 2024 et a fait appel&nbsp;; issue non connue à ce jour.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (Les Écologistes)', verifie: '25/11/2026',
     horsCarte: [
       ['Poursuivie en diffamation par un ancien député qu’elle avait publiquement accusé, avec d’autres femmes et deux médias', 'Relaxée par le tribunal correctionnel de Paris le 19&nbsp;avril 2019', [['Puremédias', 'https://www.ozap.com/actu/affaire-denis-baupin-mediapart-et-france-inter-relaxes/577655'], ['Actu-Juridique', 'https://www.actu-juridique.fr/civil/personnes-famille/procedures-baillons-un-danger-pour-celles-et-ceux-qui-prennent-la-parole-contre-les-violences-sexistes-et-sexuelles/']]]
@@ -103,7 +102,7 @@ var CANDIDATS = [
     etiquette: 'Candidat · août 2026', tampon: '1<sup>re</sup> candidature',
     role: 'Député européen · fondateur de Place publique', valeurs: [9, 6, 1, 9],
     phrase: 'Nous ne sommes pas là pour gagner une querelle à gauche.', quand: 'Octobre 2026 · soir de sa victoire à la primaire',
-    annees: ['2027'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (Place publique)', verifie: '25/11/2026',
     sources: [
       ['LCP (candidature)', 'https://lcp.fr/actualites/presidentielle-2027-raphael-glucksmann-officialise-sa-candidature-et-participera-a-la'],
@@ -116,7 +115,7 @@ var CANDIDATS = [
     etiquette: 'Candidat · juin 2026', tampon: '1<sup>re</sup> candidature',
     role: 'Maire de Saint-Ouen-sur-Seine', valeurs: [3, 1, 8, 5],
     phrase: 'J’y vais pour gagner.', quand: '9 juin 2026 · France Inter',
-    annees: ['2027'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (PS)', verifie: '25/11/2026',
     sources: [
       ['LCP', 'https://lcp.fr/actualites/presidentielle-2027-qui-est-karim-bouamrane-le-maire-socialiste-de-saint-ouen-et-nouveau'],
@@ -129,7 +128,7 @@ var CANDIDATS = [
     etiquette: 'Pas encore déclaré', tampon: 'En embuscade',
     role: 'Ancien président de la République · député de Corrèze', valeurs: [10, 10, 6, 7],
     phrase: 'Comment être utile aujourd’hui&nbsp;? En me préparant.', quand: '15 avril 2026 · Marianne',
-    annees: ['2012', '2027&nbsp;?'], justice: 'Enquête du parquet de Paris (2016) sur une possible compromission du secret-défense après un livre d’entretiens&nbsp;; mise en cause et issue non établies.',
+    annees: ['2012', '2027&nbsp;?'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (PS)', verifie: '25/11/2026',
     sources: [
       ['LCP (statut)', 'https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932'],
@@ -143,7 +142,7 @@ var CANDIDATS = [
     etiquette: 'A renoncé · juil. 2026', tampon: 'Hors course',
     role: 'Députée de Seine-Saint-Denis', valeurs: [4, 6, 5, 6],
     phrase: 'Est-ce que je vais ajouter une candidature de plus&nbsp;? La réponse est non.', quand: '11 juillet 2026 · dépêche AFP',
-    annees: ['aucune candidature'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuance UG aux législatives 2024 (règle 2)', verifie: '25/11/2026',
     sources: [
       ['AFP (via jeanmarcmorandini.com)', 'https://www.jeanmarcmorandini.com/node/646423'],
@@ -173,7 +172,7 @@ var CANDIDATS = [
     etiquette: 'Primaire perdue · oct. 2026', tampon: 'Hors course',
     role: 'Premier secrétaire du PS · député de Seine-et-Marne', valeurs: [4, 8, 1, 5],
     phrase: 'Nous avons désormais un candidat…', quand: '11 octobre 2026 · soir de la primaire',
-    annees: ['aucune candidature'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (PS)', verifie: '25/11/2026',
     sources: [
       ['Sud Radio (AFP)', 'https://www.sudradio.fr/societe/olivier-faure-candidat-a-la-primaire-de-la-gauche'],
@@ -186,7 +185,7 @@ var CANDIDATS = [
     etiquette: 'Primaire perdue · oct. 2026', tampon: 'Hors course',
     role: 'Député de l’Essonne', valeurs: [6, 5, 8, 2],
     phrase: 'Il y a un espace pour une tonitruance socialiste.', quand: '5 février 2026 · France Inter',
-    annees: ['aucune candidature'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (PS)', verifie: '25/11/2026',
     sources: [
       ['Brut (candidature)', 'https://www.brut.media/fr/articles/le-depute-jerome-guedj-ps-annonce-sa-candidature-a-lelection-presidentielle-de-2027-sans-passer-par-la-primaire'],
@@ -199,7 +198,7 @@ var CANDIDATS = [
     etiquette: 'Candidat · mai 2026', tampon: '1<sup>re</sup> candidature',
     role: 'Secrétaire général de Renaissance · ancien Premier ministre', valeurs: [5, 6, 6, 9],
     phrase: 'L’exercice du pouvoir m’a changé.', quand: 'Printemps 2026 · entretien au Point, avant sa déclaration',
-    annees: ['2027'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (Renaissance)', verifie: '25/11/2026',
     sources: [
       ['LCP (candidature)', 'https://lcp.fr/actualites/presidentielle-2027-gabriel-attal-officialise-sa-candidature-436721'],
@@ -213,7 +212,7 @@ var CANDIDATS = [
     role: 'Maire du Havre · président d’Horizons', valeurs: [4, 6, 9, 8],
     phrase: 'Ce que je proposerai sera massif.', quand: '3 septembre 2024 · annonce de candidature, Le Point',
     annees: ['2027'],
-    justice: 'Témoin assisté (oct. 2026) dans une information judiciaire sur la Cité numérique du Havre (favoritisme, détournement de fonds publics…). Pas mis en examen&nbsp;; présumé innocent.',
+    justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (Horizons)', verifie: '25/11/2026',
     horsCarte: [
       ['Information judiciaire de la Cour de justice de la République sur la gestion du Covid-19 (témoin assisté depuis octobre 2022)', 'Non-lieu le 7&nbsp;juillet 2025, comme l’avait requis le procureur général', [['Club des juristes', 'https://www.leclubdesjuristes.com/en-bref/gestion-du-covid-19-la-cjr-prononce-un-non-lieu-a-lencontre-de-edouard-philippe-agnes-buzyn-et-olivier-veran-11443/'], ['Acteurs publics', 'https://acteurspublics.fr/articles/olivier-marleix-cjr-cese/']]]
@@ -230,7 +229,7 @@ var CANDIDATS = [
     role: 'Ministre déléguée à l’Égalité femmes-hommes', valeurs: [6, 6, 6, 7],
     phrase: 'Il faut une primaire à l’automne.', quand: '30 mars 2026 · Public Sénat',
     annees: ['aucune candidature'],
-    justice: 'Aucune procédure en cours identifiée dans les sources consultées.',
+    justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (Renaissance)', verifie: '25/11/2026',
     horsCarte: [
       ['Information judiciaire de la Cour de justice de la République (janv. 2025) pour faux témoignage devant la commission d’enquête sur les crèches&nbsp;; témoin assistée', 'Non-lieu le 2&nbsp;juillet 2026', [['Europe&nbsp;1', 'https://www.europe1.fr/node/964860'], ['La Gazette (AFP)', 'https://www.lagazettefrance.fr/article/soupcons-de-faux-temoignage-sur-les-creches-non-lieu-en-faveur-d-aurore-berge']]]
@@ -245,7 +244,7 @@ var CANDIDATS = [
     role: 'Ancien Premier ministre · fondateur de La France humaniste', valeurs: [1, 5, 1, 9],
     phrase: 'Nous voulons être présents en 2027.', quand: '19 janvier 2026 · Lundi C’est Politique, LCP',
     annees: ['2027&nbsp;?'],
-    justice: 'Enquête du PNF (2026) pour recel de détournement de fonds publics (statuette et buste de Napoléon reçus comme ministre). Présumé innocent.',
+    justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'ni parti dans la grille, ni candidature depuis 2020 (règle à valider)', verifie: '25/11/2026',
     sources: [
       ['LCP', 'https://lcp.fr/actualites/dominique-de-villepin-nous-voulons-etre-presents-en-2027-429413'],
@@ -260,7 +259,7 @@ var CANDIDATS = [
     role: 'Judoka · quintuple champion olympique', valeurs: [1, 1, 1, 4],
     phrase: 'Je suis candidat pour dire qu’on peut relever la France.', quand: '9 novembre 2026 · annonce de candidature',
     annees: ['2027'],
-    justice: 'Contentieux fiscaux, sans poursuite pénale&nbsp;: redressement pour l’usage personnel de voitures de sa société, confirmé en appel (oct. 2026)&nbsp;; autres redressements visant ses sociétés.',
+    justice: 'Contentieux fiscal, sans poursuite pénale&nbsp;: redressement pour l’usage personnel de voitures de sa société, confirmé en appel (oct. 2026), pourvoi encore possible.',
     blocSource: 'ni parti dans la grille, ni candidature depuis 2020 (règle à valider)', verifie: '25/11/2026',
     horsCarte: [
       ['Enquête sur sa rémunération au Levallois Sporting Club (entendu en 2015)', 'Classée sans suite (2019)', [['RCI', 'https://rci.fm/guadeloupe/infos/Justice/Levallois-Sporting-Club-Teddy-Riner-entendu-par-la-police'], ['L’Essentiel de l’éco (d’après L’Équipe)', 'https://lessentieldeleco.fr/9356-teddy-riner-candidat-epingle-par-le-fisc/']]]
@@ -276,7 +275,7 @@ var CANDIDATS = [
     etiquette: 'Candidate · oct. 2026', tampon: '1<sup>re</sup> candidature',
     role: 'Essayiste · ex-directrice de&nbsp;la&nbsp;rédaction&nbsp;de&nbsp;Marianne', valeurs: [3, 1, 1, 7],
     phrase: 'Je ne peux pas continuer à regarder mon pays s’effondrer.', quand: '14 octobre 2026 · France Inter',
-    annees: ['2027'], justice: 'Aucune procédure en cours identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'ni parti dans la grille, ni candidature depuis 2020 (règle à valider)', verifie: '25/11/2026',
     horsCarte: [
       ['Renvoyée devant le tribunal pour «&nbsp;contestation de l’existence de crime contre l’humanité&nbsp;» (propos sur le Rwanda, France Inter, 2018)', 'Relaxée par le tribunal judiciaire de Paris le 20&nbsp;mai 2022', [['AFP (archive)', 'https://francegenocidetutsi.org/LaJournalisteNatachaPolonyRelaxeeAFP20052022.pdf'], ['DH (renvoi)', 'https://www.dhnet.be/medias/television/2022/02/28/la-journaliste-natacha-polony-jugee-mardi-pour-contestation-du-genocide-au-rwanda-6ZSNXHIEIVAZRHUVSK26ID3BEY/']]]
@@ -292,7 +291,7 @@ var CANDIDATS = [
     role: 'Avocat et essayiste · mouvement Les Ruches', valeurs: [3, 1, 1, 5],
     phrase: 'Je pense qu’il faut se préparer à la sortie de l’Union européenne.', quand: '19 décembre 2025 · Sud Radio',
     annees: ['2027'],
-    justice: 'Mis en examen pour viol (2021) et d’autres faits dénoncés par deux femmes. Août 2026&nbsp;: le parquet requiert un procès pour le viol, un non-lieu pour le reste. Présumé innocent.',
+    justice: 'Suspendu neuf mois comme avocat&nbsp;: sanction disciplinaire, confirmée en appel en octobre 2025.',
     blocSource: 'ni parti dans la grille, ni candidature depuis 2020 (règle 3)', verifie: '25/11/2026',
     sources: [
       ['Sud Radio', 'https://www.sudradio.fr/sud-radio/lavocat-juan-branco-candidat-a-la-presidentielle'],
@@ -306,8 +305,8 @@ var CANDIDATS = [
     role: 'Ancien député · président de Résistons&nbsp;!', valeurs: [8, 9, 10, 2],
     phrase: 'Je verrai à l’automne ce que donne la cagnotte, si elle me permet d’y aller.', quand: 'Juillet 2026 · appel aux dons, Europe&nbsp;1',
     annees: ['2017', '2022', '2027&nbsp;?'],
-    justice: 'Enquête préliminaire du parquet de Bordeaux (mai 2023) pour viol et agression sexuelle, sur plainte (faits allégués de 2010). Issue non connue à ce jour&nbsp;; présumé innocent.',
-    blocSource: 'Résistons&nbsp;! hors grille, liste Alliance rurale en 2024 (règle 3)', verifie: '19/11/2026',
+    justice: 'Aucune condamnation identifiée dans les sources consultées.',
+    blocSource: 'Résistons&nbsp;! hors grille, liste Alliance rurale en 2024 (règle 3)', verifie: '25/11/2026',
     sources: [
       ['Europe&nbsp;1 (cagnotte)', 'https://www.europe1.fr/node/970134'],
       ['Pleinchamp', 'https://www.pleinchamp.com/actualite/jean-lassalle-agriculteurs-reprenez-vos-reves.-parce-que-les-reves-ca-permet-de-sortir-du-cauchemar'],
@@ -319,7 +318,7 @@ var CANDIDATS = [
     etiquette: 'Candidate · nov. 2025', tampon: '1<sup>re</sup> candidature',
     role: 'Députée des Deux-Sèvres · Génération écologie', valeurs: [6, 8, 1, 1],
     phrase: 'L’écologie est en voie de rikikisation, si j’ose dire.', quand: '25 novembre 2025 · L’Obs',
-    annees: ['2027'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'Génération écologie hors grille, nuance ECO en 2024 (règle 2, validée)', verifie: '25/11/2026',
     sources: [
       ['L’info durable (AFP)', 'https://www.linfodurable.fr/lex-ministre-delphine-batho-candidate-la-presidentielle-pour-conjurer-la-rikikisation-de-lecologie'],
@@ -333,7 +332,7 @@ var CANDIDATS = [
     role: 'Chanteur · mouvement France Libre', valeurs: [7, 1, 1, 2],
     phrase: 'Reprise en main de la souveraineté nationale.', quand: '19 août 2026 · communiqué de candidature',
     annees: ['2027'],
-    justice: 'Inéligible jusqu’en octobre 2026 (sanction électorale, sans compte de campagne). Enquête de 2021 sur une tribune appelant l’armée à agir&nbsp;: issue non connue&nbsp;; présumé innocent.',
+    justice: 'Inéligible d’avril 2025 à octobre 2026&nbsp;: sanction électorale, faute de compte de campagne (européennes 2024).',
     blocSource: 'France Libre hors grille, nuance DIV en 2024 (règle 2, à valider)', verifie: '25/11/2026',
     horsCarte: [
       ['Altercation avec une équipe de l’émission «&nbsp;Quotidien&nbsp;» à Avignon (juin 2021)', 'Plainte classée sans suite (avant janvier 2025)', [['Conseil de l’Europe, réponse de la France à l’alerte n° 107/2021', 'https://rm.coe.int/france-reply-fr-plusieurs-journalistes-attaques-par-le-chanteur-franci/1680a34d49'], ['Ozap', 'https://www.ozap.com/actu/plus-de-3-ans-apres-son-altercation-avec-une-equipe-de-quotidien-francis-lalanne-poursuit-son-bras-de-fer-judiciaire-contre-la-production-de-lemission-de-yann-barthes/648430']]]
@@ -349,7 +348,7 @@ var CANDIDATS = [
     etiquette: 'Candidat · août 2026', tampon: '1<sup>re</sup> candidature',
     role: 'Vidéaste sur Instagram', valeurs: [1, 1, 1, 1],
     phrase: 'Grand Monarque, Christ cosmique, Messie et pape Pierre.', quand: 'Automne 2026 · vidéo Instagram',
-    annees: ['2027'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'ni parti dans la grille, ni candidature retrouvée depuis 2020 (règle 3, à valider)', verifie: '25/11/2026',
     sources: [
       ['Sud Radio', 'https://www.sudradio.fr/politique/qui-est-ce-sylvain-durif-le-christ-cosmique-candidat-a-la-presidentielle-2027'],
@@ -361,7 +360,7 @@ var CANDIDATS = [
     etiquette: 'Prétendant · juil. 2026', tampon: '1<sup>re</sup> candidature&nbsp;?',
     role: 'Ancien Premier ministre · président de La Convention', valeurs: [5, 8, 7, 4],
     phrase: 'Mon objectif, c’est de devenir président de la République pour porter les idées auxquelles je crois.', quand: '30 juillet 2026 · Marianne',
-    annees: ['2027&nbsp;?'], justice: 'Aucune procédure en cours identifiée dans les sources consultées.',
+    annees: ['2027&nbsp;?'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'La Convention hors grille, aucune candidature depuis 2020 (règle 3, à valider)', verifie: '25/11/2026',
     horsCarte: [
       ['Signalement de députés LFI (nov. 2024) visant cinq anciens ministres de l’Intérieur, sur l’usage par la police du logiciel BriefCam', 'Classé sans suite par le procureur général près la Cour de cassation (27&nbsp;janv. 2025), les faits ne pouvant être imputés à aucun des ministres visés', [['Solutions numériques (AFP)', 'https://www.solutions-numeriques.com/logiciel-de-reconnaissance-faciale-dans-la-police-classement-sans-suite-du-signalement-de-deputes-lfi/']]]
@@ -377,7 +376,7 @@ var CANDIDATS = [
     etiquette: 'Pas déclaré', tampon: 'Prêt si besoin',
     role: 'Banquier d’affaires · patron de Radio Nova', valeurs: [1, 1, 1, 9],
     phrase: 'Je ne ferme aucune porte, je veux être utile.', quand: 'Septembre 2026 · France Inter',
-    annees: ['aucune candidature'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'ni parti, ni candidature (règle 3, à valider)', verifie: '25/11/2026',
     sources: [
       ['La Gazette (AFP)', 'https://www.lagazettefrance.fr/article/vacances-luxueuses-primaire-les-ambitions-presidentielles-de-pigasse-contrariees'],
@@ -389,7 +388,7 @@ var CANDIDATS = [
     etiquette: 'Pas déclaré', tampon: 'Porte entrouverte',
     role: 'Ancien commissaire européen · ancien ministre de l’Économie', valeurs: [1, 4, 4, 6],
     phrase: 'Si ce n’est pas le cas, on verra. Je ne ferme pas la porte.', quand: '9 novembre 2026 · France Inter',
-    annees: ['aucune candidature'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'ni parti dans la grille, ni candidature depuis 2020 (règle 3, à valider)', verifie: '25/11/2026',
     sources: [
       ['JDD', 'https://www.lejdd.fr/politique/on-va-voir-ce-qui-emerge-thierry-breton-nexclut-pas-une-candidature-a-la-presidentielle-188253'],
@@ -415,7 +414,7 @@ var CANDIDATS = [
     etiquette: 'Pas déclaré', tampon: 'N’exclut rien',
     role: 'Président du comité stratégique des centres E.Leclerc', valeurs: [1, 1, 1, 3],
     phrase: 'Je n’exclus pas l’idée d’être candidat à la présidentielle.', quand: '14 juin 2026 · CNews',
-    annees: ['aucune candidature'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'ni parti, ni candidature (règle 3, à valider)', verifie: '25/11/2026',
     sources: [
       ['L’Essentiel de l’éco', 'https://lessentieldeleco.fr/7789-combien-gagne-michel-edouard-leclerc-2/'],
@@ -427,11 +426,8 @@ var CANDIDATS = [
     etiquette: 'Candidat · févr. 2026', tampon: '1<sup>re</sup> candidature',
     role: 'Président des Républicains · sénateur de Vendée', valeurs: [7, 9, 10, 8],
     phrase: 'Renverser la table.', quand: '12 février 2026 · annonce de candidature, Paris',
-    annees: ['2027'], justice: 'Aucune procédure en cours identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (LR)', verifie: '25/11/2026',
-    horsCarte: [
-      ['Plainte devant la Cour de justice de la République pour provocation à la haine (août 2025)', 'Rejetée par la commission des requêtes (avant juin 2026)', [['Objectif Gard', 'https://www.objectifgard.com/politique/fait-du-soir-cinq-clefs-pour-comprendre-la-plainte-contre-bruno-retailleau-151344.php'], ['TSA Algérie', 'https://www.tsa-algerie.com/?p=295331']]]
-    ],
     sources: [
       ['Public Sénat', 'https://www.publicsenat.fr/actualites/politique/referendum-sur-limmigration-primaute-du-droit-national-le-projet-de-bruno-retailleau-est-il-faisable'],
       ['Sud Radio', 'https://www.sudradio.fr/politique/bruno-retailleau-annonce-sa-candidature-a-la-presidentielle-2027'],
@@ -443,7 +439,7 @@ var CANDIDATS = [
     etiquette: 'Candidat · mars 2026', tampon: '1<sup>re</sup> candidature',
     role: 'Maire de Cannes · fondateur de Nouvelle Énergie', valeurs: [3, 1, 9, 8],
     phrase: 'Un projet puissant pour que la France soit respectée, indépendante et gagnante.', quand: 'Mars 2026 · candidature et départ de LR',
-    annees: ['2027'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuance divers droite aux municipales 2026 (règle à valider)', verifie: '25/11/2026',
     sources: [
       ['LCP', 'https://lcp.fr/actualites/je-suis-candidat-david-lisnard-quitte-lr-et-relance-le-debat-sur-une-primaire-a-droite'],
@@ -456,7 +452,7 @@ var CANDIDATS = [
     etiquette: 'Candidat · mars 2025', tampon: '4<sup>e</sup> candidature',
     role: 'Maire de Yerres · président de Debout&nbsp;la&nbsp;France', valeurs: [9, 10, 9, 3],
     phrase: 'C’est la raison de ma candidature&nbsp;: offrir un choix, un vrai choix aux Français.', quand: '20 septembre 2026 · Sud Radio',
-    annees: ['2012', '2017', '2022', '2027'], justice: 'Procédure judiciaire en cours après la plainte d’une association (2023), liée au journal municipal de Yerres&nbsp;; stade non publié&nbsp;; présumé innocent.',
+    annees: ['2012', '2017', '2022', '2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuance droite souverainiste aux municipales 2026 (règle à valider)', verifie: '25/11/2026',
     horsCarte: [
       ['Poursuivi pour provocation à la haine (tweet de janvier 2017 évoquant une «&nbsp;invasion migratoire&nbsp;»)', 'Relaxé par le tribunal correctionnel de Paris (6&nbsp;juin 2018)&nbsp;; aucun appel connu', [['Public Sénat', 'https://www.publicsenat.fr/actualites/politique/dupont-aignan-relaxe-pour-ses-propos-sur-l-invasion-migratoire-en-france-86680']]]
@@ -464,8 +460,7 @@ var CANDIDATS = [
     sources: [
       ['Public Sénat', 'https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart'],
       ['Sud Radio', 'https://www.sudradio.fr/linvite-politique/nicolas-dupont-aignan-la-position-du-rn-est-incomprehensible'],
-      ['Résultats 2026', 'https://www.resultats-elections.interieur.gouv.fr/municipales2026/ensemble_geographique/11/91/91691/'],
-      ['Ville de Yerres, arrêté 2026/405', 'https://www.actes-administratifs.yerres.fr/wp-content/uploads/2026/07/2026-405.pdf']
+      ['Résultats 2026', 'https://www.resultats-elections.interieur.gouv.fr/municipales2026/ensemble_geographique/11/91/91691/']
     ]
   },
   {
@@ -474,7 +469,7 @@ var CANDIDATS = [
     role: 'Président de l’Union populaire républicaine', valeurs: [7, 1, 5, 4],
     phrase: 'Nous ne sommes pas des souverainistes, nous sommes un mouvement de libération nationale.', quand: '18 septembre 2025 · Sud Radio',
     annees: ['2017', '2027'],
-    justice: 'Renvoyé en correctionnelle (2026) pour harcèlement et agression sexuels, et une tentative, après un non-lieu infirmé. Il conteste&nbsp;; présumé innocent.',
+    justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'UPR hors grille, nuance DSV en 2024 (règle 2, à valider)', verifie: '25/11/2026',
     sources: [
       ['Brut (AFP)', 'https://www.brut.media/fr/articles/agression-et-harcelement-sexuels-francois-asselineau-renvoye-en-proces'],
@@ -487,7 +482,7 @@ var CANDIDATS = [
     etiquette: 'Prétendant · août 2026', tampon: '1<sup>re</sup> candidature&nbsp;?',
     role: 'Président de la région Hauts-de-France', valeurs: [8, 7, 9, 3],
     phrase: 'Je serai un candidat à la place, pas un candidat de plus.', quand: '27 août 2026 · rencontre des entrepreneurs du Medef',
-    annees: ['2027&nbsp;?'], justice: 'Aucune procédure en cours identifiée dans les sources consultées.',
+    annees: ['2027&nbsp;?'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (LR)', verifie: '25/11/2026',
     sources: [
       ['LCP (Medef)', 'https://lcp.fr/actualites/2027-figure-de-la-droite-xavier-bertrand-confirme-qu-il-sera-candidat-a-l-election'],
@@ -501,7 +496,7 @@ var CANDIDATS = [
     role: 'Président des députés Droite républicaine', valeurs: [8, 8, 7, 4],
     phrase: '… pour être ce guerrier du rassemblement.', quand: 'Juillet 2026 · Le Figaro',
     annees: ['aucune candidature'],
-    justice: 'Deux enquêtes du PNF&nbsp;: ses collaborateurs à la Région (2020) et le «&nbsp;dîner des sommets&nbsp;» de la Région (2022, mise en cause personnelle non établie). Présumé innocent.',
+    justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (LR)', verifie: '25/11/2026',
     horsCarte: [
       ['Enquête sur la réécriture d’une délibération régionale (2018)', 'Classée sans suite le 2&nbsp;octobre 2020, absence d’infraction', [['LyonMag', 'https://www.lyonmag.com/article/110586/auvergne-rhone-alpes-l-enquete-pour-faux-en-ecriture-publique-classee-sans-suite'], ['Lyon Capitale', 'https://www.lyoncapitale.fr/?p=159997']]]
@@ -509,8 +504,7 @@ var CANDIDATS = [
     sources: [
       ['Lyon Capitale (statut)', 'https://www.lyoncapitale.fr/?p=501731'],
       ['AFP (Le Figaro)', 'https://www.boursedirect.fr/fr/actualites/categorie/politique/presidentielle-wauquiez-porte-un-coup-a-la-candidature-de-retailleau-en-tendant-la-main-a-philippe-afp-88833e6f3077761451ca93dfccafb0c40b3eb503'],
-      ['Lyon Capitale (PNF)', 'https://www.lyoncapitale.fr/actualite/etude-d-opinion-financee-par-la-region-aura-laurent-wauquiez-de-nouveau-dans-le-viseur-du-pnf'],
-      ['Lyon Capitale', 'https://www.lyoncapitale.fr/?p=461754']
+      ['Lyon Capitale (PNF)', 'https://www.lyoncapitale.fr/actualite/etude-d-opinion-financee-par-la-region-aura-laurent-wauquiez-de-nouveau-dans-le-viseur-du-pnf']
     ]
   },
   {
@@ -518,7 +512,7 @@ var CANDIDATS = [
     etiquette: 'Pas déclaré', tampon: 'Pro-Retailleau',
     role: 'Maire de Troyes · ancien ministre de l’Économie', valeurs: [4, 9, 10, 5],
     phrase: 'Bruno Retailleau a toutes les qualités pour créer les conditions de la surprise du premier tour et du rassemblement nécessaire du second.', quand: '8 octobre 2026 · Public Sénat',
-    annees: ['aucune candidature'], justice: 'Aucune procédure identifiée dans les sources consultées.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (LR)', verifie: '25/11/2026',
     sources: [
       ['Public Sénat', 'https://www.publicsenat.fr/actualites/politique/presidentielle-2027-francois-baroin-assure-que-bruno-retailleau-a-toutes-les-qualites-pour-creer-les-conditions-de-la-surprise-du-premier-tour'],
@@ -530,7 +524,7 @@ var CANDIDATS = [
     etiquette: 'Pas candidat · août 2026', tampon: 'Soutient Philippe',
     role: 'Garde des Sceaux, ministre de la Justice', valeurs: [5, 7, 7, 6],
     phrase: 'J’ai décidé de ne pas rajouter de la division.', quand: '17 août 2026 · annonce de son soutien',
-    annees: ['aucune candidature'], justice: 'Aucune procédure en cours identifiée dans les sources consultées.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'en retrait de Renaissance, liste divers droite aux municipales 2026 (règle 2, validée)', verifie: '25/11/2026',
     horsCarte: [
       ['Plainte pour viol (2017, faits allégués de 2009)&nbsp;; jamais mis en examen', 'Non-lieu en 2022, confirmé en appel&nbsp;; pourvoi rejeté par la Cour de cassation le 14&nbsp;février 2024&nbsp;: non-lieu définitif', [['Europe&nbsp;1', 'https://www.europe1.fr/politique/accusations-de-viol-la-cour-de-cassation-valide-le-non-lieu-en-faveur-de-gerald-darmanin-4230654'], ['La Gazette (AFP)', 'https://www.lagazettefrance.fr/article/accusations-de-viol-gerald-darmanin-definitivement-mis-hors-de-cause-par-la-justice']]],
@@ -553,7 +547,7 @@ var CANDIDATS = [
     role: 'PDG de la SNCF · ancien Premier ministre', valeurs: [4, 4, 6, 3],
     phrase: 'Personne ne peut jamais fermer la porte à rien.', quand: '1<sup>er</sup> juillet 2026 · France Inter',
     annees: ['aucune candidature'],
-    justice: 'Enquête pour faux, usage de faux et détournement de fonds publics sans enrichissement personnel (aides de son intercommunalité, 2017-2018)&nbsp;: garde à vue en 2025. Présumé innocent.',
+    justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'maire LR de Prades à sa dernière candidature, 2020 (règle 2, à valider)', verifie: '25/11/2026',
     horsCarte: [
       ['Plainte devant la Cour de justice de la République sur sa gestion du Covid-19 (septembre 2020)', 'Déclarée irrecevable (novembre 2020)', [['Ma Commune (AFP)', 'https://www.macommune.info/covid-19-jean-castex-vise-par-une-plainte-devant-la-cjr'], ['Le Quotidien du pharmacien', 'https://www.lequotidiendupharmacien.fr/exercice-pro/justice/crise-sanitaire-des-milliers-de-plaintes-affluent-contre-des-ministres']]]
@@ -569,7 +563,7 @@ var CANDIDATS = [
     role: 'Présidente du groupe RN à l’Assemblée', valeurs: [10, 9, 9, 8],
     phrase: 'Ce soir, je suis candidate à l’élection présidentielle.', quand: '7 juillet 2026 · 20&nbsp;h de TF1',
     annees: ['2012', '2017', '2022', '2027'],
-    justice: 'Condamnée en appel (2026) pour détournement de fonds publics&nbsp;: 3 ans dont 1 ferme, 45 mois d’inéligibilité dont 30 avec sursis&nbsp;; en cassation, présumée innocente. Instruction sur sa campagne 2022.',
+    justice: 'Condamnée en appel (2026) pour détournement de fonds publics&nbsp;: 3 ans dont 1 ferme, 45 mois d’inéligibilité dont 30 avec sursis&nbsp;; pourvoi en cassation, présumée innocente. Condamnée définitivement pour diffamation (2025).',
     blocSource: 'nuancier 2026 (RN)', verifie: '25/11/2026',
     horsCarte: [
       ['Diffusion de photos d’exactions de l’État islamique sur Twitter (2015)', 'Relaxée par le tribunal correctionnel de Nanterre (4&nbsp;mai 2021)', [['franceinfo', 'https://www.franceinfo.fr/politique/front-national/photos-de-l-ei-publiees-par-marine-le-pen/'], ['La Libre Belgique', 'https://www.lalibre.be/international/2018/03/01/marine-le-pen-mise-en-examen-pour-avoir-relaye-des-photos-dexactions-de-letat-islamique-7U7WV2ZPKBGDFDORNQDKOHCBZU/']]]
@@ -587,7 +581,7 @@ var CANDIDATS = [
     role: 'Président de Reconquête', valeurs: [9, 1, 1, 9],
     phrase: 'Je me présente pour conserver une France française et que notre avenir soit français.', quand: '10 novembre 2026 · 20&nbsp;h de TF1',
     annees: ['2022', '2027'],
-    justice: 'Condamnations définitives&nbsp;: contestation de crime contre l’humanité (Pétain, 2026), provocation à la haine (2025), diffamation (2026)… Injure (Crépol, 2025)&nbsp;: suite non connue. Enquête sur ses SMS de campagne.',
+    justice: 'Condamnations définitives, dont contestation de crime contre l’humanité (Pétain, 2026), provocation à la haine (2025), diffamation (2026)… Condamné en 1re instance pour injure (Crépol, 2025), suite non connue&nbsp;; présumé innocent.',
     blocSource: 'nuancier 2026 (Reconquête)', verifie: '25/11/2026',
     horsCarte: [
       ['Injures à caractère homophobe (CNews, 2019)', 'Relaxé par la cour d’appel de Paris (11&nbsp;septembre 2024)', [['Club des juristes', 'https://www.leclubdesjuristes.com/en-bref/propos-sur-les-mineurs-isoles-eric-zemmour-condamne-en-appel-6861']]],
@@ -606,12 +600,11 @@ var CANDIDATS = [
     etiquette: 'Candidat · mai 2026', tampon: 'Sauf si Villiers',
     role: 'Président des Patriotes · ancien député européen', valeurs: [7, 5, 5, 3],
     phrase: 'C’est Philippe de Villiers qui incarne possiblement ce rassemblement anti-UE et anti-Otan.', quand: '9 mai 2026 · France&nbsp;2',
-    annees: ['2027'], justice: 'Enquête ouverte en 2019 (drapeau européen retiré à Forbach)&nbsp;: issue non connue&nbsp;; présumé innocent.',
+    annees: ['2027'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (Les Patriotes)', verifie: '25/11/2026',
     sources: [
       ['Sud Radio (AFP)', 'https://www.sudradio.fr/politique/je-suis-candidat-florian-philippot-se-lance-pour-la-presidentielle-de-2027'],
-      ['LCP (liste des candidats)', 'https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932'],
-      ['La Nouvelle Tribune', 'https://lanouvelletribune.info/2019/05/florian-philippot-enquete-ouverte-contre-lui-pour-violation-de-domicile-et-vol/']
+      ['LCP (liste des candidats)', 'https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932']
     ]
   },
   {
@@ -619,14 +612,13 @@ var CANDIDATS = [
     etiquette: 'Plan B · avr. 2025', tampon: 'Si Le Pen empêchée',
     role: 'Président du RN · député européen', valeurs: [9, 6, 6, 10],
     phrase: 'Si elle devait être empêchée demain, je pense pouvoir vous dire que je serai son candidat.', quand: 'Avril 2025 · Le Parisien',
-    annees: ['2027&nbsp;?'], justice: 'Enquêtes sur une formation aux médias payée par le Parlement européen, dont il aurait bénéficié (2026), et sur les campagnes du RN (2024). Présumé innocent.',
+    annees: ['2027&nbsp;?'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (RN)', verifie: '25/11/2026',
     sources: [
       ['Europe&nbsp;1', 'https://www.europe1.fr/node/708835'],
       ['Landot (JO)', 'https://blog.landot-avocats.net/2024/06/13/proclamation-des-resultats-de-lelection-des-representants-au-parlement-europeen/'],
       ['HATVP', 'https://www.hatvp.fr/livraison/dossiers/bardella-jordan-dim33673-europe.pdf'],
-      ['AFP', 'https://lepetitjournal.com/fil-afp/le-rn-perquisitionne-dans-une-enquete-sur-le-financement-de-ses-campagnes-electorales-418194'],
-      ['Bloomberg', 'https://www.bloomberg.com/news/articles/2026-05-07/french-far-right-s-bardella-linked-to-eu-funds-probe-afp-says']
+      ['AFP', 'https://lepetitjournal.com/fil-afp/le-rn-perquisitionne-dans-une-enquete-sur-le-financement-de-ses-campagnes-electorales-418194']
     ]
   },
   {
@@ -634,7 +626,7 @@ var CANDIDATS = [
     etiquette: 'Pas candidate · janv. 2026', tampon: 'Hors course',
     role: 'Députée européenne · élue du 16<sup>e</sup> arrondissement de Paris', valeurs: [6, 4, 4, 10],
     phrase: 'C’est un travail à plein temps.', quand: '7 janvier 2026 · TF1, à propos de la mairie de Paris',
-    annees: ['aucune candidature'], justice: 'Aucune procédure en cours identifiée dans les sources consultées.',
+    annees: ['aucune candidature'], justice: 'Aucune condamnation identifiée dans les sources consultées.',
     blocSource: 'nuancier 2026 (Reconquête)', verifie: '25/11/2026',
     horsCarte: [
       ['Plainte de l’État algérien pour «&nbsp;diffusion de fausses nouvelles&nbsp;» (propos sur RMC, septembre 2024)', 'Classée sans suite par le parquet de Paris le 27&nbsp;septembre 2024, infraction non caractérisée', [['TelQuel (AFP)', 'https://telquel.ma/instant-t/2024/10/03/800-millions-deuros-daide-a-lalgerie-une-plainte-dalger-contre-une-eurodeputee-francaise-classee_1896718/'], ['H24info (AFP)', 'https://h24info.ma/monde/800-millions-deuros-daide-a-lalgerie-la-plainte-dalger-contre-sarah-knafo-classee/']]]
