@@ -71,7 +71,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Jean-Luc Mélenchon": {
   "candidature": "Candidat · mai 2026",
@@ -178,8 +178,188 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Incidents lors de la perquisition au siège de LFI (16 oct. 2018)",
+    "cadre": "Tribunal correctionnel de Bobigny",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "16 oct. 2018",
+      "texte": "Perquisition au siège de LFI dans le cadre de deux enquêtes du parquet de Paris"
+     },
+     {
+      "date": "19-20 sept. 2019",
+      "texte": "Jugé pour actes d'intimidation envers un magistrat et un dépositaire de l'autorité publique, rébellion et provocation"
+     },
+     {
+      "date": "9 déc. 2019",
+      "texte": "Condamné à 3 mois d'emprisonnement avec sursis et 8 000 € d'amende pour rébellion et provocation ; annonce qu'il ne fait pas appel"
+     }
+    ],
+    "sources": [
+     [
+      "Public Sénat",
+      "https://www.publicsenat.fr/actualites/politique/melenchon-condamne-a-trois-mois-avec-sursis-pour-la-perquisition-houleuse-a-lfi",
+      "09/12/2019"
+     ],
+     [
+      "Public Sénat",
+      "https://www.publicsenat.fr/actualites/politique/perquisition-a-lfi-3-mois-avec-sursis-requis-contre-melenchon-145620",
+      "20/09/2019"
+     ]
+    ]
+   },
+   {
+    "dossier": "Diffamation envers un ancien journaliste du Monde (propos publiés sur son blog en 2016)",
+    "cadre": "Tribunal correctionnel de Paris",
+    "nature": "penal",
+    "stade": "condamnation_premiere_instance",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "févr. 2017",
+      "texte": "Plainte en diffamation déposée par le journaliste"
+     },
+     {
+      "date": "24 sept. 2021",
+      "texte": "Condamné à 500 € d'amende avec sursis et 1 000 € de dommages-intérêts ; son avocat annonce un appel"
+     },
+     {
+      "date": "29 juin 2022",
+      "texte": "Appel toujours pendant selon l'AFP ; issue de l'appel non trouvée"
+     },
+     {
+      "date": "25 nov. 2026",
+      "texte": "Condamnation non définitive à notre connaissance ; présumé innocent"
+     }
+    ],
+    "sources": [
+     [
+      "DH (AFP)",
+      "https://www.dhnet.be/actu/monde/2021/09/24/jean-luc-melenchon-condamne-pour-diffamation-envers-un-ancien-journaliste-du-monde-BNX3AE4EABH2XOHW3SWAUN5EM4/",
+      "24/09/2021"
+     ],
+     [
+      "H24info (AFP)",
+      "https://h24info.ma/?p=594744",
+      "29/06/2022"
+     ]
+    ]
+   },
+   {
+    "dossier": "Diffamation envers le même ancien journaliste (propos de 2018 sur la dictature chilienne)",
+    "cadre": "Tribunal correctionnel puis cour d'appel de Paris",
+    "nature": "penal",
+    "stade": "condamnation_appel",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "s.d.",
+      "texte": "Le tribunal correctionnel ne retient pas le caractère diffamatoire des propos"
+     },
+     {
+      "date": "29 juin 2022",
+      "texte": "La cour d'appel de Paris le condamne pour diffamation : 1 € de dommages-intérêts et 2 000 € de frais de justice"
+     },
+     {
+      "date": "25 nov. 2026",
+      "texte": "Présumé(e) innocent(e) tant qu'aucune décision définitive n'est intervenue"
+     }
+    ],
+    "sources": [
+     [
+      "H24info (AFP)",
+      "https://h24info.ma/?p=594744",
+      "29/06/2022"
+     ],
+     [
+      "Europe 1",
+      "https://www.europe1.fr/node/81988",
+      "29/06/2022"
+     ]
+    ]
+   },
+   {
+    "dossier": "Propos visant des journalistes de franceinfo (oct. 2018)",
+    "cadre": "Tribunal correctionnel de Paris, sur plainte de l'éditeur de franceinfo",
+    "nature": "penal",
+    "stade": "condamnation_premiere_instance",
+    "etat": "non_etabli",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "oct. 2018",
+      "texte": "Plainte pour injure et diffamation après des propos publics contre des journalistes"
+     },
+     {
+      "date": "janv. 2022",
+      "texte": "Condamné à 500 € d'amende avec sursis pour injure publique et diffamation, et 3 000 € de dommages-intérêts ; appel annoncé"
+     },
+     {
+      "date": "25 nov. 2026",
+      "texte": "Issue de l'appel non trouvée ; présumé innocent tant que la décision n'est pas définitive"
+     }
+    ],
+    "sources": [
+     [
+      "Puremédias (Ozap)",
+      "https://www.ozap.com/actu/journalistes-traites-d-abrutis-et-de-menteurs-jean-luc-melenchon-condamne-pour-injure-publique-et-diffamation/612438",
+      "11/01/2022"
+     ],
+     [
+      "Public Sénat",
+      "https://www.publicsenat.fr/actualites/politique/propos-de-melenchon-contre-les-journalistes-radio-france-porte-plainte-134606",
+      "20/10/2018"
+     ]
+    ]
+   },
+   {
+    "dossier": "Plainte pour injure d'une adversaire politique (propos de 2011)",
+    "cadre": "17e chambre du tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
+    "nature": "penal",
+    "stade": "relaxe",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "10 avr. 2014",
+      "texte": "Relaxé par le tribunal correctionnel de Paris"
+     },
+     {
+      "date": "6 oct. 2015",
+      "texte": "La cour d'appel de Paris confirme la relaxe"
+     },
+     {
+      "date": "28 févr. 2017",
+      "texte": "La Cour de cassation rend la relaxe définitive"
+     }
+    ],
+    "sources": [
+     [
+      "Politis",
+      "https://www.politis.fr/articles/2014/04/fasciste-marine-le-pen-deboutee-de-sa-plainte-contre-melenchon-26558",
+      "10/04/2014"
+     ],
+     [
+      "Public Sénat",
+      "https://www.publicsenat.fr/actualites/politique/fasciste-marine-le-pen-definitivement-deboutee-contre-jean-luc-melenchon-56342",
+      "28/02/2017"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": null
  },
  "Fabien Roussel": {
   "candidature": "Candidat · sept. 2026",
@@ -240,7 +420,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "François Ruffin": {
   "candidature": "Candidat · janv. 2026",
@@ -300,7 +480,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Marine Tondelier": {
   "candidature": "Candidate · oct. 2025",
@@ -377,8 +557,44 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Action en diffamation de deux présentateurs d'une chaîne d'information (propos télévisés du 14 mai 2023)",
+    "cadre": "Tribunal judiciaire de Nanterre",
+    "nature": "civil",
+    "stade": "demande_rejetee",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "14 mai 2023",
+      "texte": "Propos sur une chaîne d'information tenus lors d'une émission de France 3"
+     },
+     {
+      "date": "juil. 2023",
+      "texte": "Les deux présentateurs annoncent des poursuites"
+     },
+     {
+      "date": "17 févr. 2026",
+      "texte": "Les demandeurs sont déboutés ; aucun appel connu"
+     }
+    ],
+    "sources": [
+     [
+      "Puremédias (Ozap)",
+      "https://www.ozap.com/actu/-cnews-laisse-prosperer-une-ideologie-neonazie-christine-kelly-et-marc-menant-portent-plainte-contre-marine-tondelier-eelv/634309",
+      "06/07/2023"
+     ],
+     [
+      "Puremédias (Ozap)",
+      "https://www.ozap.com/actu/j-espere-que-ca-leur-passera-l-envie-de-baillonner-les-critiques-marine-tondelier-annonce-avoir-gagne-son-proces-contre-christine-kelly/654117",
+      "12/03/2026"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Sandrine Rousseau": {
   "candidature": "Pas déclarée",
@@ -428,8 +644,87 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Action civile pour « dénigrement » d'une fédération de chasseurs (propos télévisés du 22 févr. 2022)",
+    "cadre": "Tribunal judiciaire de Paris (17e chambre), procédure civile ; appel",
+    "nature": "civil",
+    "stade": "demande_rejetee",
+    "etat": "non_etabli",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "22 févr. 2022",
+      "texte": "Propos sur France 2 liant armes de chasse et féminicides"
+     },
+     {
+      "date": "août 2022",
+      "texte": "La fédération l'assigne et réclame près de 100 000 € de dommages-intérêts"
+     },
+     {
+      "date": "4 sept. 2024",
+      "texte": "Audience devant le tribunal judiciaire de Paris"
+     },
+     {
+      "date": "oct. 2024",
+      "texte": "La fédération est déboutée ; elle annonce faire appel"
+     },
+     {
+      "date": "25 nov. 2026",
+      "texte": "Issue de l'appel non trouvée ; aucune décision définitive"
+     }
+    ],
+    "sources": [
+     [
+      "Reporterre",
+      "https://reporterre.net/Feminicides-et-armes-de-chasse-Sandrine-Rousseau-denonce-une-procedure-baillon",
+      "04/09/2024"
+     ],
+     [
+      "Politis",
+      "https://www.politis.fr/articles/2024/11/en-bref-les-chasseurs-perdent-un-proces-contre-sandrine-rousseau-le-snu-au-repos-des-ordonnances-en-faveur-de-leau/",
+      "06/11/2024"
+     ],
+     [
+      "Communiqué de la fédération",
+      "https://chasseurdefrance.com/wp-content/uploads/2024/10/20241030CPSandrineRousseau45.pdf",
+      "30/10/2024"
+     ]
+    ]
+   },
+   {
+    "dossier": "Poursuites en diffamation d'un ancien député qu'elle avait accusé publiquement (2016)",
+    "cadre": "Tribunal correctionnel de Paris (17e chambre), sur plainte avec constitution de partie civile",
+    "nature": "penal",
+    "stade": "relaxe",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "mai 2016",
+      "texte": "Accusations publiques de harcèlement et d'agressions sexuelles par plusieurs élues, dont elle"
+     },
+     {
+      "date": "24 mars 2017",
+      "texte": "Mise en examen pour diffamation (mise en examen automatique dans ce type de procédure)"
+     },
+     {
+      "date": "19 avr. 2019",
+      "texte": "Relaxée avec les autres prévenus"
+     }
+    ],
+    "sources": [
+     [
+      "Public Sénat",
+      "https://www.publicsenat.fr/actualites/non-classe/l-une-des-accusatrices-de-baupin-porte-plainte-pour-denonciation-calomnieuse-77771",
+      "s.d. (2017)"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Raphaël Glucksmann": {
   "candidature": "Candidat PS–Place publique–GRS, vainqueur de la primaire du 11/10/2026 (66,17 %, 79 613 voix)",
@@ -504,7 +799,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Karim Bouamrane": {
   "candidature": "Candidat ; maintien confirmé le 12/11/2026 après la primaire socialiste",
@@ -560,7 +855,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "François Hollande": {
   "candidature": "Pas encore déclaré",
@@ -664,7 +959,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Clémentine Autain": {
   "candidature": "A renoncé · juil. 2026",
@@ -735,7 +1030,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Ségolène Royal": {
   "candidature": "Battue à la primaire socialiste du 11/10/2026 (7,62 %)",
@@ -836,8 +1131,70 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Usage des moyens d'ambassadrice des pôles arctique et antarctique",
+    "cadre": "Enquête préliminaire du parquet national financier (PNF)",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "nov. 2019",
+      "texte": "Le PNF ouvre une enquête préliminaire sur l'usage des moyens et fonds publics mis à sa disposition comme ambassadrice des pôles et ministre"
+     },
+     {
+      "date": "28 juin 2021",
+      "texte": "Classement sans suite : les investigations n'ont démontré aucune infraction"
+     }
+    ],
+    "sources": [
+     [
+      "Parquet national financier, communiqué",
+      "https://www.tribunal-de-paris.justice.fr/sites/default/files/2021-07/2021_06_28%20-%20CP%20S%C3%A9gol%C3%A8ne%20ROYAL%20ambassadrice%20des%20p%C3%B4les.pdf",
+      "28/06/2021"
+     ],
+     [
+      "Public Sénat (AFP)",
+      "https://www.publicsenat.fr/actualites/politique/frais-d-ambassadrice-des-poles-segolene-royal-visee-par-une-enquete-du-parquet",
+      "janv. 2020"
+     ]
+    ]
+   },
+   {
+    "dossier": "Diffamation envers un journaliste de Radio France (propos de nov. 2019)",
+    "cadre": "Tribunal correctionnel de Paris (droit de la presse)",
+    "nature": "penal",
+    "stade": "condamnation_premiere_instance",
+    "etat": "non_etabli",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "20 avr. 2023",
+      "texte": "Condamnée pour diffamation à 500 € d'amende avec sursis et 1 000 € de dommages et intérêts ; une partie des propos poursuivis n'a pas été jugée diffamatoire"
+     },
+     {
+      "date": "avr. 2023",
+      "texte": "Son avocat indique avoir fait appel : la condamnation n'est pas définitive"
+     },
+     {
+      "date": "25 nov. 2026",
+      "texte": "Issue de l'appel non trouvée ; présumée innocente tant qu'aucune décision définitive n'est rendue"
+     }
+    ],
+    "sources": [
+     [
+      "Puremédias (ozap)",
+      "https://www.ozap.com/actu/-journalisme-de-caniveau-segolene-royal-condamnee-pour-avoir-diffame-un-journaliste-de-radio-france/631199",
+      "27/04/2023"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": null
  },
  "Olivier Faure": {
   "candidature": "Battu à la primaire socialiste du 11/10/2026 (14,46 %)",
@@ -922,7 +1279,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Jérôme Guedj": {
   "candidature": "Battu à la primaire socialiste du 11/10/2026 (5,83 %)",
@@ -1008,7 +1365,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Gabriel Attal": {
   "candidature": "Candidat · mai 2026",
@@ -1132,7 +1489,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Édouard Philippe": {
   "candidature": "Candidat · sept. 2024",
@@ -1238,8 +1595,44 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Gestion de l'épidémie de Covid-19",
+    "cadre": "Commission d'instruction de la Cour de justice de la République",
+    "nature": "penal",
+    "stade": "non_lieu",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "oct. 2022",
+      "texte": "Placé sous le statut de témoin assisté (mise en danger de la vie d'autrui, abstention de combattre un sinistre)"
+     },
+     {
+      "date": "mai 2025",
+      "texte": "Non-lieu requis par le procureur général"
+     },
+     {
+      "date": "7 juil. 2025",
+      "texte": "Non-lieu prononcé"
+     }
+    ],
+    "sources": [
+     [
+      "Club des juristes",
+      "https://www.leclubdesjuristes.com/en-bref/gestion-du-covid-19-la-cjr-prononce-un-non-lieu-a-lencontre-de-edouard-philippe-agnes-buzyn-et-olivier-veran-11443/",
+      "07/07/2025"
+     ],
+     [
+      "La Libre Belgique (AFP)",
+      "https://www.lalibre.be/international/europe/2022/10/22/france-edouard-philippe-sous-statut-de-temoin-assiste-pour-sa-gestion-de-la-crise-covid-XODNMFIN7VCMNAX5ETZR3A4TBY/",
+      "22/10/2022"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Aurore Bergé": {
   "candidature": "Pas déclarée",
@@ -1314,8 +1707,57 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Témoignage devant la commission d'enquête sur les crèches",
+    "cadre": "Commission d'instruction de la Cour de justice de la République (faux témoignage)",
+    "nature": "penal",
+    "stade": "non_lieu",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "9 oct. 2024",
+      "texte": "Le Bureau de l'Assemblée nationale saisit la justice"
+     },
+     {
+      "date": "28 janv. 2025",
+      "texte": "Ouverture d'une information judiciaire pour faux témoignage"
+     },
+     {
+      "date": "2025",
+      "texte": "Entendue à deux reprises, placée sous le statut de témoin assistée, jamais mise en examen"
+     },
+     {
+      "date": "mai 2026",
+      "texte": "Non-lieu requis par le parquet général près la Cour de cassation"
+     },
+     {
+      "date": "2 juil. 2026",
+      "texte": "Non-lieu prononcé par la CJR"
+     }
+    ],
+    "sources": [
+     [
+      "LCP",
+      "https://lcp.fr/actualites/creches-une-information-judiciaire-ouverte-contre-aurore-berge-pour-faux-temoignage",
+      "31/01/2025"
+     ],
+     [
+      "Europe 1 (AFP)",
+      "https://www.europe1.fr/node/964860",
+      "02/07/2026"
+     ],
+     [
+      "La Gazette France (AFP)",
+      "https://www.lagazettefrance.fr/article/soupcons-de-faux-temoignage-sur-les-creches-non-lieu-en-faveur-d-aurore-berge",
+      "02/07/2026"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Dominique de Villepin": {
   "candidature": "Pas encore déclaré",
@@ -1405,7 +1847,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Teddy Riner": {
   "candidature": "Candidat · nov. 2026",
@@ -1444,8 +1886,89 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Redressement fiscal : voitures de luxe de sa société de location",
+    "cadre": "Contentieux fiscal devant la juridiction administrative (non pénal)",
+    "nature": "fiscal",
+    "stade": "decision_juridictionnelle",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "2019",
+      "texte": "Redressement au titre de 2016-2017 : usage personnel de véhicules (dont une Ferrari et une Rolls-Royce) appartenant à sa société, requalifié en avantages ; majoration de 40 %"
+     },
+     {
+      "date": "mars 2025",
+      "texte": "Le tribunal administratif de Cergy-Pontoise rejette sa contestation"
+     },
+     {
+      "date": "15 oct. 2026",
+      "texte": "La cour administrative d'appel de Versailles rejette son appel, maintient la majoration de 40 % et retient une intention délibérée"
+     },
+     {
+      "date": "25 nov. 2026",
+      "texte": "Pourvoi devant le Conseil d'État possible (deux mois après notification), aucun signalé"
+     }
+    ],
+    "sources": [
+     [
+      "Flashscore (AFP)",
+      "https://www.flashscore.fr/actualites/la-justice-conforte-le-fisc-dans-un-redressement-visant-teddy-riner/UXa8IVOc/",
+      "03/11/2026"
+     ],
+     [
+      "L'Essentiel de l'éco (d'après L'Équipe)",
+      "https://lessentieldeleco.fr/9356-teddy-riner-candidat-epingle-par-le-fisc/",
+      "09/11/2026"
+     ],
+     [
+      "24matins",
+      "https://www.24matins.fr/teddy-riner-vise-2027-pendant-quun-dossier-fiscal-refait-surface-1423928",
+      "09/11/2026"
+     ],
+     [
+      "Euronews",
+      "https://fr.euronews.com/2026/11/12/presidentielle-2027-teddy-riner-rattrape-par-le-fisc-un-premier-combat-sur-le-terrain-poli",
+      "12/11/2026"
+     ]
+    ]
+   },
+   {
+    "dossier": "Enquête sur sa rémunération au Levallois Sporting Club",
+    "cadre": "Enquête préliminaire (brigade de répression de la délinquance économique)",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "oct. 2015",
+      "texte": "Entendu comme suspect libre au sujet de sa rémunération par le club, après un rapport de la chambre régionale des comptes"
+     },
+     {
+      "date": "2019",
+      "texte": "Classement sans suite"
+     }
+    ],
+    "sources": [
+     [
+      "RCI",
+      "https://rci.fm/guadeloupe/infos/Justice/Levallois-Sporting-Club-Teddy-Riner-entendu-par-la-police",
+      "06/10/2015"
+     ],
+     [
+      "L'Essentiel de l'éco (d'après L'Équipe)",
+      "https://lessentieldeleco.fr/9356-teddy-riner-candidat-epingle-par-le-fisc/",
+      "09/11/2026"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": null
  },
  "Natacha Polony": {
   "candidature": "Candidate · oct. 2026",
@@ -1499,8 +2022,44 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Propos sur le génocide des Tutsi au Rwanda (France Inter, 18 mars 2018)",
+    "cadre": "Tribunal correctionnel de Paris, poursuites pour « contestation de l'existence de crime contre l'humanité »",
+    "nature": "penal",
+    "stade": "relaxe",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "fin 2020",
+      "texte": "Renvoyée devant le tribunal par un juge d'instruction, contre l'avis du parquet"
+     },
+     {
+      "date": "1er-2 mars 2022",
+      "texte": "Procès devant le tribunal correctionnel de Paris"
+     },
+     {
+      "date": "20 mai 2022",
+      "texte": "Relaxée par le tribunal judiciaire de Paris"
+     }
+    ],
+    "sources": [
+     [
+      "La DH / Belga (AFP)",
+      "https://www.dhnet.be/medias/television/2022/02/28/la-journaliste-natacha-polony-jugee-mardi-pour-contestation-du-genocide-au-rwanda-6ZSNXHIEIVAZRHUVSK26ID3BEY/",
+      "28/02/2022"
+     ],
+     [
+      "AFP (archive francegenocidetutsi.org)",
+      "https://francegenocidetutsi.org/LaJournalisteNatachaPolonyRelaxeeAFP20052022.pdf",
+      "20/05/2022"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Juan Branco": {
   "candidature": "Candidat · déc. 2025",
@@ -1574,8 +2133,53 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Procédure disciplinaire : diffusion en ligne de pièces de l'instruction le visant",
+    "cadre": "Conseil de discipline du barreau de Paris, puis cour d'appel de Paris (procédure ordinale, non pénale)",
+    "nature": "disciplinaire",
+    "stade": "sanction",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "8 oct. 2024",
+      "texte": "Le conseil de discipline prononce une suspension d'exercice de neuf mois ; il fait appel"
+     },
+     {
+      "date": "15 oct. 2025",
+      "texte": "Jugé en première instance disciplinaire dans une autre procédure ordinale, qu'il conteste ; décision non trouvée"
+     },
+     {
+      "date": "16 oct. 2025",
+      "texte": "La cour d'appel de Paris confirme la suspension de neuf mois"
+     },
+     {
+      "date": "sept. 2026",
+      "texte": "Il peut de nouveau exercer ; pourvoi éventuel non signalé. Aucune poursuite pénale connue à ce titre"
+     }
+    ],
+    "sources": [
+     [
+      "Seneweb (AFP)",
+      "https://www.seneweb.com/en/news/Justice/france-bad-news-for-juan-branco_n_472171.html",
+      "24/10/2025"
+     ],
+     [
+      "JusticeInfo.net (AFP)",
+      "https://www.justiceinfo.net/fr/164381-france-le-parquet-veut-que-lavocat-franco-espagnol-juan-branco-soit-juge-pour-viol.html",
+      "01/09/2026"
+     ],
+     [
+      "Le Parisien",
+      "https://www.leparisien.fr/faits-divers/pour-avoir-viole-le-secret-de-lenquete-le-concernant-lavocat-juan-branco-suspendu-pour-neuf-mois-24-10-2025-NJD463X5X5CAHOU3RSYSDTXERY.php",
+      "24/10/2025"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": null
  },
  "Jean Lassalle": {
   "candidature": "Cagnotte · juil. 2026",
@@ -1647,7 +2251,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Delphine Batho": {
   "candidature": "Candidate · nov. 2025",
@@ -1732,7 +2336,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Francis Lalanne": {
   "candidature": "Candidat · août 2026",
@@ -1767,8 +2371,88 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Compte de campagne des européennes 2024 (liste « France libre »)",
+    "cadre": "Contentieux électoral (CNCCFP, puis Conseil d'État, décision n° 499660) : sanction électorale, pas une condamnation pénale",
+    "nature": "electoral",
+    "stade": "ineligibilite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "10 oct. 2024",
+      "texte": "La CNCCFP constate qu'il n'a pas déposé de compte de campagne comme tête de liste aux européennes des 8-9 juin 2024"
+     },
+     {
+      "date": "17 avr. 2025",
+      "texte": "Le Conseil d'État le déclare inéligible pour dix-huit mois"
+     },
+     {
+      "date": "25 févr. 2026",
+      "texte": "La préfète du Rhône refuse d'enregistrer sa candidature aux municipales de Lyon (5e arrondissement) en raison de cette inéligibilité"
+     },
+     {
+      "date": "26 févr. 2026",
+      "texte": "Le tribunal administratif de Lyon rejette son recours"
+     },
+     {
+      "date": "oct. 2026",
+      "texte": "Fin de la période d'inéligibilité (dix-huit mois après le 17 avr. 2025)"
+     }
+    ],
+    "sources": [
+     [
+      "Tribunal administratif de Lyon, ordonnance n° 2602478",
+      "https://lyon.tribunal-administratif.fr/Media/mediatheque-ta-lyon/2602478",
+      "26/02/2026"
+     ],
+     [
+      "Sud Radio",
+      "https://www.sudradio.fr/politique/francis-lalanne-du-chanteur-engage-des-annees-1980-aux-spheres-complotistes",
+      "20/08/2026"
+     ],
+     [
+      "Tribunal administratif de Lyon",
+      "https://lyon.tribunal-administratif.fr/decisions-de-justice/dernieres-decisions/elections-municipales-a-lyon-le-tribunal-rejette-le-recours-contre-le-refus-de-la-prefete-d-enregistrer-la-liste-de-francis-lalanne",
+      "26/02/2026"
+     ]
+    ]
+   },
+   {
+    "dossier": "Altercation avec une équipe de l'émission « Quotidien » à Avignon (5 juin 2021)",
+    "cadre": "Enquête préliminaire du parquet d'Avignon, sur plainte d'un journaliste",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "juin 2021",
+      "texte": "Plainte d'un journaliste pour violences ; enquête préliminaire ouverte par le parquet d'Avignon ; Francis Lalanne conteste avoir frappé quiconque"
+     },
+     {
+      "date": "avant janv. 2025",
+      "texte": "Plainte classée sans suite"
+     }
+    ],
+    "sources": [
+     [
+      "Conseil de l'Europe, réponse de la France à l'alerte n° 107/2021",
+      "https://rm.coe.int/france-reply-fr-plusieurs-journalistes-attaques-par-le-chanteur-franci/1680a34d49",
+      "20/07/2021"
+     ],
+     [
+      "Ozap",
+      "https://www.ozap.com/actu/plus-de-3-ans-apres-son-altercation-avec-une-equipe-de-quotidien-francis-lalanne-poursuit-son-bras-de-fer-judiciaire-contre-la-production-de-lemission-de-yann-barthes/648430",
+      "23/01/2025"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": null
  },
  "Sylvain Durif": {
   "candidature": "Candidat · août 2026",
@@ -1802,7 +2486,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Bernard Cazeneuve": {
   "candidature": "Prétendant · juil. 2026",
@@ -1913,8 +2597,35 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Usage du logiciel BriefCam par la police",
+    "cadre": "Signalement de députés LFI visant cinq anciens ministres de l'Intérieur, examiné par le procureur général près la Cour de cassation (procédure CJR)",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "19 nov. 2024",
+      "texte": "Signalement annoncé par des députés LFI visant B. Cazeneuve, B. Le Roux, M. Fekl, C. Castaner et G. Darmanin"
+     },
+     {
+      "date": "27 janv. 2025",
+      "texte": "Classé sans suite : les faits ne peuvent être imputés à aucun des ministres visés"
+     }
+    ],
+    "sources": [
+     [
+      "Solutions numériques (AFP)",
+      "https://www.solutions-numeriques.com/logiciel-de-reconnaissance-faciale-dans-la-police-classement-sans-suite-du-signalement-de-deputes-lfi/",
+      "11/02/2025"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Matthieu Pigasse": {
   "candidature": "Pas déclaré",
@@ -1967,7 +2678,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Thierry Breton": {
   "candidature": "Pas déclaré",
@@ -2045,7 +2756,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Christine Lagarde": {
   "candidature": "Pas déclarée",
@@ -2119,8 +2830,68 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Arbitrage Tapie / Crédit lyonnais (gestion comme ministre de l'Économie)",
+    "cadre": "Cour de justice de la République (commission d'instruction, puis formation de jugement)",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "4 août 2011",
+      "texte": "La commission des requêtes de la CJR rend un avis favorable à l'ouverture d'une enquête"
+     },
+     {
+      "date": "mai 2013",
+      "texte": "Placée sous le statut de témoin assisté"
+     },
+     {
+      "date": "27 août 2014",
+      "texte": "Mise en examen pour négligence d'une personne dépositaire de l'autorité publique"
+     },
+     {
+      "date": "19 déc. 2016",
+      "texte": "Reconnue coupable de négligence, dispensée de peine ; la condamnation n'est pas inscrite au casier judiciaire. Décision définitive"
+     }
+    ],
+    "sources": [
+     [
+      "Le Desk",
+      "https://ledesk.ma/?p=40986",
+      "19/12/2016"
+     ],
+     [
+      "Le Temps",
+      "https://www.letemps.ch/economie/christine-lagarde-bien-commis-une-negligence-laffaire-tapie-dispensee-peine",
+      "19/12/2016"
+     ],
+     [
+      "Politis",
+      "https://www.politis.fr/articles/2016/12/proces-lagarde-la-culpabilite-version-business-class-36034/",
+      "19/12/2016"
+     ],
+     [
+      "MoneyVox (AFP)",
+      "https://www.moneyvox.fr/actu/46789/affaire-tapie-credit-lyonnais-lagarde-mise-en-examen-pour-negligence-exclut-de-quitter-le-fmi",
+      "27/08/2014"
+     ],
+     [
+      "MoneyVox (AFP)",
+      "https://www.moneyvox.fr/actu/24984/affaire-tapie-la-cjr-decide-ouvrir-une-enquete-sur-christine-lagarde",
+      "04/08/2011"
+     ],
+     [
+      "Légifrance (arrêt CJR du 19/12/2016)",
+      "https://www.legifrance.gouv.fr/juri/id/JURITEXT000033943496",
+      "19/12/2016"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": null
  },
  "Michel-Édouard Leclerc": {
   "candidature": "Pas déclaré",
@@ -2171,7 +2942,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Bruno Retailleau": {
   "candidature": "Candidat · févr. 2026",
@@ -2298,7 +3069,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "David Lisnard": {
   "candidature": "Candidat · mars 2026",
@@ -2386,7 +3157,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Nicolas Dupont-Aignan": {
   "candidature": "Candidat · mars 2025",
@@ -2453,8 +3224,40 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Tweet de janvier 2017 évoquant une « invasion migratoire »",
+    "cadre": "Poursuites pour provocation à la haine ou à la discrimination, 17e chambre du tribunal correctionnel de Paris, à la suite du signalement d'une association",
+    "nature": "penal",
+    "stade": "relaxe",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "avril 2018",
+      "texte": "Procès ; le parquet requiert 5 000 euros d'amende avec sursis"
+     },
+     {
+      "date": "6 juin 2018",
+      "texte": "Relaxe sur le fond par le tribunal correctionnel de Paris ; aucun appel mentionné dans les sources"
+     }
+    ],
+    "sources": [
+     [
+      "Public Sénat",
+      "https://www.publicsenat.fr/actualites/politique/dupont-aignan-relaxe-pour-ses-propos-sur-l-invasion-migratoire-en-france-86680",
+      "06/06/2018"
+     ],
+     [
+      "Public Sénat",
+      "https://www.publicsenat.fr/actualites/politique/invasion-migratoire-amende-avec-sursis-requise-contre-dupont-aignan-84375",
+      "04/2018"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "François Asselineau": {
   "candidature": "Candidat · mars 2026",
@@ -2518,7 +3321,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Xavier Bertrand": {
   "candidature": "Prétendant · août 2026",
@@ -2594,7 +3397,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Laurent Wauquiez": {
   "candidature": "Pas déclaré",
@@ -2680,8 +3483,40 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Modification d'une délibération régionale (amendement sur le bio dans les cantines des lycées)",
+    "cadre": "Enquête préliminaire du parquet de Lyon (faux en écriture publique)",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "non_etablie",
+    "etapes": [
+     {
+      "date": "mars 2018",
+      "texte": "Ouverture d'une enquête après un signalement d'élus d'opposition sur la réécriture d'un amendement voté en 2017"
+     },
+     {
+      "date": "2 oct. 2020",
+      "texte": "Classement sans suite annoncé par le procureur de Lyon, l'enquête ayant conclu à l'absence d'infraction"
+     }
+    ],
+    "sources": [
+     [
+      "LyonMag",
+      "https://www.lyonmag.com/article/110586/auvergne-rhone-alpes-l-enquete-pour-faux-en-ecriture-publique-classee-sans-suite",
+      "02/10/2020"
+     ],
+     [
+      "Lyon Capitale",
+      "https://www.lyoncapitale.fr/?p=159997",
+      "date non relevée"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "François Baroin": {
   "candidature": "Pas déclaré",
@@ -2777,7 +3612,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Gérald Darmanin": {
   "candidature": "Pas candidat · août 2026",
@@ -2875,8 +3710,256 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Plainte pour viol, harcèlement sexuel et abus de confiance (faits allégués de 2009)",
+    "cadre": "Enquêtes préliminaires du parquet de Paris, puis plainte avec constitution de partie civile et information judiciaire",
+    "nature": "penal",
+    "stade": "non_lieu",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "juin-juil. 2017",
+      "texte": "Première plainte, classée sans suite en juillet 2017"
+     },
+     {
+      "date": "janv.-févr. 2018",
+      "texte": "Enquête rouverte puis classée sans suite pour absence d'infraction"
+     },
+     {
+      "date": "août 2018",
+      "texte": "Un juge d'instruction refuse d'ouvrir une information après une plainte avec constitution de partie civile"
+     },
+     {
+      "date": "14 nov. 2019",
+      "texte": "La Cour de cassation ordonne le réexamen de l'appel de la plaignante, jugé à tort hors délai"
+     },
+     {
+      "date": "juil. 2022",
+      "texte": "Non-lieu rendu par une juge d'instruction ; il n'a jamais été mis en examen"
+     },
+     {
+      "date": "2023",
+      "texte": "Non-lieu confirmé en appel"
+     },
+     {
+      "date": "14 févr. 2024",
+      "texte": "La Cour de cassation rejette le pourvoi de la plaignante : non-lieu définitif"
+     }
+    ],
+    "sources": [
+     [
+      "Le Temps (AFP)",
+      "https://www.letemps.ch/monde/europe/accusations-de-viol-le-non-lieu-en-faveur-de-gerald-darmanin-est-valide-par-la-cour-de-cassation",
+      "14/02/2024"
+     ],
+     [
+      "La Gazette France (AFP)",
+      "https://www.lagazettefrance.fr/article/accusations-de-viol-gerald-darmanin-definitivement-mis-hors-de-cause-par-la-justice",
+      "14/02/2024"
+     ],
+     [
+      "Public Sénat (AFP)",
+      "https://www.publicsenat.fr/actualites/non-classe/plainte-pour-viol-la-justice-va-reexaminer-le-non-lieu-dont-a-beneficie-darmanin-0",
+      "14/11/2019"
+     ],
+     [
+      "Europe 1 (AFP)",
+      "https://www.europe1.fr/node/81380",
+      "07/2022"
+     ],
+     [
+      "La Tribune (Reuters)",
+      "https://www.latribune.fr/depeches/reuters/KCN34T0YC/accusation-de-viol-contre-darmanin-le-non-lieu-confirme-en-cassation.html",
+      "14/02/2024"
+     ]
+    ]
+   },
+   {
+    "dossier": "Plainte pour abus de faiblesse d'une habitante de Tourcoing",
+    "cadre": "Enquête préliminaire du parquet de Paris",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "13 févr. 2018",
+      "texte": "Ouverture d'une enquête préliminaire après une plainte ; il conteste les faits et dépose plainte pour dénonciation calomnieuse"
+     },
+     {
+      "date": "mai 2018",
+      "texte": "Classement sans suite par le parquet de Paris, l'infraction n'étant pas caractérisée"
+     }
+    ],
+    "sources": [
+     [
+      "Public Sénat (AFP)",
+      "https://www.publicsenat.fr/actualites/politique/l-enquete-pour-abus-de-faiblesse-visant-le-ministre-gerald-darmanin-classee-sans",
+      "05/2018"
+     ],
+     [
+      "Le Temps (AFP)",
+      "https://www.letemps.ch/monde/fin-investigations-contre-gerald-darmanin-accuse-viol",
+      "date non relevée"
+     ],
+     [
+      "Public Sénat (AFP)",
+      "https://www.publicsenat.fr/actualites/non-classe/darmanin-denonce-une-nouvelle-calomnie-apres-une-deuxieme-plainte-82801",
+      "15/02/2018"
+     ]
+    ]
+   },
+   {
+    "dossier": "Lettre de dénonciation (abus de faiblesse, abus de pouvoir) reçue en 2017",
+    "cadre": "Enquête préliminaire du parquet de Paris",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "printemps 2017",
+      "texte": "Ouverture d'une enquête après une lettre de dénonciation portant sur des faits anciens"
+     },
+     {
+      "date": "juil. 2017",
+      "texte": "Classement sans suite pour absence d'infraction, rendu public par l'intéressé en janv. 2018"
+     }
+    ],
+    "sources": [
+     [
+      "Public Sénat (AFP)",
+      "https://www.publicsenat.fr/actualites/politique/darmanin-indique-avoir-fait-l-objet-d-une-enquete-pour-abus-de-faiblesse-classee",
+      "15/01/2018"
+     ]
+    ]
+   },
+   {
+    "dossier": "Plainte en diffamation d'un footballeur (propos sur de supposés liens avec les Frères musulmans)",
+    "cadre": "Commission des requêtes de la Cour de justice de la République",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "16 janv. 2024",
+      "texte": "Plainte reçue par la CJR"
+     },
+     {
+      "date": "13 févr. 2024",
+      "texte": "Classée sans suite, les propos n'imputant aucun fait portant atteinte à l'honneur ; décision sans recours (annoncée le 15 févr.)"
+     }
+    ],
+    "sources": [
+     [
+      "Europe 1 (AFP)",
+      "https://www.europe1.fr/node/7208",
+      "15/02/2024"
+     ],
+     [
+      "Foot01",
+      "https://www.foot01.com/info/la-plainte-de-benzema-classee-darmanin-gagne-par-k-o-433827",
+      "15/02/2024"
+     ]
+    ]
+   },
+   {
+    "dossier": "Signalement de députés LFI sur l'usage par la police du logiciel BriefCam (cinq anciens ministres de l'Intérieur visés)",
+    "cadre": "Procureur général près la Cour de cassation (ministère public près la CJR)",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "nov. 2024",
+      "texte": "Signalement visant notamment les ministres de l'Intérieur successifs depuis 2015"
+     },
+     {
+      "date": "27 janv. 2025",
+      "texte": "Classement sans suite, les faits ne pouvant être imputés à aucun des ministres visés"
+     }
+    ],
+    "sources": [
+     [
+      "Solutions numériques (AFP)",
+      "https://www.solutions-numeriques.com/logiciel-de-reconnaissance-faciale-dans-la-police-classement-sans-suite-du-signalement-de-deputes-lfi/",
+      "date non relevée (début 2025)"
+     ]
+    ]
+   },
+   {
+    "dossier": "Plainte d'un collectif d'avocats après sa visite à Nicolas Sarkozy en détention",
+    "cadre": "Commission des requêtes de la Cour de justice de la République",
+    "nature": "penal",
+    "stade": "plainte_irrecevable",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "31 oct. 2025",
+      "texte": "Plainte de 29 avocats devant la CJR"
+     },
+     {
+      "date": "4 déc. 2025",
+      "texte": "Irrecevable pour 28 plaignants (vice de forme), classée sans suite pour le dernier (absence de préjudice personnel) ; décision sans recours"
+     }
+    ],
+    "sources": [
+     [
+      "Club des juristes",
+      "https://www.leclubdesjuristes.com/en-bref/gerald-darmanin-la-plainte-visant-le-ministre-de-la-justice-pour-son-soutien-implicite-a-nicolas-sarkozy-classee-sans-suite-13255/",
+      "05/12/2025"
+     ],
+     [
+      "Brut (AFP)",
+      "https://www.brut.media/fr/articles/classement-sans-suite-dune-plainte-contre-darmanin-pour-son-soutien-implicite-a-sarkozy",
+      "04/12/2025"
+     ]
+    ]
+   },
+   {
+    "dossier": "Plainte de la mère d'une victime présumée dans une affaire criminelle (mise en danger délibérée de la vie d'autrui, non-assistance à personne en danger)",
+    "cadre": "Commission des requêtes de la Cour de justice de la République",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "29 juin 2026",
+      "texte": "Plainte adressée à la CJR contre le garde des Sceaux"
+     },
+     {
+      "date": "14 sept. 2026",
+      "texte": "Classée sans suite, aucune obligation légale de cette nature ne s'appliquant au ministre selon la commission"
+     }
+    ],
+    "sources": [
+     [
+      "France 3 Régions",
+      "https://france3-regions.franceinfo.fr/occitanie/haute-garonne/toulouse/affaire-lyhanna-une-decision-lapidaire-denonce-l-avocat-de-la-mere-de-rosa-apres-le-classement-de-sa-plainte-contre-darmanin-3417062.html",
+      "14/09/2026"
+     ],
+     [
+      "Actu-Juridique",
+      "https://www.actu-juridique.fr/penal/plainte-devant-la-cour-de-justice-gerald-darmanin-peut-il-continuer-de-gerer-laffaire-lyhanna/",
+      "30/06/2026"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Jean Castex": {
   "candidature": "Pas candidat · juil. 2026",
@@ -2950,8 +4033,40 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Plainte d'une association de victimes du Covid-19 visant sa gestion de l'épidémie",
+    "cadre": "Commission des requêtes de la Cour de justice de la République",
+    "nature": "penal",
+    "stade": "plainte_irrecevable",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "17 sept. 2020",
+      "texte": "Plainte déposée devant la CJR alors qu'il était Premier ministre"
+     },
+     {
+      "date": "nov. 2020",
+      "texte": "Plainte déclarée irrecevable par la commission des requêtes"
+     }
+    ],
+    "sources": [
+     [
+      "Ma Commune (AFP)",
+      "https://www.macommune.info/covid-19-jean-castex-vise-par-une-plainte-devant-la-cjr",
+      "18/09/2020"
+     ],
+     [
+      "Le Quotidien du pharmacien",
+      "https://www.lequotidiendupharmacien.fr/exercice-pro/justice/crise-sanitaire-des-milliers-de-plaintes-affluent-contre-des-ministres",
+      "09/2021"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Marine Le Pen": {
   "candidature": "Candidate · juil. 2026",
@@ -3059,8 +4174,142 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Assistants parlementaires européens du FN",
+    "cadre": "Information judiciaire (Paris), tribunal correctionnel de Paris, puis cour d'appel de Paris ; pourvoi devant la Cour de cassation",
+    "nature": "penal",
+    "stade": "condamnation_appel",
+    "etat": "en_cours_confirme",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "juin 2017",
+      "texte": "Mise en examen pour abus de confiance, qualification ensuite portée à détournement de fonds publics"
+     },
+     {
+      "date": "31 mars 2025",
+      "texte": "Tribunal correctionnel de Paris : 4 ans d'emprisonnement dont 2 ferme, 100 000 € d'amende, 5 ans d'inéligibilité avec exécution provisoire"
+     },
+     {
+      "date": "7 juil. 2026",
+      "texte": "Cour d'appel de Paris : coupable de détournement et de complicité de détournement de fonds publics ; 3 ans dont 2 avec sursis, la part ferme en détention à domicile sous surveillance électronique ; 100 000 € d'amende ; 45 mois d'inéligibilité dont 30 avec sursis"
+     },
+     {
+      "date": "juil. 2026",
+      "texte": "Pourvoi en cassation formé ; le parquet général ne se pourvoit pas ; le pourvoi suspend l'exécution des peines"
+     },
+     {
+      "date": "16 déc. 2026",
+      "texte": "Audience prévue devant la Cour de cassation sur les questions prioritaires de constitutionnalité ; décision au fond annoncée au plus tard début avril 2027"
+     },
+     {
+      "date": "25 nov. 2026",
+      "texte": "Condamnation non définitive ; présumée innocente"
+     }
+    ],
+    "sources": [
+     [
+      "Cour d'appel de Paris, communiqué",
+      "https://www.cours-appel.justice.fr/sites/default/files/2026-07/20260707%20-%20CA%20Paris%20-%20CP.pdf",
+      "07/07/2026"
+     ],
+     [
+      "LCP",
+      "https://lcp.fr/index%2ephp/actualites/condamnation-de-marine-le-pen-quatre-questions-pour-comprendre-les-consequences-de-la",
+      "07/07/2026"
+     ],
+     [
+      "Club des juristes",
+      "https://www.leclubdesjuristes.com/?p=16990",
+      "15/07/2026"
+     ],
+     [
+      "Club des juristes",
+      "https://www.leclubdesjuristes.com/droit/affaire-des-assistants-parlementaires-du-fn-la-defense-de-marine-le-pen-devoile-ses-arguments-a-la-cour-de-cassation-18085/",
+      "28/10/2026"
+     ],
+     [
+      "Public Sénat",
+      "https://www.publicsenat.fr/actualites/politique/proces-rn-marine-le-pen-et-8-eurodeputes-reconnus-coupables-de-detournement-de-fonds-publics",
+      "31/03/2025"
+     ],
+     [
+      "LCP",
+      "https://lcp.fr/actualites/marine-le-pen-condamnee-dans-l-affaire-des-assistants-parlementaires-reste-eligible-pour",
+      "07/07/2026"
+     ]
+    ]
+   },
+   {
+    "dossier": "Diffamation envers une association d'aide aux migrants (propos de janvier 2022 sur Mayotte)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel de Paris, Cour de cassation",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "13 oct. 2023",
+      "texte": "Condamnée à 500 € d'amende avec sursis pour diffamation publique"
+     },
+     {
+      "date": "11 sept. 2024",
+      "texte": "Condamnation confirmée en appel"
+     },
+     {
+      "date": "16 déc. 2025",
+      "texte": "Pourvoi rejeté par la Cour de cassation : condamnation définitive"
+     }
+    ],
+    "sources": [
+     [
+      "Club des juristes",
+      "https://www.leclubdesjuristes.com/en-bref/marine-le-pen-definitivement-condamnee-pour-diffamation-envers-la-cimade-13397/",
+      "16/12/2025"
+     ],
+     [
+      "Europe 1",
+      "https://www.europe1.fr/politique/marine-le-pen-de-nouveau-condamnee-en-appel-pour-diffamation-envers-la-cimade-4266896",
+      "11/09/2024"
+     ]
+    ]
+   },
+   {
+    "dossier": "Diffusion sur Twitter de photos d'exactions de l'État islamique (décembre 2015)",
+    "cadre": "Information judiciaire (Nanterre), tribunal correctionnel de Nanterre",
+    "nature": "penal",
+    "stade": "relaxe",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "1er mars 2018",
+      "texte": "Mise en examen pour diffusion d'images violentes"
+     },
+     {
+      "date": "4 mai 2021",
+      "texte": "Relaxe prononcée par le tribunal correctionnel de Nanterre"
+     }
+    ],
+    "sources": [
+     [
+      "franceinfo",
+      "https://www.franceinfo.fr/politique/front-national/photos-de-l-ei-publiees-par-marine-le-pen/",
+      "04/05/2021"
+     ],
+     [
+      "La Libre Belgique",
+      "https://www.lalibre.be/international/2018/03/01/marine-le-pen-mise-en-examen-pour-avoir-relaye-des-photos-dexactions-de-letat-islamique-7U7WV2ZPKBGDFDORNQDKOHCBZU/",
+      "01/03/2018"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": null
  },
  "Éric Zemmour": {
   "candidature": "Candidat · sept. 2026",
@@ -3130,8 +4379,367 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Propos sur les musulmans dans « C à vous » (2016)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "juin 2017",
+      "texte": "Condamné en première instance (5 000 € d'amende) pour provocation à la haine religieuse"
+     },
+     {
+      "date": "mai 2018",
+      "texte": "Culpabilité confirmée en appel, amende ramenée à 3 000 €"
+     },
+     {
+      "date": "sept. 2019",
+      "texte": "Pourvoi rejeté : condamnation définitive"
+     }
+    ],
+    "sources": [
+     [
+      "Ozap (Puremédias)",
+      "https://www.ozap.com/actu/eric-zemmour-definitivement-condamne-a-3-000-euros-d-amende-pour-provocation-a-la-haine-religieuse/583655",
+      "19/09/2019"
+     ],
+     [
+      "DH (Belgique)",
+      "https://www.dhnet.be/actu/monde/eric-zemmour-un-habitue-des-controverses-retour-sur-ces-autres-affaires-dans-lesquelles-il-a-ete-juge-61941a367b50a648b2d15b6f",
+      "17/11/2021"
+     ]
+    ]
+   },
+   {
+    "dossier": "Discours à la « Convention de la droite » (28 septembre 2019)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation (deux fois)",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "25 sept. 2020",
+      "texte": "Condamné à 10 000 € d'amende pour injure publique et provocation à la haine"
+     },
+     {
+      "date": "8 sept. 2021",
+      "texte": "Relaxé par la cour d'appel de Paris ; arrêt ensuite cassé"
+     },
+     {
+      "date": "2024",
+      "texte": "Condamné par la cour d'appel de renvoi à 15 000 € d'amende"
+     },
+     {
+      "date": "sept. 2025",
+      "texte": "Pourvoi rejeté : condamnation définitive"
+     }
+    ],
+    "sources": [
+     [
+      "La Libre Belgique",
+      "https://www.lalibre.be/international/europe/2025/09/17/zemmour-definitivement-condamne-pour-racisme-les-lois-nadmettent-pas-que-la-haine-puisse-servir-de-fondement-a-notre-societe-2UQ2WKE7W5HYXJ3SKA2BHBG4YQ/",
+      "17/09/2025"
+     ],
+     [
+      "Europe 1",
+      "https://www.europe1.fr/node/7916",
+      "2024"
+     ]
+    ]
+   },
+   {
+    "dossier": "Propos sur Pétain et les juifs français (CNews, 21 octobre 2019)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation, cour d'appel de renvoi",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "4 févr. 2021",
+      "texte": "Relaxe en première instance (contestation de crime contre l'humanité)"
+     },
+     {
+      "date": "2022",
+      "texte": "Relaxe confirmée en appel"
+     },
+     {
+      "date": "5 sept. 2023",
+      "texte": "La Cour de cassation annule la relaxe et ordonne un nouveau procès"
+     },
+     {
+      "date": "2 avr. 2025",
+      "texte": "Cour d'appel de Paris : condamné à 10 000 € d'amende ; pourvoi en cassation annoncé"
+     },
+     {
+      "date": "24 nov. 2026",
+      "texte": "La Cour de cassation rejette son pourvoi : condamnation définitive à 10 000 € d'amende pour contestation de crime contre l'humanité"
+     }
+    ],
+    "sources": [
+     [
+      "Times of Israel (AFP)",
+      "https://fr.timesofisrael.com/petain-sauveur-de-juifs-francais-zemmour-condamne-a-10-000-euros-damende/",
+      "02/04/2025"
+     ],
+     [
+      "Le Monde du droit",
+      "https://www.lemondedudroit.fr/judiciaire/326-droit-penal/88774-contestation-de-l-existence-de-crime-contre-l-humanite-par-eric-zemmour.html",
+      "05/09/2023"
+     ],
+     [
+      "franceinfo",
+      "https://www.franceinfo.fr/politique/eric-zemmour/eric-zemmour-definitivement-condamne-pour-contestation-de-l-existence-de-crime-contre-l-humanite-apres-avoir-affirme-que-le-marechal-petain-avait-sauve-les-juifs-francais_8297988.html",
+      "24/11/2026"
+     ],
+     [
+      "Club des juristes",
+      "https://leclubdesjuristes.com/en-bref/condamnation-deric-zemmour-pour-contestation-de-crime-contre-lhumanite-18651",
+      "25/11/2026"
+     ]
+    ]
+   },
+   {
+    "dossier": "Propos sur les mineurs isolés étrangers (CNews, septembre 2020)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "17 janv. 2022",
+      "texte": "Condamné à 10 000 € d'amende"
+     },
+     {
+      "date": "12 sept. 2024",
+      "texte": "Condamnation confirmée en appel"
+     },
+     {
+      "date": "2 déc. 2025",
+      "texte": "Pourvoi rejeté : condamnation définitive pour complicité d'injure publique et de provocation à la haine (100 jours-amende de 100 €)"
+     }
+    ],
+    "sources": [
+     [
+      "Club des juristes",
+      "https://www.leclubdesjuristes.com/?p=13229",
+      "03/12/2025"
+     ],
+     [
+      "Club des juristes",
+      "https://www.leclubdesjuristes.com/en-bref/propos-sur-les-mineurs-isoles-eric-zemmour-condamne-en-appel-6861",
+      "12/09/2024"
+     ]
+    ]
+   },
+   {
+    "dossier": "Diffamation envers un avocat (France 2, avril 2022)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "5 déc. 2024",
+      "texte": "Condamné à 1 000 € d'amende pour diffamation (date rapportée comme celle du jugement)"
+     },
+     {
+      "date": "2 déc. 2025",
+      "texte": "Pourvoi rejeté : condamnation définitive"
+     }
+    ],
+    "sources": [
+     [
+      "Club des juristes",
+      "https://www.leclubdesjuristes.com/?p=13229",
+      "03/12/2025"
+     ]
+    ]
+   },
+   {
+    "dossier": "Diffamation publique envers l'Ined (CNews)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "29 janv. 2024",
+      "texte": "Condamné pour complicité de diffamation publique envers une administration : 1 500 € d'amende avec sursis"
+     },
+     {
+      "date": "11 déc. 2024",
+      "texte": "Condamnation confirmée en appel"
+     },
+     {
+      "date": "27 janv. 2026",
+      "texte": "Pourvoi rejeté : condamnation définitive"
+     }
+    ],
+    "sources": [
+     [
+      "Ined, communiqué",
+      "https://www.ined.fr/fr/presse/condamnation-definitive-monsieur-eric-zemmour-et-monsieur-jean-christophe-thiery-bercegol-du",
+      "30/01/2026"
+     ]
+    ]
+   },
+   {
+    "dossier": "Injure à caractère raciste envers une ancienne chroniqueuse (2018)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel de Paris",
+    "nature": "penal",
+    "stade": "condamnation_definitive",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "12 janv. 2023",
+      "texte": "Condamné à 4 000 € d'amende et à des dommages et intérêts"
+     },
+     {
+      "date": "28 mars 2024",
+      "texte": "Condamnation confirmée en appel"
+     },
+     {
+      "date": "2 sept. 2025",
+      "texte": "Pourvoi rejeté : condamnation définitive (4 000 € d'amende)"
+     }
+    ],
+    "sources": [
+     [
+      "Ozap (Puremédias)",
+      "https://www.ozap.com/actu/injure-raciste-envers-hapsatou-sy-eric-zemmour-condamne-en-appel/643173",
+      "28/03/2024"
+     ],
+     [
+      "Cour de cassation (bulletin crim., sept. 2025)",
+      "https://www.courdecassation.fr/publications/bulletin-des-arrets-de-la-chambre-criminelle/numero-9-septembre-2025/injures",
+      "02/09/2025"
+     ],
+     [
+      "Le Monde du droit",
+      "https://www.lemondedudroit.fr/judiciaire/326-droit-penal/100479-insulte-a-la-france-eric-zemmour-definitivement-condamne.html",
+      ""
+     ]
+    ]
+   },
+   {
+    "dossier": "Propos sur l'affaire de Crépol",
+    "cadre": "Tribunal correctionnel de Paris",
+    "nature": "penal",
+    "stade": "condamnation_premiere_instance",
+    "etat": "non_etabli",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "mars 2025",
+      "texte": "Condamné pour injure raciale à 60 jours-amende de 150 € (9 000 €)"
+     },
+     {
+      "date": "25 nov. 2026",
+      "texte": "Appel éventuel et issue non trouvés ; présumé innocent"
+     }
+    ],
+    "sources": [
+     [
+      "Times of Israel (AFP)",
+      "https://fr.timesofisrael.com/crepol-eric-zemmour-condamne-pour-injure-raciale/",
+      "26/03/2025"
+     ]
+    ]
+   },
+   {
+    "dossier": "Injures à caractère homophobe (CNews, octobre 2019)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel de Paris",
+    "nature": "penal",
+    "stade": "relaxe",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "première instance",
+      "texte": "Condamné à 4 000 € d'amende"
+     },
+     {
+      "date": "11 sept. 2024",
+      "texte": "Relaxé par la cour d'appel de Paris, qui infirme le jugement"
+     }
+    ],
+    "sources": [
+     [
+      "Club des juristes",
+      "https://www.leclubdesjuristes.com/en-bref/propos-sur-les-mineurs-isoles-eric-zemmour-condamne-en-appel-6861",
+      "12/09/2024"
+     ]
+    ]
+   },
+   {
+    "dossier": "Propos sur la déportation des homosexuels (1940-1945)",
+    "cadre": "Tribunal correctionnel de Paris, cour d'appel de Paris",
+    "nature": "penal",
+    "stade": "relaxe",
+    "etat": "recours_a_verifier",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "2025",
+      "texte": "Relaxe en première instance (contestation de crime contre l'humanité)"
+     },
+     {
+      "date": "25 juin 2026",
+      "texte": "Relaxe confirmée par la cour d'appel de Paris"
+     }
+    ],
+    "sources": [
+     [
+      "Actu-Juridique",
+      "https://www.actu-juridique.fr/auteur/isabelle-horlans/",
+      "25/06/2026"
+     ]
+    ]
+   },
+   {
+    "dossier": "Apologie du terrorisme (propos de 2016)",
+    "cadre": "Enquête du parquet de Paris",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "janv. 2017",
+      "texte": "Enquête classée sans suite par le parquet de Paris"
+     }
+    ],
+    "sources": [
+     [
+      "Europe 1",
+      "https://www.europe1.fr/societe/zemmour-disant-respecter-les-djihadistes-lenquete-pour-apologie-du-terrorisme-classee-2952761",
+      "17/01/2017"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": null
  },
  "Florian Philippot": {
   "candidature": "Candidat · mai 2026",
@@ -3199,7 +4807,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Jordan Bardella": {
   "candidature": "Plan B · avr. 2025",
@@ -3270,7 +4878,7 @@ window.APDA.FICHES = {
    }
   },
   "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  },
  "Sarah Knafo": {
   "candidature": "Pas candidate · janv. 2026",
@@ -3341,8 +4949,35 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Volet judiciaire en cours de validation."
+  "justice": [
+   {
+    "dossier": "Plainte de l'État algérien pour diffusion de fausses nouvelles (propos sur RMC, 20 septembre 2024)",
+    "cadre": "Parquet de Paris",
+    "nature": "penal",
+    "stade": "classement_sans_suite",
+    "etat": "cloture",
+    "etat_au": "25/11/2026",
+    "mise_en_cause_personnelle": "oui",
+    "etapes": [
+     {
+      "date": "25 sept. 2024",
+      "texte": "Plainte déposée auprès du tribunal judiciaire de Paris"
+     },
+     {
+      "date": "27 sept. 2024",
+      "texte": "Classement sans suite : infraction non caractérisée (pas de trouble à la paix publique)"
+     }
+    ],
+    "sources": [
+     [
+      "TSA (citant Le Figaro)",
+      "https://www.tsa-algerie.com/plainte-de-lalgerie-contre-sarah-knafo-la-justice-francaise-a-tranche",
+      "03/10/2024"
+     ]
+    ]
+   }
+  ],
+  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
  }
 };
 })();
