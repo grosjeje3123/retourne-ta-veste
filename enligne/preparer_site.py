@@ -3,7 +3,7 @@ Usage : preparer_site.py <dossier de sortie>   (sert pour le serveur en ligne co
 import os, re, shutil, sys
 SRC, POL = '/home/claude/carte2', '/home/claude/polices/node_modules/@fontsource'
 OUT = sys.argv[1]
-JS = ['cartes.js', 'donnees.js', 'moteur.js', 'sons.js', 'tetes.js', 'profil.js', 'trophees.js', 'jeu.js']
+JS = ['cartes.js', 'donnees.js', 'fiches.js', 'fiche.js', 'moteur.js', 'sons.js', 'tetes.js', 'profil.js', 'trophees.js', 'jeu.js']
 POLICES = [('Fraunces', 'fraunces', (600, 900)), ('Atkinson Hyperlegible', 'atkinson-hyperlegible', (400, 700)), ('JetBrains Mono', 'jetbrains-mono', (400, 700))]
 shutil.rmtree(OUT, ignore_errors=True)
 os.makedirs(OUT + '/img/mini'); os.makedirs(OUT + '/polices')

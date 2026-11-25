@@ -906,13 +906,56 @@ h3.sous-titre{font-family:var(--titre,inherit);font-size:22px;margin:44px 0 6px}
   .mc.pose,.rot.bascule,.case.menace .mc,.case.eclat .mc,.piece.lance{animation:none}
   .banniere,.carte-main{transition:none}
 }
+
+/* ===== Fiche factuelle (le verso), ouverte depuis la collection =====
+   Mêmes couleurs que les cartes, quel que soit le thème de la page : bord du bloc, papier, encre. */
+.fiche{padding:0;border:0;background:transparent;width:100%;max-width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:visible}
+.fiche::backdrop{background:rgba(21,23,26,.62)}
+.fiche-carte{background:var(--bloc,var(--c-action));border:2px solid var(--c-encre);border-radius:18px;padding:10px;color:var(--c-encre);display:flex;flex-direction:column;max-height:calc(100dvh - 24px)}
+.fiche-tete{background:var(--c-papier);border:1.5px solid var(--c-encre);border-radius:12px 12px 0 0;padding:12px;display:grid;grid-template-columns:64px 1fr 44px;gap:12px;align-items:center}
+.fiche-mini{width:64px;height:80px;object-fit:cover;object-position:top;border:1.5px solid var(--c-encre);border-radius:8px;background:var(--c-surligneur)}
+.fiche-type{margin:0;font-family:var(--chiffre);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-encre-2)}
+.fiche h2{font-family:var(--titre);font-weight:600;font-size:clamp(22px,5vw,28px);line-height:1.05;margin:2px 0 4px}
+.fiche-statut{margin:0;font-family:var(--chiffre);font-size:12.5px;line-height:1.35}
+.fiche-fermer{width:44px;height:44px;align-self:start;font-size:26px;line-height:1;border:1.5px solid var(--c-encre);border-radius:8px;background:var(--c-surligneur);color:var(--c-encre);cursor:pointer;box-shadow:2px 2px 0 var(--c-encre)}
+.fiche-onglets{display:flex;background:var(--c-papier);border-left:1.5px solid var(--c-encre);border-right:1.5px solid var(--c-encre)}
+.fiche-onglets button{flex:1;min-height:44px;font-family:var(--chiffre);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:var(--c-papier);color:var(--c-encre-2);border:0;border-top:1.5px solid var(--c-encre);border-bottom:1.5px solid var(--c-encre);cursor:pointer}
+.fiche-onglets button+button{border-left:1.5px solid var(--c-encre)}
+.fiche-onglets [aria-selected="true"]{background:var(--c-surligneur);color:var(--c-encre)}
+.fiche-onglets button:focus-visible,.fiche-fermer:focus-visible,.fiche-panneau:focus-visible{outline:3px solid var(--c-violet);outline-offset:-3px}
+.fiche-panneau{background:var(--c-papier);border:1.5px solid var(--c-encre);border-top:0;padding:14px 16px 18px;overflow-y:auto;flex:1 1 auto;min-height:0;font-size:15.5px;line-height:1.45}
+.fiche-pied{background:var(--c-papier);border:1.5px solid var(--c-encre);border-top:0;border-radius:0 0 12px 12px;padding:10px 16px;font-family:var(--chiffre);font-size:12px;line-height:1.4;color:var(--c-encre-2)}
+.fiche a{color:var(--c-encre);text-underline-offset:2px}
+.fiche-rub{margin:16px 0 6px;font-family:var(--chiffre);font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--bloc-fonce,var(--c-sarcelle))}
+.fiche-rub:first-child{margin-top:0}
+.fiche-id-liste{display:grid;grid-template-columns:92px 1fr;gap:4px 12px;margin:0}
+.fiche-id-liste dt{color:var(--c-encre-2)}
+.fiche-id-liste dd{margin:0}
+.fiche-frise{list-style:none;margin:0;padding:0 0 0 12px;border-left:3px solid var(--bloc,var(--c-encre));display:grid;gap:7px}
+.fiche-frise li{display:grid;grid-template-columns:9.5em 1fr;gap:10px;align-items:baseline}
+.fiche-frise b{font-family:var(--chiffre);font-size:12.5px}
+.fiche-encart{margin:0;padding:10px 12px;border-radius:8px;background:var(--bloc-clair,#eef0ec)}
+.fiche-sources{margin:6px 0 0;font-family:var(--chiffre);font-size:12px;line-height:1.4;color:var(--c-encre-2)}
+.fiche-chapo{margin:0 0 4px;font-family:var(--chiffre);font-size:12.5px;line-height:1.4;color:var(--c-encre-2)}
+.fiche-theme{padding:10px 0;border-bottom:1px dashed #c3c7cc}
+.fiche-theme .fiche-rub{margin:0 0 4px}
+.fiche-mesure{margin:0}
+.fiche-theme.vide .fiche-mesure{color:var(--c-encre-2);font-style:italic}
+.fiche-note{margin:12px 0 0;font-size:13.5px;color:var(--c-encre-2)}
+.emplacement .legende{flex-wrap:wrap;justify-content:center;text-align:center}
+.legende .ouvrir-fiche{background:var(--c-surligneur);color:var(--c-encre);border-color:var(--c-encre)}
+@media (max-width:560px){
+  .fiche{max-width:100vw;max-height:100dvh;margin:0}
+  .fiche-carte{border-radius:0;border-width:0;min-height:100dvh;max-height:100dvh}
+  .fiche-frise li{grid-template-columns:1fr;gap:0}
+}
 </style>
 </head>
 <body>
 <main id="vue-cartes" class="page">
   <p class="marque"><span class="fluo">Retourne ta veste</span> · présidentielle 2027</p>
   <h1>Les cartes du jeu</h1>
-  <p class="chapo">Tout tient sur une seule face, en couleur, avec le même gabarit pour chaque carte. Le dos est commun à tout le jeu. Clique sur une carte pour la retourner.</p>
+  <p class="chapo">Tout tient sur une seule face, en couleur, avec le même gabarit pour chaque carte. Le dos est commun à tout le jeu. Clique sur une carte pour la retourner, ou sur «&nbsp;La fiche&nbsp;» pour son parcours et ses propositions, sources à l’appui.</p>
   <p class="mot-auteur"><b>Un mot de l’auteur.</b> Je n’appartiens à aucun bord politique, et ce jeu ne roule pour personne. Avec autant de candidats, déclarés, pressentis ou recalés, mieux vaut en rire qu’en pleurer. La même règle vaut pour toutes les cartes, et chaque fait renvoie à sa source.<span data-don hidden> Le jeu est fait sur mon temps libre, sans pub&nbsp;: <a href="#soutenir">le soutenir</a>.</span></p>
   <a class="cta" id="cta-haut" href="#jouer">Jouer à Retourne ta veste <span aria-hidden="true">→</span></a>
   <a class="cta cta-flottant" id="cta-flottant" href="#jouer" tabindex="-1" aria-hidden="true">Jouer <span aria-hidden="true">→</span></a>
@@ -1059,9 +1102,12 @@ h3.sous-titre{font-family:var(--titre,inherit);font-size:22px;margin:44px 0 6px}
   <p class="tirage-regle" id="tirage-regle"></p>
 </div>
 
-<script>window.APDA_DON = '';  /* lien de la page de dons (Ko-fi, Tipeee, Liberapay…) : vide = rien ne s’affiche */</script>
+<script>window.APDA_DON = '';  /* lien de la page de dons (Ko-fi, Tipeee, Liberapay…) : vide = rien ne s’affiche */
+window.APDA_CONTACT = '';  /* lien pour signaler une erreur dans une fiche (mailto: ou formulaire) : vide = rien ne s’affiche */</script>
 <script src="donnees.js"></script>
+<script src="fiches.js"></script>  <!-- export public des fiches : après donnees.js, qui crée window.APDA -->
 <script src="cartes.js"></script>
+<script src="fiche.js"></script>
 <script src="moteur.js"></script>
 <script src="sons.js"></script>
 <script src="tetes.js"></script>
@@ -1084,7 +1130,18 @@ h3.sous-titre{font-family:var(--titre,inherit);font-size:22px;margin:44px 0 6px}
       '<figcaption class="legende">' + c.nom + ' <button type="button" class="retourner" aria-pressed="false">Retourner</button></figcaption>';
     table.appendChild(fig);
   }
-  D.CANDIDATS.forEach(c => { poser(tc, c, R.rectoCandidat); tc.lastChild.dataset.slug = (c.mini.match(/([^\/]+)\.webp$/) || [, ''])[1]; });
+  D.CANDIDATS.forEach(c => {
+    poser(tc, c, R.rectoCandidat);
+    tc.lastChild.dataset.slug = (c.mini.match(/([^\/]+)\.webp$/) || [, ''])[1];
+    // Le verso factuel : un bouton à côté de « Retourner », si la carte a sa fiche
+    if (window.APDA_FICHE && APDA_FICHE.existe(c.nom)){
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'retourner ouvrir-fiche'; b.textContent = 'La fiche';
+      b.setAttribute('aria-haspopup', 'dialog');
+      b.addEventListener('click', () => APDA_FICHE.ouvrir(c.nom, b));
+      tc.lastChild.querySelector('.legende').appendChild(b);
+    }
+  });
   D.ACTIONS.forEach(c => { poser(ta, c, R.rectoAction); ta.lastChild.dataset.act = (c.mini.match(/([^\/]+)\.webp$/) || [, ''])[1]; });
   const seul = document.createElement('figure');
   seul.className = 'emplacement';
