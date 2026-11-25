@@ -1,0 +1,105 @@
+/* Idée de mise en page : des cartes à collectionner posées sur la table.
+   Recto en couleur avec toutes les infos, dos guilloché commun à toutes les cartes.
+   Gabarit identique pour chaque carte : portrait de hauteur fixe, infos dessous.
+   Cartes candidat : une seule couleur pour tout le monde (sarcelle), jamais celle d'un parti.
+   Cartes action : violet. Les couleurs de la carte ne suivent pas le thème ; tout est en cqi. */
+:root{
+  --page:#eef0ec; --page-texte:#15171a; --page-texte-2:#4d535b;
+  --c-papier:#f8f9f6; --c-encre:#15171a; --c-encre-2:#4d535b;
+  --c-surligneur:#f1fb4e; --c-violet:#5a2d8c; --c-violet-fonce:#341a57; --c-violet-clair:#efe8f7;
+  --c-sarcelle:#0f5f66; --c-sarcelle-clair:#e2f0ef;
+  --titre:"Fraunces", "Iowan Old Style", Georgia, serif;
+  --texte:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --chiffre:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --page:#131518; --page-texte:#eceee8; --page-texte-2:#a4aab1; color-scheme:dark; }
+}
+:root[data-theme="dark"]{ --page:#131518; --page-texte:#eceee8; --page-texte-2:#a4aab1; color-scheme:dark; }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--page-texte);font-family:var(--texte);font-size:17px;line-height:1.5}
+.page{max-width:1120px;margin:0 auto;padding:28px 20px 56px}
+.marque{font-family:var(--chiffre);font-size:13px;color:var(--page-texte-2);margin:0 0 10px}
+.fluo{background:var(--c-surligneur);color:var(--c-encre);padding:0 .2em}
+h1{font-family:var(--titre);font-weight:900;font-size:clamp(30px,6vw,46px);line-height:1.05;margin:0 0 10px;text-wrap:balance}
+.chapo{margin:0;color:var(--page-texte-2);max-width:62ch}
+.groupe{font-family:var(--titre);font-weight:900;font-size:clamp(23px,4vw,30px);line-height:1.1;margin:48px 0 6px}
+.groupe-texte{margin:0;color:var(--page-texte-2);max-width:66ch}
+.table{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:flex-start;margin-top:26px}
+.emplacement{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.legende{display:flex;align-items:center;gap:12px;font-family:var(--chiffre);font-size:13px;color:var(--page-texte-2);min-height:32px}
+.retourner{font-family:var(--chiffre);font-size:13px;background:transparent;color:var(--page-texte);border:1px solid var(--page-texte);border-radius:2px;padding:6px 10px;cursor:pointer}
+.retourner:focus-visible,a:focus-visible{outline:3px solid var(--c-violet);outline-offset:2px}
+.note{font-size:14.5px;color:var(--page-texte-2);margin:40px auto 0;max-width:66ch;text-align:center}
+
+/* Carte retournable */
+.retournable,.carte-seule{width:clamp(270px,86vw,330px);container-type:inline-size}
+.retournable{perspective:1400px;cursor:pointer}
+.interieur{position:relative;width:100%;aspect-ratio:5/8;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,.7,.3,1)}
+.retournable.retournee .interieur{transform:rotateY(180deg)}
+@media (prefers-reduced-motion:reduce){ .interieur{transition:none} }
+.face{position:absolute;inset:0;border:2px solid var(--c-encre);border-radius:16px;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;box-shadow:0 1px 0 rgba(21,23,26,.10),0 12px 28px rgba(21,23,26,.26)}
+.dos{transform:rotateY(180deg)}
+.carte-seule .face{position:relative;inset:auto;width:100%;aspect-ratio:5/8;transform:none}
+
+/* Recto, commun */
+.recto{background:var(--c-violet);padding:2.4cqi;display:flex;flex-direction:column;gap:1.8cqi;color:var(--c-encre)}
+.recto.candidat{background:var(--c-sarcelle)}
+.haut{display:flex;justify-content:space-between;align-items:center;padding:0 .8cqi;min-height:9.6cqi}
+.type{font-family:var(--chiffre);font-weight:700;font-size:3.1cqi;letter-spacing:.1em;text-transform:uppercase;color:var(--c-papier)}
+.code{font-family:var(--titre);font-weight:900;font-size:7.6cqi;line-height:1;background:var(--c-surligneur);color:var(--c-encre);border:1.5px solid var(--c-encre);padding:.4cqi 2.2cqi .9cqi;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--c-encre)}
+.bloc{font-family:var(--chiffre);font-weight:700;font-size:3.1cqi;line-height:1;letter-spacing:.06em;text-transform:uppercase;background:var(--c-surligneur);color:var(--c-encre);border:1.5px solid var(--c-encre);padding:1.4cqi 2.2cqi;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--c-encre)}
+.panneau{flex:1 1 auto;min-height:0;background:var(--c-papier);border:1.5px solid var(--c-encre);border-radius:9px;overflow:hidden;display:flex;flex-direction:column}
+.portrait{position:relative;flex:0 0 62cqi;margin:0;overflow:hidden;border-bottom:1.5px solid var(--c-encre);
+  background-color:var(--c-surligneur);
+  background-image:radial-gradient(circle,rgba(21,23,26,.17) 0 1.15px,transparent 1.5px),radial-gradient(circle,rgba(21,23,26,.17) 0 1.15px,transparent 1.5px);
+  background-size:8px 8px;background-position:0 0,4px 4px}
+/* Fenêtre commune à tous les portraits : de 3 % à 62 % de la hauteur de l'image */
+.portrait img{position:absolute;height:169.5%;width:auto;max-width:none;left:50%;top:-5.1%;transform:translateX(-50%)}
+.etiquette,.mention-ia{position:absolute;font-family:var(--chiffre);font-weight:700;font-size:2.8cqi;line-height:1;letter-spacing:.06em;text-transform:uppercase;padding:1.2cqi 1.8cqi}
+.etiquette{top:1.8cqi;right:1.8cqi;background:var(--c-encre);color:var(--c-papier)}
+.mention-ia{left:1.8cqi;bottom:1.8cqi;background:var(--c-papier);color:var(--c-encre);border:1px solid var(--c-encre)}
+.tampon{position:absolute;right:2.4cqi;bottom:2.8cqi;font-family:var(--chiffre);font-weight:700;font-size:3.1cqi;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--c-violet);background:rgba(248,249,246,.92);border:2px solid var(--c-violet);border-radius:3px;padding:1.2cqi 2cqi;transform:rotate(-6deg)}
+.tampon sup{text-transform:none;letter-spacing:0}
+.candidat .tampon{color:var(--c-sarcelle);border-color:var(--c-sarcelle)}
+.infos{flex:1 1 auto;min-height:0;padding:2.6cqi 3.2cqi 2.8cqi;display:flex;flex-direction:column;gap:2cqi}
+.identite h3{font-family:var(--titre);font-weight:600;font-size:6.5cqi;line-height:1.05;margin:0}
+.role{font-family:var(--chiffre);font-size:3.1cqi;line-height:1.3;color:var(--c-encre-2);margin:.8cqi 0 0}
+sup{font-size:.68em;line-height:0}
+.sources{margin:auto 0 0;font-family:var(--chiffre);font-size:2.75cqi;line-height:1.4;color:var(--c-encre-2)}
+.sources a{color:var(--c-encre);text-underline-offset:2px}
+
+/* Recto, carte action */
+.pouvoir{border-top:1.5px solid var(--c-encre);padding-top:2cqi}
+.pouvoir p{margin:0;font-size:4cqi;line-height:1.3}
+.pouvoir .petit{font-family:var(--chiffre);font-size:3.1cqi;color:var(--c-encre-2);margin-top:1.3cqi}
+.vraie-vie{background:var(--c-violet-clair);border-radius:6px;padding:2cqi 2.4cqi;display:grid;gap:1.3cqi}
+.vraie-vie .lib{font-family:var(--chiffre);font-weight:700;font-size:2.9cqi;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--c-violet);margin:0}
+.vraie-vie p{margin:0;font-size:3.6cqi;line-height:1.3}
+.ligne{display:grid;grid-template-columns:29cqi 1fr auto;gap:2cqi;align-items:center;font-size:3.4cqi;line-height:1.2}
+.barre{height:2.8cqi;border:1px solid var(--c-encre);background:var(--c-papier)}
+.barre i{display:block;height:100%;width:calc(var(--v) / var(--max) * 100%);background:var(--c-encre)}
+.ligne.elle .barre i{background:var(--c-surligneur);border-right:1px solid var(--c-encre)}
+.ligne b{font-family:var(--chiffre);font-size:3.6cqi;font-variant-numeric:tabular-nums;min-width:5cqi;text-align:right}
+.frise{list-style:none;margin:0;padding:0;display:grid;gap:1cqi}
+.frise li{display:grid;grid-template-columns:9cqi 1fr;gap:1.8cqi;font-size:3.4cqi;line-height:1.25;align-items:baseline}
+.frise b{font-family:var(--chiffre);font-size:3.2cqi;color:var(--c-violet)}
+
+/* Recto, carte candidat */
+.valeurs{position:absolute;top:1.8cqi;left:1.8cqi;width:18cqi;height:18cqi;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);place-items:center;background:var(--c-papier);border:1.5px solid var(--c-encre);border-radius:2.4cqi;box-shadow:2px 2px 0 var(--c-encre);font-family:var(--chiffre);font-weight:700;font-size:4.4cqi;line-height:1}
+.valeurs .h{grid-area:1/2}.valeurs .g{grid-area:2/1}.valeurs .d{grid-area:2/3}.valeurs .b{grid-area:3/2}
+.phrase{margin:0;background:var(--c-sarcelle-clair);border-radius:6px;padding:2cqi 2.4cqi;display:grid;gap:1.1cqi}
+.phrase p{margin:0;font-family:var(--titre);font-weight:600;font-size:4.2cqi;line-height:1.22}
+.phrase footer{font-family:var(--chiffre);font-size:2.8cqi;line-height:1.3;color:var(--c-encre-2)}
+.faits{margin:0;display:grid;gap:1.3cqi;border-top:1.5px solid var(--c-encre);padding-top:1.9cqi}
+.faits div{display:grid;grid-template-columns:15cqi 1fr;gap:1.6cqi;align-items:baseline}
+.faits dt{font-family:var(--chiffre);font-weight:700;font-size:2.7cqi;letter-spacing:.06em;text-transform:uppercase;color:var(--c-sarcelle)}
+.faits dd{margin:0;font-size:3.3cqi;line-height:1.28}
+.annees{font-family:var(--chiffre);font-variant-numeric:tabular-nums}
+.annees b{background:var(--c-surligneur);border:1px solid var(--c-encre);padding:0 .7cqi}
+
+/* Dos */
+.dos{background:radial-gradient(circle at 50% 50%,#7b46b9 0%,var(--c-violet) 42%,var(--c-violet-fonce) 100%)}
+.dos svg{position:absolute;inset:0;width:100%;height:100%;display:block}

@@ -1,0 +1,98 @@
+{
+ "Nathalie Arthaud": {
+  "sondages": 45,
+  "moyenne": 0.68,
+  "min": 0.0,
+  "max": 1.0
+ },
+ "Jean-Luc Mélenchon": {
+  "sondages": 45,
+  "moyenne": 17.59,
+  "min": 15.0,
+  "max": 20.5
+ },
+ "Fabien Roussel": {
+  "sondages": 43,
+  "moyenne": 1.88,
+  "min": 1.0,
+  "max": 3.0
+ },
+ "François Ruffin": {
+  "sondages": 4,
+  "moyenne": 2.0,
+  "min": 1.5,
+  "max": 3.0
+ },
+ "Marine Tondelier": {
+  "sondages": 41,
+  "moyenne": 2.57,
+  "min": 1.0,
+  "max": 3.5
+ },
+ "Raphaël Glucksmann": {
+  "sondages": 43,
+  "moyenne": 12.48,
+  "min": 8.0,
+  "max": 16.0
+ },
+ "Gabriel Attal": {
+  "sondages": 28,
+  "moyenne": 7.0,
+  "min": 2.0,
+  "max": 13.0
+ },
+ "Édouard Philippe": {
+  "sondages": 32,
+  "moyenne": 13.11,
+  "min": 8.0,
+  "max": 17.0
+ },
+ "Dominique de Villepin": {
+  "sondages": 8,
+  "moyenne": 1.88,
+  "min": 1.0,
+  "max": 3.0
+ },
+ "Teddy Riner": {
+  "sondages": 3,
+  "moyenne": 3.5,
+  "min": 2.0,
+  "max": 4.5
+ },
+ "Natacha Polony": {
+  "sondages": 3,
+  "moyenne": 1.67,
+  "min": 1.0,
+  "max": 2.5
+ },
+ "Bruno Retailleau": {
+  "sondages": 43,
+  "moyenne": 6.27,
+  "min": 4.0,
+  "max": 11.5
+ },
+ "David Lisnard": {
+  "sondages": 24,
+  "moyenne": 8.62,
+  "min": 5.5,
+  "max": 12.0
+ },
+ "Nicolas Dupont-Aignan": {
+  "sondages": 45,
+  "moyenne": 2.0,
+  "min": 1.0,
+  "max": 3.5
+ },
+ "Marine Le Pen": {
+  "sondages": 45,
+  "moyenne": 33.89,
+  "min": 27.0,
+  "max": 38.0
+ },
+ "Éric Zemmour": {
+  "sondages": 45,
+  "moyenne": 3.77,
+  "min": 2.0,
+  "max": 6.0
+ }
+}

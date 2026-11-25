@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="Theme.Hemicycle" parent="@android:style/Theme.Material.Light.NoActionBar">
+    <item name="android:windowBackground">#ffeef0ec</item>
+    <item name="android:statusBarColor">#ff15171a</item>
+    <item name="android:navigationBarColor">#ff15171a</item>
+    <item name="android:colorAccent">#ff0f5f66</item>
+  </style>
+</resources>

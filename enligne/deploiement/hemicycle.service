@@ -1,0 +1,26 @@
+# Service systemd de L'Hémicycle en ligne : à copier dans /etc/systemd/system/hemicycle.service
+[Unit]
+Description=L'Hémicycle en ligne (jeu et serveur de parties)
+After=network.target
+
+[Service]
+User=hemicycle
+Group=hemicycle
+WorkingDirectory=/opt/hemicycle-en-ligne
+ExecStart=/usr/bin/node serveur.js
+Environment=PORT=8080
+Environment=HOTE=127.0.0.1
+Environment=DONNEES=/var/lib/hemicycle
+# Lien de la page de dons (Ko-fi, Tipeee, Liberapay…) ; vide = le bloc « Soutenir » reste caché
+Environment=APDA_DON=
+Restart=always
+RestartSec=3
+# Le service ne peut écrire que dans son dossier de données
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/hemicycle
+
+[Install]
+WantedBy=multi-user.target

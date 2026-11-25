@@ -1,0 +1,50 @@
+# Dépôt « Retourne ta veste » : on n'y met que ce qui sert à reconstruire le jeu, l'appli et le site.
+/*
+!/.gitignore
+!/LISEZMOI.md
+!/carte2/
+!/apk/
+!/enligne/
+!/play/
+!/scripts/
+!/tests/
+!/polices/
+!/portraits_src/
+!/registre/
+!/valeurs/
+!/data_mv/
+!/data_mv2/
+
+# Secrets : jamais dans le dépôt
+/apk/cle/
+*.pem
+*.p12
+*.mdp
+*.jks
+*.keystore
+.env
+
+# Données des joueurs du serveur en ligne
+/enligne/donnees/
+
+# Fichiers générés (reconstruits par les scripts)
+/apk/sortie/
+/apk/assets/
+/apk/essai/
+/apk/base.apk
+/apk/*.apk
+/enligne/site/
+/enligne/paquet/
+node_modules/
+/carte2/apercu/
+/tests/captures/
+/polices/node_modules/.cache/
+__pycache__/
+*.pyc
+*.class
+*.apk
+*.aab
+*.zip
+
+# Polices embarquées : nécessaires pour fabriquer le site et l'appli
+!/polices/node_modules/

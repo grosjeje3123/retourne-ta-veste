@@ -1,0 +1,6 @@
+# Caddy : HTTPS automatique (certificat Let's Encrypt) devant le serveur Node.
+# Remplace jeu.exemple.fr par ton nom de domaine, puis : sudo cp Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy
+jeu.exemple.fr {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:8080
+}
