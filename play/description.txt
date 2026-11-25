@@ -1,7 +1,7 @@
 Retourne ta veste, c'est le jeu de cartes de la présidentielle 2027. Pose tes personnalités sur le plateau, retourne celles de l'adversaire et fais-les changer de camp. À la fin, la majorité des sièges l'emporte.
 
 43 CARTES DE PERSONNALITÉS
-Chaque carte a ses chiffres, tirés de faits publics et reliés à leurs sources dans l'album. Les portraits sont des caricatures générées par IA, avec le même traitement pour tout le monde.
+Chaque carte a ses chiffres, tirés de faits publics et reliés à leurs sources dans l'album. Les portraits sont des illustrations générées par IA, avec le même traitement pour tout le monde.
 
 24 CARTES ACTION
 49.3, Mercato, Passation, Édito, Le Plan… Une carte action par partie pour renverser la situation.
