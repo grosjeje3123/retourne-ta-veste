@@ -10,7 +10,8 @@ window.APDA.FICHES = {
   "identite": {
    "naissance": "23 février 1970, Peyrins (Drôme)",
    "formation": "Agrégation d'économie et gestion",
-   "parti": "Lutte ouvrière (porte-parole depuis 2008)"
+   "parti": "Lutte ouvrière (porte-parole depuis 2008)",
+   "sources": []
   },
   "mandats": [
    {
@@ -75,7 +76,23 @@ window.APDA.FICHES = {
  "Jean-Luc Mélenchon": {
   "candidature": "Candidat · mai 2026",
   "identite": {
-   "parti": "La France insoumise (fondateur)"
+   "naissance": "19 août 1951, Tanger (Maroc)",
+   "formation": "Licences de lettres modernes et de philosophie (université de Besançon), CAPES de lettres modernes",
+   "parti": "La France insoumise (fondateur)",
+   "sources": [
+    [
+     "Encyclopædia Universalis",
+     "https://www.universalis.fr/encyclopedie/jean-luc-melenchon/"
+    ],
+    [
+     "Larousse",
+     "https://www.larousse.fr/encyclopedie/personnage/wd/185944"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-jean-luc-melenchon"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -168,8 +185,8 @@ window.APDA.FICHES = {
   "candidature": "Candidat · sept. 2026",
   "identite": {
    "naissance": "16 avril 1969, Béthune (Pas-de-Calais)",
-   "formation": null,
-   "parti": "Parti communiste français (secrétaire national depuis 2018)"
+   "parti": "Parti communiste français (secrétaire national depuis 2018)",
+   "sources": []
   },
   "mandats": [
    {
@@ -228,7 +245,23 @@ window.APDA.FICHES = {
  "François Ruffin": {
   "candidature": "Candidat · janv. 2026",
   "identite": {
-   "parti": "Debout ! (président)"
+   "naissance": "18 octobre 1975, Calais (Pas-de-Calais)",
+   "formation": "Maîtrise de lettres modernes (université de Picardie), Centre de formation des journalistes (CFJ, diplômé en 2002)",
+   "parti": "Debout ! (fondateur et président)",
+   "sources": [
+    [
+     "Assemblée nationale (fiche député)",
+     "https://www.assemblee-nationale.fr/dyn/deputes/PA722142"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-francois-ruffin"
+    ],
+    [
+     "Slate",
+     "https://www.slate.fr/politique/election-presidentielle-2027-comment-francois-ruffin-retrouve-marginalise-gauche-lfi-france-insoumise-melenchon-candidat"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -272,7 +305,23 @@ window.APDA.FICHES = {
  "Marine Tondelier": {
   "candidature": "Candidate · oct. 2025",
   "identite": {
-   "parti": "Les Écologistes (secrétaire nationale depuis 2022)"
+   "naissance": "23 août 1986, Bois-Bernard (Pas-de-Calais)",
+   "formation": "Classe préparatoire littéraire, Sciences Po Lille (2009), master en gestion des établissements de santé",
+   "parti": "Les Écologistes (secrétaire nationale depuis décembre 2022)",
+   "sources": [
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-marine-tondelier"
+    ],
+    [
+     "Reporterre (entretien)",
+     "https://reporterre.net/Marine-Tondelier-Notre-ecologie-est-radicale"
+    ],
+    [
+     "Europe 1",
+     "https://www.europe1.fr/node/73658"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -387,7 +436,8 @@ window.APDA.FICHES = {
   "identite": {
    "naissance": "15 octobre 1979, Boulogne-Billancourt (Hauts-de-Seine)",
    "formation": "Sciences Po Paris",
-   "parti": "Place publique (cofondateur)"
+   "parti": "Place publique (cofondateur)",
+   "sources": []
   },
   "mandats": [
    {
@@ -459,7 +509,7 @@ window.APDA.FICHES = {
  "Karim Bouamrane": {
   "candidature": "Candidat ; maintien confirmé le 12/11/2026 après la primaire socialiste",
   "identite": {
-   "parti": "Parti socialiste ; fondateur du mouvement « La France humaine et forte » (oct. 2024)"
+   "parti": "Parti socialiste ; fondateur et président du mouvement « La France humaine et forte » (lancé le 3 octobre 2024)"
   },
   "mandats": [
    {
@@ -515,7 +565,23 @@ window.APDA.FICHES = {
  "François Hollande": {
   "candidature": "Pas encore déclaré",
   "identite": {
-   "parti": "Parti socialiste (groupe Socialistes et apparentés)"
+   "naissance": "12 août 1954, Rouen (Seine-Maritime)",
+   "formation": "HEC, Sciences Po Paris, ENA",
+   "parti": "Parti socialiste (groupe Socialistes et apparentés)",
+   "sources": [
+    [
+     "Assemblée nationale (fiche député)",
+     "https://www.assemblee-nationale.fr/dyn/deputes/PA1654?departementNumero=21"
+    ],
+    [
+     "Élysée (portrait officiel)",
+     "https://www.elysee.fr/francois-hollande"
+    ],
+    [
+     "Larousse",
+     "https://www.larousse.fr/encyclopedie/personnage/wd/124134"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -603,7 +669,23 @@ window.APDA.FICHES = {
  "Clémentine Autain": {
   "candidature": "A renoncé · juil. 2026",
   "identite": {
-   "parti": "L'Après (cofondatrice, 2024) ; groupe Écologiste et Social à l'Assemblée"
+   "naissance": "26 mai 1973, Saint-Cloud (Hauts-de-Seine)",
+   "formation": "Maîtrise d'histoire et DEA (université Paris-VIII)",
+   "parti": "L'Après (cofondatrice, 2024) ; groupe Écologiste et Social à l'Assemblée",
+   "sources": [
+    [
+     "Assemblée nationale (fiche députée)",
+     "https://www.assemblee-nationale.fr/dyn/deputes/PA588884?departementNumero=10"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-clementine-autain"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/politique/nouveau-front-populaire-les-frondeurs-de-la-france-insoumise-lancent-leur-mouvement"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -658,7 +740,27 @@ window.APDA.FICHES = {
  "Ségolène Royal": {
   "candidature": "Battue à la primaire socialiste du 11/10/2026 (7,62 %)",
   "identite": {
-   "parti": null
+   "naissance": "22 septembre 1953, Dakar (Sénégal)",
+   "formation": "Sciences Po Paris, ENA",
+   "parti": "Parti socialiste (candidate à la primaire PS / Place publique de l'automne 2026)",
+   "sources": [
+    [
+     "Larousse",
+     "https://www.larousse.fr/encyclopedie/personnage/wd/149655"
+    ],
+    [
+     "CCNUCC (biographie officielle de la présidente de la COP21)",
+     "https://unfccc.int/sites/default/files/biography_of_minister_royal.pdf"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/politique/elle-est-capable-de-tout-de-balancer-un-scud-la-presence-de-segolene-royal-dans-la-primaire-ps-va-t-elle-rebattre-les-cartes-pour-raphael-glucksmann"
+    ],
+    [
+     "LCP",
+     "https://lcp.fr/actualites/presidentielle-2027-segolene-royal-annonce-sa-candidature-a-la-primaire-socialiste"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -740,7 +842,23 @@ window.APDA.FICHES = {
  "Olivier Faure": {
   "candidature": "Battu à la primaire socialiste du 11/10/2026 (14,46 %)",
   "identite": {
-   "parti": "Parti socialiste (premier secrétaire depuis 2018)"
+   "naissance": "18 août 1968, La Tronche (Isère)",
+   "formation": "Diplômé en droit et en science politique",
+   "parti": "Parti socialiste (premier secrétaire depuis 2018)",
+   "sources": [
+    [
+     "Assemblée nationale (fiche député)",
+     "https://www.assemblee-nationale.fr/dyn/deputes/PA609332"
+    ],
+    [
+     "Assemblée nationale (Sycomore)",
+     "https://www2.assemblee-nationale.fr/sycomore/fiche?num_dept=18421"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/non-classe/olivier-faure-un-homme-de-consensus-a-la-tete-d-un-ps-moribond-83753"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -809,7 +927,23 @@ window.APDA.FICHES = {
  "Jérôme Guedj": {
   "candidature": "Battu à la primaire socialiste du 11/10/2026 (5,83 %)",
   "identite": {
-   "parti": "Parti socialiste"
+   "naissance": "23 janvier 1972, Pantin (Seine-Saint-Denis)",
+   "formation": "Sciences Po Paris (1992), ENA (promotion Victor-Schœlcher, 1996)",
+   "parti": "Parti socialiste",
+   "sources": [
+    [
+     "Assemblée nationale (fiche député)",
+     "https://www.assemblee-nationale.fr/dyn/deputes/PA1567?departementNumero=48"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-jerome-guedj"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/politique/elle-est-capable-de-tout-de-balancer-un-scud-la-presence-de-segolene-royal-dans-la-primaire-ps-va-t-elle-rebattre-les-cartes-pour-raphael-glucksmann"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -879,7 +1013,27 @@ window.APDA.FICHES = {
  "Gabriel Attal": {
   "candidature": "Candidat · mai 2026",
   "identite": {
-   "parti": "Renaissance (secrétaire général)"
+   "naissance": "16 mars 1989, Clamart (Hauts-de-Seine)",
+   "formation": "Sciences Po Paris (2007-2013)",
+   "parti": "Renaissance (secrétaire général depuis décembre 2024) ; président du groupe Ensemble pour la République à l'Assemblée",
+   "sources": [
+    [
+     "info.gouv.fr (fiche ancien ministre)",
+     "https://www.info.gouv.fr/personnalite/gabriel-attal?p=3894"
+    ],
+    [
+     "Assemblée nationale (fiche député)",
+     "https://www.assemblee-nationale.fr/dyn/deputes/PA722190?departementNumero=07"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/politique/renaissance-poursuit-son-implantation-territoriale-revendique-gabriel-attal"
+    ],
+    [
+     "Europe 1",
+     "https://www.europe1.fr/node/153012"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -983,7 +1137,23 @@ window.APDA.FICHES = {
  "Édouard Philippe": {
   "candidature": "Candidat · sept. 2024",
   "identite": {
-   "parti": "Horizons (fondateur et président)"
+   "naissance": "28 novembre 1970, Rouen (Seine-Maritime)",
+   "formation": "Sciences Po (1992), ENA (promotion Marc-Bloch, 1997)",
+   "parti": "Horizons (fondateur et président)",
+   "sources": [
+    [
+     "info.gouv.fr (anciens Premiers ministres)",
+     "https://www.info.gouv.fr/edouard-philippe-0"
+    ],
+    [
+     "info.gouv.fr (nomination, 2017)",
+     "https://www.info.gouv.fr/edouard-philippe-est-nomme-premier-ministre"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-dedouard-philippe"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1074,7 +1244,23 @@ window.APDA.FICHES = {
  "Aurore Bergé": {
   "candidature": "Pas déclarée",
   "identite": {
-   "parti": "Renaissance"
+   "naissance": "13 novembre 1986, Paris",
+   "formation": "Sciences Po Paris (2004-2009)",
+   "parti": "Renaissance",
+   "sources": [
+    [
+     "info.gouv.fr (fiche ministre)",
+     "https://www.info.gouv.fr/personnalite/aurore-berge"
+    ],
+    [
+     "info.gouv.fr (fiche ministre, parcours)",
+     "https://www.info.gouv.fr/index.php/personnalite/aurore-berge"
+    ],
+    [
+     "LCP",
+     "https://lcp.fr/index%2ephp/actualites/premiere-ministre-ministres-secretaires-d-etat-25-membres-du-gouvernement-sur-41-sont"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1134,7 +1320,27 @@ window.APDA.FICHES = {
  "Dominique de Villepin": {
   "candidature": "Pas encore déclaré",
   "identite": {
-   "parti": "La France humaniste (fondateur, juin 2025)"
+   "naissance": "14 novembre 1953, Rabat (Maroc)",
+   "formation": "Licences de droit et de lettres, Sciences Po, ENA",
+   "parti": "La France humaniste (fondateur, juin 2025)",
+   "sources": [
+    [
+     "info.gouv.fr (anciens Premiers ministres)",
+     "https://www.info.gouv.fr/dominique-de-villepin"
+    ],
+    [
+     "Forum mondial Normandie pour la paix (Région Normandie)",
+     "https://www.normandiepourlapaix.fr/en/personnes-structures/de-villepin"
+    ],
+    [
+     "Euronews",
+     "https://www.euronews.com/my-europe/2026/08/30/french-presidential-race-de-villepin-set-to-run-faure-enters-socialist-primary"
+    ],
+    [
+     "LCP",
+     "https://lcp.fr/actualites/presidentielle-2027-dominique-villepin-veut-une-nouvelle-abolition-des-privileges-et-un"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1204,7 +1410,7 @@ window.APDA.FICHES = {
  "Teddy Riner": {
   "candidature": "Candidat · nov. 2026",
   "identite": {
-   "parti": null
+   "parti": "Sans parti (candidat déclaré le 9 novembre 2026, « ni de droite ni de gauche », slogan « La France qu'on veut »)"
   },
   "mandats": [
    {
@@ -1244,7 +1450,7 @@ window.APDA.FICHES = {
  "Natacha Polony": {
   "candidature": "Candidate · oct. 2026",
   "identite": {
-   "parti": "« Nous sommes la France » (mouvement lancé fin août 2026)"
+   "parti": "Mouvement « Nous sommes la France » (lancé fin août-début septembre 2026) ; candidate déclarée le 14 octobre 2026"
   },
   "mandats": [
    {
@@ -1299,7 +1505,7 @@ window.APDA.FICHES = {
  "Juan Branco": {
   "candidature": "Candidat · déc. 2025",
   "identite": {
-   "parti": "Les Ruches (« Ruches Françaises »), mouvement qui porte sa candidature"
+   "parti": "Les Ruches (mouvement citoyen qui porte sa candidature à la présidentielle de 2027)"
   },
   "mandats": [
    {
@@ -1374,7 +1580,27 @@ window.APDA.FICHES = {
  "Jean Lassalle": {
   "candidature": "Cagnotte · juil. 2026",
   "identite": {
-   "parti": "Résistons ! (fondateur en 2016, président)"
+   "naissance": "3 mai 1955, Lourdios-Ichère (Pyrénées-Atlantiques)",
+   "formation": "Technicien agricole",
+   "parti": "Résistons ! (fondateur en 2016, président)",
+   "sources": [
+    [
+     "Datan (données de l'Assemblée nationale)",
+     "https://datan.fr/deputes/pyrenees-atlantiques-64/depute_jean-lassalle"
+    ],
+    [
+     "Brut",
+     "https://www.brut.media/fr/videos/cest-qui-jean-lassalle"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/politique/assemblee-jean-lassalle-rejoint-le-groupe-libertes-et-territoires-180275"
+    ],
+    [
+     "Pleinchamp (octobre 2026)",
+     "https://www.pleinchamp.com/actualite/jean-lassalle-agriculteurs-reprenez-vos-reves.-parce-que-les-reves-ca-permet-de-sortir-du-cauchemar"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1426,7 +1652,22 @@ window.APDA.FICHES = {
  "Delphine Batho": {
   "candidature": "Candidate · nov. 2025",
   "identite": {
-   "parti": "Génération écologie (présidente)"
+   "naissance": "23 mars 1973, Paris",
+   "parti": "Génération écologie (présidente depuis septembre 2018) ; candidate du parti à la présidentielle de 2027",
+   "sources": [
+    [
+     "Assemblée nationale (fiche députée)",
+     "https://questions.assemblee-nationale.fr/dyn/deputes/PA335999"
+    ],
+    [
+     "HATVP (déclaration d'intérêts)",
+     "https://www.hatvp.fr/livraison/dossiers/batho-delphine-dia31077-depute-79.pdf"
+    ],
+    [
+     "L'Info durable",
+     "https://www.linfodurable.fr/lex-ministre-delphine-batho-candidate-la-presidentielle-pour-conjurer-la-rikikisation-de-lecologie"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1496,7 +1737,7 @@ window.APDA.FICHES = {
  "Francis Lalanne": {
   "candidature": "Candidat · août 2026",
   "identite": {
-   "parti": "France Libre (mouvement)"
+   "parti": "France Libre (mouvement citoyen qui soutient sa candidature à la présidentielle 2027)"
   },
   "mandats": [
    {
@@ -1531,9 +1772,7 @@ window.APDA.FICHES = {
  },
  "Sylvain Durif": {
   "candidature": "Candidat · août 2026",
-  "identite": {
-   "parti": null
-  },
+  "identite": {},
   "mandats": [
    {
     "periode": "actuelle",
@@ -1568,7 +1807,27 @@ window.APDA.FICHES = {
  "Bernard Cazeneuve": {
   "candidature": "Prétendant · juil. 2026",
   "identite": {
-   "parti": "La Convention (fondateur en 2022, président)"
+   "naissance": "2 juin 1963, Senlis (Oise)",
+   "formation": "Sciences Po Bordeaux (diplômé en 1985)",
+   "parti": "La Convention (fondateur en 2023, président) ; candidat déclaré à la présidentielle 2027",
+   "sources": [
+    [
+     "info.gouv.fr (anciens Premiers ministres)",
+     "https://www.info.gouv.fr/bernard-cazeneuve"
+    ],
+    [
+     "Assemblée nationale (fiche député)",
+     "https://www.assemblee-nationale.fr/dossiers/rwanda/cazeneuv.asp"
+    ],
+    [
+     "Institut Montaigne",
+     "https://institutmontaigne.org/experts/bernard-cazeneuve"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-bernard-cazeneuve"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1659,9 +1918,7 @@ window.APDA.FICHES = {
  },
  "Matthieu Pigasse": {
   "candidature": "Pas déclaré",
-  "identite": {
-   "parti": null
-  },
+  "identite": {},
   "mandats": [
    {
     "periode": "2000–2002",
@@ -1715,7 +1972,18 @@ window.APDA.FICHES = {
  "Thierry Breton": {
   "candidature": "Pas déclaré",
   "identite": {
-   "parti": null
+   "naissance": "15 janvier 1955, Paris",
+   "formation": "École alsacienne, lycée Louis-le-Grand, Supélec (ingénieur, 1979) ; IHEDN",
+   "sources": [
+    [
+     "economie.gouv.fr (archives économiques et financières)",
+     "https://www.economie.gouv.fr/node/26194"
+    ],
+    [
+     "Zonebourse (biographie)",
+     "https://ch.zonebourse.com/insider/THIERRY-BRETON-A03W68/"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1782,7 +2050,18 @@ window.APDA.FICHES = {
  "Christine Lagarde": {
   "candidature": "Pas déclarée",
   "identite": {
-   "parti": null
+   "naissance": "1er janvier 1956, Paris",
+   "formation": "Sciences Po Aix (master économie et finance, 1977) ; maîtrise de droit des affaires et DESS de droit des affaires et droit du travail (Paris X, 1980)",
+   "sources": [
+    [
+     "Banque centrale européenne (CV officiel)",
+     "https://www.ecb.europa.eu/ecb/orga/decisions/html/cvlagarde.fr.html"
+    ],
+    [
+     "Universalis",
+     "https://www.universalis.fr/encyclopedie/christine-lagarde/"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1846,7 +2125,18 @@ window.APDA.FICHES = {
  "Michel-Édouard Leclerc": {
   "candidature": "Pas déclaré",
   "identite": {
-   "parti": null
+   "naissance": "23 mai 1952, Landerneau (Finistère)",
+   "formation": "Doctorat de sciences économiques (thèse dirigée par Raymond Barre), DEA de science politique, maîtrise de philosophie (Paris I Panthéon-Sorbonne)",
+   "sources": [
+    [
+     "LSA (annuaire)",
+     "https://www.lsa-conso.fr/annuaire-professionnels-grande-consommation/leclerc-michel-edouard/121616"
+    ],
+    [
+     "LSA (portrait 2023)",
+     "https://www.lsa-conso.fr/michel-edouard-leclerc-superinfluenceur-de-la-grande-distribution-portrait,453381"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1886,7 +2176,27 @@ window.APDA.FICHES = {
  "Bruno Retailleau": {
   "candidature": "Candidat · févr. 2026",
   "identite": {
-   "parti": "Les Républicains (président depuis mai 2025), candidat à la présidentielle 2027"
+   "naissance": "20 novembre 1960, Cholet (Maine-et-Loire)",
+   "formation": "Maîtrise de sciences économiques, Sciences Po Paris",
+   "parti": "Les Républicains (président depuis mai 2025), candidat déclaré à la présidentielle 2027",
+   "sources": [
+    [
+     "info.gouv.fr (fiche ministre)",
+     "https://www.info.gouv.fr/public/index.php/personnalite/bruno-retailleau"
+    ],
+    [
+     "Sénat (fiche sénateur)",
+     "https://senat.fr/senateur/retailleau_bruno04033b.html"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-bruno-retailleau"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/politique/presidentielle-2027-david-lisnard-maire-de-cannes-annonce-sa-candidature-et-quitte-officiellement-les-lr"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -1993,7 +2303,7 @@ window.APDA.FICHES = {
  "David Lisnard": {
   "candidature": "Candidat · mars 2026",
   "identite": {
-   "parti": "Nouvelle Énergie (fondateur et président) ; a quitté LR le 25 mars 2026"
+   "parti": "Nouvelle Énergie (fondateur et président) ; a quitté LR en mars 2026"
   },
   "mandats": [
    {
@@ -2081,7 +2391,27 @@ window.APDA.FICHES = {
  "Nicolas Dupont-Aignan": {
   "candidature": "Candidat · mars 2025",
   "identite": {
-   "parti": "Debout la France (fondateur et président)"
+   "naissance": "7 mars 1961, Paris (15e)",
+   "formation": "Sciences Po Paris (1982), DESS (Paris-Dauphine, 1985), ENA (1989)",
+   "parti": "Debout la France (fondateur et président)",
+   "sources": [
+    [
+     "Assemblée nationale (Sycomore)",
+     "https://www2.assemblee-nationale.fr/sycomore/liste/61?alpha=false"
+    ],
+    [
+     "Europe 1 (CV)",
+     "https://www.europe1.fr/politique/Le-CV-de-Nicolas-Dupont-Aignan-916530"
+    ],
+    [
+     "franceinfo",
+     "https://www.franceinfo.fr/politique/debout-la-france/"
+    ],
+    [
+     "Puremédias/ozap (fiche)",
+     "https://www.ozap.com/personnalite/nicolas-dupont-aignan_e351262"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2129,7 +2459,23 @@ window.APDA.FICHES = {
  "François Asselineau": {
   "candidature": "Candidat · mars 2026",
   "identite": {
-   "parti": "Union populaire républicaine (fondateur et président)"
+   "naissance": "14 septembre 1957, Paris",
+   "formation": "HEC (1980), ENA (sorti en 1985, inspecteur des finances)",
+   "parti": "Union populaire républicaine (fondateur en 2007 et président)",
+   "sources": [
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-francois-asselineau"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/politique/asselineau-partisan-du-frexit-et-candidat-inattendu-a-l-election-56898"
+    ],
+    [
+     "Europe 1",
+     "https://www.europe1.fr/node/289950"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2177,7 +2523,27 @@ window.APDA.FICHES = {
  "Xavier Bertrand": {
   "candidature": "Prétendant · août 2026",
   "identite": {
-   "parti": "Les Républicains ; fondateur du mouvement Nous France"
+   "naissance": "21 mars 1965, Châlons-sur-Marne (Marne)",
+   "formation": "Maîtrise de droit public et DESS d'administration locale (université de Reims)",
+   "parti": "Les Républicains ; fondateur du mouvement Nous France (associé à LR) ; envisage une candidature indépendante en 2027",
+   "sources": [
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-xavier-bertrand"
+    ],
+    [
+     "Puremédias/ozap (fiche)",
+     "https://www.ozap.com/personnalite/xavier-bertrand_e271205"
+    ],
+    [
+     "LCP (3 août 2026)",
+     "https://lcp.fr/index%2ephp/actualites/presidentielle-xavier-bertrand-indique-tester-ses-idees-et-envisager-de-concourir-en"
+    ],
+    [
+     "LCP (27 août 2026)",
+     "https://lcp.fr/actualites/2027-figure-de-la-droite-xavier-bertrand-confirme-qu-il-sera-candidat-a-l-election"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2233,7 +2599,23 @@ window.APDA.FICHES = {
  "Laurent Wauquiez": {
   "candidature": "Pas déclaré",
   "identite": {
-   "parti": "Les Républicains"
+   "naissance": "12 avril 1975, Lyon",
+   "formation": "ENS (Ulm), agrégation d'histoire (reçu premier), Sciences Po Paris, DEA de droit public, ENA (major, 2001)",
+   "parti": "Les Républicains (président du groupe Droite républicaine à l'Assemblée)",
+   "sources": [
+    [
+     "Assemblée nationale (fiche député)",
+     "https://www.assemblee-nationale.fr/dyn/deputes/PA267285?departementNumero=04"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-laurent-wauquiez"
+    ],
+    [
+     "L'Étudiant / EducPros",
+     "https://www.letudiant.fr/educpros/personnalites/wauquiez-laurent-734.html"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2304,7 +2686,35 @@ window.APDA.FICHES = {
  "François Baroin": {
   "candidature": "Pas déclaré",
   "identite": {
-   "parti": "Les Républicains (élu sous l'étiquette divers droite en 2026)"
+   "naissance": "21 juin 1965, Paris",
+   "formation": "DESS des techniques de l'information et de la communication (Paris II), ISG (Paris), DEA de géopolitique",
+   "parti": "Les Républicains (président de la fédération LR de l'Aube) ; liste nuancée divers droite aux municipales de 2026",
+   "sources": [
+    [
+     "HEC Paris (fiche enseignant)",
+     "https://www.hec.edu/en/faculty-research/faculty-directory/faculty-member/baroin-francois"
+    ],
+    [
+     "Banque européenne d'investissement",
+     "https://www.eib.org/de/press/news/francois-baroin-new-governor-for-france"
+    ],
+    [
+     "Les Rencontres économiques",
+     "https://lesrencontreseconomiques.fr/2020/en/speakers/francois-baroin"
+    ],
+    [
+     "Ministère de l'Intérieur (résultats municipales 2026)",
+     "https://www.resultats-elections.interieur.gouv.fr/municipales2026/ensemble_geographique/44/10/10387/"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/politique/presidentielle-2027-francois-baroin-assure-que-bruno-retailleau-a-toutes-les-qualites-pour-creer-les-conditions-de-la-surprise-du-premier-tour"
+    ],
+    [
+     "info.fr",
+     "https://info.fr/troyes-francois-baroin-meeting-retailleau-20-juin-paris/"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2372,7 +2782,31 @@ window.APDA.FICHES = {
  "Gérald Darmanin": {
   "candidature": "Pas candidat · août 2026",
   "identite": {
-   "parti": "Renaissance ; fondateur du parti Populaires (mis en sommeil à l'automne 2025)"
+   "naissance": "11 octobre 1982, Valenciennes (Nord)",
+   "formation": "Sciences Po Lille",
+   "parti": "Renaissance (en retrait de toute activité partisane depuis octobre 2025) ; fondateur de Populaires (mis en sommeil à l'automne 2025) ; soutient Édouard Philippe pour 2027",
+   "sources": [
+    [
+     "ministère de la Justice",
+     "https://www.justice.gouv.fr/ministere-justice/ministre"
+    ],
+    [
+     "info.gouv.fr (fiche ministre)",
+     "https://www.info.gouv.fr/public/index.php/personnalite/gerald-darmanin"
+    ],
+    [
+     "Public Sénat",
+     "https://www.publicsenat.fr/actualites/politique/gerald-darmanin-le-cogneur-sarkoziste-devenu-pilier-de-la-macronie-168301"
+    ],
+    [
+     "Brut (AFP)",
+     "https://www.brut.media/fr/articles/darmanin-denonce-aupres-dattal-les-aventures-individuelles-et-prematurees-pour-lelysee"
+    ],
+    [
+     "LCP (18 août 2026)",
+     "https://lcp.fr/actualites/presidentielle-2027-gerald-darmanin-ne-sera-pas-candidat-et-soutient-edouard-philippe"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2447,7 +2881,22 @@ window.APDA.FICHES = {
  "Jean Castex": {
   "candidature": "Pas candidat · juil. 2026",
   "identite": {
-   "parti": null
+   "naissance": "25 juin 1965, Vic-Fezensac (Gers)",
+   "formation": "Études d'histoire (Toulouse), Sciences Po Paris, ENA (promotion Victor-Hugo)",
+   "sources": [
+    [
+     "info.gouv.fr (anciens Premiers ministres)",
+     "https://www.info.gouv.fr/les-anciens-premiers-et-premieres-ministres-de-la-ve-republique/jean-castex"
+    ],
+    [
+     "Europe 1",
+     "https://www.europe1.fr/taxonomy/term/118"
+    ],
+    [
+     "Universalis",
+     "https://www.universalis.fr/encyclopedie/jean-castex/"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2507,7 +2956,27 @@ window.APDA.FICHES = {
  "Marine Le Pen": {
   "candidature": "Candidate · juil. 2026",
   "identite": {
-   "parti": "Rassemblement national (présidente du groupe à l'Assemblée)"
+   "naissance": "5 août 1968, Neuilly-sur-Seine (Hauts-de-Seine)",
+   "formation": "Maîtrise de droit (1990) et DEA de droit pénal (1991), Paris II Panthéon-Assas ; CAPA (1992), avocate jusqu'en 1998",
+   "parti": "Rassemblement national (présidente du groupe à l'Assemblée)",
+   "sources": [
+    [
+     "Universalis",
+     "https://www.universalis.fr/encyclopedie/marine-le-pen/"
+    ],
+    [
+     "Larousse",
+     "https://www.larousse.fr/encyclopedie/personnage/wd/185781"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-de-marine-le-pen"
+    ],
+    [
+     "Datan (données de l'Assemblée nationale)",
+     "https://datan.fr/deputes/pas-de-calais-62/depute_marine-lepen"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2596,7 +3065,23 @@ window.APDA.FICHES = {
  "Éric Zemmour": {
   "candidature": "Candidat · sept. 2026",
   "identite": {
-   "parti": "Reconquête (fondateur et président)"
+   "naissance": "31 août 1958, Montreuil (Seine, auj. Seine-Saint-Denis)",
+   "formation": "Sciences Po Paris",
+   "parti": "Reconquête (fondateur et président)",
+   "sources": [
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-deric-zemmour"
+    ],
+    [
+     "Institut Montaigne",
+     "https://www.institutmontaigne.org/presidentielle-2022/eric-zemmour/renvoyer-tous-les-etrangers-clandestins-presents-sur-notre-sol/"
+    ],
+    [
+     "Europe 1",
+     "https://www.europe1.fr/taxonomy/term/944"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2651,7 +3136,19 @@ window.APDA.FICHES = {
  "Florian Philippot": {
   "candidature": "Candidat · mai 2026",
   "identite": {
-   "parti": "Les Patriotes (fondateur et président)"
+   "naissance": "24 octobre 1981, Croix (Nord)",
+   "formation": "HEC, ENA (2007-2009, promotion Willy-Brandt)",
+   "parti": "Les Patriotes (fondateur et président)",
+   "sources": [
+    [
+     "Public Sénat (grandes dates)",
+     "https://www.publicsenat.fr/actualites/non-classe/les-grandes-dates-de-florian-philippot-77632"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-florian-philippot"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2707,7 +3204,23 @@ window.APDA.FICHES = {
  "Jordan Bardella": {
   "candidature": "Plan B · avr. 2025",
   "identite": {
-   "parti": "Rassemblement national (président)"
+   "naissance": "13 septembre 1995, Drancy (Seine-Saint-Denis)",
+   "formation": "Licence de géographie (Paris-Sorbonne), abandonnée",
+   "parti": "Rassemblement national (président)",
+   "sources": [
+    [
+     "Parlement européen (fiche député)",
+     "https://www.europarl.europa.eu/meps/en/131580/JORDAN_BARDELLA/history/9"
+    ],
+    [
+     "franceinfo",
+     "https://www.franceinfo.fr/politique/jordan-bardella/"
+    ],
+    [
+     "Sud Radio (biographie)",
+     "https://www.sudradio.fr/la-biographie-et-le-cv-de-jordan-bardella"
+    ]
+   ]
   },
   "mandats": [
    {
@@ -2764,7 +3277,8 @@ window.APDA.FICHES = {
   "identite": {
    "naissance": "24 avril 1993, Les Pavillons-sous-Bois (Seine-Saint-Denis)",
    "formation": "Sciences Po, ENA ; magistrate à la Cour des comptes",
-   "parti": "Reconquête"
+   "parti": "Reconquête",
+   "sources": []
   },
   "mandats": [
    {

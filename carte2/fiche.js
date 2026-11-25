@@ -81,6 +81,11 @@
       var dl = el('dl', 'fiche-id-liste');
       lignes.forEach(function(x){ dl.appendChild(el('dt', null, x[0])); dl.appendChild(el('dd', null, x[1])); });
       p.appendChild(dl);
+      if (id.sources && id.sources.length){
+        var si = el('p', 'fiche-sources', 'Sources : ');
+        id.sources.forEach(function(x, i){ if (i) si.appendChild(document.createTextNode(' · ')); si.appendChild(lien(x)); });
+        p.appendChild(si);
+      }
     }
     if (f.mandats && f.mandats.length){
       p.appendChild(rubrique('Mandats et fonctions'));
