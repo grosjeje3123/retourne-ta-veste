@@ -1263,7 +1263,7 @@ function equipeFiche(p){
   return d;
 }
 /* ---- signaler une erreur */
-const CONTACT = "";
+const CONTACT = "contact@letrombi2027.org";
 function contactLien(sujet){
   if (!CONTACT) return null;
   const a = el('a', null, CONTACT); a.href = 'mailto:' + CONTACT + '?subject=' + encodeURIComponent(sujet); return a;
