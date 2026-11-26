@@ -73,7 +73,9 @@
     var valeurs = '<span class="bords" role="img" aria-label="Valeurs : ' + n[0] + ' ' + v[0] + ' en haut, ' + n[1] + ' ' + v[1] + ' à droite, ' + n[2] + ' ' + v[2] + ' en bas, ' + n[3] + ' ' + v[3] + ' à gauche">' +
       [1, 2, 3].map(function(i){ return pastille(c, i, f); }).join('') + '</span>';
     var annees = c.annees.map(function(a, i){ return i === c.annees.length - 1 ? '<b>' + a + '</b>' : a; }).join(' · ');
-    return '<article class="face recto candidat" data-bloc="' + teinte(c) + '"' + (cache ? ' aria-hidden="true"' : '') + ' aria-label="Carte candidat, ' + c.nom + ', bloc ' + c.bloc + '">' +
+    // Texte long (justice et phrase) : la carte resserre un peu ses caractères pour que tout tienne
+    var long = (c.justice + (c.phrase || '')).replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').length > 240;
+    return '<article class="face recto candidat' + (long ? ' dense' : '') + '" data-bloc="' + teinte(c) + '"' + (cache ? ' aria-hidden="true"' : '') + ' aria-label="Carte candidat, ' + c.nom + ', bloc ' + c.bloc + '">' +
       '<div class="haut">' + axe(c) + pastille(c, 0, f, true) + '<span class="bloc">' + c.bloc + '</span></div>' +
       '<div class="panneau">' + portrait(c, valeurs) +
         '<div class="infos">' +

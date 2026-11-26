@@ -28,7 +28,6 @@
       sources: [
         ['LCP', 'https://lcp.fr/actualites/presidentielle-jean-luc-melenchon-officialise-sa-candidature-pour-2027-435851'],
         ['La Libre (AFP)', 'https://www.lalibre.be/international/europe/2026/05/03/jean-luc-melenchon-officialise-sa-candidature-a-la-presidentielle-2027-62WVGQMVUREGHCOMM2PKZ2DE7M/'],
-        ['Club des juristes (2026)', 'https://www.leclubdesjuristes.com/en-bref/quatre-mises-en-examen-dans-laffaire-des-comptes-de-campagnes-de-lfi-de-2017-16141/'],
         ['Public Sénat', 'https://www.publicsenat.fr/actualites/politique/melenchon-condamne-a-trois-mois-avec-sursis-pour-la-perquisition-houleuse-a-lfi'],
         ['H24info (AFP)', 'https://h24info.ma/?p=594744']
       ]
@@ -44,7 +43,6 @@
       sources: [
         ['LCP', 'https://lcp.fr/actualites/fabien-roussel-officiellement-candidat-du-pcf-a-l-election-presidentielle-de-2027-441389'],
         ['Europe&nbsp;1 (85&nbsp;%)', 'https://www.europe1.fr/node/966744'],
-        ['Europe&nbsp;1 (PNF)', 'https://www.europe1.fr/node/86931'],
         ['Euronews', 'https://fr.euronews.com/my-europe/2026/07/05/fabien-roussel-en-route-vers-une-nouvelle-candidature-a-la-presidentielle']
       ]
     },
@@ -217,7 +215,6 @@
       ],
       sources: [
         ['France&nbsp;3', 'https://france3-regions.franceinfo.fr/normandie/seine-maritime/havre/je-serai-candidat-a-la-prochaine-election-presidentielle-edouard-philippe-l-ancien-premier-ministre-et-maire-du-havre-officialise-sa-candidature-3026366.html'],
-        ['Club des juristes', 'https://www.leclubdesjuristes.com/en-bref/placement-dedouard-philippe-sous-le-statut-de-temoin-assiste-dans-une-enquete-pour-detournement-de-fonds-publics-18148/'],
         ['Europe&nbsp;1', 'https://www.europe1.fr/node/937625']
       ]
     },
@@ -246,9 +243,7 @@
       blocSource: 'ni parti dans la grille, ni candidature depuis 2020 (règle à valider)', verifie: '25/11/2026',
       sources: [
         ['LCP', 'https://lcp.fr/actualites/dominique-de-villepin-nous-voulons-etre-presents-en-2027-429413'],
-        ['LCP (parrainages)', 'https://www.lcp.fr/actualites/presidentielle-dominique-de-villepin-annonce-avoir-depasse-la-barre-des-300-signatures'],
-        ['Reuters', 'https://www.tradingsat.com/actualites/informations-societes/marche-le-pnf-ouvre-une-enquete-sur-les-presents-de-dominique-de-villepin-qui-se-dit-serein-1163304.html'],
-        ['franceinfo', 'https://www.franceinfo.fr/politique/affaire-des-statuettes-dominique-de-villepin-a-ete-entendu-en-audition-libre-mi-juillet_8124329.html']
+        ['LCP (parrainages)', 'https://www.lcp.fr/actualites/presidentielle-dominique-de-villepin-annonce-avoir-depasse-la-barre-des-300-signatures']
       ]
     },
     {
@@ -289,12 +284,10 @@
       role: 'Avocat et essayiste · mouvement Les Ruches', valeurs: [5, 5, 5, 5],
       phrase: 'Je pense qu’il faut se préparer à la sortie de l’Union européenne.', quand: '19 décembre 2025 · Sud Radio',
       annees: ['2027'],
-      justice: 'Suspendu neuf mois comme avocat&nbsp;: sanction disciplinaire, confirmée en appel en octobre 2025.',
+      justice: 'Suspendu neuf mois comme avocat&nbsp;: sanction disciplinaire, confirmée en appel en octobre 2025&nbsp;; pourvoi en cassation formé.',
       blocSource: 'ni parti dans la grille, ni candidature depuis 2020 (règle 3)', verifie: '25/11/2026',
       sources: [
-        ['Sud Radio', 'https://www.sudradio.fr/sud-radio/lavocat-juan-branco-candidat-a-la-presidentielle'],
-        ['AFP', 'https://www.sudradio.fr/societe/le-parquet-de-paris-requiert-le-renvoi-en-proces-pour-viol-de-lavocat-juan-branco'],
-        ['JusticeInfo', 'https://www.justiceinfo.net/fr/164381-france-le-parquet-veut-que-lavocat-franco-espagnol-juan-branco-soit-juge-pour-viol.html']
+        ['Sud Radio', 'https://www.sudradio.fr/sud-radio/lavocat-juan-branco-candidat-a-la-presidentielle'], ['Barreau de Paris (arrêt du 16/10/2025)', 'https://www.avocatparis.org/sites/bdp/files/2025-11/CA_Paris_251016_24-18012_branco_0.pdf']
       ]
     },
     {
@@ -470,7 +463,7 @@
       justice: 'Aucune condamnation identifiée dans les sources consultées.',
       blocSource: 'UPR hors grille, nuance DSV en 2024 (règle 2, à valider)', verifie: '25/11/2026',
       sources: [
-        ['Brut (AFP)', 'https://www.brut.media/fr/articles/agression-et-harcelement-sexuels-francois-asselineau-renvoye-en-proces'],
+        
         ['Sud Radio (citation)', 'https://www.sudradio.fr/sud-radio/asselineau-nous-ne-sommes-pas-des-souverainistes'],
         ['LCP', 'https://lcp.fr/actualites/presidentielle-2027-la-liste-des-candidats-declares-et-potentiels-444932']
       ]
@@ -501,8 +494,7 @@
       ],
       sources: [
         ['Lyon Capitale (statut)', 'https://www.lyoncapitale.fr/?p=501731'],
-        ['AFP (Le Figaro)', 'https://www.boursedirect.fr/fr/actualites/categorie/politique/presidentielle-wauquiez-porte-un-coup-a-la-candidature-de-retailleau-en-tendant-la-main-a-philippe-afp-88833e6f3077761451ca93dfccafb0c40b3eb503'],
-        ['Lyon Capitale (PNF)', 'https://www.lyoncapitale.fr/actualite/etude-d-opinion-financee-par-la-region-aura-laurent-wauquiez-de-nouveau-dans-le-viseur-du-pnf']
+        ['AFP (Le Figaro)', 'https://www.boursedirect.fr/fr/actualites/categorie/politique/presidentielle-wauquiez-porte-un-coup-a-la-candidature-de-retailleau-en-tendant-la-main-a-philippe-afp-88833e6f3077761451ca93dfccafb0c40b3eb503']
       ]
     },
     {
@@ -551,8 +543,7 @@
         ['Plainte devant la Cour de justice de la République sur sa gestion du Covid-19 (septembre 2020)', 'Déclarée irrecevable (novembre 2020)', [['Ma Commune (AFP)', 'https://www.macommune.info/covid-19-jean-castex-vise-par-une-plainte-devant-la-cjr'], ['Le Quotidien du pharmacien', 'https://www.lequotidiendupharmacien.fr/exercice-pro/justice/crise-sanitaire-des-milliers-de-plaintes-affluent-contre-des-ministres']]]
       ],
       sources: [
-        ['La Gazette (AFP)', 'https://www.lagazettefrance.fr/article/castex-n-a-pas-la-presidentielle-dans-son-horizon'],
-        ['Brut (AFP)', 'https://www.brut.media/fr/articles/lancien-premier-ministre-jean-castex-en-garde-a-vue']
+        ['La Gazette (AFP)', 'https://www.lagazettefrance.fr/article/castex-n-a-pas-la-presidentielle-dans-son-horizon']
       ]
     },
     {
@@ -569,8 +560,7 @@
       sources: [
         ['Cour d’appel de Paris', 'https://www.cours-appel.justice.fr/sites/default/files/2026-07/20260707%20-%20CA%20Paris%20-%20CP.pdf'],
         ['LCP', 'https://lcp.fr/actualites/ce-soir-je-suis-candidate-a-l-election-presidentielle-annonce-marine-le-pen-438886'],
-        ['Club des juristes', 'https://www.leclubdesjuristes.com/en-bref/condamnation-de-marine-le-pen-la-cour-de-cassation-fera-tout-pour-statuer-avant-le-scrutin-presidentiel-affirme-remy-heitz-16893/'],
-        ['Club des juristes (2024)', 'https://www.leclubdesjuristes.com/en-bref/ouverture-dune-information-judiciaire-sur-le-financement-de-la-campagne-de-marine-le-pen-en-2022-6528/']
+        ['Club des juristes', 'https://www.leclubdesjuristes.com/en-bref/condamnation-de-marine-le-pen-la-cour-de-cassation-fera-tout-pour-statuer-avant-le-scrutin-presidentiel-affirme-remy-heitz-16893/']
       ]
     },
     {
@@ -615,8 +605,7 @@
       sources: [
         ['Europe&nbsp;1', 'https://www.europe1.fr/node/708835'],
         ['Landot (JO)', 'https://blog.landot-avocats.net/2024/06/13/proclamation-des-resultats-de-lelection-des-representants-au-parlement-europeen/'],
-        ['HATVP', 'https://www.hatvp.fr/livraison/dossiers/bardella-jordan-dim33673-europe.pdf'],
-        ['AFP', 'https://lepetitjournal.com/fil-afp/le-rn-perquisitionne-dans-une-enquete-sur-le-financement-de-ses-campagnes-electorales-418194']
+        ['HATVP', 'https://www.hatvp.fr/livraison/dossiers/bardella-jordan-dim33673-europe.pdf']
       ]
     },
     {
