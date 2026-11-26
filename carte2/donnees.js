@@ -332,8 +332,7 @@ var CANDIDATS = [
     ],
     sources: [
       ['Demotivateur', 'https://www.demotivateur.fr/societe/francis-lalanne-officiellement-candidat-a-l-election-presidentielle-de-2027-49762'],
-      ['Sud Radio', 'https://www.sudradio.fr/politique/francis-lalanne-du-chanteur-engage-des-annees-1980-aux-spheres-complotistes'],
-      ['Conseil de l’Europe', 'https://rm.coe.int/france-reply-fr-plusieurs-journalistes-attaques-par-le-chanteur-franci/1680a34d49']
+      ['Sud Radio', 'https://www.sudradio.fr/politique/francis-lalanne-du-chanteur-engage-des-annees-1980-aux-spheres-complotistes']
     ]
   },
   {
