@@ -1587,7 +1587,7 @@ function rendreAccueil(){
   if (JEU){
     const ext = /^https?:/.test(JEU), aPart = a => { if (ext){ a.target = '_blank'; a.rel = 'noopener'; } };
     $('jeu-bloc').hidden = false; $('jeu-aller').href = JEU; aPart($('jeu-aller'));
-    if (!ext) $('jeu-aller').textContent = 'Jouer à Retourne ta veste';
+    if (!ext) $('jeu-aller').textContent = 'Découvrir Retourne ta veste';
     if (JEU_PARTIE && JEU_PARTIE !== JEU){ $('jeu-direct').href = JEU_PARTIE; $('jeu-direct').hidden = false; }
     const n = el('a', 'sortie', 'Le jeu'); n.href = JEU; aPart(n); n.title = 'Retourne ta veste, le jeu de cartes satirique' + (ext ? ' (s’ouvre à part)' : '');
     document.querySelector('nav.vues').insertBefore(n, document.querySelector('nav.vues a[href="#quinquennat"]').nextSibling);

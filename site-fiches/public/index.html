@@ -682,7 +682,7 @@ if (DON){   /* la page de dons existe : un lien discret à la place de l'annonce
   z.textContent = 'Soutenir ce site : vous pouvez '; z.append(a, '. Une contribution ne donne aucun droit sur le contenu ; aucun don de parti ni d’équipe de campagne n’est accepté.');
 }
 const JEU = "jeu/";   /* site du jeu Retourne ta veste : vide = aucun lien */
-const JEU_PARTIE = "jeu/";   /* le jeu lui-même */
+const JEU_PARTIE = "jeu/partie/";   /* le jeu lui-même */
 document.body.classList.toggle('interne', INTERNE);   /* adresse du jeu Retourne ta veste : vide = aucun lien */
 const P = JSON.parse(document.getElementById('donnees').textContent);
 const THEMES = [['retraites','Retraites'],['depenses','Dépenses publiques'],['energie','Énergie'],['immigration','Immigration'],['ecole','École'],['europe','Europe'],['otan','OTAN et défense'],['ukraine','Ukraine'],['referendums','Référendums']];
@@ -1587,7 +1587,7 @@ function rendreAccueil(){
   if (JEU){
     const ext = /^https?:/.test(JEU), aPart = a => { if (ext){ a.target = '_blank'; a.rel = 'noopener'; } };
     $('jeu-bloc').hidden = false; $('jeu-aller').href = JEU; aPart($('jeu-aller'));
-    if (!ext) $('jeu-aller').textContent = 'Jouer à Retourne ta veste';
+    if (!ext) $('jeu-aller').textContent = 'Découvrir Retourne ta veste';
     if (JEU_PARTIE && JEU_PARTIE !== JEU){ $('jeu-direct').href = JEU_PARTIE; $('jeu-direct').hidden = false; }
     const n = el('a', 'sortie', 'Le jeu'); n.href = JEU; aPart(n); n.title = 'Retourne ta veste, le jeu de cartes satirique' + (ext ? ' (s’ouvre à part)' : '');
     document.querySelector('nav.vues').insertBefore(n, document.querySelector('nav.vues a[href="#quinquennat"]').nextSibling);

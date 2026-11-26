@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Retourne ta veste · le jeu de cartes de la présidentielle 2027</title>
+  <meta name="description" content="Le jeu de cartes satirique de la présidentielle 2027 : 43 personnalités, des flèches, des dés et des petites phrases. Gratuit, sans publicité, sans consigne de vote.">
+  <meta name="theme-color" content="#15171a">
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="images/icone-180.png">
+  <meta property="og:title" content="Retourne ta veste, le jeu de cartes de la présidentielle 2027">
+  <meta property="og:description" content="Le jeu de cartes satirique de la présidentielle 2027 : 43 personnalités, des flèches, des dés et des petites phrases. Gratuit, sans publicité, sans consigne de vote.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:image" content="images/captures/partie-bureau.webp">
+  <style>
+/* Retourne ta veste — feuille de style du site.
+   Reprend l'identité du jeu : papier, encre, surligneur jaune et sarcelle ;
+   Fraunces pour les titres, Atkinson Hyperlegible pour le texte, JetBrains Mono pour les étiquettes.
+   Mise en page : des tuiles cernées d'encre avec une ombre franche, comme les menus du jeu ;
+   l'ouverture se joue dans l'hémicycle, comme l'écran d'accueil du jeu. */
+
+@font-face { font-family: "Fraunces"; src: url("polices/fraunces.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Atkinson Hyperlegible"; src: url("polices/atkinson-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Atkinson Hyperlegible"; src: url("polices/atkinson-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Atkinson Hyperlegible"; src: url("polices/atkinson-400-italique.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("polices/jetbrains-mono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("polices/jetbrains-mono-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --page: #eef0ec;        /* fond de page du jeu */
+  --papier: #f8f9f6;      /* tuiles */
+  --encre: #15171a;
+  --encre-2: #4d535b;
+  --surligneur: #f1fb4e;  /* bouton Jouer, mots surlignés */
+  --accent: #0f5f66;     /* sarcelle, comme le jeu : aucune couleur de parti */
+  --sarcelle: #0f5f66;
+  --sarcelle-clair: #e2f0ef;
+  --trait: #cfd3cc;
+
+  --titre: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --texte: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  --large: 72rem;
+  --mesure: 66ch;
+  --gouttiere: 1.25rem;
+  --ombre: 4px 4px 0 var(--encre);
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--page); color: var(--encre); font-family: var(--texte); font-size: 1.0625rem; line-height: 1.55; }
+img { max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--titre); font-weight: 900; line-height: 1.05; text-wrap: balance; margin: 0; letter-spacing: -.01em; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+.fluo { background: var(--surligneur); padding: 0 .15em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.cache-visuel { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.evitement { position: absolute; left: -999rem; top: 0; background: var(--surligneur); color: var(--encre); padding: .5rem 1rem; font-weight: 700; z-index: 10; }
+.evitement:focus { left: .5rem; top: .5rem; }
+
+/* --- Boutons, comme dans le jeu --- */
+.bouton {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  font-family: var(--mono); font-weight: 700; font-size: 1.05rem; line-height: 1;
+  padding: .95rem 1.6rem; border: 2px solid var(--encre); border-radius: .4rem;
+  background: var(--surligneur); color: var(--encre); box-shadow: var(--ombre);
+  text-decoration: none; transition: transform .1s ease, box-shadow .1s ease;
+}
+.bouton:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--encre); }
+.bouton--clair { background: var(--papier); }
+.bouton--petit { font-size: .95rem; padding: .55rem 1rem; box-shadow: 3px 3px 0 var(--encre); }
+.sur-nuit .bouton { box-shadow: 4px 4px 0 #000; border-color: #000; }
+
+.surtitre { font-family: var(--mono); font-size: .85rem; letter-spacing: .02em; color: var(--encre-2); }
+
+/* --- En-tête --- */
+.bandeau { background: var(--page); border-bottom: 2px solid var(--encre); position: relative; z-index: 2; }
+.bandeau__int { max-width: var(--large); margin: 0 auto; padding: .7rem var(--gouttiere); display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.75rem; }
+.marque { display: inline-flex; align-items: center; gap: .6rem; font-family: var(--titre); font-weight: 900; font-size: 1.3rem; text-decoration: none; margin-right: auto; white-space: nowrap; }
+.marque img { border: 2px solid var(--encre); border-radius: .4rem; }
+.menu { display: flex; gap: 1.4rem; font-family: var(--mono); font-size: .95rem; }
+.menu a { text-decoration: none; padding: .2rem 0; border-bottom: 3px solid transparent; white-space: nowrap; }
+.menu a:hover { border-bottom-color: var(--encre); }
+.menu a[aria-current="page"] { background: var(--surligneur); border-bottom-color: var(--encre); }
+@media (max-width: 46rem) {
+  .menu { order: 3; flex-basis: 100%; overflow-x: auto; gap: 1.2rem; }
+}
+
+/* --- Accueil : ouverture dans l'hémicycle --- */
+.hero { position: relative; color: var(--papier); background: #2a0f12 url("images/decors/hemicycle.webp") center 30% / cover; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(14, 6, 8, .92) 0%, rgba(14, 6, 8, .78) 45%, rgba(14, 6, 8, .35) 100%); }
+.hero__int { position: relative; max-width: var(--large); margin: 0 auto; padding: 2.5rem var(--gouttiere) 3rem; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 2rem 3.5rem; align-items: center; }
+.hero__logo { display: block; width: min(100%, 34rem); background: var(--papier); border: 2px solid var(--encre); border-radius: .9rem; box-shadow: 0 8px 22px rgba(0, 0, 0, .5); }
+.hero .surtitre { color: #d9dcd4; margin-top: 1.5rem; }
+.accroche { font-size: 1.3rem; line-height: 1.45; max-width: 34rem; margin-top: .6rem; }
+.accroche-2 { color: #d9dcd4; max-width: 34rem; margin-top: .8rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 1rem 1.25rem; margin-top: 1.75rem; align-items: center; }
+.rebours { display: inline-block; font-family: var(--mono); font-weight: 700; font-size: .9rem; padding: .35rem .75rem; background: var(--surligneur); color: var(--encre); border-radius: .3rem; font-variant-numeric: tabular-nums; }
+.telephone-video { margin: 0; justify-self: center; width: 100%; max-width: 19rem; }
+.telephone { display: block; width: 100%; max-width: 19rem; height: auto; background: #1b0d10; justify-self: center; border: 3px solid #000; border-radius: 1.6rem; box-shadow: 0 14px 36px rgba(0, 0, 0, .55); transform: rotate(2deg); }
+@media (max-width: 56rem) {
+  .hero__int { grid-template-columns: minmax(0, 1fr); padding-top: 1.75rem; }
+  .hero .telephone, .telephone-video { max-width: 15rem; }
+  .hero .telephone { transform: none; }
+}
+
+/* --- Accueil : bandes --- */
+.bloc__int { max-width: var(--large); margin: 0 auto; padding: 3.5rem var(--gouttiere); }
+.bloc h2 { font-size: clamp(1.9rem, 4.6vw, 2.75rem); }
+.bloc__intro { max-width: 40rem; margin-top: .8rem; color: var(--encre-2); font-size: 1.125rem; }
+.bloc--papier { background: var(--papier); border-block: 2px solid var(--encre); }
+
+.etapes { list-style: none; counter-reset: etape; margin: 2.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr)); gap: 2.25rem; }
+.etapes li { counter-increment: etape; display: grid; gap: .6rem; align-content: start; }
+.etapes img { width: 100%; max-width: 17rem; border: 2px solid var(--encre); border-radius: 1.1rem; box-shadow: var(--ombre); margin-bottom: .6rem; }
+.etapes h3 { font-size: 1.4rem; display: flex; align-items: baseline; gap: .6rem; }
+.etapes h3::before { content: counter(etape); font-family: var(--mono); font-size: .95rem; background: var(--encre); color: var(--surligneur); padding: .15rem .45rem; border-radius: .25rem; }
+
+.anatomie__grille { display: grid; grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr); gap: 2.5rem 3.5rem; align-items: start; margin-top: 2.25rem; }
+.carte-hasard { margin: 0; display: grid; gap: .7rem; }
+.carte-hasard figcaption { font-family: var(--mono); font-size: .8rem; color: var(--encre-2); }
+.carte-img { display: block; width: 100%; filter: drop-shadow(4px 4px 0 var(--encre)); }
+.anatomie dl { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.5rem 2.5rem; }
+.anatomie dt { font-family: var(--titre); font-weight: 900; font-size: 1.2rem; }
+.anatomie dd { margin: .25rem 0 0; color: var(--encre-2); }
+.faits { list-style: none; margin: .5rem 0 0; padding: 0; display: grid; gap: .25rem; }
+.faits b { font-family: var(--mono); color: var(--encre); }
+@media (max-width: 50rem) {
+  .anatomie__grille { grid-template-columns: minmax(0, 1fr); }
+  .carte-hasard { max-width: 17rem; }
+}
+
+.partie__grille { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 2rem 3rem; align-items: center; margin-top: 2rem; }
+.capture { display: block; width: 100%; border: 2px solid var(--encre); border-radius: .9rem; box-shadow: var(--ombre); }
+.chiffres { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.chiffres li { background: var(--papier); border: 2px solid var(--encre); border-radius: .6rem; box-shadow: 3px 3px 0 var(--encre); padding: .8rem 1rem; }
+.chiffres b { display: block; font-family: var(--titre); font-weight: 900; font-size: 2.1rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.chiffres span { font-size: .95rem; color: var(--encre-2); }
+.modes { margin-top: 1.25rem; color: var(--encre-2); }
+@media (max-width: 54rem) { .partie__grille { grid-template-columns: minmax(0, 1fr); } }
+
+.modes-jeu { list-style: none; margin: 2.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr)); gap: 2.25rem; }
+.modes-jeu li { display: grid; gap: .6rem; align-content: start; }
+.modes-jeu img { width: 100%; max-width: 17rem; border: 2px solid var(--encre); border-radius: 1.1rem; box-shadow: var(--ombre); margin-bottom: .6rem; }
+.modes-jeu h3 { font-size: 1.4rem; display: flex; align-items: center; gap: .6rem; }
+.etiquette { font-family: var(--mono); font-size: .75rem; font-weight: 700; background: var(--encre); color: var(--surligneur); padding: .2rem .45rem; border-radius: .25rem; letter-spacing: .02em; }
+
+.serment { background: var(--encre); color: var(--papier); }
+.serment ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem 2rem; }
+.serment li { font-family: var(--titre); font-weight: 900; font-size: clamp(1.6rem, 3.6vw, 2.2rem); line-height: 1.1; }
+.serment li span { background: var(--surligneur); color: var(--encre); padding: 0 .15em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.serment p { margin-top: 1.75rem; max-width: 46rem; color: #d9dcd4; }
+.serment a { color: var(--papier); text-underline-offset: .2em; }
+
+.fiches-site { background: var(--sarcelle-clair); border-block: 2px solid var(--encre); }
+.fiches-site .bloc__int { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem 3rem; }
+.fiches-site p:not(.surtitre) { max-width: 38rem; margin-top: .6rem; color: var(--encre-2); }
+.soutien .bloc__int { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem 3rem; }
+.soutien p { max-width: 38rem; margin-top: .6rem; color: var(--encre-2); }
+
+/* --- Pages intérieures --- */
+.entete { background: var(--papier); border-bottom: 2px solid var(--encre); }
+.entete__int { max-width: calc(var(--mesure) + 2 * var(--gouttiere)); margin: 0 auto; padding: 2.5rem var(--gouttiere) 2.25rem; }
+.entete h1 { font-size: clamp(2.3rem, 6.5vw, 3.6rem); }
+.entete__chapeau { font-size: 1.2rem; margin-top: .8rem; max-width: 36rem; color: var(--encre-2); }
+
+.texte { max-width: calc(var(--mesure) + 2 * var(--gouttiere)); margin: 0 auto; padding: 1.75rem var(--gouttiere) 4.5rem; }
+.texte > * + * { margin-top: 1.1rem; }
+.texte h2 { font-size: 1.8rem; margin-top: 2.75rem; }
+.texte h3 { font-size: 1.3rem; margin-top: 2rem; }
+.texte ul, .texte ol { padding-left: 1.3rem; }
+.texte li + li { margin-top: .45rem; }
+.texte a { color: var(--encre); text-decoration-color: var(--accent); text-decoration-thickness: .12em; text-underline-offset: .2em; }
+.texte a.bouton { text-decoration: none; }
+.texte table { border-collapse: collapse; width: 100%; font-size: 1rem; }
+.texte th, .texte td { text-align: left; vertical-align: top; padding: .6rem .75rem; border-bottom: 1px solid var(--trait); }
+.texte th { font-family: var(--mono); font-size: .9rem; }
+.texte code { font-family: var(--mono); font-size: .95em; background: var(--surligneur); padding: 0 .25em; }
+.texte blockquote { margin-left: 0; padding: .9rem 1.1rem; background: var(--sarcelle-clair); border-left: 4px solid var(--sarcelle); border-radius: 0 .5rem .5rem 0; }
+.tableau { overflow-x: auto; }
+.chantier { background: #fbfdd0; border: 2px dashed var(--encre); padding: .75rem 1rem; font-size: 1rem; border-radius: .4rem; }
+.chantier::before { content: "À compléter · "; font-family: var(--mono); font-weight: 700; }
+.texte .chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+.texte .chips li { margin: 0; font-family: var(--titre); font-weight: 900; font-size: 1.05rem; background: var(--papier); border: 2px solid var(--encre); border-radius: .5rem; box-shadow: 3px 3px 0 var(--encre); padding: .35rem .75rem; }
+.texte .chips li:nth-child(3n+1) { background: var(--surligneur); }
+.grand { font-family: var(--titre); font-weight: 900; font-size: 1.6rem; line-height: 1.2; }
+.illustration { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 15rem)); gap: 1.75rem; justify-content: start; }
+.illustration figure { margin: 0; display: grid; gap: .6rem; }
+.illustration figcaption, .legende { font-family: var(--mono); font-size: .8rem; color: var(--encre-2); }
+.illustration .telephone-plat { width: 100%; border: 2px solid var(--encre); border-radius: 1rem; box-shadow: var(--ombre); }
+.formule { font-family: var(--mono); font-weight: 700; background: var(--surligneur); border: 2px solid var(--encre); display: inline-block; padding: .5rem .8rem; transform: rotate(-1deg); }
+
+/* Page Cartes : la galerie déborde de la colonne de texte */
+.page--cartes .texte { max-width: calc(var(--large) + 2 * var(--gouttiere)); }
+.page--cartes .texte > :not(.galerie):not(.illustration) { max-width: var(--mesure); }
+.galerie { display: grid; gap: 2.5rem; }
+.bloc-cartes h3 { font-size: 1.35rem; padding-left: .7rem; border-left: 6px solid var(--teinte, var(--encre)); }
+[data-teinte="extreme-gauche"] { --teinte: #8f1d1d; }
+[data-teinte="gauche"] { --teinte: #d63a32; }
+[data-teinte="centre"] { --teinte: #f0931c; }
+[data-teinte="droite"] { --teinte: #2a6fcf; }
+[data-teinte="extreme-droite"] { --teinte: #26367d; }
+[data-teinte="divers"] { --teinte: #6a7077; }
+.grille-cartes { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 2rem; margin-top: 1rem; }
+.fiche { margin: 0; display: grid; gap: .8rem; align-content: start; max-width: 19rem; }
+.fiche figcaption { display: grid; gap: .2rem; font-size: .95rem; }
+.fiche__nom { font-family: var(--titre); font-weight: 900; font-size: 1.15rem; }
+.fiche__statut { font-family: var(--mono); font-size: .8rem; color: var(--encre-2); }
+.fiche__sources { font-size: .9rem; color: var(--encre-2); }
+
+/* --- Pied de page --- */
+.pied { background: var(--encre); color: var(--papier); }
+.pied__int { max-width: var(--large); margin: 0 auto; padding: 2.5rem var(--gouttiere) 3rem; display: grid; gap: 1rem; }
+.pied__marque { font-family: var(--titre); font-weight: 900; font-size: 1.35rem; }
+.pied__liens { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; font-family: var(--mono); font-size: .9rem; }
+.pied__liens a { text-underline-offset: .2em; }
+.pied__note { font-size: .95rem; color: #c3c7bf; max-width: 46rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bouton { transition: none; }
+  .telephone { transform: none; }
+}
+
+</style>
+</head>
+<body>
+  <a class="evitement" href="#contenu">Aller au contenu</a>
+  <header class="bandeau">
+    <div class="bandeau__int">
+      <a class="marque" href="#accueil"><img src="images/icone-180.png" width="36" height="36" alt="">Retourne ta veste</a>
+      <nav class="menu" aria-label="Pages principales">
+        <a href="#regles" data-lien="regles">Règles</a>
+        <a href="#cartes" data-lien="cartes">Cartes</a>
+        <a href="#methode" data-lien="methode">Méthode</a>
+        <a href="#soutenir" data-lien="soutenir">Soutenir</a>
+      </nav>
+      <a class="bouton bouton--petit" href="#jouer">Jouer</a>
+    </div>
+  </header>
+  <div id="contenu">
+  <div data-page="accueil">
+<main class="page page--accueil"><section class="hero sur-nuit">
+  <div class="hero__int">
+    <div>
+      <h1 class="cache-visuel">Retourne ta veste, le jeu de cartes de la présidentielle 2027</h1>
+      <img class="hero__logo" src="images/logo-titre.webp" width="1500" height="500" alt="Retourne ta veste, le jeu de cartes de la présidentielle 2027">
+      <p class="surtitre">43 personnalités · 24 cartes action · 7 lieux · 41 trophées</p>
+      <p class="accroche">Tu poses tes cartes, leurs flèches attaquent, les dés tranchent, et celles d’en face retournent leur veste.</p>
+      <p class="accroche-2">Gratuit, sans publicité, dans le navigateur : téléphone ou ordinateur, rien à installer.</p>
+      <div class="actions">
+        <a class="bouton" href="partie/">Jouer <span aria-hidden="true">→</span></a>
+        <a class="bouton bouton--clair" href="#regles">Les règles</a>
+        <p class="rebours" data-rebours>Premier tour le 18 avril 2027</p>
+      </div>
+    </div>
+    <figure class="telephone-video">
+      <video class="telephone" src="images/captures/partie-telephone.mp4" poster="images/captures/tel-duel.webp" width="554" height="1084" autoplay muted loop playsinline preload="auto" aria-describedby="video-description"></video>
+      <figcaption id="video-description" class="cache-visuel">Vidéo d’une partie sur téléphone, sans le son : des cartes posées, des duels aux dés, la carte action « Taisez-vous ! » de Georges Marchais qui retire ses flèches à une carte adverse, puis l’IA qui riposte avec la carte « Le Patron » de Bernard Arnault.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="bloc">
+  <div class="bloc__int">
+    <h2>Trois gestes et tu joues</h2>
+    <p class="bloc__intro">Chaque joueur reçoit cinq cartes. À la fin, chaque carte à ta couleur compte, sur le plateau comme en main : six sur dix, c’est la majorité absolue.</p>
+    <ol class="etapes">
+      <li>
+        <img src="images/captures/tel-pose.webp" width="600" height="1175" alt="Début de partie sur téléphone : le plateau de seize sièges, dont quatre bloqués par le décor de l’Élysée, et les cinq cartes du joueur en bas de l’écran." loading="lazy">
+        <h3>Pose une carte</h3>
+        <p>Glisse-la sur un siège libre. Chacune de ses flèches qui touche une carte adverse l’attaque. Si la carte visée n’a pas de flèche en retour, elle est prise sans combat.</p>
+      </li>
+      <li>
+        <img src="images/captures/tel-duel.webp" width="600" height="1175" alt="Un duel sur téléphone : la bannière « Duel ! » s’affiche et les dés tournent sur les deux cartes, pendant que le jeu annonce les chances de chaque duel." loading="lazy">
+        <h3>Gagne le duel</h3>
+        <p>Si elle a une flèche en retour, c’est le duel. Tu tires entre 1 et ton Attaque, elle entre 1 et sa Défense. Le plus grand gagne, l’égalité profite au défenseur.</p>
+      </li>
+      <li>
+        <img src="images/captures/tel-combo.webp" width="600" height="1085" alt="Un combo sur téléphone : la bannière « Combo ! » s’affiche et plusieurs cartes passent à la couleur du joueur." loading="lazy">
+        <h3>Enchaîne le combo</h3>
+        <p>La carte battue change de camp et entraîne les cartes de son camp qu’elle pointait. Attention, ça marche aussi contre toi.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="bloc bloc--papier anatomie">
+  <div class="bloc__int">
+    <h2>Pas de note à la tête du client</h2>
+    <p class="bloc__intro">Chaque carte compare les 43 personnalités sur quatre faits publics. Le même calcul s’applique à tout le monde, aucune note n’est retouchée à la main et aucun sondage n’entre en compte.</p>
+    <div class="anatomie__grille">
+      <figure class="carte-hasard" data-cartes="[{&quot;f&quot;: &quot;jean-luc-melenchon&quot;, &quot;a&quot;: &quot;Carte de Jean-Luc Mélenchon, extrême gauche. Urnes 9 (7 712 520 voix, présidentielle 2022, 1er tour), expérience 10 (33,2 ans de mandat national), terrain 8 (21 ans d’élu local), buzz 10 (112 926 consultations de sa page Wikipédia par mois). Phrase : « Nous c’est carré. Il y a une équipe, un programme, un seul candidat. » (3 mai 2026 · annonce de candidature, TF1). Justice : Condamné en 2019 pour rébellion (3 mois avec sursis, définitif). Trois condamnations pour diffamation ou injure (2021-2022), caractère définitif non établi ; présumé innocent.&quot;}, {&quot;f&quot;: &quot;nathalie-arthaud&quot;, &quot;a&quot;: &quot;Carte de Nathalie Arthaud, extrême gauche. Urnes 7 (232 384 voix, présidentielle 2017, 1er tour), expérience 1 (Aucun mandat national), terrain 5 (6 ans d’élu local), buzz 1 (9 188 consultations de sa page Wikipédia par mois). Phrase : « Le véritable pouvoir n’est pas à l’Élysée. » (26 septembre 2026 · premier meeting, Paris). Justice : Aucune condamnation identifiée dans les sources consultées.&quot;}, {&quot;f&quot;: &quot;raphael-glucksmann&quot;, &quot;a&quot;: &quot;Carte de Raphaël Glucksmann, gauche. Urnes 9 (3 424 216 voix, européennes 2024, tête de liste), expérience 6 (7,3 ans de mandat national), terrain 1 (Aucun mandat local), buzz 9 (104 474 consultations de sa page Wikipédia par mois). Phrase : « Nous ne sommes pas là pour gagner une querelle à gauche. » (Octobre 2026 · soir de sa victoire à la primaire). Justice : Aucune condamnation identifiée dans les sources consultées.&quot;}, {&quot;f&quot;: &quot;fabien-roussel&quot;, &quot;a&quot;: &quot;Carte de Fabien Roussel, gauche. Urnes 8 (802 422 voix, présidentielle 2022, 1er tour), expérience 6 (7 ans de mandat national), terrain 6 (12,7 ans d’élu local), buzz 2 (10 692 consultations de sa page Wikipédia par mois). Phrase : « Candidat à 85 %. » (Juillet 2026 · congrès du PCF, avant le vote des militants). Justice : Aucune condamnation identifiée dans les sources consultées.&quot;}, {&quot;f&quot;: &quot;gabriel-attal&quot;, &quot;a&quot;: &quot;Carte de Gabriel Attal, centre. Urnes 5 (29 924 voix, législatives 2024, 2d tour), expérience 6 (9,4 ans de mandat national), terrain 6 (12,7 ans d’élu local), buzz 9 (73 344 consultations de sa page Wikipédia par mois). Phrase : « L’exercice du pouvoir m’a changé. » (Printemps 2026 · entretien au Point, avant sa déclaration). Justice : Aucune condamnation identifiée dans les sources consultées.&quot;}, {&quot;f&quot;: &quot;edouard-philippe&quot;, &quot;a&quot;: &quot;Carte de Édouard Philippe, centre. Urnes 4 (26 660 voix, municipales 2014, 1er tour, tête de liste), expérience 6 (8,1 ans de mandat national), terrain 9 (25,7 ans d’élu local), buzz 8 (53 922 consultations de sa page Wikipédia par mois). Phrase : « Ce que je proposerai sera massif. » (3 septembre 2024 · annonce de candidature, Le Point). Justice : Aucune condamnation identifiée dans les sources consultées.&quot;}, {&quot;f&quot;: &quot;nicolas-dupont-aignan&quot;, &quot;a&quot;: &quot;Carte de Nicolas Dupont‑Aignan, droite. Urnes 9 (1 695 000 voix, présidentielle 2017, 1er tour), expérience 10 (27,1 ans de mandat national), terrain 9 (31,4 ans d’élu local), buzz 3 (13 756 consultations de sa page Wikipédia par mois). Phrase : « C’est la raison de ma candidature : offrir un choix, un vrai choix aux Français. » (20 septembre 2026 · Sud Radio). Justice : Aucune condamnation identifiée dans les sources consultées.&quot;}, {&quot;f&quot;: &quot;bruno-retailleau&quot;, &quot;a&quot;: &quot;Carte de Bruno Retailleau, droite. Urnes 7 (620 245 voix, régionales 2015, 2d tour, tête de liste), expérience 9 (24,4 ans de mandat national), terrain 10 (37,4 ans d’élu local), buzz 8 (48 577 consultations de sa page Wikipédia par mois). Phrase : « Renverser la table. » (12 février 2026 · annonce de candidature, Paris). Justice : Aucune condamnation identifiée dans les sources consultées.&quot;}, {&quot;f&quot;: &quot;marine-le-pen&quot;, &quot;a&quot;: &quot;Carte de Marine Le Pen, extrême droite. Urnes 10 (13 288 686 voix, présidentielle 2022, 2d tour), expérience 9 (22,3 ans de mandat national), terrain 9 (27,1 ans d’élu local), buzz 8 (46 072 consultations de sa page Wikipédia par mois). Phrase : « Ce soir, je suis candidate à l’élection présidentielle. » (7 juillet 2026 · 20 h de TF1). Justice : Condamnée en appel (2026) pour détournement de fonds publics : 3 ans dont 1 ferme, 45 mois d’inéligibilité dont 30 avec sursis ; pourvoi en cassation, présumée innocente. Condamnée définitivement pour diffamation (2025).&quot;}, {&quot;f&quot;: &quot;eric-zemmour&quot;, &quot;a&quot;: &quot;Carte de Éric Zemmour, extrême droite. Urnes 9 (2 485 226 voix, présidentielle 2022, 1er tour), expérience 1 (Aucun mandat national), terrain 1 (Aucun mandat local), buzz 9 (77 511 consultations de sa page Wikipédia par mois). Phrase : « Je me présente pour conserver une France française et que notre avenir soit français. » (10 novembre 2026 · 20 h de TF1). Justice : Condamnations définitives, dont contestation de crime contre l’humanité (Pétain, 2026), provocation à la haine (2025), diffamation (2026)… Condamné en 1re instance pour injure (Crépol, 2025), suite non connue ; présumé innocent.&quot;}, {&quot;f&quot;: &quot;francis-lalanne&quot;, &quot;a&quot;: &quot;Carte de Francis Lalanne, divers. Urnes 7 (121 209 voix, européennes 2019, tête de liste (Alliance jaune)), expérience 1 (Aucun mandat national), terrain 1 (Aucun mandat local), buzz 2 (11 788 consultations de sa page Wikipédia par mois). Phrase : « Reprise en main de la souveraineté nationale. » (19 août 2026 · communiqué de candidature). Justice : Inéligible d’avril 2025 à octobre 2026 : sanction électorale, faute de compte de campagne (européennes 2024).&quot;}, {&quot;f&quot;: &quot;delphine-batho&quot;, &quot;a&quot;: &quot;Carte de Delphine Batho, divers. Urnes 6 (37 808 voix, législatives 2024, 2d tour), expérience 8 (19,3 ans de mandat national), terrain 1 (Aucun mandat local), buzz 1 (6 784 consultations de sa page Wikipédia par mois). Phrase : « L’écologie est en voie de rikikisation, si j’ose dire. » (25 novembre 2025 · L’Obs). Justice : Aucune condamnation identifiée dans les sources consultées.&quot;}]">
+  <img class="carte-img" src="images/cartes/jean-luc-melenchon.webp" width="300" height="480" alt="Carte de Jean-Luc Mélenchon, extrême gauche. Urnes 9 (7 712 520 voix, présidentielle 2022, 1er tour), expérience 10 (33,2 ans de mandat national), terrain 8 (21 ans d’élu local), buzz 10 (112 926 consultations de sa page Wikipédia par mois). Phrase : « Nous c’est carré. Il y a une équipe, un programme, un seul candidat. » (3 mai 2026 · annonce de candidature, TF1). Justice : Condamné en 2019 pour rébellion (3 mois avec sursis, définitif). Trois condamnations pour diffamation ou injure (2021-2022), caractère définitif non établi ; présumé innocent.">
+  <figcaption>Carte tirée au hasard parmi les douze de la <a href="#cartes">page Cartes</a>.</figcaption>
+</figure>
+      <dl>
+        <div>
+          <dt>Quatre faits, notés de 1 à 10</dt>
+          <dd>
+            <ul class="faits">
+              <li><b>↑ Urnes</b> son meilleur score en voix</li>
+              <li><b>→ Expérience</b> ses années de mandat national</li>
+              <li><b>↓ Terrain</b> ses années d’élu local</li>
+              <li><b>← Buzz</b> les consultations de sa page Wikipédia</li>
+            </ul>
+          </dd>
+        </div>
+        <div><dt>Une Attaque, une Défense</dt><dd>En partie, l’Attaque vient de sa popularité (Urnes et Buzz), la Défense de son ancrage (Expérience et Terrain).</dd></div>
+        <div><dt>Une phrase, datée</dt><dd>Vraiment prononcée, avec la date et le lieu où elle l’a été.</dd></div>
+        <div><dt>Une ligne Justice</dt><dd>Seulement ce qu’un tribunal a jugé sur le fond, avec la présomption d’innocence tant que rien n’est définitif. Jamais une enquête ni une plainte.</dd></div>
+        <div><dt>Ses sources</dt><dd>Chaque fait renvoie à sa source, avec la date de la dernière vérification.</dd></div>
+        <div><dt>Un portrait</dt><dd>Généré par intelligence artificielle, avec le même traitement pour tous.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="bloc">
+  <div class="bloc__int">
+    <h2>De la Mairie à l’Élysée</h2>
+    <p class="bloc__intro">Chaque partie se joue dans un lieu tiré au sort, de l’hémicycle à la buvette, avec trois à cinq sièges bloqués par le décor.</p>
+    <div class="partie__grille">
+      <img class="capture" src="images/captures/partie-bureau.webp" width="1600" height="1024" alt="Une partie sur ordinateur, dans la cour de l’Élysée : le plateau de seize sièges avec les cartes posées, la main de l’IA à gauche, celle du joueur à droite, et les cartes action jouées." loading="lazy">
+      <div>
+        <ul class="chiffres">
+          <li><b>3</b><span>niveaux d’IA : Mairie, Assemblée, Élysée</span></li>
+          <li><b>7</b><span>lieux, de l’hémicycle au plateau télé</span></li>
+          <li><b>24</b><span>cartes action, une par joueur et par partie</span></li>
+          <li><b>41</b><span>trophées, jusqu’au trophée platine</span></li>
+        </ul>
+        <p class="modes">Commence par le tutoriel (trois minutes), puis la partie libre ou la Carrière, où chaque victoire te fait gagner une carte de l’IA, et souvent sa carte action.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bloc bloc--papier">
+  <div class="bloc__int">
+    <h2>Seul, à deux, et bientôt en ligne</h2>
+    <p class="bloc__intro">Contre l’IA pour t’entraîner, contre quelqu’un d’assis à côté de toi pour le plaisir, et bientôt contre le reste de la France.</p>
+    <ul class="modes-jeu">
+      <li>
+        <img src="images/captures/tel-solo.webp" width="600" height="1173" alt="Le panneau Solo du jeu : Carrière, Partie libre et Tutoriel." loading="lazy">
+        <h3>Solo</h3>
+        <p>Trois niveaux d’IA, de la Mairie à l’Élysée. En <b>Carrière</b>, chaque victoire te fait prendre une carte de l’IA, chaque défaite t’en coûte une. Tu y collectionnes aussi les cartes action, qui ne se perdent jamais.</p>
+      </li>
+      <li>
+        <img src="images/captures/tel-passe-main.webp" width="600" height="1173" alt="L’écran de passage du Face-à-face : « Au tour de Dominique. Passe-lui le téléphone. Pas de coup d’œil sur sa main ! », avec le score Camille 5, 5 Dominique." loading="lazy">
+        <h3>Face-à-face</h3>
+        <p>Le débat de l’entre-deux-tours, à deux sur le même téléphone, depuis la tuile Multijoueur. On se le passe à chaque tour, et un écran cache ta main à l’autre. Une partie ou un match en cinq manches.</p>
+      </li>
+      <li>
+        <img src="images/captures/tel-en-ligne.webp" width="600" height="1173" alt="Le panneau En ligne du jeu, marqué « bientôt » : défier un ami avec un simple lien, ou jouer une partie rapide contre un inconnu, avec un classement." loading="lazy">
+        <h3>En ligne <span class="etiquette">bientôt</span></h3>
+        <p>Défie un ami avec un simple lien ou un code à quatre lettres, ou lance une partie rapide contre un inconnu. Les parties rapides compteront au classement.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="bloc serment">
+  <div class="bloc__int">
+    <ul>
+      <li><span>Aucun</span> camp favorisé</li>
+      <li><span>Aucune</span> consigne de vote</li>
+      <li><span>Aucun</span> euro de parti</li>
+    </ul>
+    <p>Mêmes règles et même calcul pour les 43 cartes, de l’extrême gauche à l’extrême droite. <a href="#methode">Lire la méthode</a></p>
+  </div>
+</section>
+
+<section class="bloc fiches-site">
+  <div class="bloc__int">
+    <div>
+      <p class="surtitre">Un autre site, à part du jeu</p>
+      <h2>Le Trombi 2027</h2>
+      <p>Parcours, programmes et sources de chaque personnalité, sans humour, sans citation ni anecdote. Un espace distinct du jeu, pour s’informer.</p>
+    </div>
+    <a class="bouton bouton--clair" href="../">Ouvrir le Trombi <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="bloc soutien">
+  <div class="bloc__int">
+    <div>
+      <h2>Financez la démocratie… enfin, ce jeu</h2>
+      <p>Retourne ta veste est fait par une seule personne, sur ses soirées et ses week-ends. S’il t’a fait rire, tu peux lui offrir un café.</p>
+    </div>
+    <a class="bouton bouton--clair" href="#soutenir">Soutenir le jeu</a>
+  </div>
+</section>
+</main>
+</div>
+<div data-page="jouer" hidden>
+<main class="page page--jouer">
+    <header class="entete">
+      <div class="entete__int">
+        <h1>Jouer</h1>
+        <p class="entete__chapeau">Le jeu se joue dans le navigateur, sur téléphone comme sur ordinateur. Rien à installer.</p>
+      </div>
+    </header>
+    <div class="texte">
+<p><a class="bouton" href="partie/">Lancer le jeu <span aria-hidden="true">→</span></a></p><p>Le jeu s’ouvre dans ton navigateur, sur téléphone, tablette ou ordinateur. Pas de compte, pas de téléchargement. Ta progression (deck, trophées, réglages) reste sur ton appareil.</p>
+<h2>Tester l’appli Android</h2>
+<p>L’application Android est en test fermé avant sa sortie sur le Play Store. Pour y participer, rejoins le <a href="https://groups.google.com/g/testeurs-retourne_ta_vest" rel="noopener">groupe des testeurs</a> avec le compte Google de ton téléphone&nbsp;: l’accès au test s’ouvre ensuite depuis le Play Store.</p>
+<h2>Par où commencer</h2>
+<ol>
+<li><strong>Tutoriel</strong> : trois leçons guidées, trois minutes.</li>
+<li><strong>Partie libre</strong> : cinq cartes chacun, rien à gagner ni à perdre. Tu choisis ton adversaire : Mairie (facile), Assemblée (moyen) ou Élysée (difficile).</li>
+<li><strong>Carrière</strong> : tu pars avec un deck de huit cartes et cinq cartes action. Une victoire te fait prendre une carte de l’IA, et sa carte action si tu ne l’as pas encore ; une défaite te coûte une carte, jamais une carte action. En partie, ta carte action est tirée au hasard parmi celles de ta collection.</li>
+<li><strong>Face-à-face</strong>, dans la tuile Multijoueur : à deux sur le même téléphone, le débat de l’entre-deux-tours. Chacun entre son prénom, puis on se passe le téléphone à chaque tour ; un écran cache la main de l’autre. Une partie, ou un match en cinq manches (le premier à trois victoires). Rien à gagner ni à perdre : pas de trophée, pas de carte en jeu.</li>
+</ol>
+<h2>Bientôt en ligne</h2>
+<p>Le mode en ligne, dans la tuile Multijoueur, est prêt dans le jeu ; il attend son serveur de parties. Tu pourras :</p>
+<ul>
+<li><strong>défier un ami</strong> en lui envoyant un lien, ou un code à quatre lettres à taper dans le jeu ; vous jouez avec tes réglages ;</li>
+<li>lancer une <strong>partie rapide</strong> contre le premier joueur en attente, avec les règles standard ; elle comptera au <strong>classement</strong> ;</li>
+<li>choisir un <strong>pseudo</strong> et un <strong>avatar</strong> avant de jouer.</li>
+</ul>
+<div class="illustration">
+<figure><img class="telephone-plat" src="images/captures/tel-menu.webp" width="600" height="1175" alt="Le menu du jeu sur téléphone : le logo, puis les tuiles Première séance, Solo, Multijoueur (sur ce téléphone, ou en ligne bientôt), Mon deck, Réglages et Trophées." loading="lazy"><figcaption>Le menu du jeu</figcaption></figure>
+<figure><img class="telephone-plat" src="images/captures/tel-passe-main.webp" width="600" height="1173" alt="L’écran de passage du Face-à-face : « Au tour de Dominique. Passe-lui le téléphone. Pas de coup d’œil sur sa main ! »." loading="lazy"><figcaption>Face-à-face : on se passe le téléphone</figcaption></figure>
+<figure><img class="telephone-plat" src="images/captures/tel-en-ligne.webp" width="600" height="1173" alt="Le panneau En ligne, marqué « bientôt »." loading="lazy"><figcaption>En ligne : bientôt</figcaption></figure>
+</div><p>Les <a href="#regles">règles</a> tiennent en une page.</p>
+
+    </div>
+  </main>
+</div>
+<div data-page="regles" hidden>
+<main class="page page--regles">
+    <header class="entete">
+      <div class="entete__int">
+        <h1>Règles</h1>
+        <p class="entete__chapeau">Seize sièges, cinq cartes chacun, des flèches et des dés : trois minutes pour comprendre.</p>
+      </div>
+    </header>
+    <div class="texte">
+<p>Les règles ci-dessous sont celles du jeu, dans sa variante « Flèches ».</p>
+<h2>La partie</h2>
+<ol>
+<li>On tire au sort <strong>le lieu</strong> et, à pile ou face, <strong>qui commence</strong>. Le plateau compte 16 sièges, dont 3 à 5 bloqués par le décor. Chacun reçoit <strong>5 cartes</strong>.</li>
+<li>Chaque carte porte de petites <strong>flèches</strong>, jusqu’à huit, et deux chiffres : son <strong>Attaque</strong>, qui vient de sa popularité (Urnes et Buzz), et sa <strong>Défense</strong>, qui vient de son ancrage (Expérience et Terrain). Tout vient de faits publics : voir <a href="#cartes">le calcul</a>.</li>
+<li>À ton tour, <strong>glisse une carte sur un siège libre</strong> (ou touche la carte, puis le siège). Chacune de ses flèches qui touche une carte adverse <strong>l’attaque</strong>.</li>
+<li>La carte visée n’a <strong>pas de flèche en retour</strong> : elle est prise, sans combat.</li>
+<li>Elle a une flèche en retour : <strong>duel</strong>. Tu tires un nombre entre 1 et ton Attaque, elle entre 1 et sa Défense. Le plus grand gagne, l’égalité profite au défenseur.</li>
+<li><strong>Combo</strong> : la carte battue en duel change de camp et entraîne les cartes de son camp qu’elle pointait. Ça vaut aussi contre toi : un duel perdu, et ta carte passe en face avec celles qu’elle pointait.</li>
+<li><strong>Carte action</strong> : chacun en reçoit une, à jouer une seule fois, à son tour, avant de poser.</li>
+<li><strong>Qui commence ?</strong> Poser en dernier est un gros avantage, alors le jeu compense. Celui qui commence pose ses 5 cartes et a le dernier mot. L’autre en pose 4, <strong>garde la cinquième en main</strong> (elle compte pour lui), et sa première carte est <strong>indéboulonnable</strong> : ni prise, ni défiée.</li>
+<li>À la fin, chaque carte à ta couleur compte, sur le plateau comme en main : <strong>6 sur 10, c’est la majorité absolue</strong>.</li>
+</ol>
+<p>Avant que tu lâches une carte, la ligne sous le score annonce les prises et les chances de chaque duel.</p>
+<div class="illustration">
+<figure><img class="telephone-plat" src="images/captures/tel-pose.webp" width="600" height="1175" alt="Début de partie : le plateau vide de l’Élysée et les cinq cartes du joueur." loading="lazy"><figcaption>1. Pose</figcaption></figure>
+<figure><img class="telephone-plat" src="images/captures/tel-duel.webp" width="600" height="1175" alt="Un duel : les dés tournent sur les deux cartes qui s’affrontent." loading="lazy"><figcaption>2. Duel aux dés</figcaption></figure>
+<figure><img class="telephone-plat" src="images/captures/tel-combo.webp" width="600" height="1085" alt="Un combo : plusieurs cartes changent de camp d’un coup." loading="lazy"><figcaption>3. Combo</figcaption></figure>
+</div><h2>Les chances d’un duel</h2>
+<p>Avec une Attaque de 7 contre une Défense de 4, l’attaquant tire entre 1 et 7, le défenseur entre 1 et 4, et l’égalité profite au défenseur : l’attaquant gagne dans 64 % des cas. Le jeu affiche ce pourcentage avant chaque coup.</p>
+<h2>Les lieux</h2>
+<p>L’hémicycle, la place de la République, le Trocadéro, les cuisines du Sénat, l’Élysée, le plateau télé de l’entre-deux-tours et la buvette de l’Assemblée. Chaque lieu bloque des sièges différents.</p>
+<h2>Les adversaires et les modes</h2>
+<ul>
+<li><strong>Mairie</strong>, <strong>Assemblée</strong> et <strong>Élysée</strong> : trois niveaux d’IA, du plus facile au plus difficile.</li>
+<li><strong>Partie libre</strong> : cinq cartes chacun, rien à gagner ni à perdre.</li>
+<li><strong>Carrière</strong> : ton deck contre l’IA ; gagne et tu prends une de ses cartes (et sa carte action, si elle est nouvelle pour toi), perds et elle t’en prend une. Ta carte action est tirée parmi celles de ta collection.</li>
+<li><strong>Face-à-face</strong> : à deux sur le même téléphone, une partie ou un match en cinq manches. On se passe le téléphone à chaque tour.</li>
+<li><strong>En ligne</strong> (bientôt) : défier un ami avec un lien ou un code, ou une partie rapide contre un inconnu, qui compte au classement.</li>
+</ul>
+<p>Dans les réglages, les <strong>règles classiques</strong> restent disponibles : sans flèches, chaque côté de carte se bat chiffre contre chiffre.</p>
+<h2>Les trophées</h2>
+<p>Le jeu compte <strong>41 trophées</strong> : 16 en bronze, 16 en argent, 8 en or, et un trophée platine, « Président de tout », pour qui décroche tous les autres. Quelques noms, sans le mode d’emploi : à toi de trouver comment.</p>
+<ul class="chips">
+<li>Remontada</li>
+<li>Contre toute attente</li>
+<li>Raz-de-marée</li>
+<li>Ballottage</li>
+<li>Girouette</li>
+<li>Cumul des mandats</li>
+<li>Vieux briscard</li>
+<li>Soirée électorale difficile</li>
+</ul><p>Ils se gagnent contre l’IA, hors tutoriel et hors Face-à-face. La liste complète et ta progression sont dans l’écran Trophées du jeu ; rien ne quitte ton appareil.</p>
+
+    </div>
+  </main>
+</div>
+<div data-page="cartes" hidden>
+<main class="page page--cartes">
+    <header class="entete">
+      <div class="entete__int">
+        <h1>Cartes</h1>
+        <p class="entete__chapeau">Quatre faits publics par personnalité, le même calcul pour les 43, et une source pour chaque ligne.</p>
+      </div>
+    </header>
+    <div class="texte">
+<p>Le jeu compte <strong>43 cartes candidat</strong> et <strong>24 cartes action</strong>. Toutes les cartes candidat suivent le même gabarit et le même calcul.</p>
+<h2>Les quatre faits</h2>
+<table>
+<thead>
+<tr>
+<th>Côté</th>
+<th>Ce qu’il compte</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>↑ Urnes</td>
+<td>Le plus grand nombre de voix obtenu à une élection, sur son nom ou en tête de liste (résultats officiels)</td>
+</tr>
+<tr>
+<td>→ Expérience</td>
+<td>Les années de mandat national : député, sénateur, député européen, membre du gouvernement, président de la République</td>
+</tr>
+<tr>
+<td>↓ Terrain</td>
+<td>Les années d’élu local : conseiller municipal, départemental ou régional, adjoint, maire</td>
+</tr>
+<tr>
+<td>← Buzz</td>
+<td>Les consultations de sa page Wikipédia en français pendant un mois type (médiane de novembre 2025 à octobre 2026, robots exclus)</td>
+</tr>
+</tbody></table>
+<p>Sur chaque fait, on classe les 43 : le premier a 10, le dernier 1, les autres entre les deux, au prorata des rivaux qu’ils devancent. Des ex æquo ont la même note.</p>
+<p class="formule">note = 1 + 9 × rivaux devancés ÷ 42</p><p>On arrondit à l’unité. Devancer 29 rivaux sur 42 donne 1 + 9 × 29 ÷ 42 = 7,2, arrondi à 7. Ces chiffres comptent des voix, des années et des consultations : ils ne jugent ni les idées, ni les programmes, ni les personnes.</p>
+<p>En partie, l’<strong>Attaque</strong> d’une carte est la moyenne de ses Urnes et de son Buzz, sa <strong>Défense</strong> la moyenne de son Expérience et de son Terrain.</p>
+<h2>Le reste de la carte</h2>
+<ul>
+<li><strong>Le bord</strong> prend la couleur de son bloc dans la grille officielle du ministère de l’Intérieur, et la jauge du haut situe ce bloc de gauche à droite. Seule exception, par convention : le vert pour Les Écologistes, que la grille classe à gauche.</li>
+<li><strong>Le statut</strong> est écrit en haut du portrait : candidat déclaré, pressenti, a renoncé, primaire perdue…</li>
+<li><strong>Les étoiles</strong> comptent les présidentielles déjà disputées. Elles ne changent rien au jeu.</li>
+<li><strong>La phrase</strong> a été prononcée, avec sa date et son contexte.</li>
+<li><strong>La ligne Justice</strong> suit les règles de la page <a href="#methode">Neutralité et méthode</a>.</li>
+<li><strong>Les sources</strong> sont citées en bas de la carte, avec la date de vérification.</li>
+</ul>
+<h2>Douze cartes pour se faire une idée</h2>
+<p>Pour ne favoriser personne, la sélection suit une règle fixe : dans chacun des six blocs, les deux candidats déclarés qui ont obtenu le plus de voix à une élection. Cartes vérifiées le 25/11/2026.</p>
+<div class="galerie">
+<section class="bloc-cartes" data-teinte="extreme-gauche">
+<h3>Extrême gauche</h3>
+<div class="grille-cartes">
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/jean-luc-melenchon.webp" width="300" height="480" alt="Carte de Jean-Luc Mélenchon, extrême gauche. Urnes 9 (7 712 520 voix, présidentielle 2022, 1er tour), expérience 10 (33,2 ans de mandat national), terrain 8 (21 ans d’élu local), buzz 10 (112 926 consultations de sa page Wikipédia par mois). Phrase : « Nous c’est carré. Il y a une équipe, un programme, un seul candidat. » (3 mai 2026 · annonce de candidature, TF1). Justice : Condamné en 2019 pour rébellion (3 mois avec sursis, définitif). Trois condamnations pour diffamation ou injure (2021-2022), caractère définitif non établi ; présumé innocent." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Jean-Luc Mélenchon</span>
+    <span class="fiche__statut">Candidat · mai 2026 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://lcp.fr/actualites/presidentielle-jean-luc-melenchon-officialise-sa-candidature-pour-2027-435851" rel="noopener">LCP</a> · <a href="https://www.lalibre.be/international/europe/2026/05/03/jean-luc-melenchon-officialise-sa-candidature-a-la-presidentielle-2027-62WVGQMVUREGHCOMM2PKZ2DE7M/" rel="noopener">La Libre (AFP)</a> · <a href="https://www.publicsenat.fr/actualites/politique/melenchon-condamne-a-trois-mois-avec-sursis-pour-la-perquisition-houleuse-a-lfi" rel="noopener">Public Sénat</a> · <a href="https://h24info.ma/?p=594744" rel="noopener">H24info (AFP)</a></span>
+  </figcaption>
+</figure>
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/nathalie-arthaud.webp" width="300" height="480" alt="Carte de Nathalie Arthaud, extrême gauche. Urnes 7 (232 384 voix, présidentielle 2017, 1er tour), expérience 1 (Aucun mandat national), terrain 5 (6 ans d’élu local), buzz 1 (9 188 consultations de sa page Wikipédia par mois). Phrase : « Le véritable pouvoir n’est pas à l’Élysée. » (26 septembre 2026 · premier meeting, Paris). Justice : Aucune condamnation identifiée dans les sources consultées." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Nathalie Arthaud</span>
+    <span class="fiche__statut">Candidate · déc. 2025 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://www.slate.fr/politique/election-presidentielle-2027-liste-candidats-declares-interesses-primaire-gauche-droite-extreme-lfi-rn-lr-ps-macron" rel="noopener">Slate</a> · <a href="https://www.lagazettefrance.fr/article/plus-leon-trotski-que-leon-xiv-premier-meeting-de-campagne-pour-arthaud-et-lo" rel="noopener">AFP / La Gazette</a> · <a href="https://www.lutte-ouvriere.org/medias/breve/fichiers/2026/05/20260516-reponseLO-NPA-R.pdf" rel="noopener">Lutte ouvrière</a></span>
+  </figcaption>
+</figure>
+</div>
+</section>
+<section class="bloc-cartes" data-teinte="gauche">
+<h3>Gauche</h3>
+<div class="grille-cartes">
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/raphael-glucksmann.webp" width="300" height="480" alt="Carte de Raphaël Glucksmann, gauche. Urnes 9 (3 424 216 voix, européennes 2024, tête de liste), expérience 6 (7,3 ans de mandat national), terrain 1 (Aucun mandat local), buzz 9 (104 474 consultations de sa page Wikipédia par mois). Phrase : « Nous ne sommes pas là pour gagner une querelle à gauche. » (Octobre 2026 · soir de sa victoire à la primaire). Justice : Aucune condamnation identifiée dans les sources consultées." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Raphaël Glucksmann</span>
+    <span class="fiche__statut">Candidat · août 2026 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://lcp.fr/actualites/presidentielle-2027-raphael-glucksmann-officialise-sa-candidature-et-participera-a-la" rel="noopener">LCP (candidature)</a> · <a href="https://fr.euronews.com/2026/10/12/primaire-sociale-democrate-large-victoire-de-raphael-glucksmann-des-le-premier-tour" rel="noopener">Euronews</a> · <a href="https://lcp.fr/actualites/victoire-de-raphael-glucksmann-a-la-primaire-socialiste-premieres-reactions-des" rel="noopener">LCP (primaire)</a></span>
+  </figcaption>
+</figure>
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/fabien-roussel.webp" width="300" height="480" alt="Carte de Fabien Roussel, gauche. Urnes 8 (802 422 voix, présidentielle 2022, 1er tour), expérience 6 (7 ans de mandat national), terrain 6 (12,7 ans d’élu local), buzz 2 (10 692 consultations de sa page Wikipédia par mois). Phrase : « Candidat à 85 %. » (Juillet 2026 · congrès du PCF, avant le vote des militants). Justice : Aucune condamnation identifiée dans les sources consultées." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Fabien Roussel</span>
+    <span class="fiche__statut">Candidat · sept. 2026 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://lcp.fr/actualites/fabien-roussel-officiellement-candidat-du-pcf-a-l-election-presidentielle-de-2027-441389" rel="noopener">LCP</a> · <a href="https://www.europe1.fr/node/966744" rel="noopener">Europe&nbsp;1 (85&nbsp;%)</a> · <a href="https://fr.euronews.com/my-europe/2026/07/05/fabien-roussel-en-route-vers-une-nouvelle-candidature-a-la-presidentielle" rel="noopener">Euronews</a></span>
+  </figcaption>
+</figure>
+</div>
+</section>
+<section class="bloc-cartes" data-teinte="centre">
+<h3>Centre</h3>
+<div class="grille-cartes">
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/gabriel-attal.webp" width="300" height="480" alt="Carte de Gabriel Attal, centre. Urnes 5 (29 924 voix, législatives 2024, 2d tour), expérience 6 (9,4 ans de mandat national), terrain 6 (12,7 ans d’élu local), buzz 9 (73 344 consultations de sa page Wikipédia par mois). Phrase : « L’exercice du pouvoir m’a changé. » (Printemps 2026 · entretien au Point, avant sa déclaration). Justice : Aucune condamnation identifiée dans les sources consultées." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Gabriel Attal</span>
+    <span class="fiche__statut">Candidat · mai 2026 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://lcp.fr/actualites/presidentielle-2027-gabriel-attal-officialise-sa-candidature-436721" rel="noopener">LCP (candidature)</a> · <a href="https://www.tradingsat.com/actualites/informations-societes/marche-gabriel-attal-officialise-sa-candidature-a-la-presidence-de-la-republique-1163532.html" rel="noopener">Reuters</a> · <a href="https://lcp.fr/actualites/je-vais-me-deplacer-partout-en-france-et-je-prendrai-une-decision-gabriel-attal" rel="noopener">LCP (Le Point)</a></span>
+  </figcaption>
+</figure>
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/edouard-philippe.webp" width="300" height="480" alt="Carte de Édouard Philippe, centre. Urnes 4 (26 660 voix, municipales 2014, 1er tour, tête de liste), expérience 6 (8,1 ans de mandat national), terrain 9 (25,7 ans d’élu local), buzz 8 (53 922 consultations de sa page Wikipédia par mois). Phrase : « Ce que je proposerai sera massif. » (3 septembre 2024 · annonce de candidature, Le Point). Justice : Aucune condamnation identifiée dans les sources consultées." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Édouard Philippe</span>
+    <span class="fiche__statut">Candidat · sept. 2024 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://france3-regions.franceinfo.fr/normandie/seine-maritime/havre/je-serai-candidat-a-la-prochaine-election-presidentielle-edouard-philippe-l-ancien-premier-ministre-et-maire-du-havre-officialise-sa-candidature-3026366.html" rel="noopener">France&nbsp;3</a> · <a href="https://www.europe1.fr/node/937625" rel="noopener">Europe&nbsp;1</a></span>
+  </figcaption>
+</figure>
+</div>
+</section>
+<section class="bloc-cartes" data-teinte="droite">
+<h3>Droite</h3>
+<div class="grille-cartes">
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/nicolas-dupont-aignan.webp" width="300" height="480" alt="Carte de Nicolas Dupont‑Aignan, droite. Urnes 9 (1 695 000 voix, présidentielle 2017, 1er tour), expérience 10 (27,1 ans de mandat national), terrain 9 (31,4 ans d’élu local), buzz 3 (13 756 consultations de sa page Wikipédia par mois). Phrase : « C’est la raison de ma candidature : offrir un choix, un vrai choix aux Français. » (20 septembre 2026 · Sud Radio). Justice : Aucune condamnation identifiée dans les sources consultées." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Nicolas Dupont‑Aignan</span>
+    <span class="fiche__statut">Candidat · mars 2025 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://www.publicsenat.fr/actualites/politique/presidentielle-2027-le-dernier-decompte-des-candidats-deja-sur-la-ligne-de-depart" rel="noopener">Public Sénat</a> · <a href="https://www.sudradio.fr/linvite-politique/nicolas-dupont-aignan-la-position-du-rn-est-incomprehensible" rel="noopener">Sud Radio</a> · <a href="https://www.resultats-elections.interieur.gouv.fr/municipales2026/ensemble_geographique/11/91/91691/" rel="noopener">Résultats 2026</a></span>
+  </figcaption>
+</figure>
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/bruno-retailleau.webp" width="300" height="480" alt="Carte de Bruno Retailleau, droite. Urnes 7 (620 245 voix, régionales 2015, 2d tour, tête de liste), expérience 9 (24,4 ans de mandat national), terrain 10 (37,4 ans d’élu local), buzz 8 (48 577 consultations de sa page Wikipédia par mois). Phrase : « Renverser la table. » (12 février 2026 · annonce de candidature, Paris). Justice : Aucune condamnation identifiée dans les sources consultées." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Bruno Retailleau</span>
+    <span class="fiche__statut">Candidat · févr. 2026 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://www.publicsenat.fr/actualites/politique/referendum-sur-limmigration-primaute-du-droit-national-le-projet-de-bruno-retailleau-est-il-faisable" rel="noopener">Public Sénat</a> · <a href="https://www.sudradio.fr/politique/bruno-retailleau-annonce-sa-candidature-a-la-presidentielle-2027" rel="noopener">Sud Radio</a> · <a href="https://www.letemps.ch/monde/france-les-adherents-lr-propulsent-bruno-retailleau-comme-candidat-pour-la-presidentielle" rel="noopener">Le Temps</a></span>
+  </figcaption>
+</figure>
+</div>
+</section>
+<section class="bloc-cartes" data-teinte="extreme-droite">
+<h3>Extrême droite</h3>
+<div class="grille-cartes">
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/marine-le-pen.webp" width="300" height="480" alt="Carte de Marine Le Pen, extrême droite. Urnes 10 (13 288 686 voix, présidentielle 2022, 2d tour), expérience 9 (22,3 ans de mandat national), terrain 9 (27,1 ans d’élu local), buzz 8 (46 072 consultations de sa page Wikipédia par mois). Phrase : « Ce soir, je suis candidate à l’élection présidentielle. » (7 juillet 2026 · 20 h de TF1). Justice : Condamnée en appel (2026) pour détournement de fonds publics : 3 ans dont 1 ferme, 45 mois d’inéligibilité dont 30 avec sursis ; pourvoi en cassation, présumée innocente. Condamnée définitivement pour diffamation (2025)." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Marine Le Pen</span>
+    <span class="fiche__statut">Candidate · juil. 2026 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://www.cours-appel.justice.fr/sites/default/files/2026-07/20260707%20-%20CA%20Paris%20-%20CP.pdf" rel="noopener">Cour d’appel de Paris</a> · <a href="https://lcp.fr/actualites/ce-soir-je-suis-candidate-a-l-election-presidentielle-annonce-marine-le-pen-438886" rel="noopener">LCP</a> · <a href="https://www.leclubdesjuristes.com/en-bref/condamnation-de-marine-le-pen-la-cour-de-cassation-fera-tout-pour-statuer-avant-le-scrutin-presidentiel-affirme-remy-heitz-16893/" rel="noopener">Club des juristes</a></span>
+  </figcaption>
+</figure>
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/eric-zemmour.webp" width="300" height="480" alt="Carte de Éric Zemmour, extrême droite. Urnes 9 (2 485 226 voix, présidentielle 2022, 1er tour), expérience 1 (Aucun mandat national), terrain 1 (Aucun mandat local), buzz 9 (77 511 consultations de sa page Wikipédia par mois). Phrase : « Je me présente pour conserver une France française et que notre avenir soit français. » (10 novembre 2026 · 20 h de TF1). Justice : Condamnations définitives, dont contestation de crime contre l’humanité (Pétain, 2026), provocation à la haine (2025), diffamation (2026)… Condamné en 1re instance pour injure (Crépol, 2025), suite non connue ; présumé innocent." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Éric Zemmour</span>
+    <span class="fiche__statut">Candidat · sept. 2026 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://lcp.fr/actualites/presidentielle-2027-eric-zemmour-officialise-sa-candidature-441871" rel="noopener">LCP</a> · <a href="https://fr.hespress.com/258309-258309.html" rel="noopener">Hespress</a> · <a href="https://www.leclubdesjuristes.com/en-bref/la-cour-de-cassation-confirme-deux-condamnations-deric-zemmour-pour-complicite-dinjure-publique-provocation-a-la-haine-et-pour-diffamation-13229/" rel="noopener">Club des juristes</a> · <a href="https://leclubdesjuristes.com/en-bref/condamnation-deric-zemmour-pour-contestation-de-crime-contre-lhumanite-18651" rel="noopener">Club des juristes</a></span>
+  </figcaption>
+</figure>
+</div>
+</section>
+<section class="bloc-cartes" data-teinte="divers">
+<h3>Divers, hors grille</h3>
+<div class="grille-cartes">
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/francis-lalanne.webp" width="300" height="480" alt="Carte de Francis Lalanne, divers. Urnes 7 (121 209 voix, européennes 2019, tête de liste (Alliance jaune)), expérience 1 (Aucun mandat national), terrain 1 (Aucun mandat local), buzz 2 (11 788 consultations de sa page Wikipédia par mois). Phrase : « Reprise en main de la souveraineté nationale. » (19 août 2026 · communiqué de candidature). Justice : Inéligible d’avril 2025 à octobre 2026 : sanction électorale, faute de compte de campagne (européennes 2024)." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Francis Lalanne</span>
+    <span class="fiche__statut">Candidat · août 2026 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://www.demotivateur.fr/societe/francis-lalanne-officiellement-candidat-a-l-election-presidentielle-de-2027-49762" rel="noopener">Demotivateur</a> · <a href="https://www.sudradio.fr/politique/francis-lalanne-du-chanteur-engage-des-annees-1980-aux-spheres-complotistes" rel="noopener">Sud Radio</a></span>
+  </figcaption>
+</figure>
+<figure class="fiche">
+  <img class="carte-img" src="images/cartes/delphine-batho.webp" width="300" height="480" alt="Carte de Delphine Batho, divers. Urnes 6 (37 808 voix, législatives 2024, 2d tour), expérience 8 (19,3 ans de mandat national), terrain 1 (Aucun mandat local), buzz 1 (6 784 consultations de sa page Wikipédia par mois). Phrase : « L’écologie est en voie de rikikisation, si j’ose dire. » (25 novembre 2025 · L’Obs). Justice : Aucune condamnation identifiée dans les sources consultées." loading="lazy" decoding="async">
+  <figcaption>
+    <span class="fiche__nom">Delphine Batho</span>
+    <span class="fiche__statut">Candidate · nov. 2025 · vérifiée le 25/11/2026</span>
+    <span class="fiche__sources">Sources : <a href="https://www.linfodurable.fr/lex-ministre-delphine-batho-candidate-la-presidentielle-pour-conjurer-la-rikikisation-de-lecologie" rel="noopener">L’info durable (AFP)</a> · <a href="https://datan.fr/deputes/deux-sevres-79/depute_delphine-batho" rel="noopener">Datan</a> · <a href="https://www.annuaire-mairie.fr/elections-legislatives-nanteuil.html" rel="noopener">Nuance 2024 (annuaire-mairie)</a></span>
+  </figcaption>
+</figure>
+</div>
+</section>
+</div><h2>Le dos et les cartes action</h2>
+<div class="illustration">
+<figure><img class="carte-img" src="images/cartes/dos.webp" width="300" height="480" alt="Le dos des cartes : un motif guilloché sombre, avec au centre l'emblème du jeu et l'inscription « Retourne ta veste · présidentielle 2027 »." loading="lazy"><figcaption>Le dos, commun à toutes les cartes</figcaption></figure>
+<figure><img class="carte-img" src="images/cartes/action-charles-de-gaulle.webp" width="300" height="480" alt="Carte action « L'Appel » de Charles de Gaulle : reprends une de tes cartes passée chez l'adversaire. Jouable par tous les blocs, une fois par partie." loading="lazy"><figcaption>Une carte action</figcaption></figure>
+</div><p>Une carte action ne porte un visage que pour un record ou une première, documentés et sourcés. Chaque joueur en reçoit une par partie.</p>
+<table>
+<thead>
+<tr>
+<th>Carte</th>
+<th>Effet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Élisabeth Borne</td>
+<td>Une carte adverse passe dans ton camp, sans vote, et perd 2 en Attaque et en Défense</td>
+</tr>
+<tr>
+<td>Manuel Valls</td>
+<td>Une de tes cartes et une carte adverse changent de camp. La recrue attaque avec ses flèches</td>
+</tr>
+<tr>
+<td>Yaël Braun-Pivet</td>
+<td>Jusqu’à ton prochain tour, plus aucune carte ne change de camp</td>
+</tr>
+<tr>
+<td>Charles de Gaulle</td>
+<td>Reprends une de tes cartes passée chez l’adversaire</td>
+</tr>
+<tr>
+<td>Nicolas Sarkozy</td>
+<td>Jusqu’à la fin, une carte de la main adverse ne peut plus attaquer, ni se défendre</td>
+</tr>
+<tr>
+<td>Emmanuel Macron</td>
+<td>Remplace une de tes cartes posées par une carte de ta main : même case, même camp</td>
+</tr>
+<tr>
+<td>Bruno Le Maire</td>
+<td>Passe ton tour, puis joue deux cartes au tour suivant</td>
+</tr>
+<tr>
+<td>Gérard Larcher</td>
+<td>Une de tes cartes posées, puis la prochaine que tu poses, ne peuvent plus être prises ni défiées</td>
+</tr>
+<tr>
+<td>Bernard Arnault</td>
+<td>Tu rachètes une carte adverse posée : elle quitte la partie, son siège avec</td>
+</tr>
+<tr>
+<td>Pascal Praud</td>
+<td>Jusqu’à la fin, chaque carte que tu poses gagne +2 en Attaque et en Défense</td>
+</tr>
+<tr>
+<td>François Bayrou</td>
+<td>Regarde les trois cartes du dessus de la pioche et échanges-en une avec ta main</td>
+</tr>
+<tr>
+<td>Edwy Plenel</td>
+<td>Ton adversaire joue main ouverte pendant ses trois prochains tours</td>
+</tr>
+<tr>
+<td>François de Rugy</td>
+<td>Une carte adverse quitte le plateau et la partie : elle ne compte plus</td>
+</tr>
+<tr>
+<td>Roselyne Bachelot</td>
+<td>Jusqu’à ton prochain tour, tes cartes ne peuvent pas être retournées</td>
+</tr>
+<tr>
+<td>Jean-François Copé</td>
+<td>En cas d’égalité à la fin, c’est toi qui gagnes, sans second tour</td>
+</tr>
+<tr>
+<td>Arnaud Montebourg</td>
+<td>Une de tes cartes déménage sur un siège libre et attaque de nouveau avec ses flèches</td>
+</tr>
+<tr>
+<td>Nadine Morano</td>
+<td>La carte action adverse est annulée, si elle n’a pas encore été jouée</td>
+</tr>
+<tr>
+<td>Amélie de Montchalin</td>
+<td>Une de tes cartes posées attaque de nouveau, sans dés</td>
+</tr>
+<tr>
+<td>Amélie Oudéa-Castéra</td>
+<td>Ce tour-ci, ta carte posée gagne +3 partout et devient indéboulonnable. Djadja !</td>
+</tr>
+<tr>
+<td>Philippe Poutou</td>
+<td>Les cartes adverses perdent leurs protections : fauteuil, vaccin, droit de réponse</td>
+</tr>
+<tr>
+<td>Jérôme Cahuzac</td>
+<td>Une carte de ta main part en Suisse et compte pour toi. Tu repioches</td>
+</tr>
+<tr>
+<td>Thomas Thévenoud</td>
+<td>Une carte de la main adverse ne comptera pas pour son camp</td>
+</tr>
+<tr>
+<td>Georges Marchais</td>
+<td>Une carte adverse posée perd toutes ses flèches, jusqu’à la fin</td>
+</tr>
+<tr>
+<td>Jacques Attali</td>
+<td>Une de tes cartes posées gagne 2 en Attaque et en Défense, puis rejoue</td>
+</tr>
+</tbody></table>
+<p>Toutes les cartes, avec chaque chiffre et sa source, sont dans l’album du jeu : <a href="partie/#cartes">ouvrir l’album</a>.</p>
+
+    </div>
+  </main>
+</div>
+<div data-page="methode" hidden>
+<main class="page page--methode">
+    <header class="entete">
+      <div class="entete__int">
+        <h1>Neutralité et méthode</h1>
+        <p class="entete__chapeau">Les règles que le jeu s’impose pour traiter toutes les cartes de la même façon.</p>
+      </div>
+    </header>
+    <div class="texte">
+<blockquote>
+<p><strong>Un mot de l’auteur.</strong> Je n’appartiens à aucun bord politique, et ce jeu ne roule pour personne. Avec autant de candidats, déclarés, pressentis ou recalés, mieux vaut en rire qu’en pleurer. La même règle vaut pour toutes les cartes, et chaque fait renvoie à sa source.</p>
+</blockquote>
+<h2>Qui a une carte</h2>
+<p>Le deck de lancement réunissait les 16 candidats que testent au moins trois instituts de sondage. Depuis novembre 2026, il s’ouvre, par vagues, aux personnalités que la presse présente comme candidates, prétendantes ou pressenties pour 2027, y compris celles qui ont renoncé. Leur statut exact est écrit sur la carte, et à chaque vague, les chiffres de tous sont recalculés ensemble.</p>
+<h2>Le même calcul pour tous</h2>
+<ul>
+<li>Chaque côté de carte compare les 43 personnalités sur un fait public : voix, années de mandat national, années d’élu local, consultations Wikipédia. Le détail est sur la page <a href="#cartes">Cartes</a>.</li>
+<li>Aucune note n’est retouchée à la main, aucun sondage n’entre en compte.</li>
+<li>Ces chiffres comptent des voix, des années et des consultations. Ils ne jugent ni les idées, ni les programmes, ni les personnes.</li>
+<li>Le bord de chaque carte prend la couleur de son bloc dans la grille officielle du ministère de l’Intérieur.</li>
+</ul>
+<h2>Des faits sourcés</h2>
+<ul>
+<li>Chaque phrase citée a été prononcée publiquement, et porte sa date et son contexte.</li>
+<li>Chaque fait de la carte renvoie à sa source, avec la date de la dernière vérification.</li>
+<li>Le jeu ne recopie pas les bases de données d’autres sites : les chiffres sont relevés à la source (résultats officiels, statistiques publiques de Wikimedia).</li>
+</ul>
+<h2>La ligne « Justice »</h2>
+<ul>
+<li><strong>Sur la carte</strong> : seulement ce qu’un tribunal a jugé sur le fond. Une condamnation, définitive ou non (alors avec son stade et la présomption d’innocence), ou une décision fiscale, électorale ou disciplinaire, présentée comme telle et jamais comme une condamnation pénale. Si rien de tel n’a été trouvé, la carte indique « Aucune condamnation identifiée dans les sources consultées ».</li>
+<li><strong>Dans l’album du jeu seulement</strong> : les affaires closes en faveur de la personne (relaxe, non-lieu, classement sans suite, plainte irrecevable), pour que rien ne soit caché.</li>
+<li><strong>Nulle part</strong> : les enquêtes, plaintes, mises en examen, témoins assistés et renvois en procès, tant qu’aucun jugement n’a été rendu. On ne montre que ce qu’un juge a décidé, jamais ce dont une personne est seulement soupçonnée.</li>
+<li><strong>Les limites</strong> : « suite non connue » veut dire qu’aucune suite publique n’a été trouvée. Une carte sans condamnation indique ce que les sources montrent, sans prétendre à l’exhaustivité.</li>
+</ul>
+<h2>Les portraits</h2>
+<p>Tous les portraits sont générés par intelligence artificielle, avec le même traitement pour chacun : détourage, liseré blanc et fond surligneur à points, appliqués par le même script. Ce ne sont pas des photographies, et ils ne montrent aucune scène réelle.</p>
+<h2>Les cartes montrées sur ce site</h2>
+<p>Les douze cartes de la page <a href="#cartes">Cartes</a> sont choisies par une règle fixe : dans chacun des six blocs, les deux candidats déclarés qui ont obtenu le plus de voix à une élection. La carte de l’accueil est tirée au hasard parmi elles à chaque visite.</p>
+<h2>Les corrections</h2>
+<p>Une erreur peut être signalée depuis la page <a href="#contact">Contact</a>. Chaque signalement reçoit une réponse sous une semaine, et la carte est corrigée dans le jeu.</p>
+<h2>Le financement</h2>
+<p>Le jeu n’affiche aucune publicité. Il vit du temps libre de son auteur et des dons de particuliers. Aucun don de parti, de candidat ou d’élu en campagne n’est accepté.</p>
+<h2>La veille et le jour du vote</h2>
+<p>Le site et les cartes ne sont pas modifiés du jeudi minuit au dimanche soir de chacun des deux tours.</p>
+
+    </div>
+  </main>
+</div>
+<div data-page="soutenir" hidden>
+<main class="page page--soutenir">
+    <header class="entete">
+      <div class="entete__int">
+        <h1>Soutenir</h1>
+        <p class="entete__chapeau">Ni publicité, ni argent de parti : le jeu vit du temps libre de son auteur et de tes dons.</p>
+      </div>
+    </header>
+    <div class="texte">
+<p>Retourne ta veste n’affiche aucune publicité et ne touche pas un centime d’un parti ou d’un candidat. Le jeu est fait par une seule personne, le soir et le week-end.</p>
+<h2>Offrir un café</h2>
+<p><a class="bouton" href="https://ko-fi.com/jeromehosdez" rel="noopener">Offrir un café sur Ko-fi <span aria-hidden="true">↗</span></a></p><h2>À quoi sert l’argent</h2>
+<p>À payer ce qui fait tourner le jeu : le nom de domaine, l’hébergement, les outils.</p>
+<h2>Ce que l’argent n’achète pas</h2>
+<p>Un don ne donne aucun droit sur le contenu des cartes. Les dons de partis, de candidats et d’élus en campagne sont refusés.</p>
+<h2>Aider sans payer</h2>
+<p>Envoie le jeu à quelqu’un qui ne vote pas comme toi. Et si tu repères une erreur sur une carte, <a href="#contact">signale-la</a>.</p>
+
+    </div>
+  </main>
+</div>
+<div data-page="credits" hidden>
+<main class="page page--credits">
+    <header class="entete">
+      <div class="entete__int">
+        <h1>Crédits</h1>
+        <p class="entete__chapeau">Qui a fait quoi, d’où viennent les chiffres, et à qui le jeu doit son idée.</p>
+      </div>
+    </header>
+    <div class="texte">
+<h2>Le jeu</h2>
+<p><strong>Retourne ta veste</strong> est un jeu indépendant et humoristique, qui ne roule pour personne. Conçu par Jérôme Hosdez, sur son temps libre, avec l’aide de Claude (Anthropic).</p>
+<h2>Les chiffres</h2>
+<p>Les chiffres des cartes viennent de faits publics : résultats électoraux officiels, mandats, statistiques publiques de consultation de Wikimedia. Chacun est relié à sa source dans l’album du jeu.</p>
+<h2>Les images</h2>
+<p>Les portraits, les décors des sept lieux et les objets animés sont générés par intelligence artificielle, avec le même traitement pour tous les portraits.</p>
+<h2>Les sons</h2>
+<p>Les sons sont fabriqués par le jeu lui-même. La fanfare de victoire reprend La Marseillaise de Rouget de Lisle (1792, domaine public).</p>
+<h2>Les polices</h2>
+<p>Fraunces, Atkinson Hyperlegible et JetBrains Mono, dans le jeu comme sur ce site, sous licence libre SIL Open Font License.</p>
+<h2>L’hommage</h2>
+<p>Hommage aux jeux de cartes des RPG de nos années PlayStation, et à Hiroyuki Ito et Hironobu Sakaguchi, qui nous en ont donné le goût. Ce jeu n’a aucun lien avec eux.</p>
+
+    </div>
+  </main>
+</div>
+<div data-page="contact" hidden>
+<main class="page page--contact">
+    <header class="entete">
+      <div class="entete__int">
+        <h1>Contact</h1>
+        <p class="entete__chapeau">Une erreur sur une carte, une question, une demande de correction.</p>
+      </div>
+    </header>
+    <div class="texte">
+<p><a href="mailto:contact@letrombi2027.org">contact@letrombi2027.org</a></p><h2>Signaler une erreur</h2>
+<p>Indique le nom de la carte, ce qui est inexact et, si possible, une source. Chaque signalement reçoit une réponse sous une semaine.</p>
+<h2>Demander une correction ou un retrait</h2>
+<p>Les personnes représentées dans le jeu, ou leurs équipes, peuvent écrire à la même adresse. La demande est traitée selon les règles de la page <a href="#methode">Neutralité et méthode</a>.</p>
+<h2>Presse</h2>
+<p>Pour une question sur le jeu ou sur son auteur, écris à la même adresse en précisant ton média.</p>
+
+    </div>
+  </main>
+</div>
+<div data-page="mentions-legales" hidden>
+<main class="page page--mentions-legales">
+    <header class="entete">
+      <div class="entete__int">
+        <h1>Mentions légales</h1>
+      </div>
+    </header>
+    <div class="texte">
+<h2>Éditeur du site</h2>
+<p>Jérôme Hosdez, entrepreneur individuel.</p>
+<p class="chantier">Adresse de domiciliation, courriel, téléphone et numéro d’immatriculation.</p><h2>Directeur de la publication</h2>
+<p>Jérôme Hosdez.</p>
+<h2>Hébergeur</h2>
+<p>Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, États-Unis. Téléphone&nbsp;: +1 650 319 8930.</p><h2>Portraits et illustrations</h2>
+<p>Les portraits des cartes, les décors et les illustrations sont générés par intelligence artificielle. Ce ne sont pas des photographies.</p>
+<h2>Indépendance</h2>
+<p>Retourne ta veste est un jeu satirique indépendant. Il n’a de lien avec aucun candidat, aucun parti et aucune institution.</p>
+<h2>Propriété intellectuelle</h2>
+<p>Les règles, les textes et les illustrations du jeu et de ce site ne peuvent pas être reproduits sans l’accord de l’éditeur.</p>
+<h2>Signaler un contenu</h2>
+<p>Toute demande de correction ou de retrait peut être adressée depuis la page <a href="#contact">Contact</a>.</p>
+
+    </div>
+  </main>
+</div>
+<div data-page="confidentialite" hidden>
+<main class="page page--confidentialite">
+    <header class="entete">
+      <div class="entete__int">
+        <h1>Confidentialité</h1>
+        <p class="entete__chapeau">Ce que le site et le jeu savent de toi : presque rien.</p>
+      </div>
+    </header>
+    <div class="texte">
+<h2>Le site</h2>
+<p>Le site n’a ni compte, ni formulaire, ni publicité. Si tu écris à l’adresse de contact, ton message et ton adresse servent uniquement à te répondre.</p>
+<p>Les courriels sont gardés le temps de traiter la demande, et au plus un an.</p><h2>Le jeu</h2>
+<p>Ta progression (deck, trophées, réglages, partie en cours) est enregistrée dans ton navigateur, sur ton appareil. Elle n’est envoyée nulle part. Effacer les données du site dans ton navigateur l’efface.</p>
+<h2>Mesure d’audience</h2>
+<p>Le site ne mesure pas son audience&nbsp;: aucun outil de statistiques, aucun traceur.</p><h2>Cookies</h2>
+<p>Le site ne dépose aucun cookie publicitaire et n’intègre aucun traceur de réseau social.</p>
+<h2>Tes droits</h2>
+<p>Tu peux demander l’accès à tes données, leur rectification ou leur effacement en écrivant à l’adresse de la page <a href="#contact">Contact</a>. Tu peux aussi adresser une réclamation à la CNIL.</p>
+<h2>Responsable du traitement</h2>
+<p>Jérôme Hosdez.</p>
+
+    </div>
+  </main>
+</div>
+  </div>
+  <footer class="pied">
+    <div class="pied__int">
+      <p class="pied__marque">Retourne ta veste</p>
+      <nav class="pied__liens" aria-label="Autres pages">
+        <a href="#methode">Neutralité et méthode</a>
+        <a href="#credits">Crédits</a>
+        <a href="#contact">Contact</a>
+        <a href="#mentions-legales">Mentions légales</a>
+        <a href="#confidentialite">Confidentialité</a>
+        <a href="../">Le Trombi 2027 (le volet factuel)</a>
+      </nav>
+      <p class="pied__note">Jeu indépendant et humoristique, sans lien avec aucun candidat ni aucun parti. Chiffres publics, sourcés carte par carte. Les portraits, les décors et les illustrations sont générés par intelligence artificielle.</p>
+    </div>
+  </footer>
+  <script>
+// Compte à rebours de l'accueil. Sans script, la page affiche la date du premier tour.
+(function () {
+  var el = document.querySelector('[data-rebours]');
+  if (!el) return;
+  var n = new Date();
+  var aujourdhui = new Date(n.getFullYear(), n.getMonth(), n.getDate());
+  var jours = function (date) { return Math.round((date - aujourdhui) / 864e5); };
+  var tour1 = jours(new Date(2027, 3, 18));
+  var tour2 = jours(new Date(2027, 4, 2));
+  var texte;
+  if (tour1 > 0) texte = 'J-' + tour1 + ' avant le premier tour';
+  else if (tour1 === 0) texte = 'Premier tour aujourd’hui';
+  else if (tour2 > 0) texte = 'J-' + tour2 + ' avant le second tour';
+  else if (tour2 === 0) texte = 'Second tour aujourd’hui';
+  else texte = 'Édition présidentielle 2027';
+  el.textContent = texte;
+})();
+
+// Accueil : une des douze cartes de la page Cartes, tirée au hasard à chaque visite.
+(function () {
+  var fig = document.querySelector('[data-cartes]');
+  if (!fig) return;
+  try {
+    var liste = JSON.parse(fig.getAttribute('data-cartes'));
+    var c = liste[Math.floor(Math.random() * liste.length)];
+    var img = fig.querySelector('img');
+    img.src = 'images/cartes/' + c.f + '.webp';
+    img.alt = c.a;
+  } catch (e) { /* on garde la carte par défaut */ }
+})();
+
+</script>
+<script>
+(function () {
+  var pages = [].slice.call(document.querySelectorAll('[data-page]'));
+  function montrer() {
+    var nom = location.hash.replace('#', '') || 'accueil';
+    if (!pages.some(function (p) { return p.getAttribute('data-page') === nom; })) nom = 'accueil';
+    pages.forEach(function (p) { p.hidden = p.getAttribute('data-page') !== nom; });
+    [].forEach.call(document.querySelectorAll('[data-lien]'), function (a) {
+      if (a.getAttribute('data-lien') === nom) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', montrer);
+  montrer();
+})();
+</script>
+</body>
+</html>
