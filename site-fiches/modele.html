@@ -720,8 +720,31 @@ function carteGrille(p){
   b.setAttribute('aria-haspopup', 'dialog');
   const fig = el('span', 'portrait'), img = el('img'); img.src = 'img/' + p.slug + '.webp'; img.alt = ''; img.loading = 'lazy'; img.width = 240; img.height = 300; fig.append(img, puceEspace(p));
   const bas = el('span', 'bas'); bas.append(el('b', null, p.nom), el('small', null, statut(p)), el('small', null, p.blocNom + ' · ' + nbMesures(p) + '/5 thèmes renseignés'));
-  b.append(fig, bas); b.onclick = () => ouvrir(p.slug, b);
+  b.append(fig, bas); b.onclick = () => retourner(b, p.slug);
   li.append(b); return li;
+}
+/* La carte se retourne, puis la fiche s'ouvre depuis sa place : un clin d'œil au jeu. Rien si l'on préfère moins d'animations. */
+const MOUV_REDUIT = matchMedia('(prefers-reduced-motion: reduce)');
+function retourner(b, slug){
+  if (MOUV_REDUIT.matches || !b.animate){ ouvrir(slug, b); return; }
+  const r = b.getBoundingClientRect();
+  b.style.position = 'relative'; b.style.zIndex = 3;
+  const a = b.animate([
+    {transform: 'perspective(900px) translateY(0) rotateY(0deg)'},
+    {transform: 'perspective(900px) translateY(-10px) scale(1.04) rotateY(0deg)', offset: .35},
+    {transform: 'perspective(900px) translateY(-10px) scale(1.04) rotateY(90deg)'}
+  ], {duration: 260, easing: 'ease-in'});
+  a.onfinish = () => {
+    b.style.zIndex = ''; b.style.position = '';
+    ouvrir(slug, b);
+    const c = $('f-carte'), q = c.getBoundingClientRect();
+    if (!q.width) return;
+    const k = Math.min(r.width / q.width, 1), dx = (r.left + r.width / 2) - (q.left + q.width / 2), dy = (r.top + r.height / 2) - (q.top + q.height / 2);
+    c.animate([
+      {transform: 'translate(' + dx + 'px,' + dy + 'px) scale(' + k + ') perspective(900px) rotateY(-90deg)', opacity: .7},
+      {transform: 'none', opacity: 1}
+    ], {duration: 420, easing: 'cubic-bezier(.2,.8,.2,1)'});
+  };
 }
 function rendreGrille(){
   const n = recherche.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
