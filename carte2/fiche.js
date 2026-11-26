@@ -146,6 +146,12 @@
     pi.textContent = ''; pi.appendChild(idees(f));
     var pied = dlg.querySelector('.fiche-pied');
     pied.textContent = 'Chaque fait renvoie à sa source. Aucune note, aucun classement.';
+    if (window.APDA_FICHES && f.slug){   // la fiche complète, sur le site factuel (comparaisons, Europe, équipes…)
+      var ps = el('p', 'fiche-site');
+      var as = el('a', null, 'La fiche complète sur « Les fiches de la présidentielle 2027 »');
+      as.href = window.APDA_FICHES + '#fiche-' + f.slug; as.rel = 'noopener'; as.target = '_blank';
+      ps.appendChild(as); pied.appendChild(ps);
+    }
     if (window.APDA_CONTACT){
       pied.appendChild(document.createTextNode(' '));
       var a = el('a', null, 'Signaler une erreur'); a.href = window.APDA_CONTACT; a.rel = 'noopener';

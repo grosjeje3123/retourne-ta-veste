@@ -1,16 +1,13 @@
 /* Versos factuels de Retourne ta veste — EXPORT PUBLIC.
-   Ne contient que les données marquées publiables : aucune donnée judiciaire tant qu'elle n'est pas validée.
-   Généré par convert.py à partir de fiches-interne-v2.json (à ne jamais placer dans carte2/). */
+   Mêmes fiches que le site « Les fiches de la présidentielle 2027 » (version publique), sans le volet judiciaire.
+   Généré par site-fiches/construire.py : ne pas modifier à la main, corriger les données du site puis régénérer. */
 (function(){
 window.APDA = window.APDA || {};
-window.APDA.VERIFIE_FICHES = '25/11/2026';
+window.APDA.VERIFIE_FICHES = '26/11/2026';
 window.APDA.FICHES = {
  "Nathalie Arthaud": {
   "candidature": "Candidate · déc. 2025",
   "identite": {
-   "naissance": "23 février 1970, Peyrins (Drôme)",
-   "formation": "Agrégation d'économie et gestion",
-   "parti": "Lutte ouvrière (porte-parole depuis 2008)",
    "sources": []
   },
   "mandats": [
@@ -42,36 +39,33 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Discours de la fête de Lutte ouvrière, 24/05/2026 (brochure publiée le 28/05/2026)",
    "mesures": {
-    "retraites": null,
     "depenses": {
-     "texte": "Créer des centaines de milliers d'emplois (hôpitaux, Ehpad, école, transports)",
+     "texte": "Créer des centaines de milliers d'emplois publics (hôpitaux, Ehpad, éducation, transports publics)",
      "source": [
-      "Lutte ouvrière, brochure de campagne (fête de LO, mai 2026)",
+      "Lutte ouvrière, brochure « Présidentielle 2027 » (fête de LO, mai 2026 ; suppl. LO n° 3021)",
       "https://www.lutte-ouvriere.org/medias/document/fichiers/2026/06/brochure-ete-2026.pdf",
-      "05/2026"
+      "26/06/2026"
      ]
     },
     "energie": {
-     "texte": "Exproprier sans indemnité les actionnaires de TotalEnergies et du secteur pétrolier",
+     "texte": "Exproprier sans indemnité les actionnaires, en commençant par l'industrie pétrolière et l'armement",
      "source": [
-      "Lutte ouvrière, brochure de campagne (fête de LO, mai 2026)",
+      "Lutte ouvrière, brochure « Présidentielle 2027 » (fête de LO, mai 2026 ; suppl. LO n° 3021)",
       "https://www.lutte-ouvriere.org/medias/document/fichiers/2026/06/brochure-ete-2026.pdf",
-      "05/2026"
+      "26/06/2026"
      ]
     },
     "immigration": {
      "texte": "Régulariser tous les sans-papiers ; liberté de circulation et d'installation",
      "source": [
-      "Lutte ouvrière, brochure de campagne (fête de LO, mai 2026)",
+      "Lutte ouvrière, brochure « Présidentielle 2027 » (fête de LO, mai 2026 ; suppl. LO n° 3021)",
       "https://www.lutte-ouvriere.org/medias/document/fichiers/2026/06/brochure-ete-2026.pdf",
-      "05/2026"
+      "26/06/2026"
      ]
-    },
-    "ecole": null
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "arthaud"
  },
  "Jean-Luc Mélenchon": {
   "candidature": "Candidat · mai 2026",
@@ -144,7 +138,7 @@ window.APDA.FICHES = {
    "reference": "« L'Avenir en commun », 5e édition, 06/11/2026, 1 069 propositions (dont 238 nouvelles)",
    "mesures": {
     "retraites": {
-     "texte": "Retour à terme à la retraite à 60 ans à taux plein, avec 40 annuités",
+     "texte": "Abroger la réforme de 2023 (retour à 62 ans), puis, à terme, retraite à 60 ans à taux plein avec 40 annuités",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/presidentielle-2027-ce-qui-change-dans-le-nouveau-programme-de-jean-luc-melenchon-444841",
@@ -152,7 +146,7 @@ window.APDA.FICHES = {
      ]
     },
     "depenses": {
-     "texte": "Hausse de 10 % du point d'indice des fonctionnaires",
+     "texte": "Hausse de 10 % du point d'indice des fonctionnaires, versants non précisés (coût chiffré à 17 Md€)",
      "source": [
       "Acteurs publics",
       "https://acteurspublics.fr/articles/jean-luc-melenchon-promet-aux-fonctionnaires-une-augmentation-de-10-du-point-dindice/",
@@ -160,16 +154,15 @@ window.APDA.FICHES = {
      ]
     },
     "energie": {
-     "texte": "Sortie progressive du nucléaire ; 100 % d'énergies renouvelables au plus tard en 2060",
+     "texte": "Sortie progressive du nucléaire et 100 % d'énergies renouvelables au plus tard en 2060",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/presidentielle-2027-ce-qui-change-dans-le-nouveau-programme-de-jean-luc-melenchon-444841",
       "06/11/2026"
      ]
     },
-    "immigration": null,
     "ecole": {
-     "texte": "19 élèves par classe en moyenne en fin de quinquennat, 160 000 enseignants recrutés",
+     "texte": "19 élèves par classe en moyenne en fin de quinquennat et 160 000 enseignants recrutés",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/politique/presidentielle-2027-que-proposent-les-candidats-pour-lecole",
@@ -178,194 +171,11 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [
-   {
-    "dossier": "Incidents lors de la perquisition au siège de LFI (16 oct. 2018)",
-    "cadre": "Tribunal correctionnel de Bobigny",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "16 oct. 2018",
-      "texte": "Perquisition au siège de LFI dans le cadre de deux enquêtes du parquet de Paris"
-     },
-     {
-      "date": "19-20 sept. 2019",
-      "texte": "Jugé pour actes d'intimidation envers un magistrat et un dépositaire de l'autorité publique, rébellion et provocation"
-     },
-     {
-      "date": "9 déc. 2019",
-      "texte": "Condamné à 3 mois d'emprisonnement avec sursis et 8 000 € d'amende pour rébellion et provocation ; annonce qu'il ne fait pas appel"
-     }
-    ],
-    "sources": [
-     [
-      "Public Sénat",
-      "https://www.publicsenat.fr/actualites/politique/melenchon-condamne-a-trois-mois-avec-sursis-pour-la-perquisition-houleuse-a-lfi",
-      "09/12/2019"
-     ],
-     [
-      "Public Sénat",
-      "https://www.publicsenat.fr/actualites/politique/perquisition-a-lfi-3-mois-avec-sursis-requis-contre-melenchon-145620",
-      "20/09/2019"
-     ]
-    ]
-   },
-   {
-    "dossier": "Diffamation envers un ancien journaliste du Monde (propos publiés sur son blog en 2016)",
-    "cadre": "Tribunal correctionnel de Paris",
-    "nature": "penal",
-    "stade": "condamnation_premiere_instance",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "févr. 2017",
-      "texte": "Plainte en diffamation déposée par le journaliste"
-     },
-     {
-      "date": "24 sept. 2021",
-      "texte": "Condamné à 500 € d'amende avec sursis et 1 000 € de dommages-intérêts ; son avocat annonce un appel"
-     },
-     {
-      "date": "29 juin 2022",
-      "texte": "Appel toujours pendant selon l'AFP ; issue de l'appel non trouvée"
-     },
-     {
-      "date": "25 nov. 2026",
-      "texte": "Condamnation non définitive à notre connaissance ; présumé innocent"
-     }
-    ],
-    "sources": [
-     [
-      "DH (AFP)",
-      "https://www.dhnet.be/actu/monde/2021/09/24/jean-luc-melenchon-condamne-pour-diffamation-envers-un-ancien-journaliste-du-monde-BNX3AE4EABH2XOHW3SWAUN5EM4/",
-      "24/09/2021"
-     ],
-     [
-      "H24info (AFP)",
-      "https://h24info.ma/?p=594744",
-      "29/06/2022"
-     ]
-    ]
-   },
-   {
-    "dossier": "Diffamation envers le même ancien journaliste (propos de 2018 sur la dictature chilienne)",
-    "cadre": "Tribunal correctionnel puis cour d'appel de Paris",
-    "nature": "penal",
-    "stade": "condamnation_appel",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "s.d.",
-      "texte": "Le tribunal correctionnel ne retient pas le caractère diffamatoire des propos"
-     },
-     {
-      "date": "29 juin 2022",
-      "texte": "La cour d'appel de Paris le condamne pour diffamation : 1 € de dommages-intérêts et 2 000 € de frais de justice"
-     },
-     {
-      "date": "25 nov. 2026",
-      "texte": "Présumé(e) innocent(e) tant qu'aucune décision définitive n'est intervenue"
-     }
-    ],
-    "sources": [
-     [
-      "H24info (AFP)",
-      "https://h24info.ma/?p=594744",
-      "29/06/2022"
-     ],
-     [
-      "Europe 1",
-      "https://www.europe1.fr/node/81988",
-      "29/06/2022"
-     ]
-    ]
-   },
-   {
-    "dossier": "Propos visant des journalistes de franceinfo (oct. 2018)",
-    "cadre": "Tribunal correctionnel de Paris, sur plainte de l'éditeur de franceinfo",
-    "nature": "penal",
-    "stade": "condamnation_premiere_instance",
-    "etat": "non_etabli",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "oct. 2018",
-      "texte": "Plainte pour injure et diffamation après des propos publics contre des journalistes"
-     },
-     {
-      "date": "janv. 2022",
-      "texte": "Condamné à 500 € d'amende avec sursis pour injure publique et diffamation, et 3 000 € de dommages-intérêts ; appel annoncé"
-     },
-     {
-      "date": "25 nov. 2026",
-      "texte": "Issue de l'appel non trouvée ; présumé innocent tant que la décision n'est pas définitive"
-     }
-    ],
-    "sources": [
-     [
-      "Puremédias (Ozap)",
-      "https://www.ozap.com/actu/journalistes-traites-d-abrutis-et-de-menteurs-jean-luc-melenchon-condamne-pour-injure-publique-et-diffamation/612438",
-      "11/01/2022"
-     ],
-     [
-      "Public Sénat",
-      "https://www.publicsenat.fr/actualites/politique/propos-de-melenchon-contre-les-journalistes-radio-france-porte-plainte-134606",
-      "20/10/2018"
-     ]
-    ]
-   },
-   {
-    "dossier": "Plainte pour injure d'une adversaire politique (propos de 2011)",
-    "cadre": "17e chambre du tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
-    "nature": "penal",
-    "stade": "relaxe",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "10 avr. 2014",
-      "texte": "Relaxé par le tribunal correctionnel de Paris"
-     },
-     {
-      "date": "6 oct. 2015",
-      "texte": "La cour d'appel de Paris confirme la relaxe"
-     },
-     {
-      "date": "28 févr. 2017",
-      "texte": "La Cour de cassation rend la relaxe définitive"
-     }
-    ],
-    "sources": [
-     [
-      "Politis",
-      "https://www.politis.fr/articles/2014/04/fasciste-marine-le-pen-deboutee-de-sa-plainte-contre-melenchon-26558",
-      "10/04/2014"
-     ],
-     [
-      "Public Sénat",
-      "https://www.publicsenat.fr/actualites/politique/fasciste-marine-le-pen-definitivement-deboutee-contre-jean-luc-melenchon-56342",
-      "28/02/2017"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": null
+  "slug": "melenchon"
  },
  "Fabien Roussel": {
   "candidature": "Candidat · sept. 2026",
   "identite": {
-   "naissance": "16 avril 1969, Béthune (Pas-de-Calais)",
-   "parti": "Parti communiste français (secrétaire national depuis 2018)",
    "sources": []
   },
   "mandats": [
@@ -405,8 +215,6 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Prises de parole de campagne (sept.-oct. 2026) ; pas de programme 2027 complet trouvé",
    "mesures": {
-    "retraites": null,
-    "depenses": null,
     "energie": {
      "texte": "Ramener la TVA sur l'énergie de 20 % à 5,5 %",
      "source": [
@@ -414,13 +222,10 @@ window.APDA.FICHES = {
       "https://edito.seloger.com/node/23785",
       "28/09/2026"
      ]
-    },
-    "immigration": null,
-    "ecole": null
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "roussel"
  },
  "François Ruffin": {
   "candidature": "Candidat · janv. 2026",
@@ -472,15 +277,41 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Prises de position de campagne (2026) ; cahiers de campagne en ligne non consultés",
    "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    "depenses": {
+     "texte": "Plan de redressement : 22 Md€ de dépenses publiques en moins dès 2027, dont 10 Md€ d'aides aux entreprises",
+     "source": [
+      "Debout ! / nouspresident.fr, « Plan de redressement des comptes »",
+      "https://nouspresident.fr/plan-de-redressement/",
+      "21/10/2026"
+     ]
+    },
+    "energie": {
+     "texte": "Prolonger les réacteurs si l'ASN valide, poursuivre les six EPR2 ; huit de plus selon le devis d'EDF",
+     "source": [
+      "Debout ! / nouspresident.fr, cahier « Travaillisme écologique »",
+      "https://nouspresident.fr/travaillisme-ecologique/",
+      "09/09/2026"
+     ]
+    },
+    "immigration": {
+     "texte": "Se dit hostile à l'immigration de travail, dont le recrutement de médecins étrangers",
+     "source": [
+      "Public Sénat (propos tenus sur France 2 le 28/04/2026)",
+      "https://www.publicsenat.fr/actualites/politique/presidentielle-limmigration-nouveau-clivage-a-gauche",
+      "11/05/2026"
+     ]
+    },
+    "ecole": {
+     "texte": "Hausse durable de la grille des enseignants, ciblée sur le milieu de carrière ; budget de l'école non réduit",
+     "source": [
+      "Debout ! / nouspresident.fr, cahier « Éducation : une école de tous les savoirs »",
+      "https://nouspresident.fr/education-une-ecole-de-tous-les-savoirs/",
+      "28/10/2026"
+     ]
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "ruffin"
  },
  "Marine Tondelier": {
   "candidature": "Candidate · oct. 2025",
@@ -536,19 +367,24 @@ window.APDA.FICHES = {
    "statut": "programme publié",
    "reference": "Programme des Écologistes présenté le 13/07/2026 (« République écologique et citoyenne »)",
    "mesures": {
-    "retraites": null,
-    "depenses": {
-     "texte": "Créer un ISF climatique et une TVA verte (taux non précisés)",
+    "retraites": {
+     "texte": "Retraite à 62 ans, et à 60 ans pour les carrières commencées avant 20 ans ou les métiers pénibles",
      "source": [
-      "Tunisie Numérique (AFP)",
-      "https://www.tunisienumerique.com/france-la-premiere-republique-ecologique-et-citoyenne-en-2027/",
-      "13/07/2026"
+      "LCP",
+      "https://lcp.fr/actualites/presidentielle-que-proposent-les-candidats-a-l-elysee-sur-les-retraites-441751",
+      "16/09/2026"
      ]
     },
-    "energie": null,
-    "immigration": null,
+    "energie": {
+     "texte": "Viser un mix énergétique 100 % renouvelable, sans relance du nucléaire (échéance non précisée)",
+     "source": [
+      "Les Énergies renouvelables (Entretiens de Terra Nova)",
+      "https://www.les-energies-renouvelables.eu/article/actualites/energies/tondelier-veut-atteindre-100-de-renouvelables-sans-nucleaire-1096/",
+      "03/07/2026"
+     ]
+    },
     "ecole": {
-     "texte": "19 élèves par classe d'ici 2032 (12 en REP/REP+), +15 % de salaire enseignant en 5 ans",
+     "texte": "Classes de 19 élèves d'ici 2032 (12 en REP/REP+), salaires enseignants +15 % en cinq ans hors inflation",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/politique/presidentielle-2027-que-proposent-les-candidats-pour-lecole",
@@ -557,49 +393,12 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [
-   {
-    "dossier": "Action en diffamation de deux présentateurs d'une chaîne d'information (propos télévisés du 14 mai 2023)",
-    "cadre": "Tribunal judiciaire de Nanterre",
-    "nature": "civil",
-    "stade": "demande_rejetee",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "14 mai 2023",
-      "texte": "Propos sur une chaîne d'information tenus lors d'une émission de France 3"
-     },
-     {
-      "date": "juil. 2023",
-      "texte": "Les deux présentateurs annoncent des poursuites"
-     },
-     {
-      "date": "17 févr. 2026",
-      "texte": "Les demandeurs sont déboutés ; aucun appel connu"
-     }
-    ],
-    "sources": [
-     [
-      "Puremédias (Ozap)",
-      "https://www.ozap.com/actu/-cnews-laisse-prosperer-une-ideologie-neonazie-christine-kelly-et-marc-menant-portent-plainte-contre-marine-tondelier-eelv/634309",
-      "06/07/2023"
-     ],
-     [
-      "Puremédias (Ozap)",
-      "https://www.ozap.com/actu/j-espere-que-ca-leur-passera-l-envie-de-baillonner-les-critiques-marine-tondelier-annonce-avoir-gagne-son-proces-contre-christine-kelly/654117",
-      "12/03/2026"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "tondelier"
  },
  "Sandrine Rousseau": {
   "candidature": "Pas déclarée",
   "identite": {
-   "parti": "Les Écologistes"
+   "sources": []
   },
   "mandats": [
    {
@@ -631,107 +430,20 @@ window.APDA.FICHES = {
    "reference": "Pas candidate ; amendements et propositions parlementaires",
    "mesures": {
     "retraites": {
-     "texte": "Contribution exceptionnelle de 10 % sur les bénéfices des vendeurs de PER, pour la CNAV",
+     "texte": "Contribution exceptionnelle de 10 % sur les bénéfices des vendeurs de PER, affectée à la CNAV (amendement PLFSS 2026, rejeté)",
      "source": [
       "Assemblée nationale, amendement n° 234 au PLFSS 2026 (rejeté)",
       "https://www.assemblee-nationale.fr/dyn/17/amendements/1907/AN/234.pdf",
       "28/10/2025"
      ]
-    },
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Action civile pour « dénigrement » d'une fédération de chasseurs (propos télévisés du 22 févr. 2022)",
-    "cadre": "Tribunal judiciaire de Paris (17e chambre), procédure civile ; appel",
-    "nature": "civil",
-    "stade": "demande_rejetee",
-    "etat": "non_etabli",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "22 févr. 2022",
-      "texte": "Propos sur France 2 liant armes de chasse et féminicides"
-     },
-     {
-      "date": "août 2022",
-      "texte": "La fédération l'assigne et réclame près de 100 000 € de dommages-intérêts"
-     },
-     {
-      "date": "4 sept. 2024",
-      "texte": "Audience devant le tribunal judiciaire de Paris"
-     },
-     {
-      "date": "oct. 2024",
-      "texte": "La fédération est déboutée ; elle annonce faire appel"
-     },
-     {
-      "date": "25 nov. 2026",
-      "texte": "Issue de l'appel non trouvée ; aucune décision définitive"
-     }
-    ],
-    "sources": [
-     [
-      "Reporterre",
-      "https://reporterre.net/Feminicides-et-armes-de-chasse-Sandrine-Rousseau-denonce-une-procedure-baillon",
-      "04/09/2024"
-     ],
-     [
-      "Politis",
-      "https://www.politis.fr/articles/2024/11/en-bref-les-chasseurs-perdent-un-proces-contre-sandrine-rousseau-le-snu-au-repos-des-ordonnances-en-faveur-de-leau/",
-      "06/11/2024"
-     ],
-     [
-      "Communiqué de la fédération",
-      "https://chasseurdefrance.com/wp-content/uploads/2024/10/20241030CPSandrineRousseau45.pdf",
-      "30/10/2024"
-     ]
-    ]
-   },
-   {
-    "dossier": "Poursuites en diffamation d'un ancien député qu'elle avait accusé publiquement (2016)",
-    "cadre": "Tribunal correctionnel de Paris (17e chambre), sur plainte avec constitution de partie civile",
-    "nature": "penal",
-    "stade": "relaxe",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "mai 2016",
-      "texte": "Accusations publiques de harcèlement et d'agressions sexuelles par plusieurs élues, dont elle"
-     },
-     {
-      "date": "24 mars 2017",
-      "texte": "Mise en examen pour diffamation (mise en examen automatique dans ce type de procédure)"
-     },
-     {
-      "date": "19 avr. 2019",
-      "texte": "Relaxée avec les autres prévenus"
-     }
-    ],
-    "sources": [
-     [
-      "Public Sénat",
-      "https://www.publicsenat.fr/actualites/non-classe/l-une-des-accusatrices-de-baupin-porte-plainte-pour-denonciation-calomnieuse-77771",
-      "s.d. (2017)"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "rousseau"
  },
  "Raphaël Glucksmann": {
   "candidature": "Candidat PS–Place publique–GRS, vainqueur de la primaire du 11/10/2026 (66,17 %, 79 613 voix)",
   "identite": {
-   "naissance": "15 octobre 1979, Boulogne-Billancourt (Hauts-de-Seine)",
-   "formation": "Sciences Po Paris",
-   "parti": "Place publique (cofondateur)",
    "sources": []
   },
   "mandats": [
@@ -763,13 +475,20 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Annonces de campagne (24/08/2026, 31/08/2026) et plan « 100 jours de la révolution écologique » (09/11/2026, 200 Md€)",
    "mesures": {
-    "retraites": null,
-    "depenses": {
-     "texte": "Taxer le 1 % des plus gros héritages pour augmenter les salaires nets (15 Md€)",
+    "retraites": {
+     "texte": "Abroger la réforme de 2023 ; revenir « comme base » à 62 ans avec un système de décote ; réforme fondée sur la pénibilité",
      "source": [
-      "Public Sénat",
-      "https://www.publicsenat.fr/actualites/politique/fiscalite-ecole-immigration-ce-que-propose-raphael-glucksmann",
-      "24/08/2026"
+      "Retraites : Attal critique Philippe qui propose la réforme de 2022 (dépêche AFP reprise)",
+      "https://www.lagazettefrance.fr/article/retraites-attal-critique-philippe-qui-propose-la-reforme-de-2022",
+      "30/09/2026"
+     ]
+    },
+    "depenses": {
+     "texte": "200 Md€ d’investissements publics sur le quinquennat pour la « révolution écologique »",
+     "source": [
+      "Glucksmann prévoit 200 milliards d’investissements (L’Info Durable / AFP)",
+      "https://www.linfodurable.fr/presidentielle-glucksmann-prevoit-200-milliards-dinvestissements-pour-sa-revolution-ecologique",
+      "09/11/2026"
      ]
     },
     "energie": {
@@ -781,7 +500,7 @@ window.APDA.FICHES = {
      ]
     },
     "immigration": {
-     "texte": "Régulariser des travailleurs sans-papiers (texte socialiste repris dans son programme)",
+     "texte": "Régulariser les travailleurs sans papiers justifiant 6 mois d'activité sur 24 (texte PS repris)",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/il-faut-sortir-de-l-hypocrisie-les-deputes-ps-defendent-un-texte-pour-regulariser-300000",
@@ -798,13 +517,12 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "glucksmann"
  },
  "Karim Bouamrane": {
   "candidature": "Candidat ; maintien confirmé le 12/11/2026 après la primaire socialiste",
   "identite": {
-   "parti": "Parti socialiste ; fondateur et président du mouvement « La France humaine et forte » (lancé le 3 octobre 2024)"
+   "sources": []
   },
   "mandats": [
    {
@@ -847,15 +565,33 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Candidature annoncée sur France Inter le 09/06/2026 ; aucune mesure nationale chiffrée trouvée dans la presse nationale",
    "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    "depenses": {
+     "texte": "Réduire les doublons administratifs et alléger les normes (action publique, non chiffré)",
+     "source": [
+      "Site de campagne, Le manifeste",
+      "https://www.karimbouamrane2027.org/manifeste.html",
+      "non daté"
+     ]
+    },
+    "immigration": {
+     "texte": "Accueillir dignement ceux qui ont le droit de rester, reconduire les personnes en situation irrégulière",
+     "source": [
+      "Site de campagne, Le manifeste",
+      "https://www.karimbouamrane2027.org/manifeste.html",
+      "non daté"
+     ]
+    },
+    "ecole": {
+     "texte": "Démocratiser l'excellence scolaire et des formations menant à un emploi choisi (non chiffré)",
+     "source": [
+      "Site de campagne, Le manifeste",
+      "https://www.karimbouamrane2027.org/manifeste.html",
+      "non daté"
+     ]
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "bouamrane"
  },
  "François Hollande": {
   "candidature": "Pas encore déclaré",
@@ -924,7 +660,7 @@ window.APDA.FICHES = {
    "reference": "Livre « Unir. Nouveau monde, nouvelle gauche » (Robert Laffont), 03/09/2026, 80 propositions ; décision de candidature annoncée pour décembre 2026",
    "mesures": {
     "retraites": {
-     "texte": "Âge légal vers 63 ans au 1er janvier 2028, durée de cotisation liée à l'espérance de vie",
+     "texte": "Âge légal maintenu vers 63 ans (atteint en 2028), puis durée de cotisation liée à l'espérance de vie",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/presidentielle-francois-hollande-propose-la-retraite-a-63-ans-et-dira-en-decembre-s-il",
@@ -932,34 +668,16 @@ window.APDA.FICHES = {
      ]
     },
     "depenses": {
-     "texte": "TVA normale portée progressivement de 20 % à 24 % pour baisser les cotisations salariales",
+     "texte": "Revalorisation des pensions de retraite limitée à 1 % pendant cinq ans",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/presidentielle-francois-hollande-propose-la-retraite-a-63-ans-et-dira-en-decembre-s-il",
       "27/08/2026"
      ]
-    },
-    "energie": {
-     "texte": "TVA ramenée de 5,5 % à 0 % sur l'énergie, carburants compris",
-     "source": [
-      "LCP",
-      "https://lcp.fr/actualites/presidentielle-francois-hollande-propose-la-retraite-a-63-ans-et-dira-en-decembre-s-il",
-      "27/08/2026"
-     ]
-    },
-    "immigration": {
-     "texte": "Durcir le regroupement familial et fixer des volumes d'immigration de travail",
-     "source": [
-      "Politis",
-      "https://www.politis.fr/articles/2026/08/la-droite-a-un-nouveau-candidat-il-sappelle-francois-hollande/",
-      "31/08/2026"
-     ]
-    },
-    "ecole": null
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "hollande"
  },
  "Clémentine Autain": {
   "candidature": "A renoncé · juil. 2026",
@@ -1016,21 +734,16 @@ window.APDA.FICHES = {
    "reference": "Candidature à la primaire unitaire retirée le 11/07/2026 ; appelle à voter Jean-Luc Mélenchon depuis le 19/11/2026",
    "mesures": {
     "retraites": {
-     "texte": "Abroger le report de l'âge légal à 64 ans (amendement cosigné, PLFSS 2026)",
+     "texte": "Abroger le report de l’âge légal à 64 ans (amendement cosigné au PLFSS 2026, rejeté ; conférence de financement visant 62 ans)",
      "source": [
       "Assemblée nationale, amendement n° 236",
       "https://www.assemblee-nationale.fr/dyn/17/amendements/1907/AN/236.pdf",
       "28/10/2025"
      ]
-    },
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "autain"
  },
  "Ségolène Royal": {
   "candidature": "Battue à la primaire socialiste du 11/10/2026 (7,62 %)",
@@ -1110,15 +823,6 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Propositions de campagne pour la primaire (débat France 2 du 01/10/2026)",
    "mesures": {
-    "retraites": null,
-    "depenses": {
-     "texte": "Rétablir l'impôt sur les grandes fortunes (ISF)",
-     "source": [
-      "LCP",
-      "https://lcp.fr/actualites/mobilisation-lyceenne-budget-situation-internationale-ce-qu-il-faut-retenir-du-deuxieme",
-      "01/10/2026"
-     ]
-    },
     "energie": {
      "texte": "Baisser les taxes sur les carburants (montant non chiffré)",
      "source": [
@@ -1126,75 +830,10 @@ window.APDA.FICHES = {
       "https://lcp.fr/actualites/mobilisation-lyceenne-budget-situation-internationale-ce-qu-il-faut-retenir-du-deuxieme",
       "01/10/2026"
      ]
-    },
-    "immigration": null,
-    "ecole": null
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Usage des moyens d'ambassadrice des pôles arctique et antarctique",
-    "cadre": "Enquête préliminaire du parquet national financier (PNF)",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "nov. 2019",
-      "texte": "Le PNF ouvre une enquête préliminaire sur l'usage des moyens et fonds publics mis à sa disposition comme ambassadrice des pôles et ministre"
-     },
-     {
-      "date": "28 juin 2021",
-      "texte": "Classement sans suite : les investigations n'ont démontré aucune infraction"
-     }
-    ],
-    "sources": [
-     [
-      "Parquet national financier, communiqué",
-      "https://www.tribunal-de-paris.justice.fr/sites/default/files/2021-07/2021_06_28%20-%20CP%20S%C3%A9gol%C3%A8ne%20ROYAL%20ambassadrice%20des%20p%C3%B4les.pdf",
-      "28/06/2021"
-     ],
-     [
-      "Public Sénat (AFP)",
-      "https://www.publicsenat.fr/actualites/politique/frais-d-ambassadrice-des-poles-segolene-royal-visee-par-une-enquete-du-parquet",
-      "janv. 2020"
-     ]
-    ]
-   },
-   {
-    "dossier": "Diffamation envers un journaliste de Radio France (propos de nov. 2019)",
-    "cadre": "Tribunal correctionnel de Paris (droit de la presse)",
-    "nature": "penal",
-    "stade": "condamnation_premiere_instance",
-    "etat": "non_etabli",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "20 avr. 2023",
-      "texte": "Condamnée pour diffamation à 500 € d'amende avec sursis et 1 000 € de dommages et intérêts ; une partie des propos poursuivis n'a pas été jugée diffamatoire"
-     },
-     {
-      "date": "avr. 2023",
-      "texte": "Son avocat indique avoir fait appel : la condamnation n'est pas définitive"
-     },
-     {
-      "date": "25 nov. 2026",
-      "texte": "Issue de l'appel non trouvée ; présumée innocente tant qu'aucune décision définitive n'est rendue"
-     }
-    ],
-    "sources": [
-     [
-      "Puremédias (ozap)",
-      "https://www.ozap.com/actu/-journalisme-de-caniveau-segolene-royal-condamnee-pour-avoir-diffame-un-journaliste-de-radio-france/631199",
-      "27/04/2023"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": null
+  "slug": "royal"
  },
  "Olivier Faure": {
   "candidature": "Battu à la primaire socialiste du 11/10/2026 (14,46 %)",
@@ -1251,7 +890,7 @@ window.APDA.FICHES = {
    "reference": "Livre-programme « La loi du plus juste » (Robert Laffont), sept. 2026",
    "mesures": {
     "retraites": {
-     "texte": "Abroger la réforme de 2023 : retour à 62 ans, annuités modulées selon la pénibilité",
+     "texte": "Âge légal ramené à 62 ans (abrogation de 2023), durée de cotisation modulée selon la pénibilité",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/politique/reculer-ou-avancer-lage-legal-avec-ou-sans-capitalisation-ce-que-proposent-les-principaux-candidats-a-lelection-presidentielle-sur-les-retraites",
@@ -1259,27 +898,24 @@ window.APDA.FICHES = {
      ]
     },
     "depenses": {
-     "texte": "Taxe Zucman : impôt plancher de 2 % par an sur les patrimoines de plus de 100 M€",
-     "source": [
-      "LCP",
-      "https://lcp.fr/actualites/mobilisation-lyceenne-budget-situation-internationale-ce-qu-il-faut-retenir-du-deuxieme",
-      "01/10/2026"
-     ]
-    },
-    "energie": null,
-    "immigration": {
-     "texte": "Régularisation massive des travailleurs sans papiers (nombre non fixé)",
+     "texte": "« Règle d'or verte » : budgets, investissements et aides publics alignés sur les objectifs climat",
      "source": [
       "La Gazette France (AFP)",
       "https://www.lagazettefrance.fr/article/olivier-faure-a-gauche-toute-pour-la-primaire",
       "17/09/2026"
      ]
     },
-    "ecole": null
+    "immigration": {
+     "texte": "Régularisation des travailleurs sans papiers, sans objectif chiffré officiel",
+     "source": [
+      "La Gazette France (AFP)",
+      "https://www.lagazettefrance.fr/article/olivier-faure-a-gauche-toute-pour-la-primaire",
+      "17/09/2026"
+     ]
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "faure"
  },
  "Jérôme Guedj": {
   "candidature": "Battu à la primaire socialiste du 11/10/2026 (5,83 %)",
@@ -1343,29 +979,17 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Propositions de campagne pour la primaire (candidature annoncée en févr. 2026)",
    "mesures": {
-    "retraites": {
-     "texte": "Supprimer l'âge légal de départ à la retraite",
-     "source": [
-      "Bourse Direct (dépêche AFP)",
-      "https://www.boursedirect.fr/fr/actualites/categorie/politique/primaire-a-gauche-guedj-veut-repousser-les-frontieres-du-ps-au-risque-de-l-isolement-afp-630d3292d69e2c7dd222f143783632d9af2085cb",
-      "date non lue (après le 29/08/2026)"
-     ]
-    },
-    "depenses": null,
     "energie": {
-     "texte": "Baisser « significativement d'emblée » les taxes sur les carburants (non chiffré)",
+     "texte": "Baisser les taxes sur les carburants de façon « significative d'emblée » (non chiffré)",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/mobilisation-lyceenne-budget-situation-internationale-ce-qu-il-faut-retenir-du-deuxieme",
       "01/10/2026"
      ]
-    },
-    "immigration": null,
-    "ecole": null
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "guedj"
  },
  "Gabriel Attal": {
   "candidature": "Candidat · mai 2026",
@@ -1454,7 +1078,7 @@ window.APDA.FICHES = {
    "reference": "Candidature officialisée en mai 2026 ; propositions thématiques (pas de programme complet publié à ce jour)",
    "mesures": {
     "retraites": {
-     "texte": "Supprimer l'âge légal ; pension selon la durée cotisée, avec une dose de capitalisation",
+     "texte": "Supprimer l'âge légal ; pension liée à la seule durée de cotisation, avec une dose de capitalisation",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/presidentielle-que-proposent-les-candidats-a-l-elysee-sur-les-retraites-441751",
@@ -1462,34 +1086,40 @@ window.APDA.FICHES = {
      ]
     },
     "depenses": {
-     "texte": "100 000 postes de fonctionnaires en moins, 120 à 150 Md€ d'économies sans hausse d'impôts",
+     "texte": "100 000 postes de fonctionnaires d’État en moins (départs volontaires, non-remplacements), hors Éducation, Armées, Justice, Intérieur ; 120 à 150 Md€ sur dix ans",
      "source": [
-      "Acteurs publics",
+      "Acteurs publics (entretien au Parisien du 02/07/2026)",
       "https://acteurspublics.fr/articles/gabriel-attal-propose-100-000-fonctionnaires-en-moins-et-limpunite-zero-pour-les-ministres-depensiers/",
       "03/07/2026"
      ]
     },
-    "energie": null,
-    "immigration": {
-     "texte": "Durcir le regroupement familial en allongeant la durée de résidence exigée",
+    "energie": {
+     "texte": "Juillet 2025 : produire en France les trois quarts de l’énergie, avec nucléaire et renouvelables",
      "source": [
-      "Europe 1 (AFP)",
-      "https://www.europe1.fr/node/938603",
+      "L'Info Durable (AFP)",
+      "https://www.linfodurable.fr/politique/attal-propose-une-nouvelle-donne-ecologique-en-meme-temps-queconomique-52224",
+      "22/07/2025"
+     ]
+    },
+    "immigration": {
+     "texte": "Durcir le regroupement familial en allongeant la durée de résidence exigée, sans durée chiffrée",
+     "source": [
+      "La Gazette France (AFP)",
+      "https://www.lagazettefrance.fr/article/attal-veut-une-immigration-plus-faible-et-axee-sur-le-travail",
       "26/05/2026"
      ]
     },
     "ecole": {
      "texte": "Enseignants : +200 € net par mois, jusqu'à +500 € net en milieu de carrière",
      "source": [
-      "LCP",
+      "LCP (entretien au Monde du 25/08/2026)",
       "https://lcp.fr/actualites/presidentielle-retour-du-certificat-d-etudes-revalorisation-des-salaires-ce-que-propose",
       "25/08/2026"
      ]
     }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "attal"
  },
  "Édouard Philippe": {
   "candidature": "Candidat · sept. 2024",
@@ -1554,15 +1184,15 @@ window.APDA.FICHES = {
    "reference": "« Volume 1 », 18/11/2026, 142 propositions",
    "mesures": {
     "retraites": {
-     "texte": "Départ à 65 ans, 45 ans de cotisation, part de capitalisation",
+     "texte": "Âge légal porté à 65 ans en moins de dix ans, 45 ans de cotisation, fonds de capitalisation obligatoire",
      "source": [
       "Public Sénat",
-      "https://www.publicsenat.fr/actualites/politique/capitalisation-suppression-de-250-000-postes-de-fonctionnaires-autonomie-des-ecoles-fin-des-35-heures-aides-pour-les-familles-edouard-philippe-presente-son-projet-massif-et",
-      "18/11/2026"
+      "https://www.publicsenat.fr/actualites/politique/reculer-ou-avancer-lage-legal-avec-ou-sans-capitalisation-ce-que-proposent-les-principaux-candidats-a-lelection-presidentielle-sur-les-retraites",
+      "30/09/2026"
      ]
     },
     "depenses": {
-     "texte": "Suppression de 250 000 postes de fonctionnaires sur le quinquennat",
+     "texte": "Supprimer 250 000 postes de fonctionnaires sur le quinquennat, par non-remplacement en fonctions de bureau",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/politique/capitalisation-suppression-de-250-000-postes-de-fonctionnaires-autonomie-des-ecoles-fin-des-35-heures-aides-pour-les-familles-edouard-philippe-presente-son-projet-massif-et",
@@ -1570,7 +1200,7 @@ window.APDA.FICHES = {
      ]
     },
     "energie": {
-     "texte": "14 nouveaux réacteurs nucléaires (les 6 annoncés + 8)",
+     "texte": "Relancer le nucléaire avec 8 réacteurs de plus que les 6 déjà annoncés, soit 14 au total",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/politique/capitalisation-suppression-de-250-000-postes-de-fonctionnaires-autonomie-des-ecoles-fin-des-35-heures-aides-pour-les-familles-edouard-philippe-presente-son-projet-massif-et",
@@ -1578,7 +1208,7 @@ window.APDA.FICHES = {
      ]
     },
     "immigration": {
-     "texte": "Diviser par deux les titres de séjour délivrés, avec des quotas",
+     "texte": "Diviser par deux les titres de séjour délivrés, avec des quotas et un moratoire sur le regroupement familial",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/politique/capitalisation-suppression-de-250-000-postes-de-fonctionnaires-autonomie-des-ecoles-fin-des-35-heures-aides-pour-les-familles-edouard-philippe-presente-son-projet-massif-et",
@@ -1586,7 +1216,7 @@ window.APDA.FICHES = {
      ]
     },
     "ecole": {
-     "texte": "+20 % de salaire pour les enseignants sur le quinquennat",
+     "texte": "Augmenter de 20 % le salaire des enseignants sur le quinquennat et renforcer l'autonomie des établissements",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/politique/capitalisation-suppression-de-250-000-postes-de-fonctionnaires-autonomie-des-ecoles-fin-des-35-heures-aides-pour-les-familles-edouard-philippe-presente-son-projet-massif-et",
@@ -1595,44 +1225,7 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [
-   {
-    "dossier": "Gestion de l'épidémie de Covid-19",
-    "cadre": "Commission d'instruction de la Cour de justice de la République",
-    "nature": "penal",
-    "stade": "non_lieu",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "oct. 2022",
-      "texte": "Placé sous le statut de témoin assisté (mise en danger de la vie d'autrui, abstention de combattre un sinistre)"
-     },
-     {
-      "date": "mai 2025",
-      "texte": "Non-lieu requis par le procureur général"
-     },
-     {
-      "date": "7 juil. 2025",
-      "texte": "Non-lieu prononcé"
-     }
-    ],
-    "sources": [
-     [
-      "Club des juristes",
-      "https://www.leclubdesjuristes.com/en-bref/gestion-du-covid-19-la-cjr-prononce-un-non-lieu-a-lencontre-de-edouard-philippe-agnes-buzyn-et-olivier-veran-11443/",
-      "07/07/2025"
-     ],
-     [
-      "La Libre Belgique (AFP)",
-      "https://www.lalibre.be/international/europe/2022/10/22/france-edouard-philippe-sous-statut-de-temoin-assiste-pour-sa-gestion-de-la-crise-covid-XODNMFIN7VCMNAX5ETZR3A4TBY/",
-      "22/10/2022"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "philippe"
  },
  "Aurore Bergé": {
   "candidature": "Pas déclarée",
@@ -1707,57 +1300,7 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [
-   {
-    "dossier": "Témoignage devant la commission d'enquête sur les crèches",
-    "cadre": "Commission d'instruction de la Cour de justice de la République (faux témoignage)",
-    "nature": "penal",
-    "stade": "non_lieu",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "9 oct. 2024",
-      "texte": "Le Bureau de l'Assemblée nationale saisit la justice"
-     },
-     {
-      "date": "28 janv. 2025",
-      "texte": "Ouverture d'une information judiciaire pour faux témoignage"
-     },
-     {
-      "date": "2025",
-      "texte": "Entendue à deux reprises, placée sous le statut de témoin assistée, jamais mise en examen"
-     },
-     {
-      "date": "mai 2026",
-      "texte": "Non-lieu requis par le parquet général près la Cour de cassation"
-     },
-     {
-      "date": "2 juil. 2026",
-      "texte": "Non-lieu prononcé par la CJR"
-     }
-    ],
-    "sources": [
-     [
-      "LCP",
-      "https://lcp.fr/actualites/creches-une-information-judiciaire-ouverte-contre-aurore-berge-pour-faux-temoignage",
-      "31/01/2025"
-     ],
-     [
-      "Europe 1 (AFP)",
-      "https://www.europe1.fr/node/964860",
-      "02/07/2026"
-     ],
-     [
-      "La Gazette France (AFP)",
-      "https://www.lagazettefrance.fr/article/soupcons-de-faux-temoignage-sur-les-creches-non-lieu-en-faveur-d-aurore-berge",
-      "02/07/2026"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "berge"
  },
  "Dominique de Villepin": {
   "candidature": "Pas encore déclaré",
@@ -1826,7 +1369,7 @@ window.APDA.FICHES = {
    "reference": "Textes de programme de La France humaniste, dont le volet économique du 28/08/2026 ; candidature non déclarée",
    "mesures": {
     "retraites": {
-     "texte": "Retraite par points, chacun choisissant librement son âge de départ",
+     "texte": "Retraite par points, âge de départ librement choisi par chacun (aucun âge ni durée chiffrés)",
      "source": [
       "La Gazette France (AFP)",
       "https://www.lagazettefrance.fr/article/villepin-veut-inscrire-le-principe-de-la-negociation-sociale-dans-la-constitution",
@@ -1834,25 +1377,21 @@ window.APDA.FICHES = {
      ]
     },
     "depenses": {
-     "texte": "Supprimer toutes les niches fiscales et sociales ; ne garder que 9 grands impôts",
+     "texte": "Ramener le déficit public à 3 % du PIB en fin de quinquennat par une forte baisse des dépenses, non détaillées",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/presidentielle-2027-dominique-villepin-veut-une-nouvelle-abolition-des-privileges-et-un",
       "28/08/2026"
      ]
-    },
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "villepin"
  },
  "Teddy Riner": {
   "candidature": "Candidat · nov. 2026",
   "identite": {
-   "parti": "Sans parti (candidat déclaré le 9 novembre 2026, « ni de droite ni de gauche », slogan « La France qu'on veut »)"
+   "sources": []
   },
   "mandats": [
    {
@@ -1879,101 +1418,22 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Pistes données au Parisien le 09/11/2026 ; programme annoncé pour plus tard",
    "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    "retraites": {
+     "texte": "Réformer en gardant la répartition, sans exclure une part de capitalisation ; ni âge ni durée précisés",
+     "source": [
+      "LCP",
+      "https://lcp.fr/actualites/retraites-salaires-securite-que-propose-teddy-riner-pour-la-presidentielle-444935",
+      "10/11/2026"
+     ]
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Redressement fiscal : voitures de luxe de sa société de location",
-    "cadre": "Contentieux fiscal devant la juridiction administrative (non pénal)",
-    "nature": "fiscal",
-    "stade": "decision_juridictionnelle",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "2019",
-      "texte": "Redressement au titre de 2016-2017 : usage personnel de véhicules (dont une Ferrari et une Rolls-Royce) appartenant à sa société, requalifié en avantages ; majoration de 40 %"
-     },
-     {
-      "date": "mars 2025",
-      "texte": "Le tribunal administratif de Cergy-Pontoise rejette sa contestation"
-     },
-     {
-      "date": "15 oct. 2026",
-      "texte": "La cour administrative d'appel de Versailles rejette son appel, maintient la majoration de 40 % et retient une intention délibérée"
-     },
-     {
-      "date": "25 nov. 2026",
-      "texte": "Pourvoi devant le Conseil d'État possible (deux mois après notification), aucun signalé"
-     }
-    ],
-    "sources": [
-     [
-      "Flashscore (AFP)",
-      "https://www.flashscore.fr/actualites/la-justice-conforte-le-fisc-dans-un-redressement-visant-teddy-riner/UXa8IVOc/",
-      "03/11/2026"
-     ],
-     [
-      "L'Essentiel de l'éco (d'après L'Équipe)",
-      "https://lessentieldeleco.fr/9356-teddy-riner-candidat-epingle-par-le-fisc/",
-      "09/11/2026"
-     ],
-     [
-      "24matins",
-      "https://www.24matins.fr/teddy-riner-vise-2027-pendant-quun-dossier-fiscal-refait-surface-1423928",
-      "09/11/2026"
-     ],
-     [
-      "Euronews",
-      "https://fr.euronews.com/2026/11/12/presidentielle-2027-teddy-riner-rattrape-par-le-fisc-un-premier-combat-sur-le-terrain-poli",
-      "12/11/2026"
-     ]
-    ]
-   },
-   {
-    "dossier": "Enquête sur sa rémunération au Levallois Sporting Club",
-    "cadre": "Enquête préliminaire (brigade de répression de la délinquance économique)",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "oct. 2015",
-      "texte": "Entendu comme suspect libre au sujet de sa rémunération par le club, après un rapport de la chambre régionale des comptes"
-     },
-     {
-      "date": "2019",
-      "texte": "Classement sans suite"
-     }
-    ],
-    "sources": [
-     [
-      "RCI",
-      "https://rci.fm/guadeloupe/infos/Justice/Levallois-Sporting-Club-Teddy-Riner-entendu-par-la-police",
-      "06/10/2015"
-     ],
-     [
-      "L'Essentiel de l'éco (d'après L'Équipe)",
-      "https://lessentieldeleco.fr/9356-teddy-riner-candidat-epingle-par-le-fisc/",
-      "09/11/2026"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": null
+  "slug": "riner"
  },
  "Natacha Polony": {
   "candidature": "Candidate · oct. 2026",
   "identite": {
-   "parti": "Mouvement « Nous sommes la France » (lancé fin août-début septembre 2026) ; candidate déclarée le 14 octobre 2026"
+   "sources": []
   },
   "mandats": [
    {
@@ -2008,63 +1468,22 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Annonce de candidature sur France Inter, 14/10/2026",
    "mesures": {
-    "retraites": null,
     "depenses": {
-     "texte": "Priorité à la production française dans la commande publique",
+     "texte": "Priorité à la production française dans la commande publique (achats de l'État et des collectivités)",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/natacha-polony-annonce-sa-candidature-a-l-election-presidentielle-443808",
       "14/10/2026"
      ]
-    },
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Propos sur le génocide des Tutsi au Rwanda (France Inter, 18 mars 2018)",
-    "cadre": "Tribunal correctionnel de Paris, poursuites pour « contestation de l'existence de crime contre l'humanité »",
-    "nature": "penal",
-    "stade": "relaxe",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "fin 2020",
-      "texte": "Renvoyée devant le tribunal par un juge d'instruction, contre l'avis du parquet"
-     },
-     {
-      "date": "1er-2 mars 2022",
-      "texte": "Procès devant le tribunal correctionnel de Paris"
-     },
-     {
-      "date": "20 mai 2022",
-      "texte": "Relaxée par le tribunal judiciaire de Paris"
-     }
-    ],
-    "sources": [
-     [
-      "La DH / Belga (AFP)",
-      "https://www.dhnet.be/medias/television/2022/02/28/la-journaliste-natacha-polony-jugee-mardi-pour-contestation-du-genocide-au-rwanda-6ZSNXHIEIVAZRHUVSK26ID3BEY/",
-      "28/02/2022"
-     ],
-     [
-      "AFP (archive francegenocidetutsi.org)",
-      "https://francegenocidetutsi.org/LaJournalisteNatachaPolonyRelaxeeAFP20052022.pdf",
-      "20/05/2022"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "polony"
  },
  "Juan Branco": {
   "candidature": "Candidat · déc. 2025",
   "identite": {
-   "parti": "Les Ruches (mouvement citoyen qui porte sa candidature à la présidentielle de 2027)"
+   "sources": []
   },
   "mandats": [
    {
@@ -2092,27 +1511,27 @@ window.APDA.FICHES = {
    "reference": "« La Voie », programme intégral (845 mesures, 24 thèmes), ruches.org/le-projet, non daté",
    "mesures": {
     "retraites": {
-     "texte": "Supprimer l'abattement fiscal de 10 % sur les pensions de retraite",
+     "texte": "Supprimer l'abattement fiscal de 10 % sur les pensions ; aligner les régimes (âge et durée non précisés)",
      "source": [
       "Les Ruches, programme « La Voie »",
       "https://ruches.org/le-projet",
-      "25/11/2026"
+      "non daté (© 2026), consulté le 26/11/2026"
      ]
     },
     "depenses": {
-     "texte": "Supprimer les droits de succession (DMTG) pour 90 % des foyers fiscaux",
+     "texte": "Fusionner plus de 100 organismes administratifs et 500 opérateurs de l'État",
      "source": [
       "Les Ruches, programme « La Voie »",
       "https://ruches.org/le-projet",
-      "25/11/2026"
+      "non daté (© 2026), consulté le 26/11/2026"
      ]
     },
     "energie": {
-     "texte": "Construire 14 EPR2 et développer une filière de réacteurs à neutrons rapides",
+     "texte": "Construire 14 EPR2 et développer une filière intégrée de réacteurs RNR-Na",
      "source": [
       "Les Ruches, programme « La Voie »",
       "https://ruches.org/le-projet",
-      "25/11/2026"
+      "non daté (© 2026), consulté le 26/11/2026"
      ]
     },
     "immigration": {
@@ -2120,66 +1539,20 @@ window.APDA.FICHES = {
      "source": [
       "Les Ruches, programme « La Voie »",
       "https://ruches.org/le-projet",
-      "25/11/2026"
+      "non daté (© 2026), consulté le 26/11/2026"
      ]
     },
     "ecole": {
-     "texte": "Hausser de 30 % les budgets universitaires, financés par la suppression du CIR",
+     "texte": "Créer un examen national d'entrée en sixième et confier l'école primaire aux communes",
      "source": [
       "Les Ruches, programme « La Voie »",
       "https://ruches.org/le-projet",
-      "25/11/2026"
+      "non daté (© 2026), consulté le 26/11/2026"
      ]
     }
    }
   },
-  "justice": [
-   {
-    "dossier": "Procédure disciplinaire : diffusion en ligne de pièces de l'instruction le visant",
-    "cadre": "Conseil de discipline du barreau de Paris, puis cour d'appel de Paris (procédure ordinale, non pénale)",
-    "nature": "disciplinaire",
-    "stade": "sanction",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "8 oct. 2024",
-      "texte": "Le conseil de discipline prononce une suspension d'exercice de neuf mois ; il fait appel"
-     },
-     {
-      "date": "15 oct. 2025",
-      "texte": "Jugé en première instance disciplinaire dans une autre procédure ordinale, qu'il conteste ; décision non trouvée"
-     },
-     {
-      "date": "16 oct. 2025",
-      "texte": "La cour d'appel de Paris confirme la suspension de neuf mois"
-     },
-     {
-      "date": "sept. 2026",
-      "texte": "Il peut de nouveau exercer ; pourvoi éventuel non signalé. Aucune poursuite pénale connue à ce titre"
-     }
-    ],
-    "sources": [
-     [
-      "Seneweb (AFP)",
-      "https://www.seneweb.com/en/news/Justice/france-bad-news-for-juan-branco_n_472171.html",
-      "24/10/2025"
-     ],
-     [
-      "JusticeInfo.net (AFP)",
-      "https://www.justiceinfo.net/fr/164381-france-le-parquet-veut-que-lavocat-franco-espagnol-juan-branco-soit-juge-pour-viol.html",
-      "01/09/2026"
-     ],
-     [
-      "Le Parisien",
-      "https://www.leparisien.fr/faits-divers/pour-avoir-viole-le-secret-de-lenquete-le-concernant-lavocat-juan-branco-suspendu-pour-neuf-mois-24-10-2025-NJD463X5X5CAHOU3RSYSDTXERY.php",
-      "24/10/2025"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": null
+  "slug": "branco"
  },
  "Jean Lassalle": {
   "candidature": "Cagnotte · juil. 2026",
@@ -2250,8 +1623,7 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "lassalle"
  },
  "Delphine Batho": {
   "candidature": "Candidate · nov. 2025",
@@ -2314,9 +1686,8 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Quatre priorités publiées sur delphinebatho.fr/priorites (pages modifiées le 12/11/2026) ; candidature annoncée dans L'Obs le 25/11/2025",
    "mesures": {
-    "retraites": null,
     "depenses": {
-     "texte": "Budget pluriannuel (loi de programmation) pour la sortie des énergies fossiles",
+     "texte": "Instaurer un budget pluriannuel (loi de programmation) pour la sortie des énergies fossiles",
      "source": [
       "delphinebatho.fr, « La République terrestre »",
       "https://delphinebatho.fr/priorites/la-republique-terrestre/",
@@ -2331,17 +1702,22 @@ window.APDA.FICHES = {
       "12/11/2026"
      ]
     },
-    "immigration": null,
-    "ecole": null
+    "ecole": {
+     "texte": "Garantir à chaque enfant une éducation à la nature et à la culture, avec des classes vertes",
+     "source": [
+      "delphinebatho.fr, « La beauté pour vivre mieux »",
+      "https://delphinebatho.fr/priorites/la-beaute-pour-vivre-mieux/",
+      "12/11/2026"
+     ]
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "batho"
  },
  "Francis Lalanne": {
   "candidature": "Candidat · août 2026",
   "identite": {
-   "parti": "France Libre (mouvement citoyen qui soutient sa candidature à la présidentielle 2027)"
+   "sources": []
   },
   "mandats": [
    {
@@ -2363,100 +1739,15 @@ window.APDA.FICHES = {
   "programme": {
    "statut": "propositions éparses",
    "reference": "Candidature annoncée le 19/08/2026 ; positions relevées par Sud Radio le 20/08/2026 (sortie de l'UE et de l'OTAN, retour au franc, abrogation des lois Pleven, Gayssot et Avia), hors grille",
-   "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
-   }
+   "mesures": {}
   },
-  "justice": [
-   {
-    "dossier": "Compte de campagne des européennes 2024 (liste « France libre »)",
-    "cadre": "Contentieux électoral (CNCCFP, puis Conseil d'État, décision n° 499660) : sanction électorale, pas une condamnation pénale",
-    "nature": "electoral",
-    "stade": "ineligibilite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "10 oct. 2024",
-      "texte": "La CNCCFP constate qu'il n'a pas déposé de compte de campagne comme tête de liste aux européennes des 8-9 juin 2024"
-     },
-     {
-      "date": "17 avr. 2025",
-      "texte": "Le Conseil d'État le déclare inéligible pour dix-huit mois"
-     },
-     {
-      "date": "25 févr. 2026",
-      "texte": "La préfète du Rhône refuse d'enregistrer sa candidature aux municipales de Lyon (5e arrondissement) en raison de cette inéligibilité"
-     },
-     {
-      "date": "26 févr. 2026",
-      "texte": "Le tribunal administratif de Lyon rejette son recours"
-     },
-     {
-      "date": "oct. 2026",
-      "texte": "Fin de la période d'inéligibilité (dix-huit mois après le 17 avr. 2025)"
-     }
-    ],
-    "sources": [
-     [
-      "Tribunal administratif de Lyon, ordonnance n° 2602478",
-      "https://lyon.tribunal-administratif.fr/Media/mediatheque-ta-lyon/2602478",
-      "26/02/2026"
-     ],
-     [
-      "Sud Radio",
-      "https://www.sudradio.fr/politique/francis-lalanne-du-chanteur-engage-des-annees-1980-aux-spheres-complotistes",
-      "20/08/2026"
-     ],
-     [
-      "Tribunal administratif de Lyon",
-      "https://lyon.tribunal-administratif.fr/decisions-de-justice/dernieres-decisions/elections-municipales-a-lyon-le-tribunal-rejette-le-recours-contre-le-refus-de-la-prefete-d-enregistrer-la-liste-de-francis-lalanne",
-      "26/02/2026"
-     ]
-    ]
-   },
-   {
-    "dossier": "Altercation avec une équipe de l'émission « Quotidien » à Avignon (5 juin 2021)",
-    "cadre": "Enquête préliminaire du parquet d'Avignon, sur plainte d'un journaliste",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "juin 2021",
-      "texte": "Plainte d'un journaliste pour violences ; enquête préliminaire ouverte par le parquet d'Avignon ; Francis Lalanne conteste avoir frappé quiconque"
-     },
-     {
-      "date": "avant janv. 2025",
-      "texte": "Plainte classée sans suite"
-     }
-    ],
-    "sources": [
-     [
-      "Conseil de l'Europe, réponse de la France à l'alerte n° 107/2021",
-      "https://rm.coe.int/france-reply-fr-plusieurs-journalistes-attaques-par-le-chanteur-franci/1680a34d49",
-      "20/07/2021"
-     ],
-     [
-      "Ozap",
-      "https://www.ozap.com/actu/plus-de-3-ans-apres-son-altercation-avec-une-equipe-de-quotidien-francis-lalanne-poursuit-son-bras-de-fer-judiciaire-contre-la-production-de-lemission-de-yann-barthes/648430",
-      "23/01/2025"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": null
+  "slug": "lalanne"
  },
  "Sylvain Durif": {
   "candidature": "Candidat · août 2026",
-  "identite": {},
+  "identite": {
+   "sources": []
+  },
   "mandats": [
    {
     "periode": "actuelle",
@@ -2477,16 +1768,9 @@ window.APDA.FICHES = {
   "programme": {
    "statut": "aucune proposition connue",
    "reference": "Candidature annoncée dans une vidéo Instagram le 23/08/2026, sans mesure détaillée",
-   "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
-   }
+   "mesures": {}
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "durif"
  },
  "Bernard Cazeneuve": {
   "candidature": "Prétendant · juil. 2026",
@@ -2563,7 +1847,7 @@ window.APDA.FICHES = {
    "reference": "« Lettre aux Français » (Tenir la promesse de la France), 15/07/2026, 86 pages",
    "mesures": {
     "retraites": {
-     "texte": "Réforme par la durée de cotisation (trajectoire de 2014), pas de nouveau recul de l'âge",
+     "texte": "Durée de cotisation comme levier (reprise négociée de la trajectoire 2014), sans nouveau recul de l'âge légal",
      "source": [
       "La Convention, synthèse de la Lettre aux Français",
       "https://assets.nationbuilder.com/laconvention/pages/2513/attachments/original/1784135398/Synthese_mesuresVfinale.pdf",
@@ -2571,7 +1855,7 @@ window.APDA.FICHES = {
      ]
     },
     "depenses": {
-     "texte": "Règle d'or sociale : chaque exonération de cotisations compensée à l'euro près",
+     "texte": "Sécurité sociale : toute exonération de cotisations compensée à l'euro près et indexée sur les salaires",
      "source": [
       "La Convention, synthèse de la Lettre aux Français",
       "https://assets.nationbuilder.com/laconvention/pages/2513/attachments/original/1784135398/Synthese_mesuresVfinale.pdf",
@@ -2586,9 +1870,16 @@ window.APDA.FICHES = {
       "15/07/2026"
      ]
     },
-    "immigration": null,
+    "immigration": {
+     "texte": "Fermeté contre l'immigration irrégulière et les filières, intégration par le français et les lois communes",
+     "source": [
+      "La Convention, synthèse de la Lettre aux Français",
+      "https://assets.nationbuilder.com/laconvention/pages/2513/attachments/original/1784135398/Synthese_mesuresVfinale.pdf",
+      "15/07/2026"
+     ]
+    },
     "ecole": {
-     "texte": "Au moins 2 000 € d'aide en plus aux boursiers sur leurs deux premières années",
+     "texte": "Au moins 2 000 € d'aide en plus aux étudiants boursiers sur leurs deux premières années",
      "source": [
       "La Convention, synthèse de la Lettre aux Français",
       "https://assets.nationbuilder.com/laconvention/pages/2513/attachments/original/1784135398/Synthese_mesuresVfinale.pdf",
@@ -2597,39 +1888,13 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [
-   {
-    "dossier": "Usage du logiciel BriefCam par la police",
-    "cadre": "Signalement de députés LFI visant cinq anciens ministres de l'Intérieur, examiné par le procureur général près la Cour de cassation (procédure CJR)",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "19 nov. 2024",
-      "texte": "Signalement annoncé par des députés LFI visant B. Cazeneuve, B. Le Roux, M. Fekl, C. Castaner et G. Darmanin"
-     },
-     {
-      "date": "27 janv. 2025",
-      "texte": "Classé sans suite : les faits ne peuvent être imputés à aucun des ministres visés"
-     }
-    ],
-    "sources": [
-     [
-      "Solutions numériques (AFP)",
-      "https://www.solutions-numeriques.com/logiciel-de-reconnaissance-faciale-dans-la-police-classement-sans-suite-du-signalement-de-deputes-lfi/",
-      "11/02/2025"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "cazeneuve"
  },
  "Matthieu Pigasse": {
   "candidature": "Pas déclaré",
-  "identite": {},
+  "identite": {
+   "sources": []
+  },
   "mandats": [
    {
     "periode": "2000–2002",
@@ -2662,23 +1927,9 @@ window.APDA.FICHES = {
   "programme": {
    "statut": "propositions éparses",
    "reference": "Entretien AFP du 11/06/2026 et dépêche AFP du 24/09/2026",
-   "mesures": {
-    "retraites": null,
-    "depenses": {
-     "texte": "Annulation partielle de la dette publique",
-     "source": [
-      "La Gazette France (AFP)",
-      "https://www.lagazettefrance.fr/article/vacances-luxueuses-primaire-les-ambitions-presidentielles-de-pigasse-contrariees",
-      "24/09/2026"
-     ]
-    },
-    "energie": null,
-    "immigration": null,
-    "ecole": null
-   }
+   "mesures": {}
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "pigasse"
  },
  "Thierry Breton": {
   "candidature": "Pas déclaré",
@@ -2741,22 +1992,17 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Tribunes et interventions sur les finances publiques (2026) ; pas de candidature déclarée",
    "mesures": {
-    "retraites": null,
     "depenses": {
-     "texte": "Règle d'or constitutionnelle : déficit public limité à 1 % du PIB d'ici 2032",
+     "texte": "Inscrire dans la Constitution un plafond de déficit public de 1 % du PIB (visé pour 2032), avec réduction progressive dès 2027",
      "source": [
-      "Club des juristes",
+      "Club des juristes (tribune au Monde)",
       "https://www.leclubdesjuristes.com/en-bref/thierry-breton-propose-dinscrire-un-plafond-de-deficit-public-a-1-dans-la-constitution-15110/",
       "26/03/2026"
      ]
-    },
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "breton"
  },
  "Christine Lagarde": {
   "candidature": "Pas déclarée",
@@ -2830,68 +2076,7 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [
-   {
-    "dossier": "Arbitrage Tapie / Crédit lyonnais (gestion comme ministre de l'Économie)",
-    "cadre": "Cour de justice de la République (commission d'instruction, puis formation de jugement)",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "4 août 2011",
-      "texte": "La commission des requêtes de la CJR rend un avis favorable à l'ouverture d'une enquête"
-     },
-     {
-      "date": "mai 2013",
-      "texte": "Placée sous le statut de témoin assisté"
-     },
-     {
-      "date": "27 août 2014",
-      "texte": "Mise en examen pour négligence d'une personne dépositaire de l'autorité publique"
-     },
-     {
-      "date": "19 déc. 2016",
-      "texte": "Reconnue coupable de négligence, dispensée de peine ; la condamnation n'est pas inscrite au casier judiciaire. Décision définitive"
-     }
-    ],
-    "sources": [
-     [
-      "Le Desk",
-      "https://ledesk.ma/?p=40986",
-      "19/12/2016"
-     ],
-     [
-      "Le Temps",
-      "https://www.letemps.ch/economie/christine-lagarde-bien-commis-une-negligence-laffaire-tapie-dispensee-peine",
-      "19/12/2016"
-     ],
-     [
-      "Politis",
-      "https://www.politis.fr/articles/2016/12/proces-lagarde-la-culpabilite-version-business-class-36034/",
-      "19/12/2016"
-     ],
-     [
-      "MoneyVox (AFP)",
-      "https://www.moneyvox.fr/actu/46789/affaire-tapie-credit-lyonnais-lagarde-mise-en-examen-pour-negligence-exclut-de-quitter-le-fmi",
-      "27/08/2014"
-     ],
-     [
-      "MoneyVox (AFP)",
-      "https://www.moneyvox.fr/actu/24984/affaire-tapie-la-cjr-decide-ouvrir-une-enquete-sur-christine-lagarde",
-      "04/08/2011"
-     ],
-     [
-      "Légifrance (arrêt CJR du 19/12/2016)",
-      "https://www.legifrance.gouv.fr/juri/id/JURITEXT000033943496",
-      "19/12/2016"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": null
+  "slug": "lagarde"
  },
  "Michel-Édouard Leclerc": {
   "candidature": "Pas déclaré",
@@ -2941,8 +2126,7 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "leclerc"
  },
  "Bruno Retailleau": {
   "candidature": "Candidat · févr. 2026",
@@ -3027,7 +2211,7 @@ window.APDA.FICHES = {
    "reference": "Plan budgétaire du 12/10/2026, réforme des retraites du 22/09/2026, projet école (août-nov. 2026), réforme constitutionnelle et référendum",
    "mesures": {
     "retraites": {
-     "texte": "Âge minimal 63 ans (décote 7 %/an), taux plein à 65 ans, part de capitalisation",
+     "texte": "Âge minimal légal 63 ans (décote 7 %/an), âge du taux plein 65 ans, part de capitalisation pour les jeunes",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/retraites-bruno-retailleau-veut-un-age-minimal-de-depart-a-63-ans-et-un-taux-plein-a-65",
@@ -3035,7 +2219,7 @@ window.APDA.FICHES = {
      ]
     },
     "depenses": {
-     "texte": "197 Md€ d'économies en 5 ans, dont non-remplacement de 400 000 agents partant",
+     "texte": "197 Md€ d’économies sur 5 ans (dont 56 Md€ rendus en baisses d’impôts), dont 400 000 départs d’agents publics non remplacés",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/economie/presidentielle-2027-bruno-retailleau-sengage-sur-un-plan-deconomies-de-pres-de-200-milliards-deuros-sil-est-elu",
@@ -3059,7 +2243,7 @@ window.APDA.FICHES = {
      ]
     },
     "ecole": {
-     "texte": "Examen d'entrée en sixième et groupes de niveau au collège",
+     "texte": "Examen d'entrée en sixième et groupes de niveau au collège (de la 6e à la 3e)",
      "source": [
       "LCP",
       "https://lcp.fr/actualites/presidentielle-bruno-retailleau-veut-un-examen-pour-entrer-en-sixieme-et-des-groupes-de",
@@ -3068,13 +2252,12 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "retailleau"
  },
  "David Lisnard": {
   "candidature": "Candidat · mars 2026",
   "identite": {
-   "parti": "Nouvelle Énergie (fondateur et président) ; a quitté LR en mars 2026"
+   "sources": []
   },
   "mandats": [
    {
@@ -3121,9 +2304,16 @@ window.APDA.FICHES = {
    "statut": "programme publié",
    "reference": "Programme de Nouvelle Énergie en ligne ; campagne lancée à Saint-Raphaël le 03/07/2026",
    "mesures": {
-    "retraites": null,
+    "retraites": {
+     "texte": "Âge légal à 65 ans et 43,5 ans de cotisation ; 3 points de cotisation sur 27-28 en capitalisation",
+     "source": [
+      "Nouvelle Énergie (Grand Oral BFMTV–Le Figaro)",
+      "https://www.unenouvelleenergie.fr/david-lisnard-sur-bfmtv-le-figaro-je-veux-faire-le-menage-au-sommet-de-letat/",
+      "23/11/2026"
+     ]
+    },
     "depenses": {
-     "texte": "80 Md€ d'économies publiques dès la première année du mandat",
+     "texte": "80 Md€ d'économies publiques la 1re année, au moins 200 Md€ par an en fin de quinquennat",
      "source": [
       "L'Essentiel de l'Éco",
       "https://lessentieldeleco.fr/9412-david-lisnard-un-programme-de-rupture-pour-la-droite/",
@@ -3147,7 +2337,7 @@ window.APDA.FICHES = {
      ]
     },
     "ecole": {
-     "texte": "Recruter les nouveaux enseignants comme contractuels plutôt que fonctionnaires",
+     "texte": "Recruter les nouveaux enseignants comme contractuels, embauchés par chaque établissement",
      "source": [
       "Economie Matin",
       "https://www.economiematin.fr/?p=238519",
@@ -3156,8 +2346,7 @@ window.APDA.FICHES = {
     }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "lisnard"
  },
  "Nicolas Dupont-Aignan": {
   "candidature": "Candidat · mars 2025",
@@ -3217,47 +2406,33 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Le site de Debout la France indique que le programme 2027 est en cours d'actualisation (consulté le 25/11/2026)",
    "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    "energie": {
+     "texte": "Maintenir au moins 70 % de nucléaire dans l'électricité ; redéployer 4 Md€ du solaire et de l'éolien",
+     "source": [
+      "Debout la France, projet « Environnement et énergie »",
+      "https://www.debout-la-france.fr/projet/environnement-energie/",
+      "29/10/2025"
+     ]
+    },
+    "immigration": {
+     "texte": "10 000 agents de contrôle en plus ; naturalisation après 10 ans de résidence minimum",
+     "source": [
+      "Debout la France, projet « Immigration et assimilation »",
+      "https://www.debout-la-france.fr/projet/immigration-et-assimilation/",
+      "03/03/2026"
+     ]
+    },
+    "ecole": {
+     "texte": "Primaire : +30 % d'heures de français et de maths ; salaires nets des professeurs +15 % en 4 ans",
+     "source": [
+      "Debout la France, projet « Instruction publique »",
+      "https://www.debout-la-france.fr/projet/instruction-publique/",
+      "12/10/2026"
+     ]
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Tweet de janvier 2017 évoquant une « invasion migratoire »",
-    "cadre": "Poursuites pour provocation à la haine ou à la discrimination, 17e chambre du tribunal correctionnel de Paris, à la suite du signalement d'une association",
-    "nature": "penal",
-    "stade": "relaxe",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "avril 2018",
-      "texte": "Procès ; le parquet requiert 5 000 euros d'amende avec sursis"
-     },
-     {
-      "date": "6 juin 2018",
-      "texte": "Relaxe sur le fond par le tribunal correctionnel de Paris ; aucun appel mentionné dans les sources"
-     }
-    ],
-    "sources": [
-     [
-      "Public Sénat",
-      "https://www.publicsenat.fr/actualites/politique/dupont-aignan-relaxe-pour-ses-propos-sur-l-invasion-migratoire-en-france-86680",
-      "06/06/2018"
-     ],
-     [
-      "Public Sénat",
-      "https://www.publicsenat.fr/actualites/politique/invasion-migratoire-amende-avec-sursis-requise-contre-dupont-aignan-84375",
-      "04/2018"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "dupont-aignan"
  },
  "François Asselineau": {
   "candidature": "Candidat · mars 2026",
@@ -3312,16 +2487,9 @@ window.APDA.FICHES = {
   "programme": {
    "statut": "programme publié",
    "reference": "Programme en ligne de l'UPR (upr.fr/notre-programme), non daté ; version 2027 non confirmée",
-   "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
-   }
+   "mesures": {}
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "asselineau"
  },
  "Xavier Bertrand": {
   "candidature": "Prétendant · août 2026",
@@ -3396,8 +2564,7 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "bertrand"
  },
  "Laurent Wauquiez": {
   "candidature": "Pas déclaré",
@@ -3469,54 +2636,17 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Retiré de la course à la présidentielle après l'investiture de B. Retailleau par LR ; plaide pour une primaire large de la droite",
    "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
     "immigration": {
-     "texte": "Enfermer les étrangers sous OQTF à Saint-Pierre-et-Miquelon",
+     "texte": "Avril 2025 : placer les étrangers dangereux sous OQTF dans un centre de rétention à Saint-Pierre-et-Miquelon",
      "source": [
       "LCP",
-      "https://lcp.fr/index%2ephp/motcle/laurent-wauquiez-265",
+      "https://lcp.fr/actualites/enfermons-les-oqtf-a-saint-pierre-et-miquelon-la-proposition-de-wauquiez-en-campagne",
       "09/04/2025"
      ]
-    },
-    "ecole": null
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Modification d'une délibération régionale (amendement sur le bio dans les cantines des lycées)",
-    "cadre": "Enquête préliminaire du parquet de Lyon (faux en écriture publique)",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "non_etablie",
-    "etapes": [
-     {
-      "date": "mars 2018",
-      "texte": "Ouverture d'une enquête après un signalement d'élus d'opposition sur la réécriture d'un amendement voté en 2017"
-     },
-     {
-      "date": "2 oct. 2020",
-      "texte": "Classement sans suite annoncé par le procureur de Lyon, l'enquête ayant conclu à l'absence d'infraction"
-     }
-    ],
-    "sources": [
-     [
-      "LyonMag",
-      "https://www.lyonmag.com/article/110586/auvergne-rhone-alpes-l-enquete-pour-faux-en-ecriture-publique-classee-sans-suite",
-      "02/10/2020"
-     ],
-     [
-      "Lyon Capitale",
-      "https://www.lyoncapitale.fr/?p=159997",
-      "date non relevée"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "wauquiez"
  },
  "François Baroin": {
   "candidature": "Pas déclaré",
@@ -3611,8 +2741,7 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "baroin"
  },
  "Gérald Darmanin": {
   "candidature": "Pas candidat · août 2026",
@@ -3696,270 +2825,17 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Non candidat, soutient Édouard Philippe (17 août 2026) ; entretien au JDD du 23-24 mai 2026",
    "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
     "immigration": {
-     "texte": "Moratoire de trois ans sur l'immigration légale (révision constitutionnelle nécessaire)",
+     "texte": "Mai 2026 : moratoire de trois ans sur l’immigration légale ; quotas limitatifs via une révision de la Constitution",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/politique/moratoire-quotas-oqtf-pourquoi-le-plan-de-gerald-darmanin-pour-tarir-limmigration-se-heurte-a-la-constitution-et-au-droit-europeen",
-      "05/2026"
+      "26/05/2026"
      ]
-    },
-    "ecole": null
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Plainte pour viol, harcèlement sexuel et abus de confiance (faits allégués de 2009)",
-    "cadre": "Enquêtes préliminaires du parquet de Paris, puis plainte avec constitution de partie civile et information judiciaire",
-    "nature": "penal",
-    "stade": "non_lieu",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "juin-juil. 2017",
-      "texte": "Première plainte, classée sans suite en juillet 2017"
-     },
-     {
-      "date": "janv.-févr. 2018",
-      "texte": "Enquête rouverte puis classée sans suite pour absence d'infraction"
-     },
-     {
-      "date": "août 2018",
-      "texte": "Un juge d'instruction refuse d'ouvrir une information après une plainte avec constitution de partie civile"
-     },
-     {
-      "date": "14 nov. 2019",
-      "texte": "La Cour de cassation ordonne le réexamen de l'appel de la plaignante, jugé à tort hors délai"
-     },
-     {
-      "date": "juil. 2022",
-      "texte": "Non-lieu rendu par une juge d'instruction ; il n'a jamais été mis en examen"
-     },
-     {
-      "date": "2023",
-      "texte": "Non-lieu confirmé en appel"
-     },
-     {
-      "date": "14 févr. 2024",
-      "texte": "La Cour de cassation rejette le pourvoi de la plaignante : non-lieu définitif"
-     }
-    ],
-    "sources": [
-     [
-      "Le Temps (AFP)",
-      "https://www.letemps.ch/monde/europe/accusations-de-viol-le-non-lieu-en-faveur-de-gerald-darmanin-est-valide-par-la-cour-de-cassation",
-      "14/02/2024"
-     ],
-     [
-      "La Gazette France (AFP)",
-      "https://www.lagazettefrance.fr/article/accusations-de-viol-gerald-darmanin-definitivement-mis-hors-de-cause-par-la-justice",
-      "14/02/2024"
-     ],
-     [
-      "Public Sénat (AFP)",
-      "https://www.publicsenat.fr/actualites/non-classe/plainte-pour-viol-la-justice-va-reexaminer-le-non-lieu-dont-a-beneficie-darmanin-0",
-      "14/11/2019"
-     ],
-     [
-      "Europe 1 (AFP)",
-      "https://www.europe1.fr/node/81380",
-      "07/2022"
-     ],
-     [
-      "La Tribune (Reuters)",
-      "https://www.latribune.fr/depeches/reuters/KCN34T0YC/accusation-de-viol-contre-darmanin-le-non-lieu-confirme-en-cassation.html",
-      "14/02/2024"
-     ]
-    ]
-   },
-   {
-    "dossier": "Plainte pour abus de faiblesse d'une habitante de Tourcoing",
-    "cadre": "Enquête préliminaire du parquet de Paris",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "13 févr. 2018",
-      "texte": "Ouverture d'une enquête préliminaire après une plainte ; il conteste les faits et dépose plainte pour dénonciation calomnieuse"
-     },
-     {
-      "date": "mai 2018",
-      "texte": "Classement sans suite par le parquet de Paris, l'infraction n'étant pas caractérisée"
-     }
-    ],
-    "sources": [
-     [
-      "Public Sénat (AFP)",
-      "https://www.publicsenat.fr/actualites/politique/l-enquete-pour-abus-de-faiblesse-visant-le-ministre-gerald-darmanin-classee-sans",
-      "05/2018"
-     ],
-     [
-      "Le Temps (AFP)",
-      "https://www.letemps.ch/monde/fin-investigations-contre-gerald-darmanin-accuse-viol",
-      "date non relevée"
-     ],
-     [
-      "Public Sénat (AFP)",
-      "https://www.publicsenat.fr/actualites/non-classe/darmanin-denonce-une-nouvelle-calomnie-apres-une-deuxieme-plainte-82801",
-      "15/02/2018"
-     ]
-    ]
-   },
-   {
-    "dossier": "Lettre de dénonciation (abus de faiblesse, abus de pouvoir) reçue en 2017",
-    "cadre": "Enquête préliminaire du parquet de Paris",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "printemps 2017",
-      "texte": "Ouverture d'une enquête après une lettre de dénonciation portant sur des faits anciens"
-     },
-     {
-      "date": "juil. 2017",
-      "texte": "Classement sans suite pour absence d'infraction, rendu public par l'intéressé en janv. 2018"
-     }
-    ],
-    "sources": [
-     [
-      "Public Sénat (AFP)",
-      "https://www.publicsenat.fr/actualites/politique/darmanin-indique-avoir-fait-l-objet-d-une-enquete-pour-abus-de-faiblesse-classee",
-      "15/01/2018"
-     ]
-    ]
-   },
-   {
-    "dossier": "Plainte en diffamation d'un footballeur (propos sur de supposés liens avec les Frères musulmans)",
-    "cadre": "Commission des requêtes de la Cour de justice de la République",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "16 janv. 2024",
-      "texte": "Plainte reçue par la CJR"
-     },
-     {
-      "date": "13 févr. 2024",
-      "texte": "Classée sans suite, les propos n'imputant aucun fait portant atteinte à l'honneur ; décision sans recours (annoncée le 15 févr.)"
-     }
-    ],
-    "sources": [
-     [
-      "Europe 1 (AFP)",
-      "https://www.europe1.fr/node/7208",
-      "15/02/2024"
-     ],
-     [
-      "Foot01",
-      "https://www.foot01.com/info/la-plainte-de-benzema-classee-darmanin-gagne-par-k-o-433827",
-      "15/02/2024"
-     ]
-    ]
-   },
-   {
-    "dossier": "Signalement de députés LFI sur l'usage par la police du logiciel BriefCam (cinq anciens ministres de l'Intérieur visés)",
-    "cadre": "Procureur général près la Cour de cassation (ministère public près la CJR)",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "nov. 2024",
-      "texte": "Signalement visant notamment les ministres de l'Intérieur successifs depuis 2015"
-     },
-     {
-      "date": "27 janv. 2025",
-      "texte": "Classement sans suite, les faits ne pouvant être imputés à aucun des ministres visés"
-     }
-    ],
-    "sources": [
-     [
-      "Solutions numériques (AFP)",
-      "https://www.solutions-numeriques.com/logiciel-de-reconnaissance-faciale-dans-la-police-classement-sans-suite-du-signalement-de-deputes-lfi/",
-      "date non relevée (début 2025)"
-     ]
-    ]
-   },
-   {
-    "dossier": "Plainte d'un collectif d'avocats après sa visite à Nicolas Sarkozy en détention",
-    "cadre": "Commission des requêtes de la Cour de justice de la République",
-    "nature": "penal",
-    "stade": "plainte_irrecevable",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "31 oct. 2025",
-      "texte": "Plainte de 29 avocats devant la CJR"
-     },
-     {
-      "date": "4 déc. 2025",
-      "texte": "Irrecevable pour 28 plaignants (vice de forme), classée sans suite pour le dernier (absence de préjudice personnel) ; décision sans recours"
-     }
-    ],
-    "sources": [
-     [
-      "Club des juristes",
-      "https://www.leclubdesjuristes.com/en-bref/gerald-darmanin-la-plainte-visant-le-ministre-de-la-justice-pour-son-soutien-implicite-a-nicolas-sarkozy-classee-sans-suite-13255/",
-      "05/12/2025"
-     ],
-     [
-      "Brut (AFP)",
-      "https://www.brut.media/fr/articles/classement-sans-suite-dune-plainte-contre-darmanin-pour-son-soutien-implicite-a-sarkozy",
-      "04/12/2025"
-     ]
-    ]
-   },
-   {
-    "dossier": "Plainte de la mère d'une victime présumée dans une affaire criminelle (mise en danger délibérée de la vie d'autrui, non-assistance à personne en danger)",
-    "cadre": "Commission des requêtes de la Cour de justice de la République",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "29 juin 2026",
-      "texte": "Plainte adressée à la CJR contre le garde des Sceaux"
-     },
-     {
-      "date": "14 sept. 2026",
-      "texte": "Classée sans suite, aucune obligation légale de cette nature ne s'appliquant au ministre selon la commission"
-     }
-    ],
-    "sources": [
-     [
-      "France 3 Régions",
-      "https://france3-regions.franceinfo.fr/occitanie/haute-garonne/toulouse/affaire-lyhanna-une-decision-lapidaire-denonce-l-avocat-de-la-mere-de-rosa-apres-le-classement-de-sa-plainte-contre-darmanin-3417062.html",
-      "14/09/2026"
-     ],
-     [
-      "Actu-Juridique",
-      "https://www.actu-juridique.fr/penal/plainte-devant-la-cour-de-justice-gerald-darmanin-peut-il-continuer-de-gerer-laffaire-lyhanna/",
-      "30/06/2026"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "darmanin"
  },
  "Jean Castex": {
   "candidature": "Pas candidat · juil. 2026",
@@ -4033,47 +2909,14 @@ window.APDA.FICHES = {
     "ecole": null
    }
   },
-  "justice": [
-   {
-    "dossier": "Plainte d'une association de victimes du Covid-19 visant sa gestion de l'épidémie",
-    "cadre": "Commission des requêtes de la Cour de justice de la République",
-    "nature": "penal",
-    "stade": "plainte_irrecevable",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "17 sept. 2020",
-      "texte": "Plainte déposée devant la CJR alors qu'il était Premier ministre"
-     },
-     {
-      "date": "nov. 2020",
-      "texte": "Plainte déclarée irrecevable par la commission des requêtes"
-     }
-    ],
-    "sources": [
-     [
-      "Ma Commune (AFP)",
-      "https://www.macommune.info/covid-19-jean-castex-vise-par-une-plainte-devant-la-cjr",
-      "18/09/2020"
-     ],
-     [
-      "Le Quotidien du pharmacien",
-      "https://www.lequotidiendupharmacien.fr/exercice-pro/justice/crise-sanitaire-des-milliers-de-plaintes-affluent-contre-des-ministres",
-      "09/2021"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "castex"
  },
  "Marine Le Pen": {
   "candidature": "Candidate · juil. 2026",
   "identite": {
    "naissance": "5 août 1968, Neuilly-sur-Seine (Hauts-de-Seine)",
    "formation": "Maîtrise de droit (1990) et DEA de droit pénal (1991), Paris II Panthéon-Assas ; CAPA (1992), avocate jusqu'en 1998",
-   "parti": "Rassemblement national (présidente du groupe à l'Assemblée)",
+   "parti": "Rassemblement national ; présidence du groupe RN à l’Assemblée passée à Sébastien Chenu fin octobre 2026",
    "sources": [
     [
      "Universalis",
@@ -4090,6 +2933,11 @@ window.APDA.FICHES = {
     [
      "Datan (données de l'Assemblée nationale)",
      "https://datan.fr/deputes/pas-de-calais-62/depute_marine-lepen"
+    ],
+    [
+     "Qui est Sébastien Chenu, qui va succéder à Marine Le Pen à la présidence du groupe RN à l’Assemblée ? (LCP)",
+     "https://lcp.fr/actualites/qui-est-sebastien-chenu-qui-va-succeder-a-marine-le-pen-a-la-presidence-du-groupe-rn-a-l",
+     "24/10/2026"
     ]
    ]
   },
@@ -4147,7 +2995,7 @@ window.APDA.FICHES = {
    "reference": "Trajectoire budgétaire (06/10/2026) et réforme des retraites (17/11/2026) présentées ; programme complet non publié à la date de recherche",
    "mesures": {
     "retraites": {
-     "texte": "Départ de 60 à 62 ans selon l'âge d'entrée, 40 à 42 annuités, abrogation réforme 2023",
+     "texte": "Âge légal de 60 à 62 ans selon l'âge d'entrée, 40 à 42 annuités, taux plein à 67 ans ; abrogation 2023",
      "source": [
       "Public Sénat",
       "https://www.publicsenat.fr/actualites/politique/presidentielle-2027-que-contient-la-reforme-des-retraites-presentee-par-marine-le-pen",
@@ -4155,161 +3003,32 @@ window.APDA.FICHES = {
      ]
     },
     "depenses": {
-     "texte": "140 Md€ nets d'économies en 2032 par rapport à 2026",
+     "texte": "140 Md€ nets d'économies d'ici 2032 (État, collectivités, agences, sécurité sociale)",
      "source": [
       "Sud Radio (AFP)",
       "https://www.sudradio.fr/societe/presidentielle-en-quete-de-credibilite-budgetaire-le-pen-promet-un-effort-radical-de-140-milliards-net",
       "06/10/2026"
      ]
     },
-    "energie": null,
-    "immigration": {
-     "texte": "Priorité nationale pour l'accès au logement social",
+    "energie": {
+     "texte": "TVA sur l'électricité et le gaz ramenée de 20 % à 5,5 %",
      "source": [
-      "Sud Radio (AFP)",
-      "https://www.sudradio.fr/societe/le-pen-veut-mettre-la-priorite-nationale-au-centre-dun-grand-chantier-sur-le-logement",
-      "13/09/2026"
+      "Les Énergies renouvelables (ECOinfos)",
+      "https://www.les-energies-renouvelables.eu/article/actualites/energies/baisse-de-la-tva-arret-du-photovoltaique-ce-que-le-programme-energie-du-rn-changerait-pour-les-menages-2302/",
+      "19/10/2026"
      ]
     },
-    "ecole": null
+    "immigration": {
+     "texte": "Priorité d'accès au logement social pour les Français et aides au logement réservées aux nationaux",
+     "source": [
+      "LCP",
+      "https://lcp.fr/actualites/reserver-les-logements-hlm-aux-francais-la-proposition-de-marine-le-pen-provoque-une",
+      "14/09/2026"
+     ]
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Assistants parlementaires européens du FN",
-    "cadre": "Information judiciaire (Paris), tribunal correctionnel de Paris, puis cour d'appel de Paris ; pourvoi devant la Cour de cassation",
-    "nature": "penal",
-    "stade": "condamnation_appel",
-    "etat": "en_cours_confirme",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "juin 2017",
-      "texte": "Mise en examen pour abus de confiance, qualification ensuite portée à détournement de fonds publics"
-     },
-     {
-      "date": "31 mars 2025",
-      "texte": "Tribunal correctionnel de Paris : 4 ans d'emprisonnement dont 2 ferme, 100 000 € d'amende, 5 ans d'inéligibilité avec exécution provisoire"
-     },
-     {
-      "date": "7 juil. 2026",
-      "texte": "Cour d'appel de Paris : coupable de détournement et de complicité de détournement de fonds publics ; 3 ans dont 2 avec sursis, la part ferme en détention à domicile sous surveillance électronique ; 100 000 € d'amende ; 45 mois d'inéligibilité dont 30 avec sursis"
-     },
-     {
-      "date": "juil. 2026",
-      "texte": "Pourvoi en cassation formé ; le parquet général ne se pourvoit pas ; le pourvoi suspend l'exécution des peines"
-     },
-     {
-      "date": "16 déc. 2026",
-      "texte": "Audience prévue devant la Cour de cassation sur les questions prioritaires de constitutionnalité ; décision au fond annoncée au plus tard début avril 2027"
-     },
-     {
-      "date": "25 nov. 2026",
-      "texte": "Condamnation non définitive ; présumée innocente"
-     }
-    ],
-    "sources": [
-     [
-      "Cour d'appel de Paris, communiqué",
-      "https://www.cours-appel.justice.fr/sites/default/files/2026-07/20260707%20-%20CA%20Paris%20-%20CP.pdf",
-      "07/07/2026"
-     ],
-     [
-      "LCP",
-      "https://lcp.fr/index%2ephp/actualites/condamnation-de-marine-le-pen-quatre-questions-pour-comprendre-les-consequences-de-la",
-      "07/07/2026"
-     ],
-     [
-      "Club des juristes",
-      "https://www.leclubdesjuristes.com/?p=16990",
-      "15/07/2026"
-     ],
-     [
-      "Club des juristes",
-      "https://www.leclubdesjuristes.com/droit/affaire-des-assistants-parlementaires-du-fn-la-defense-de-marine-le-pen-devoile-ses-arguments-a-la-cour-de-cassation-18085/",
-      "28/10/2026"
-     ],
-     [
-      "Public Sénat",
-      "https://www.publicsenat.fr/actualites/politique/proces-rn-marine-le-pen-et-8-eurodeputes-reconnus-coupables-de-detournement-de-fonds-publics",
-      "31/03/2025"
-     ],
-     [
-      "LCP",
-      "https://lcp.fr/actualites/marine-le-pen-condamnee-dans-l-affaire-des-assistants-parlementaires-reste-eligible-pour",
-      "07/07/2026"
-     ]
-    ]
-   },
-   {
-    "dossier": "Diffamation envers une association d'aide aux migrants (propos de janvier 2022 sur Mayotte)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel de Paris, Cour de cassation",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "13 oct. 2023",
-      "texte": "Condamnée à 500 € d'amende avec sursis pour diffamation publique"
-     },
-     {
-      "date": "11 sept. 2024",
-      "texte": "Condamnation confirmée en appel"
-     },
-     {
-      "date": "16 déc. 2025",
-      "texte": "Pourvoi rejeté par la Cour de cassation : condamnation définitive"
-     }
-    ],
-    "sources": [
-     [
-      "Club des juristes",
-      "https://www.leclubdesjuristes.com/en-bref/marine-le-pen-definitivement-condamnee-pour-diffamation-envers-la-cimade-13397/",
-      "16/12/2025"
-     ],
-     [
-      "Europe 1",
-      "https://www.europe1.fr/politique/marine-le-pen-de-nouveau-condamnee-en-appel-pour-diffamation-envers-la-cimade-4266896",
-      "11/09/2024"
-     ]
-    ]
-   },
-   {
-    "dossier": "Diffusion sur Twitter de photos d'exactions de l'État islamique (décembre 2015)",
-    "cadre": "Information judiciaire (Nanterre), tribunal correctionnel de Nanterre",
-    "nature": "penal",
-    "stade": "relaxe",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "1er mars 2018",
-      "texte": "Mise en examen pour diffusion d'images violentes"
-     },
-     {
-      "date": "4 mai 2021",
-      "texte": "Relaxe prononcée par le tribunal correctionnel de Nanterre"
-     }
-    ],
-    "sources": [
-     [
-      "franceinfo",
-      "https://www.franceinfo.fr/politique/front-national/photos-de-l-ei-publiees-par-marine-le-pen/",
-      "04/05/2021"
-     ],
-     [
-      "La Libre Belgique",
-      "https://www.lalibre.be/international/2018/03/01/marine-le-pen-mise-en-examen-pour-avoir-relaye-des-photos-dexactions-de-letat-islamique-7U7WV2ZPKBGDFDORNQDKOHCBZU/",
-      "01/03/2018"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": null
+  "slug": "le-pen"
  },
  "Éric Zemmour": {
   "candidature": "Candidat · sept. 2026",
@@ -4365,381 +3084,25 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Déclarations de campagne (septembre-novembre 2026) ; pas de programme publié trouvé",
    "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
     "immigration": {
-     "texte": "Renvoi des étrangers au chômage depuis plus d'un an, même en situation régulière",
+     "texte": "Expulser les étrangers au chômage depuis plus de six mois, même en règle ; 2 millions d'immigrés en moins",
      "source": [
-      "Les Nouvelles Calédoniennes (AFP)",
-      "https://www.lnc.nc/article/presidentielle-eric-zemmour-confirme-qu-il-sera-candidat-et-durcit-encore-son-discours-sur-l-immigration",
-      "18/09/2026"
+      "La Gazette France (avec AFP)",
+      "https://www.lagazettefrance.fr/article/eric-zemmour-annonce-sa-candidature-a-la-presidentielle",
+      "11/11/2026"
      ]
     },
-    "ecole": null
+    "ecole": {
+     "texte": "Rétablir à l'école la grammaire, la dictée quotidienne et le calcul mental",
+     "source": [
+      "Institut Montaigne, « Paroles de candidats » (discours de Port-Marly)",
+      "https://www.institutmontaigne.org/expressions/paroles-de-candidats-zemmour-le-pourfendeur-de-la-modernite-qui-parlait-dia",
+      "date non lue (discours du 13/09/2026)"
+     ]
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Propos sur les musulmans dans « C à vous » (2016)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "juin 2017",
-      "texte": "Condamné en première instance (5 000 € d'amende) pour provocation à la haine religieuse"
-     },
-     {
-      "date": "mai 2018",
-      "texte": "Culpabilité confirmée en appel, amende ramenée à 3 000 €"
-     },
-     {
-      "date": "sept. 2019",
-      "texte": "Pourvoi rejeté : condamnation définitive"
-     }
-    ],
-    "sources": [
-     [
-      "Ozap (Puremédias)",
-      "https://www.ozap.com/actu/eric-zemmour-definitivement-condamne-a-3-000-euros-d-amende-pour-provocation-a-la-haine-religieuse/583655",
-      "19/09/2019"
-     ],
-     [
-      "DH (Belgique)",
-      "https://www.dhnet.be/actu/monde/eric-zemmour-un-habitue-des-controverses-retour-sur-ces-autres-affaires-dans-lesquelles-il-a-ete-juge-61941a367b50a648b2d15b6f",
-      "17/11/2021"
-     ]
-    ]
-   },
-   {
-    "dossier": "Discours à la « Convention de la droite » (28 septembre 2019)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation (deux fois)",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "25 sept. 2020",
-      "texte": "Condamné à 10 000 € d'amende pour injure publique et provocation à la haine"
-     },
-     {
-      "date": "8 sept. 2021",
-      "texte": "Relaxé par la cour d'appel de Paris ; arrêt ensuite cassé"
-     },
-     {
-      "date": "2024",
-      "texte": "Condamné par la cour d'appel de renvoi à 15 000 € d'amende"
-     },
-     {
-      "date": "sept. 2025",
-      "texte": "Pourvoi rejeté : condamnation définitive"
-     }
-    ],
-    "sources": [
-     [
-      "La Libre Belgique",
-      "https://www.lalibre.be/international/europe/2025/09/17/zemmour-definitivement-condamne-pour-racisme-les-lois-nadmettent-pas-que-la-haine-puisse-servir-de-fondement-a-notre-societe-2UQ2WKE7W5HYXJ3SKA2BHBG4YQ/",
-      "17/09/2025"
-     ],
-     [
-      "Europe 1",
-      "https://www.europe1.fr/node/7916",
-      "2024"
-     ]
-    ]
-   },
-   {
-    "dossier": "Propos sur Pétain et les juifs français (CNews, 21 octobre 2019)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation, cour d'appel de renvoi",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "4 févr. 2021",
-      "texte": "Relaxe en première instance (contestation de crime contre l'humanité)"
-     },
-     {
-      "date": "2022",
-      "texte": "Relaxe confirmée en appel"
-     },
-     {
-      "date": "5 sept. 2023",
-      "texte": "La Cour de cassation annule la relaxe et ordonne un nouveau procès"
-     },
-     {
-      "date": "2 avr. 2025",
-      "texte": "Cour d'appel de Paris : condamné à 10 000 € d'amende ; pourvoi en cassation annoncé"
-     },
-     {
-      "date": "24 nov. 2026",
-      "texte": "La Cour de cassation rejette son pourvoi : condamnation définitive à 10 000 € d'amende pour contestation de crime contre l'humanité"
-     }
-    ],
-    "sources": [
-     [
-      "Times of Israel (AFP)",
-      "https://fr.timesofisrael.com/petain-sauveur-de-juifs-francais-zemmour-condamne-a-10-000-euros-damende/",
-      "02/04/2025"
-     ],
-     [
-      "Le Monde du droit",
-      "https://www.lemondedudroit.fr/judiciaire/326-droit-penal/88774-contestation-de-l-existence-de-crime-contre-l-humanite-par-eric-zemmour.html",
-      "05/09/2023"
-     ],
-     [
-      "franceinfo",
-      "https://www.franceinfo.fr/politique/eric-zemmour/eric-zemmour-definitivement-condamne-pour-contestation-de-l-existence-de-crime-contre-l-humanite-apres-avoir-affirme-que-le-marechal-petain-avait-sauve-les-juifs-francais_8297988.html",
-      "24/11/2026"
-     ],
-     [
-      "Club des juristes",
-      "https://leclubdesjuristes.com/en-bref/condamnation-deric-zemmour-pour-contestation-de-crime-contre-lhumanite-18651",
-      "25/11/2026"
-     ]
-    ]
-   },
-   {
-    "dossier": "Propos sur les mineurs isolés étrangers (CNews, septembre 2020)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "17 janv. 2022",
-      "texte": "Condamné à 10 000 € d'amende"
-     },
-     {
-      "date": "12 sept. 2024",
-      "texte": "Condamnation confirmée en appel"
-     },
-     {
-      "date": "2 déc. 2025",
-      "texte": "Pourvoi rejeté : condamnation définitive pour complicité d'injure publique et de provocation à la haine (100 jours-amende de 100 €)"
-     }
-    ],
-    "sources": [
-     [
-      "Club des juristes",
-      "https://www.leclubdesjuristes.com/?p=13229",
-      "03/12/2025"
-     ],
-     [
-      "Club des juristes",
-      "https://www.leclubdesjuristes.com/en-bref/propos-sur-les-mineurs-isoles-eric-zemmour-condamne-en-appel-6861",
-      "12/09/2024"
-     ]
-    ]
-   },
-   {
-    "dossier": "Diffamation envers un avocat (France 2, avril 2022)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "5 déc. 2024",
-      "texte": "Condamné à 1 000 € d'amende pour diffamation (date rapportée comme celle du jugement)"
-     },
-     {
-      "date": "2 déc. 2025",
-      "texte": "Pourvoi rejeté : condamnation définitive"
-     }
-    ],
-    "sources": [
-     [
-      "Club des juristes",
-      "https://www.leclubdesjuristes.com/?p=13229",
-      "03/12/2025"
-     ]
-    ]
-   },
-   {
-    "dossier": "Diffamation publique envers l'Ined (CNews)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel, Cour de cassation",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "29 janv. 2024",
-      "texte": "Condamné pour complicité de diffamation publique envers une administration : 1 500 € d'amende avec sursis"
-     },
-     {
-      "date": "11 déc. 2024",
-      "texte": "Condamnation confirmée en appel"
-     },
-     {
-      "date": "27 janv. 2026",
-      "texte": "Pourvoi rejeté : condamnation définitive"
-     }
-    ],
-    "sources": [
-     [
-      "Ined, communiqué",
-      "https://www.ined.fr/fr/presse/condamnation-definitive-monsieur-eric-zemmour-et-monsieur-jean-christophe-thiery-bercegol-du",
-      "30/01/2026"
-     ]
-    ]
-   },
-   {
-    "dossier": "Injure à caractère raciste envers une ancienne chroniqueuse (2018)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel de Paris",
-    "nature": "penal",
-    "stade": "condamnation_definitive",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "12 janv. 2023",
-      "texte": "Condamné à 4 000 € d'amende et à des dommages et intérêts"
-     },
-     {
-      "date": "28 mars 2024",
-      "texte": "Condamnation confirmée en appel"
-     },
-     {
-      "date": "2 sept. 2025",
-      "texte": "Pourvoi rejeté : condamnation définitive (4 000 € d'amende)"
-     }
-    ],
-    "sources": [
-     [
-      "Ozap (Puremédias)",
-      "https://www.ozap.com/actu/injure-raciste-envers-hapsatou-sy-eric-zemmour-condamne-en-appel/643173",
-      "28/03/2024"
-     ],
-     [
-      "Cour de cassation (bulletin crim., sept. 2025)",
-      "https://www.courdecassation.fr/publications/bulletin-des-arrets-de-la-chambre-criminelle/numero-9-septembre-2025/injures",
-      "02/09/2025"
-     ],
-     [
-      "Le Monde du droit",
-      "https://www.lemondedudroit.fr/judiciaire/326-droit-penal/100479-insulte-a-la-france-eric-zemmour-definitivement-condamne.html",
-      ""
-     ]
-    ]
-   },
-   {
-    "dossier": "Propos sur l'affaire de Crépol",
-    "cadre": "Tribunal correctionnel de Paris",
-    "nature": "penal",
-    "stade": "condamnation_premiere_instance",
-    "etat": "non_etabli",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "mars 2025",
-      "texte": "Condamné pour injure raciale à 60 jours-amende de 150 € (9 000 €)"
-     },
-     {
-      "date": "25 nov. 2026",
-      "texte": "Appel éventuel et issue non trouvés ; présumé innocent"
-     }
-    ],
-    "sources": [
-     [
-      "Times of Israel (AFP)",
-      "https://fr.timesofisrael.com/crepol-eric-zemmour-condamne-pour-injure-raciale/",
-      "26/03/2025"
-     ]
-    ]
-   },
-   {
-    "dossier": "Injures à caractère homophobe (CNews, octobre 2019)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel de Paris",
-    "nature": "penal",
-    "stade": "relaxe",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "première instance",
-      "texte": "Condamné à 4 000 € d'amende"
-     },
-     {
-      "date": "11 sept. 2024",
-      "texte": "Relaxé par la cour d'appel de Paris, qui infirme le jugement"
-     }
-    ],
-    "sources": [
-     [
-      "Club des juristes",
-      "https://www.leclubdesjuristes.com/en-bref/propos-sur-les-mineurs-isoles-eric-zemmour-condamne-en-appel-6861",
-      "12/09/2024"
-     ]
-    ]
-   },
-   {
-    "dossier": "Propos sur la déportation des homosexuels (1940-1945)",
-    "cadre": "Tribunal correctionnel de Paris, cour d'appel de Paris",
-    "nature": "penal",
-    "stade": "relaxe",
-    "etat": "recours_a_verifier",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "2025",
-      "texte": "Relaxe en première instance (contestation de crime contre l'humanité)"
-     },
-     {
-      "date": "25 juin 2026",
-      "texte": "Relaxe confirmée par la cour d'appel de Paris"
-     }
-    ],
-    "sources": [
-     [
-      "Actu-Juridique",
-      "https://www.actu-juridique.fr/auteur/isabelle-horlans/",
-      "25/06/2026"
-     ]
-    ]
-   },
-   {
-    "dossier": "Apologie du terrorisme (propos de 2016)",
-    "cadre": "Enquête du parquet de Paris",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "janv. 2017",
-      "texte": "Enquête classée sans suite par le parquet de Paris"
-     }
-    ],
-    "sources": [
-     [
-      "Europe 1",
-      "https://www.europe1.fr/societe/zemmour-disant-respecter-les-djihadistes-lenquete-pour-apologie-du-terrorisme-classee-2952761",
-      "17/01/2017"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": null
+  "slug": "zemmour"
  },
  "Florian Philippot": {
   "candidature": "Candidat · mai 2026",
@@ -4799,15 +3162,49 @@ window.APDA.FICHES = {
    "statut": "propositions éparses",
    "reference": "Sortie de l'UE (« Frexit ») et de l'OTAN, hors grille ; aucune mesure datée trouvée sur les cinq thèmes",
    "mesures": {
-    "retraites": null,
-    "depenses": null,
-    "energie": null,
-    "immigration": null,
-    "ecole": null
+    "retraites": {
+     "texte": "Baisser l'âge de départ à la retraite si les Français le souhaitent, sans âge ni durée chiffrés",
+     "source": [
+      "Les Patriotes, « Projet pour la France », édition 2026-2027",
+      "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf",
+      "non daté, consulté le 26/11/2026"
+     ]
+    },
+    "depenses": {
+     "texte": "Supprimer les doublons de la fonction publique territoriale : 30 Md€ d'économies par an visées",
+     "source": [
+      "Les Patriotes, « Projet pour la France », édition 2026-2027",
+      "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf",
+      "non daté, consulté le 26/11/2026"
+     ]
+    },
+    "energie": {
+     "texte": "Sortir du marché européen de l'électricité pour diviser son prix par trois ; EDF en monopole public",
+     "source": [
+      "Les Patriotes, « Projet pour la France », édition 2026-2027",
+      "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf",
+      "non daté, consulté le 26/11/2026"
+     ]
+    },
+    "immigration": {
+     "texte": "Quitter la CEDH pour remettre en cause le regroupement familial ; flux migratoires très limités",
+     "source": [
+      "Les Patriotes, « Projet pour la France », édition 2026-2027",
+      "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf",
+      "non daté, consulté le 26/11/2026"
+     ]
+    },
+    "ecole": {
+     "texte": "Consacrer la moitié du temps scolaire du primaire à la maîtrise du français",
+     "source": [
+      "Les Patriotes, « Projet pour la France », édition 2026-2027",
+      "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf",
+      "non daté, consulté le 26/11/2026"
+     ]
+    }
    }
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "philippot"
  },
  "Jordan Bardella": {
   "candidature": "Plan B · avr. 2025",
@@ -4862,30 +3259,13 @@ window.APDA.FICHES = {
   "programme": {
    "statut": "propositions éparses",
    "reference": "Non candidat ; déclarations en tant que président du RN",
-   "mesures": {
-    "retraites": null,
-    "depenses": {
-     "texte": "Réduire de moitié la contribution nette de la France au budget de l'UE",
-     "source": [
-      "Europe 1 (entretien à Politico)",
-      "https://www.europe1.fr/node/954107",
-      "15/06/2026"
-     ]
-    },
-    "energie": null,
-    "immigration": null,
-    "ecole": null
-   }
+   "mesures": {}
   },
-  "justice": [],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "bardella"
  },
  "Sarah Knafo": {
   "candidature": "Pas candidate · janv. 2026",
   "identite": {
-   "naissance": "24 avril 1993, Les Pavillons-sous-Bois (Seine-Saint-Denis)",
-   "formation": "Sciences Po, ENA ; magistrate à la Cour des comptes",
-   "parti": "Reconquête",
    "sources": []
   },
   "mandats": [
@@ -4922,7 +3302,7 @@ window.APDA.FICHES = {
    "reference": "Non candidate ; déclarations (Sud Radio, 16/10/2026)",
    "mesures": {
     "retraites": {
-     "texte": "Passage progressif de la répartition à la capitalisation",
+     "texte": "Passage progressif à la capitalisation, avec pour objectif à terme le remplacement intégral de la répartition",
      "source": [
       "Sud Radio",
       "https://www.sudradio.fr/sud-radio/sarah-knafo-il-faut-supprimer-800-000-postes-dans-la-fonction-publique-administrative",
@@ -4930,7 +3310,7 @@ window.APDA.FICHES = {
      ]
     },
     "depenses": {
-     "texte": "Supprimer 800 000 postes dans la fonction publique administrative",
+     "texte": "Supprimer 800 000 postes dans la fonction publique administrative (environ 40 Md€/an ; calendrier non précisé)",
      "source": [
       "Sud Radio",
       "https://www.sudradio.fr/sud-radio/sarah-knafo-il-faut-supprimer-800-000-postes-dans-la-fonction-publique-administrative",
@@ -4944,40 +3324,10 @@ window.APDA.FICHES = {
       "https://www.sudradio.fr/sud-radio/sarah-knafo-il-faut-supprimer-800-000-postes-dans-la-fonction-publique-administrative",
       "16/10/2026"
      ]
-    },
-    "immigration": null,
-    "ecole": null
+    }
    }
   },
-  "justice": [
-   {
-    "dossier": "Plainte de l'État algérien pour diffusion de fausses nouvelles (propos sur RMC, 20 septembre 2024)",
-    "cadre": "Parquet de Paris",
-    "nature": "penal",
-    "stade": "classement_sans_suite",
-    "etat": "cloture",
-    "etat_au": "25/11/2026",
-    "mise_en_cause_personnelle": "oui",
-    "etapes": [
-     {
-      "date": "25 sept. 2024",
-      "texte": "Plainte déposée auprès du tribunal judiciaire de Paris"
-     },
-     {
-      "date": "27 sept. 2024",
-      "texte": "Classement sans suite : infraction non caractérisée (pas de trouble à la paix publique)"
-     }
-    ],
-    "sources": [
-     [
-      "TSA (citant Le Figaro)",
-      "https://www.tsa-algerie.com/plainte-de-lalgerie-contre-sarah-knafo-la-justice-francaise-a-tranche",
-      "03/10/2024"
-     ]
-    ]
-   }
-  ],
-  "justice_mention": "Aucune condamnation identifiée dans les sources consultées."
+  "slug": "knafo"
  }
 };
 })();

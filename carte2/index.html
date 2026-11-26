@@ -914,6 +914,7 @@ h3.sous-titre{font-family:var(--titre,inherit);font-size:22px;margin:44px 0 6px}
 
 /* ===== Fiche factuelle (le verso), ouverte depuis la collection =====
    Mêmes couleurs que les cartes, quel que soit le thème de la page : bord du bloc, papier, encre. */
+.fiche-site{margin:8px 0 0}.fiche-site a{font-weight:700}
 .fiche{padding:0;border:0;background:transparent;width:100%;max-width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:visible}
 .fiche::backdrop{background:rgba(21,23,26,.62)}
 .fiche-carte{background:var(--bloc,var(--c-action));border:2px solid var(--c-encre);border-radius:18px;padding:10px;color:var(--c-encre);display:flex;flex-direction:column;max-height:calc(100dvh - 24px)}
@@ -1109,7 +1110,8 @@ h3.sous-titre{font-family:var(--titre,inherit);font-size:22px;margin:44px 0 6px}
 </div>
 
 <script>window.APDA_DON = '';  /* lien de la page de dons (Ko-fi, Tipeee, Liberapay…) : vide = rien ne s’affiche */
-window.APDA_CONTACT = '';  /* lien pour signaler une erreur dans une fiche (mailto: ou formulaire) : vide = rien ne s’affiche */</script>
+window.APDA_CONTACT = '';  /* lien pour signaler une erreur dans une fiche (mailto: ou formulaire) : vide = rien ne s’affiche */
+window.APDA_FICHES = 'https://claude.ai/artifact/RjViq8fM7VWaVuYBauMJ9c';  /* site factuel « Les fiches de la présidentielle 2027 » : le verso y renvoie ; vide = pas de lien. À changer pour le nom de domaine définitif. (APDA_SITE reste l’adresse du jeu, pour les invitations en ligne.) */</script>
 <script src="donnees.js"></script>
 <script src="fiches.js"></script>  <!-- export public des fiches : après donnees.js, qui crée window.APDA -->
 <script src="cartes.js"></script>
