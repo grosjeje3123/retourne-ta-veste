@@ -506,7 +506,7 @@ def ecrire(dossier, donnees, est_interne):
     h = h.replace('/*POS2*/{}', json.dumps(positions4(not est_interne) if lots4() else positions2(not est_interne), ensure_ascii=False).replace('</', '<\\/'))
     if est_interne:
         h = h.replace('<!--BANDEAU-->', '<div class="bandeau" role="note">Version de travail privée : elle contient des données non validées, dont le volet judiciaire. Ne pas partager.</div>')
-        h = h.replace('<!--NAVQUIZ-->', '<a href="#apprendre" data-g="apprendre">Le quiz</a>').replace('<!--NAVVALIDER-->', '<a href="#valider" class="outil">À valider</a>').replace('<!--NAVJUSTICE-->', '<a href="#categories" class="outil">Justice par catégorie</a>')
+        h = h.replace('<!--NAVVALIDER-->', '<a href="#valider" class="outil">À valider</a>').replace('<!--NAVJUSTICE-->', '<a href="#categories" class="outil">Justice par catégorie</a>')
         h = h.replace('<title>Le Trombi 2027 · Les fiches de la présidentielle</title>', '<title>Le Trombi 2027 : version de travail</title>')
     else:
         assert '"a_verifier"' not in h and '"verification"' not in h.split('id="donnees">')[1], 'donnée interne dans le site public'

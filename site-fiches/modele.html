@@ -57,31 +57,6 @@ nav.vues a[aria-current=page]{background:var(--fluo);color:var(--encre);border-c
 .carte b{font-family:var(--titre);font-weight:600;font-size:18px;line-height:1.1}
 .carte small{font-family:var(--chiffre);font-size:12px;line-height:1.3;color:var(--encre-2)}
 .vide{margin:30px 0;color:var(--texte-2)}
-.qz-carte{max-width:760px;margin:18px 0 8px;border:2px solid var(--texte);border-radius:14px;padding:clamp(16px,3vw,26px);background:light-dark(#fff,#1d2024);box-shadow:4px 4px 0 var(--texte)}
-.qz-meta{margin:0;font-family:var(--chiffre);font-size:13px;color:var(--texte-2)}
-.qz-q{font-family:var(--titre);font-weight:600;font-size:clamp(20px,3vw,26px);line-height:1.22;margin:8px 0 18px;text-wrap:pretty}
-.qz-rep{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media (max-width:620px){.qz-rep{grid-template-columns:1fr}}
-.qz-rep button{min-height:54px;text-align:left;padding:10px 14px;border:1.5px solid var(--texte);border-radius:10px;background:transparent;color:var(--texte);cursor:pointer;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:16px;line-height:1.3}
-.qz-rep button:hover:not(:disabled){background:light-dark(#f4f6f1,#262a2f)}
-.qz-rep button b{font-family:var(--chiffre);font-size:13px;width:24px;height:24px;display:inline-grid;place-items:center;border:1.5px solid currentColor;border-radius:6px;flex:none}
-.qz-rep button span{flex:1}
-.qz-rep button em{flex-basis:100%;font-style:normal;font-family:var(--chiffre);font-size:12.5px;font-weight:700;padding-left:36px}
-.qz-rep button:disabled{cursor:default;color:var(--texte)}
-.qz-rep button.juste{background:light-dark(#dcf1e2,#163a22);border-color:#2e9a4e;border-width:2.5px}
-.qz-rep button.faux{background:light-dark(#fbe1de,#3e1a17);border-color:#d63a32;border-width:2.5px}
-.qz-rep button.retire{opacity:.35;text-decoration:line-through}
-.qz-suite > p{margin:12px 0 0;max-width:70ch}
-.qz-suite{margin-top:4px}
-.qz-suite:not(:empty){margin-top:16px;padding-top:4px;border-top:1px solid var(--ligne)}
-.qz-verdict{font-weight:700}
-.qz-src{font-family:var(--chiffre);font-size:12.5px;line-height:1.4;color:var(--texte-2)}
-.qz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.qz-actions button{min-height:44px;padding:0 16px;border:1.5px solid var(--texte);border-radius:8px;background:transparent;color:var(--texte);font-family:var(--chiffre);font-weight:700;font-size:14px;cursor:pointer}
-.qz-actions button.prim{background:var(--fluo);color:var(--encre);border-color:var(--encre);box-shadow:2px 2px 0 var(--encre)}
-.qz-actions button:disabled{opacity:.45;cursor:default}
-details.qz-relecture{margin:28px 0}
-details.qz-relecture summary{cursor:pointer;font-family:var(--chiffre);font-weight:700;font-size:14px;min-height:44px;display:flex;align-items:center}
 .sous-vues{display:flex;flex-wrap:wrap;gap:4px 22px;margin:14px 0 0;border-bottom:1px solid var(--ligne)}
 .sous-vues a{min-height:44px;display:inline-flex;align-items:center;text-decoration:none;font-family:var(--chiffre);font-weight:700;font-size:14px;color:var(--texte-2);border-bottom:3px solid transparent;margin-bottom:-1px}
 .sous-vues a[aria-current=page]{color:var(--texte);border-bottom-color:var(--texte)}
@@ -485,7 +460,7 @@ main .f-src{color:var(--texte-2)}
   <h1><a href="#accueil"><img class="logo" src="img/logo-trombi.webp" alt="Le Trombi 2027" width="1701" height="650"></a></h1>
   <p class="chapo">Parcours, mandats et propositions de 43 personnalités candidates, pressenties ou en retrait, vérifiés le 25 novembre 2026. Chaque fait renvoie à sa source. Aucune note sur les personnes ni sur leurs idées.</p>
   <nav class="vues" aria-label="Rubriques">
-    <a href="#accueil" data-g="accueil">Accueil</a><a href="#candidats" data-g="personnalites">Les candidats</a><a href="#programmes" data-g="comparer">Les programmes</a><a href="#quinquennat" data-g="quinquennat">Le quinquennat</a><!--NAVQUIZ--><!--NAVVALIDER--><!--NAVJUSTICE-->
+    <a href="#accueil" data-g="accueil">Accueil</a><a href="#candidats" data-g="personnalites">Les candidats</a><a href="#programmes" data-g="comparer">Les programmes</a><a href="#quinquennat" data-g="quinquennat">Le quinquennat</a><!--NAVVALIDER--><!--NAVJUSTICE-->
   </nav>
 </header>
 
@@ -566,13 +541,6 @@ main .f-src{color:var(--texte-2)}
   <p class="f-note-page">Un indicateur décrit une situation ; il ne mesure pas à lui seul l’effet d’une politique, car d’autres facteurs jouent (conjoncture mondiale, énergie, démographie…). Chaque chiffre est celui publié par l’organisme cité, à la date indiquée ; il peut être révisé.</p>
 </section>
 
-<section id="v-apprendre" hidden>
-  <p class="compte" id="qz-intro"></p>
-  <div class="outils"><div class="puces" id="qz-modes" role="group" aria-label="Partie"></div></div>
-  <div id="qz-corps" aria-live="polite"></div>
-  <details class="qz-relecture" id="qz-relecture"></details>
-</section>
-
 <section id="v-methode" class="methode" hidden>
   <h2 id="charte">Notre charte éditoriale</h2>
   <p>Ce site décrit les personnalités de la présidentielle 2027&nbsp;: qui elles sont, qui les entoure et ce qu’elles proposent, pour que chacun puisse comparer sur pièces. Il ne dit pas pour qui voter. <i>En vigueur au 26 novembre 2026.</i></p>
@@ -643,7 +611,7 @@ main .f-src{color:var(--texte-2)}
     <li><b>Les mots</b>&nbsp;: la juridiction, la date, le stade et la décision telle qu’elle a été prononcée, sans adjectif ni commentaire. Quand l’issue d’un recours n’a pas été trouvée, c’est écrit.</li>
     <li><b>Vérifié</b>&nbsp;: chaque décision renvoie à une source consultée et datée (décision ou communiqué de la juridiction, dépêche d’agence, média national). Sans source lue, rien n’est publié.</li>
     <li><b>Mis à jour</b>&nbsp;: les dossiers sont relus régulièrement. Une décision plus récente (appel, cassation, relaxe) remplace l’ancienne, et la date de vérification est affichée.</li>
-    <li><b>Ni total ni classement</b>&nbsp;: les décisions ne sont jamais comptées par personne ni comparées. Elles apparaissent dans l’onglet Justice de chaque fiche et dans la rubrique «&nbsp;Les décisions de justice&nbsp;», classées par catégorie, chaque cas daté et sourcé, dans l’ordre alphabétique des personnes. Le quiz ne pose aucune question sur la justice.</li>
+    <li><b>Ni total ni classement</b>&nbsp;: les décisions ne sont jamais comptées par personne ni comparées. Elles apparaissent dans l’onglet Justice de chaque fiche et dans la rubrique «&nbsp;Les décisions de justice&nbsp;», classées par catégorie, chaque cas daté et sourcé, dans l’ordre alphabétique des personnes.</li>
     <li><b>Répondre</b>&nbsp;: une personne concernée peut signaler une décision plus récente ou demander qu’une précision de sa part soit ajoutée à son dossier, par le bouton «&nbsp;Une erreur&nbsp;?&nbsp;».</li>
   </ul>
   <p>Les votes détaillés des parlementaires sont accessibles par le lien officiel de chaque fiche.</p>
@@ -1596,148 +1564,9 @@ function ouvrir(slug, depuis){
   $('f-fermer').focus();
 }
 
-/* ---- le quiz (version de travail) : chaque question est tirée d'une donnée vérifiée du site et renvoie à sa source */
-const SRC_CONST = ['Constitution du 4 octobre 1958, texte intégral en vigueur (Conseil constitutionnel)', 'https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/texte-integral-de-la-constitution-du-4-octobre-1958-en-vigueur', 'consulté le 26/11/2026'];
-/* [question, [bonne réponse, autres…], explication] — relu sur le texte de la Constitution le 26/11/2026 */
-const Q_INSTIT = [
-  ['Pour combien d’années le président de la République est-il élu ?', ['5 ans', '4 ans', '6 ans', '7 ans'], 'Article 6 : le président est élu pour cinq ans au suffrage universel direct.'],
-  ['Combien de mandats présidentiels consécutifs une même personne peut-elle exercer au plus ?', ['2', '1', '3', 'Aucune limite'], 'Article 6 : nul ne peut exercer plus de deux mandats consécutifs.'],
-  ['Si personne n’obtient la majorité absolue au premier tour de la présidentielle, quand a lieu le second tour ?', ['Le 14e jour suivant', 'Le 7e jour suivant', 'Le 10e jour suivant', 'Le 21e jour suivant'], 'Article 7 : le second tour a lieu le quatorzième jour suivant le premier.'],
-  ['En cas de vacance de la présidence, qui exerce provisoirement les fonctions de président ?', ['Le président du Sénat', 'Le Premier ministre', 'La présidente ou le président de l’Assemblée nationale', 'Le président du Conseil constitutionnel'], 'Article 7 : l’intérim revient au président du Sénat, qui ne peut toutefois ni dissoudre ni organiser un référendum (articles 11 et 12).'],
-  ['Après les élections qui suivent une dissolution, combien de temps faut-il attendre pour dissoudre à nouveau l’Assemblée ?', ['Un an', 'Six mois', 'Deux ans', 'Aucun délai'], 'Article 12 : il ne peut y avoir de nouvelle dissolution dans l’année qui suit ces élections.'],
-  ['Combien de députés l’Assemblée nationale peut-elle compter au maximum ?', ['577', '348', '500', '650'], 'Article 24 : le nombre de députés ne peut excéder 577.'],
-  ['Combien de sénateurs le Sénat peut-il compter au maximum ?', ['348', '300', '377', '577'], 'Article 24 : le nombre de sénateurs ne peut excéder 348.'],
-  ['Quelle part des députés doit signer une motion de censure pour qu’elle soit recevable ?', ['Un dixième', 'Un cinquième', 'Un quart', 'Un tiers'], 'Article 49 : une motion de censure doit être signée par au moins un dixième des membres de l’Assemblée nationale.'],
-  ['Pour faire tomber le gouvernement, une motion de censure doit réunir…', ['La majorité des membres composant l’Assemblée', 'La majorité des suffrages exprimés', 'Les trois cinquièmes des députés', 'Les deux tiers des députés'], 'Article 49 : la motion n’est adoptée qu’à la majorité des membres composant l’Assemblée, et non des seuls votants.'],
-  ['En dehors des textes budgétaires (État et Sécurité sociale), pour combien d’autres textes le Premier ministre peut-il utiliser le 49.3 par session ?', ['Un seul', 'Aucun', 'Trois', 'Sans limite'], 'Article 49, alinéa 3 : en plus des lois de finances et de financement de la Sécurité sociale, un seul autre projet ou proposition de loi par session.'],
-  ['Combien de membres nommés compte le Conseil constitutionnel ?', ['9', '7', '12', '15'], 'Article 56 : neuf membres, nommés pour neuf ans, mandat non renouvelable ; le Conseil se renouvelle par tiers tous les trois ans.'],
-  ['Pour être adoptée par le Congrès, une révision de la Constitution doit réunir…', ['Les trois cinquièmes des suffrages exprimés', 'La majorité absolue', 'Les deux tiers des suffrages exprimés', 'Les trois quarts des suffrages exprimés'], 'Article 89 : le projet n’est approuvé que s’il réunit la majorité des trois cinquièmes des suffrages exprimés.'],
-  ['Un référendum d’initiative partagée doit être lancé par un cinquième des parlementaires et soutenu par…', ['Un dixième des électeurs inscrits', 'Un vingtième des électeurs inscrits', 'Un cinquième des électeurs inscrits', 'Un million de signatures, quel que soit le nombre d’inscrits'], 'Article 11 : l’initiative vient d’un cinquième des membres du Parlement, soutenue par un dixième des électeurs inscrits.'],
-  ['En principe, comment la France autorise-t-elle l’entrée d’un nouvel État dans l’Union européenne ?', ['Par référendum', 'Par décret du président de la République', 'Par un vote du seul Sénat', 'Par une décision du Conseil constitutionnel'], 'Article 88-5 : le texte est soumis au référendum, sauf si chaque assemblée vote à la majorité des trois cinquièmes une motion permettant la voie parlementaire.']
-];
-const QZ_MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
-const qzDate = d => { const [j, m, a] = d.split('/'); return (+j === 1 ? '1er' : +j) + ' ' + QZ_MOIS[+m - 1] + ' ' + a; };
-const qzNb = (v, u) => { const n = Math.abs(v).toLocaleString('fr-FR', {maximumFractionDigits: Math.abs(v) >= 1000 ? 0 : 1}); const s = (v < 0 ? '−' : '') + n; return u === 'nombre' ? s : s + ' ' + u; };
-const qzVerifiee = x => x && x.source && (!INTERNE || !x.verification || x.verification === 'verifie');
-const qzMelange = (l, r) => { l = l.slice(); for (let i = l.length - 1; i > 0; i--){ const j = Math.floor(r() * (i + 1)); [l[i], l[j]] = [l[j], l[i]]; } return l; };
-/* une question : {cat, q, bonne, autres:[3], expl, source, retrait?} */
-function questionsQuiz(){
-  const Q = [];
-  Q_INSTIT.forEach(([q, [bonne, ...autres], expl]) => Q.push({cat: 'Les institutions', q, bonne, autres, expl, source: SRC_CONST}));
-  const lois = QUINQ.lois.filter(qzVerifiee);
-  const MODES = {vote: 'Vote du Parlement', '493': 'Article 49.3, sans vote final', congres: 'Congrès (révision de la Constitution)', decret: 'Décret, sans vote du Parlement'};
-  const court = t => t.replace(/\s*\([^)]*décret[^)]*\)/i, '').replace(/ n° [\d-]+/, '');
-  lois.forEach(x => {
-    const nom = '« ' + court(x.titre) + ' »', an = x.date_promulgation.slice(6);
-    if (MODES[x.mode]) Q.push({cat: 'Le quinquennat', q: 'Comment ce texte a-t-il été adopté ? ' + nom, bonne: MODES[x.mode], autres: Object.entries(MODES).filter(([k]) => k !== x.mode).map(([, v]) => v), expl: 'Adoption : ' + x.adoption + '.', source: x.source});
-    if (x.mode !== 'decret') Q.push({cat: 'Le quinquennat', q: 'En quelle année a été promulguée la ' + nom.replace('« Loi', '« loi') + ' ?', bonne: an, autres: ['2022', '2023', '2024', '2025', '2026'].filter(a => a !== an), expl: 'Promulguée le ' + qzDate(x.date_promulgation) + '. ' + x.contenu + '.', source: x.source});
-  });
-  const chrono = QUINQ.chronologie.filter(qzVerifiee);
-  const pm = chrono.filter(x => x.type === 'gouvernement').map(x => [x, (x.texte.match(/^(.+?) (?:de nouveau )?nommée? Premi[eè]re? ministre/) || [])[1]]).filter(([, n]) => n);
-  const noms = [...new Set(pm.map(([, n]) => n))];
-  if (noms.length >= 4) pm.forEach(([x, n]) => Q.push({cat: 'Le quinquennat', q: 'Qui a été nommé à Matignon le ' + qzDate(x.date) + ' ?', bonne: n, autres: noms.filter(m => m !== n), expl: x.texte + '.', source: x.source}));
-  chrono.filter(x => x.type !== 'gouvernement').forEach(x => {
-    const an = x.date.slice(6);
-    if (x.texte.includes(an)) return;   // l'année est dans l'énoncé : question sans intérêt
-    Q.push({cat: 'Le quinquennat', q: 'En quelle année ? ' + x.texte, bonne: an, autres: ['2022', '2023', '2024', '2025', '2026'].filter(a => a !== an), expl: 'Le ' + qzDate(x.date) + '.', source: x.source});
-  });
-  QUINQ.indicateurs.filter(qzVerifiee).forEach(ind => {
-    const pts = ind.serie.filter(s => s.valeur != null);
-    const vals = [...new Map(pts.map(s => [qzNb(s.valeur, ind.unite), s])).values()];
-    if (vals.length < 4) return;
-    vals.forEach(s => {
-      const bonne = qzNb(s.valeur, ind.unite);
-      Q.push({cat: 'Les chiffres officiels', q: ind.nom + ' : quelle valeur a été publiée pour ' + s.periode + ' ?', bonne, autres: vals.filter(t => t !== s).map(t => qzNb(t.valeur, ind.unite)),
-        expl: 'Série publiée : ' + pts.map(t => t.periode + ' : ' + qzNb(t.valeur, ind.unite)).join(' ; ') + '. ' + (ind.note_pub || ''), source: ind.source});
-    });
-  });
-  /* qui répond quoi : les autres choix sont des candidats déclarés qui ont répondu autre chose, jamais une position qu'ils n'ont pas prise */
-  const declares = new Set(P.filter(p => p.espace === 'declaree').map(p => p.slug));
-  [['europe', 'Europe', QUE], ['otan', 'OTAN', QOTAN], ['ukraine', 'Ukraine', QUK]].forEach(([th, nomTh, QS]) => {
-    const D = POS2[th] || {};
-    QS.forEach(([k, titre, lab]) => {
-      const rep = Object.entries(D).filter(([s, v]) => declares.has(s) && v[k] && v[k].ok && !v[k].rap).map(([s, v]) => [s, v[k]]);
-      Object.keys(lab).forEach(r => {
-        const oui = rep.filter(([, x]) => x.r === r), non = rep.filter(([, x]) => x.r !== r);
-        if (!oui.length || non.length < 3) return;
-        /* une seule question par réponse : la bonne est tirée parmi tous ceux qui l'ont donnée */
-        const variantes = oui.map(([s, x]) => ({bonne: PAR[s].nom, expl: PAR[s].nom + ' (' + (x.source[2] || 'date non indiquée') + ') : ' + x.txt + '.', source: x.source}));
-        Q.push(Object.assign({cat: 'Qui dit quoi ?', q: nomTh + ', « ' + titre + ' » : lequel de ces candidats répond « ' + lab[r] + ' » dans ses déclarations relevées ?',
-          autres: non.map(([t]) => PAR[t].nom), detail: non.map(([t, y]) => [PAR[t].nom, lab[y.r] || y.r]), variantes}, variantes[0]));
-      });
-    });
-  });
-  return Q;
-}
-let QZ = null, qzEtat = null;
-function graine(s){ let h = 1779033703 ^ s.length; for (let i = 0; i < s.length; i++){ h = Math.imul(h ^ s.charCodeAt(i), 3432918353); h = h << 13 | h >>> 19; } return () => { h = Math.imul(h ^ h >>> 16, 2246822507); h = Math.imul(h ^ h >>> 13, 3266489909); h ^= h >>> 16; return (h >>> 0) / 4294967296; }; }
-function tirage(n, r){
-  /* une question par catégorie à tour de rôle, pour varier */
-  const parCat = {}; qzMelange(QZ, r).forEach(q => (parCat[q.cat] = parCat[q.cat] || []).push(q));
-  const cats = qzMelange(Object.keys(parCat), r), out = [];
-  while (out.length < n && cats.some(c => parCat[c].length)) cats.forEach(c => { if (out.length < n && parCat[c].length) out.push(parCat[c].shift()); });
-  return out.map(q => { if (q.variantes) q = Object.assign({}, q, q.variantes[Math.floor(r() * q.variantes.length)]); const autres = qzMelange(q.autres, r).slice(0, 3); return Object.assign({}, q, {choix: qzMelange([q.bonne, ...autres], r)}); });
-}
-const aujourdhui = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
-function lancerQuiz(mode){
-  const jour = mode === 'jour';
-  qzEtat = {mode, liste: tirage(jour ? 5 : 10, jour ? graine('trombi' + aujourdhui()) : Math.random), i: 0, score: 0};
-  rendreQuiz();
-}
-function rendreQuiz(){
-  if (!QZ){
-    QZ = questionsQuiz();
-    const n = c => QZ.filter(q => q.cat === c).length;
-    $('qz-intro').textContent = 'Version de travail, pas encore sur le site public. ' + QZ.length + ' questions disponibles, toutes tirées des données vérifiées du site : ' +
-      ['Les institutions', 'Le quinquennat', 'Les chiffres officiels', 'Qui dit quoi ?'].map(c => c.toLowerCase() + ' ' + n(c)).join(', ') + '. Une correction dans les données corrige aussi la question.';
-    const m = $('qz-modes'); m.textContent = '';
-    [['jour', 'Le quiz du jour (5 questions)'], ['rapide', 'Partie rapide (10 questions)']].forEach(([k, t]) => { const b = el('button', null, t); b.type = 'button'; b.setAttribute('aria-pressed', 'false'); b.onclick = () => { m.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); lancerQuiz(k); }; m.append(b); });
-    rendreRelecture();
-  }
-  const z = $('qz-corps'); z.textContent = '';
-  if (!qzEtat){ z.append(el('p', 'vide', 'Choisissez une partie pour commencer.')); return; }
-  const E = qzEtat;
-  if (E.i >= E.liste.length){
-    const c = el('div', 'qz-carte'); c.append(el('p', 'qz-meta', E.mode === 'jour' ? 'Quiz du jour · ' + qzDate(aujourdhui().split('-').reverse().join('/')) : 'Partie rapide'), el('p', 'qz-q', E.score + ' bonne' + (E.score > 1 ? 's' : '') + ' réponse' + (E.score > 1 ? 's' : '') + ' sur ' + E.liste.length));
-    c.append(el('p', null, E.mode === 'jour' ? 'Revenez demain : cinq nouvelles questions, les mêmes pour tout le monde.' : 'Chaque partie tire dix nouvelles questions au hasard.'));
-    const a = el('div', 'qz-actions'), b = el('button', 'prim', E.mode === 'jour' ? 'Faire une partie rapide' : 'Rejouer'); b.type = 'button'; b.onclick = () => { $('qz-modes').querySelectorAll('button').forEach((x, i) => x.setAttribute('aria-pressed', String(i === 1))); lancerQuiz('rapide'); }; a.append(b); c.append(a);
-    z.append(c); return;
-  }
-  const q = E.liste[E.i], c = el('div', 'qz-carte');
-  c.append(el('p', 'qz-meta', 'Question ' + (E.i + 1) + '/' + E.liste.length + ' · ' + q.cat + ' · score ' + E.score), el('h2', 'qz-q', q.q));
-  const g = el('div', 'qz-rep'), btns = [], suite = el('div', 'qz-suite'), actions = el('div', 'qz-actions');
-  let fini = false;
-  const indice = el('button', null, 'Indice : retirer deux réponses'); indice.type = 'button';
-  indice.onclick = () => { indice.disabled = true; qzMelange(btns.filter(b => b.dataset.v !== q.bonne), Math.random).slice(0, 2).forEach(b => { b.disabled = true; b.classList.add('retire'); }); };
-  q.choix.forEach((v, i) => {
-    const b = el('button'); b.type = 'button'; b.dataset.v = v; b.append(el('b', null, 'ABCD'[i]), el('span', null, v));
-    b.onclick = () => {
-      if (fini) return; fini = true; indice.disabled = true;
-      const ok = v === q.bonne; if (ok) E.score++;
-      btns.forEach(x => { x.disabled = true; if (x.dataset.v === q.bonne){ x.classList.add('juste'); x.append(el('em', null, '✓ bonne réponse')); } else if (x === b){ x.classList.add('faux'); x.append(el('em', null, '✗ votre choix')); } });
-      suite.append(el('p', 'qz-verdict', ok ? 'Bonne réponse.' : 'Ce n’est pas ça : la réponse est « ' + q.bonne + ' ».'), el('p', null, q.expl));
-      if (q.detail){ const ch = q.choix.filter(n => n !== q.bonne), d = q.detail.filter(([n]) => ch.includes(n)); if (d.length) suite.append(el('p', null, 'Les autres répondent : ' + d.map(([n, r]) => n + ', « ' + r + ' »').join(' ; ') + '. Une position peut évoluer : la date compte.')); }
-      const s = el('p', 'qz-src', 'Source : '); s.append(lien(q.source)); suite.append(s);
-      const n = el('button', 'prim', E.i + 1 < E.liste.length ? 'Question suivante' : 'Voir le score'); n.type = 'button'; n.onclick = () => { E.i++; rendreQuiz(); $('qz-corps').scrollIntoView({block: 'start', behavior: 'smooth'}); };
-      actions.replaceChildren(n); n.focus();
-    };
-    btns.push(b); g.append(b);
-  });
-  actions.append(indice);
-  c.append(g, suite, actions); z.append(c);
-}
-function rendreRelecture(){
-  const d = $('qz-relecture'); d.textContent = '';
-  d.append(el('summary', null, 'Relire les ' + QZ.length + ' questions et leurs réponses'));
-  const t = el('table', 'tab-valider stack'), h = t.createTHead().insertRow();
-  ['Catégorie', 'Question', 'Réponse', 'Autres choix possibles', 'Source'].forEach(x => h.append(el('th', null, x)));
-  const tb = t.createTBody();
-  QZ.forEach(q => { const r = tb.insertRow(); r.insertCell().textContent = q.cat; r.insertCell().textContent = q.q; r.insertCell().textContent = q.variantes ? q.variantes.map(v => v.bonne).join(' ou ') : q.bonne; r.insertCell().textContent = q.autres.join(' · '); const c = r.insertCell(); (q.variantes || [q]).forEach((v, i) => { if (i) c.append(' · '); c.append(lien(v.source)); }); });
-  const s = el('div', 'scroll'); s.append(t); d.append(s);
-}
 /* ---- les vues, sur le #nom de l'adresse */
 let vueCourante = 'accueil';
-const VUES = ['accueil', 'personnalites', 'equipes', 'chiffres', 'categories', 'comparer', 'face', 'quinquennat', 'methode'].concat(INTERNE ? ['valider', 'apprendre'] : []);
+const VUES = ['accueil', 'personnalites', 'equipes', 'chiffres', 'categories', 'comparer', 'face', 'quinquennat', 'methode'].concat(INTERNE ? ['valider'] : []);
 const ALIAS = {candidats: 'personnalites', programmes: 'comparer', 'parcours-en-chiffres': 'chiffres', justice: 'categories'};
 const GROUPE = {equipes: 'personnalites', chiffres: 'personnalites', categories: 'personnalites', face: 'comparer'};
 const SOUS = {personnalites: [['candidats', 'personnalites', 'Le trombinoscope'], ['equipes', 'equipes', 'Les équipes de campagne'], ['parcours-en-chiffres', 'chiffres', 'Les parcours en chiffres'], ['justice', 'categories', 'Les décisions de justice']],
@@ -1759,7 +1588,6 @@ function rendreAccueil(){
     document.querySelector('nav.vues').insertBefore(n, document.querySelector('nav.vues a[href="#quinquennat"]').nextSibling);
     const f = el('a', null, 'Retourne ta veste, le jeu'); f.href = JEU; f.target = '_blank'; f.rel = 'noopener'; document.querySelector('footer.pied nav').append(f);
   }
-  if (INTERNE){ const a = el('a'); a.href = '#apprendre'; a.append(el('b', null, 'Le quiz'), ' testez vos connaissances, chaque réponse sourcée'); $('portes-2').prepend(a); }
 }
 $('pied-erreur').onclick = e => { e.preventDefault(); $('coin-erreur').click(); };
 let faceChoix = [], faceTout = false;
@@ -1817,7 +1645,7 @@ function montrer(v){
   if (avant !== v && (GROUPE[avant] || avant) !== g) scrollTo({top: 0});
 }
 window.addEventListener('hashchange', route);
-rendreAccueil(); rendreFace(); rendreBlocs(); rendreGrille(); rendreThemes(); rendreRangs(); rendreMesures(); rendreBarres(); rendreCategories(); rendreTableCat(); rendreEquipeQui(); rendreEquipe(); rendrePerim(); rendreQuinquennat(); if (INTERNE){ rendreValider(); rendreQuiz(); } route();
+rendreAccueil(); rendreFace(); rendreBlocs(); rendreGrille(); rendreThemes(); rendreRangs(); rendreMesures(); rendreBarres(); rendreCategories(); rendreTableCat(); rendreEquipeQui(); rendreEquipe(); rendrePerim(); rendreQuinquennat(); if (INTERNE) rendreValider(); route();
 }
 </script>
 </body>

@@ -2967,7 +2967,7 @@ window.APDA.FICHES = {
     "intitule": "Conseillère départementale du Pas-de-Calais (démission d'office par arrêté préfectoral du 10/04/2025, confirmée par le Conseil d'État le 10/11/2025)"
    },
    {
-    "periode": "depuis 2022",
+    "periode": "2022 – oct. 2026",
     "intitule": "Présidente du groupe RN à l'Assemblée nationale"
    },
    {
