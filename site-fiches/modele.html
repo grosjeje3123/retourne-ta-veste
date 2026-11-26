@@ -103,6 +103,8 @@ body[data-vue=accueil] nav.vues a:not(.outil){display:none}
 body[data-vue=accueil]:not(.interne) nav.vues{display:none}
 h1 a{color:inherit;text-decoration:none;display:inline-block}
 h1 .logo{display:block;height:clamp(110px,22vw,190px);width:auto;max-width:100%}
+body[data-vue=accueil] header.tete h1{text-align:center}
+body[data-vue=accueil] header.tete .chapo{text-align:center;margin-left:auto;margin-right:auto}
 body[data-vue]:not([data-vue=accueil]) h1 .logo{height:clamp(52px,7vw,76px)}
 /* le logo porte son propre papier crème (dans l’image) : lisible même quand le navigateur assombrit la page de force */
 body:not([data-vue=accueil]) h1 a:hover{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--fluo)}
