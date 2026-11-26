@@ -491,8 +491,11 @@ for i, c in enumerate(J['C']):
 
 modele = open(ICI + '/modele.html').read()
 def copier_jeu(dossier):
+    """Section /jeu/ : le site de présentation (jeu-site/) et, dans /jeu/partie/, le jeu lui-même (carte2/)."""
     cible = f"{ICI}/{dossier}/jeu"
-    shutil.rmtree(cible, ignore_errors=True); shutil.copytree(CARTE2, cible)
+    shutil.rmtree(cible, ignore_errors=True)
+    shutil.copytree(ICI + '/jeu-site', cible)
+    shutil.copytree(CARTE2, cible + '/partie', ignore=shutil.ignore_patterns('apercu'))
 def ecrire(dossier, donnees, est_interne):
     os.makedirs(ICI + '/' + dossier + '/img', exist_ok=True)
     for p in donnees: shutil.copy(f"{ICI}/img/{p['slug']}.webp", f"{ICI}/{dossier}/img/")
@@ -505,7 +508,7 @@ def ecrire(dossier, donnees, est_interne):
     h = h.replace("'/*DON*/'", json.dumps(os.environ.get('DON', 'https://ko-fi.com/jeromehosdez')))   # page de dons (Ko-fi) ; DON='' la masque
     # le jeu : section /jeu/ du site public (Cloudflare y copie carte2/ à chaque déploiement) ; la version de travail garde les pages claude.ai
     h = h.replace("'/*JEU*/'", json.dumps(os.environ.get('JEU', 'https://claude.ai/artifact/Anm66e7aUxudHeaKVphekT' if est_interne else 'jeu/')))
-    h = h.replace("'/*JEU_PARTIE*/'", json.dumps(os.environ.get('JEU_PARTIE', 'https://claude.ai/artifact/Lr13UVdrBU6mtgAwh4MJui' if est_interne else 'jeu/')))
+    h = h.replace("'/*JEU_PARTIE*/'", json.dumps(os.environ.get('JEU_PARTIE', 'https://claude.ai/artifact/Lr13UVdrBU6mtgAwh4MJui' if est_interne else 'jeu/partie/')))
     h = h.replace('/*QUINQ*/{}', json.dumps(quinquennat(not est_interne), ensure_ascii=False).replace('</', '<\\/'))
     h = h.replace('/*POS2*/{}', json.dumps(positions4(not est_interne) if lots4() else positions2(not est_interne), ensure_ascii=False).replace('</', '<\\/'))
     if est_interne:
