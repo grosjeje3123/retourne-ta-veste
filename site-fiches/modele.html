@@ -575,7 +575,7 @@ main .f-src{color:var(--texte-2)}
   <h2 id="charte">Notre charte éditoriale</h2>
   <p>Ce site décrit les personnalités de la présidentielle 2027&nbsp;: qui elles sont, qui les entoure et ce qu’elles proposent, pour que chacun puisse comparer sur pièces. Il ne dit pas pour qui voter. <i>En vigueur au 26 novembre 2026.</i></p>
   <ul>
-    <li><b>Ce que nous décrivons</b>&nbsp;: le parcours et les mandats&nbsp;; l’entourage, c’est-à-dire les équipes de campagne et les soutiens déclarés&nbsp;; les propositions, sujet par sujet&nbsp;; le contexte, avec le quinquennat en faits et en chiffres officiels&nbsp;; et, dans un onglet à part, les décisions de justice.</li>
+    <li><b>Ce que nous décrivons</b>&nbsp;: le parcours et les mandats&nbsp;; l’entourage, c’est-à-dire les équipes de campagne et les soutiens déclarés&nbsp;; les propositions, sujet par sujet&nbsp;; le contexte, avec le quinquennat en faits et en chiffres officiels&nbsp;; et, à part, les décisions de justice.</li>
     <li><b>Les mêmes règles pour tous</b>&nbsp;: les mêmes questions, la même grille, le même traitement graphique, l’ordre alphabétique. Ni note, ni classement, ni consigne de vote.</li>
     <li><b>Des faits, sourcés</b>&nbsp;: chaque information renvoie à une source lue et datée. Une position vient de la personne elle-même. Une case vide n’est pas une position.</li>
     <li><b>Sans commentaire</b>&nbsp;: les faits sont rédigés sans adjectif ni appréciation. L’humour et les citations restent dans le jeu <i>Retourne ta veste</i>, un espace à part.</li>
@@ -629,7 +629,7 @@ main .f-src{color:var(--texte-2)}
     <li><b>Les mots</b>&nbsp;: la juridiction, la date, le stade et la décision telle qu’elle a été prononcée, sans adjectif ni commentaire. Quand l’issue d’un recours n’a pas été trouvée, c’est écrit.</li>
     <li><b>Vérifié</b>&nbsp;: chaque décision renvoie à une source consultée et datée (décision ou communiqué de la juridiction, dépêche d’agence, média national). Sans source lue, rien n’est publié.</li>
     <li><b>Mis à jour</b>&nbsp;: les dossiers sont relus régulièrement. Une décision plus récente (appel, cassation, relaxe) remplace l’ancienne, et la date de vérification est affichée.</li>
-    <li><b>Ni total ni classement</b>&nbsp;: les décisions ne sont jamais comptées par personne ni comparées. Elles n’apparaissent que dans l’onglet Justice de chaque fiche. Le quiz ne pose aucune question sur la justice.</li>
+    <li><b>Ni total ni classement</b>&nbsp;: les décisions ne sont jamais comptées par personne ni comparées. Elles apparaissent dans l’onglet Justice de chaque fiche et dans la rubrique «&nbsp;Les décisions de justice&nbsp;», classées par catégorie, chaque cas daté et sourcé, dans l’ordre alphabétique des personnes. Le quiz ne pose aucune question sur la justice.</li>
     <li><b>Répondre</b>&nbsp;: une personne concernée peut signaler une décision plus récente ou demander qu’une précision de sa part soit ajoutée à son dossier, par le bouton «&nbsp;Une erreur&nbsp;?&nbsp;».</li>
   </ul>
   <p>Les votes détaillés des parlementaires sont accessibles par le lien officiel de chaque fiche.</p>
@@ -1676,10 +1676,10 @@ function rendreRelecture(){
 }
 /* ---- les vues, sur le #nom de l'adresse */
 let vueCourante = 'accueil';
-const VUES = ['accueil', 'personnalites', 'equipes', 'chiffres', 'comparer', 'face', 'quinquennat', 'methode'].concat(INTERNE ? ['valider', 'apprendre', 'categories'] : []);
-const ALIAS = {candidats: 'personnalites', programmes: 'comparer', 'parcours-en-chiffres': 'chiffres'};
-const GROUPE = {equipes: 'personnalites', chiffres: 'personnalites', face: 'comparer'};
-const SOUS = {personnalites: [['candidats', 'personnalites', 'Le trombinoscope'], ['equipes', 'equipes', 'Les équipes de campagne'], ['parcours-en-chiffres', 'chiffres', 'Les parcours en chiffres']],
+const VUES = ['accueil', 'personnalites', 'equipes', 'chiffres', 'categories', 'comparer', 'face', 'quinquennat', 'methode'].concat(INTERNE ? ['valider', 'apprendre'] : []);
+const ALIAS = {candidats: 'personnalites', programmes: 'comparer', 'parcours-en-chiffres': 'chiffres', justice: 'categories'};
+const GROUPE = {equipes: 'personnalites', chiffres: 'personnalites', categories: 'personnalites', face: 'comparer'};
+const SOUS = {personnalites: [['candidats', 'personnalites', 'Le trombinoscope'], ['equipes', 'equipes', 'Les équipes de campagne'], ['parcours-en-chiffres', 'chiffres', 'Les parcours en chiffres'], ['justice', 'categories', 'Les décisions de justice']],
   comparer: [['programmes', 'comparer', 'Par sujet'], ['face-a-face', 'face', 'Face à face']]};
 Object.values(SOUS).forEach(l => l.forEach(([, v]) => {
   const n = el('nav', 'sous-vues'); n.setAttribute('aria-label', 'Sous-rubriques');
