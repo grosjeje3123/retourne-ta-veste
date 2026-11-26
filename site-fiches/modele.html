@@ -584,6 +584,7 @@ main .f-src{color:var(--texte-2)}
     <li><b>Sans commentaire</b>&nbsp;: les faits sont rédigés sans adjectif ni appréciation. L’humour et les citations restent dans le jeu <i>Retourne ta veste</i>, un espace à part.</li>
     <li><b>Les rôles publics seulement</b>&nbsp;: ni proches, ni vie privée&nbsp;; une personne sans mandat ni fonction publique n’apparaît que si la presse nationale la cite dans son rôle.</li>
     <li><b>Corrigé</b>&nbsp;: toute personne concernée, ou tout lecteur, peut signaler une erreur, un oubli ou une information dépassée. Chaque demande est relue, et la correction est datée.</li>
+    <li><b>Relu à plusieurs</b>&nbsp;: des relecteurs bénévoles, de toutes sensibilités, peuvent proposer des vérifications. Aucun ne relit la fiche d’une personnalité qu’il soutient ou pour laquelle il travaille, et chaque correction est vérifiée sur la source avant publication.</li>
     <li><b>Indépendant</b>&nbsp;: sans publicité ni financement politique. Les contributions volontaires des lecteurs ne donnent aucun droit sur le contenu&nbsp;; aucun don de parti ni d’équipe de campagne n’est accepté.</li>
   </ul>
   <p>Les sections suivantes détaillent ces règles, rubrique par rubrique.</p>
@@ -654,6 +655,17 @@ main .f-src{color:var(--texte-2)}
 </main>
 
 <button type="button" class="coin-erreur" id="coin-erreur" aria-haspopup="dialog">Une erreur&nbsp;? Dites-le-nous</button>
+<dialog class="avis-erreur" id="avis-benevole" aria-labelledby="ab-titre">
+  <h2 id="ab-titre">Relire et vérifier avec nous</h2>
+  <p>Chaque fiche repose sur des sources lues et datées, mais il y en a des centaines, et les positions bougent pendant la campagne. Des relecteurs bénévoles peuvent aider à vérifier une fiche, une source ou une position, et à signaler ce qui a changé.</p>
+  <ul>
+    <li>Toutes les sensibilités politiques sont bienvenues : c’est la meilleure garantie d’équilibre.</li>
+    <li>Un relecteur ne relit pas la fiche d’une personnalité qu’il soutient ou pour laquelle il travaille.</li>
+    <li>Les relecteurs proposent ; chaque correction est vérifiée sur la source avant d’être publiée, et datée.</li>
+  </ul>
+  <p class="ae-contact" id="ab-contact"></p>
+  <button type="button" class="f-bouton" id="ab-fermer">Fermer</button>
+</dialog>
 <dialog class="avis-erreur" id="avis-erreur" aria-labelledby="ae-titre">
   <h2 id="ae-titre">Des erreurs sont possibles</h2>
   <p>Ce site rassemble beaucoup de données : 43 personnalités, des centaines de sources de presse, de programmes et de sites officiels. Malgré les vérifications, des erreurs, des oublis ou des informations dépassées restent possibles.</p>
@@ -662,7 +674,7 @@ main .f-src{color:var(--texte-2)}
   <p class="ae-astuce">Astuce&nbsp;: depuis une fiche, le bouton «&nbsp;Signaler une erreur&nbsp;» précise de quelle personne il s’agit.</p>
   <button type="button" class="f-bouton" id="ae-fermer">Fermer</button>
 </dialog>
-<footer class="pied"><nav aria-label="Informations"><a href="#methode">La méthode</a><a href="#" id="pied-erreur">Signaler une erreur</a></nav>Projet indépendant, sans publicité ni financement politique. Portraits illustrés, générés par IA avec le même traitement pour tous. Données arrêtées au 25/11/2026.<br><span class="soutien" id="soutien">Soutenir ce site&nbsp;: une page pour contribuer librement à ses frais ouvrira prochainement. Une contribution ne donnera aucun droit sur le contenu, et aucun don de parti ni d’équipe de campagne ne sera accepté.</span></footer>
+<footer class="pied"><nav aria-label="Informations"><a href="#methode">La méthode</a><a href="#" id="pied-erreur">Signaler une erreur</a></nav>Projet indépendant, sans publicité ni financement politique. Portraits illustrés, générés par IA avec le même traitement pour tous. Données arrêtées au 25/11/2026.<br><span class="soutien" id="soutien">Soutenir ce site&nbsp;: une page pour contribuer librement à ses frais ouvrira prochainement. Une contribution ne donnera aucun droit sur le contenu, et aucun don de parti ni d’équipe de campagne ne sera accepté.</span><br><span class="soutien" id="benevoles">Relire avec nous&nbsp;: le site cherche des relecteurs bénévoles pour vérifier les fiches et leurs sources, quelle que soit leur sensibilité politique. <a href="#" id="benevole-lien">Proposer son aide</a>.</span></footer>
 </div>
 
 <dialog class="fiche" id="fiche" aria-labelledby="f-nom">
@@ -1281,6 +1293,14 @@ function ouvrirAvis(sujet){
   const d = $('avis-erreur'); if (d.open) d.close(); d.showModal();
 }
 $('coin-erreur').onclick = () => ouvrirAvis();
+$('benevole-lien').onclick = e => {
+  e.preventDefault();
+  const c = $('ab-contact'); c.textContent = '';
+  const a = contactLien('Le Trombi 2027 : devenir relecteur bénévole');
+  if (a){ c.append('Écrire à : ', a); } else c.textContent = 'Adresse de contact : bientôt indiquée ici.';
+  $('avis-benevole').showModal();
+};
+$('ab-fermer').onclick = () => $('avis-benevole').close();
 $('ae-fermer').onclick = () => $('avis-erreur').close();
 $('f-signaler').onclick = () => { const s = 'Fiches 2027 : erreur sur la fiche ' + $('f-nom').textContent + ' (' + location.href + ')'; dlg.close(); ouvrirAvis(s); };
 /* ---- le quinquennat 2022-2027 : chronologie en frise, lois avec pictogrammes, indicateurs par catégorie */
