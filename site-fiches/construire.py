@@ -474,6 +474,7 @@ def ecrire(dossier, donnees, est_interne):
     os.makedirs(ICI + '/' + dossier + '/img', exist_ok=True)
     for p in donnees: shutil.copy(f"{ICI}/img/{p['slug']}.webp", f"{ICI}/{dossier}/img/")
     for q in ('q-borne', 'q-bayrou', 'jeu-logo', 'jeu-partie'): shutil.copy(f"{ICI}/img/{q}.webp", f"{ICI}/{dossier}/img/")
+    for q in ('logo-trombi.webp', 'icone-trombi-32.png', 'icone-trombi-180.png'): shutil.copy(f"{ICI}/img/{q}", f"{ICI}/{dossier}/img/")
     h = modele.replace('/*DONNEES*/', json.dumps(donnees, ensure_ascii=False).replace('</', '<\\/'))
     h = h.replace('/*INTERNE*/false', 'true' if est_interne else 'false')
     h = h.replace('/*AXES*/{}', json.dumps(dict(axes(not est_interne), **axe_defense(not est_interne)), ensure_ascii=False).replace('</', '<\\/'))

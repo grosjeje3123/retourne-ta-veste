@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Le Trombi 2027 · Les fiches de la présidentielle</title>
+<link rel="icon" href="img/icone-trombi-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="img/icone-trombi-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,600;9..144,900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -122,7 +124,12 @@ nav.vues a.sortie::after{content:" ↗";font-size:12px}
 /* accueil : les trois portes remplacent le menu, qui n'apparaît que dans les rubriques */
 body[data-vue=accueil] nav.vues a:not(.outil){display:none}
 body[data-vue=accueil]:not(.interne) nav.vues{display:none}
-h1 a{color:inherit;text-decoration:none}
+h1 a{color:inherit;text-decoration:none;display:inline-block}
+h1 .logo{display:block;height:clamp(54px,8vw,88px);width:auto;max-width:100%}
+body[data-vue]:not([data-vue=accueil]) h1 .logo{height:clamp(40px,5vw,56px)}
+/* en mode sombre, le logo garde son papier crème */
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) h1 .logo{background:#f9f6ef;border-radius:12px;padding:6px 12px}}
+:root[data-theme=dark] h1 .logo{background:#f9f6ef;border-radius:12px;padding:6px 12px}
 body:not([data-vue=accueil]) h1 a:hover{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--fluo)}
 /* le jeu : un autre univers, présenté à part des trois portes documentaires */
 .jeu-bloc{margin:40px 0 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px 40px;align-items:center;padding:clamp(20px,4vw,36px);border-radius:20px;background:#173f43;color:#f4f0e6;border:2px solid var(--encre);box-shadow:5px 5px 0 var(--texte)}
@@ -475,7 +482,7 @@ main .f-src{color:var(--texte-2)}
 <!--BANDEAU-->
 <div class="contenu">
 <header class="tete">
-  <h1><a href="#accueil">Le Trombi 2027</a></h1>
+  <h1><a href="#accueil"><img class="logo" src="img/logo-trombi.webp" alt="Le Trombi 2027" width="960" height="203"></a></h1>
   <p class="chapo">Parcours, mandats et propositions de 43 personnalités candidates, pressenties ou en retrait, vérifiés le 25 novembre 2026. Chaque fait renvoie à sa source. Aucune note sur les personnes ni sur leurs idées.</p>
   <nav class="vues" aria-label="Rubriques">
     <a href="#accueil" data-g="accueil">Accueil</a><a href="#candidats" data-g="personnalites">Les candidats</a><a href="#programmes" data-g="comparer">Les programmes</a><a href="#quinquennat" data-g="quinquennat">Le quinquennat</a><!--NAVQUIZ--><!--NAVVALIDER--><!--NAVJUSTICE-->
