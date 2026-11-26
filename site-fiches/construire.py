@@ -30,6 +30,13 @@ INT = {cle(q['nom']): q for q in json.load(open(DONNEES + '/fiches-interne-v2.js
 # identités mises à jour après la contre-vérification du 26/11/2026 (s'appliquent au site public et à l'export du jeu)
 CORR_ID = {'Marine Le Pen': ('Rassemblement national ; présidence du groupe RN à l’Assemblée passée à Sébastien Chenu fin octobre 2026',
     ['Qui est Sébastien Chenu, qui va succéder à Marine Le Pen à la présidence du groupe RN à l’Assemblée ? (LCP)', 'https://lcp.fr/actualites/qui-est-sebastien-chenu-qui-va-succeder-a-marine-le-pen-a-la-presidence-du-groupe-rn-a-l', '24/10/2026'])}
+CORR_MANDATS = {('Marine Le Pen', 'Présidente du groupe RN à l\'Assemblée nationale'): '2022 – oct. 2026'}   # Chenu lui succède (LCP, 24/10/2026)
+for (_n, _int), _per in CORR_MANDATS.items():
+    for _src in (PUB.get(_n), INT.get(cle(_n))):
+        _L = (_src or {}).get('mandats') or []
+        for _i, _m in enumerate(_L):
+            if isinstance(_m, dict) and _m.get('intitule') == _int: _m['periode'] = _per
+            elif isinstance(_m, str) and _int in _m: _L[_i] = re.sub(r'depuis \d{4}', _per, _m)
 for _n, (_parti, _src) in CORR_ID.items():
     if _n in PUB and PUB[_n].get('identite'):
         PUB[_n]['identite'] = dict(PUB[_n]['identite'], parti=_parti, sources=(PUB[_n]['identite'].get('sources') or []) + [_src])
@@ -318,16 +325,18 @@ CORR2 = {('François Hollande', 'europe'): {'verification': 'verifie'},
 AX4 = os.environ.get('AX4', DONNEES + '/axes4')
 Q4 = {'europe': ('ue_maintien', 'ue_traites', 'ue_primaute', 'ue_budget', 'ue_emprunt', 'ue_defense_commune', 'ue_cooperation_defense'),
       'otan': ('otan_alliance', 'otan_commandement', 'otan_pilier'),
-      'ukraine': ('aide_militaire', 'aide_financiere', 'troupes', 'adhesion_ue', 'sanctions')}
+      'ukraine': ('aide_militaire', 'aide_financiere', 'avoirs', 'troupes', 'adhesion_ue', 'sanctions')}
 CORR4 = {}   # relecture de la grille fine : (nom, question) -> champs corrigés
 # Décision du 26/11/2026 : une position rapportée par un média national daté, sans citation directe du candidat,
 # est publiée et signalée « rapportée par un média ». Restent exclues : les déductions, les relais de tiers
 # (réseaux sociaux), les sources non lues et les chaînes passant par des médias d'État étrangers.
 RAP = {'verification': 'verifie', 'rapporte': True}
+# 3e audit (26/11/2026) : Business AM et Forbes Ukraine ne sont pas des médias nationaux français -> Retailleau ue_budget et adhesion_ue non publiés
 for _k in [('Fabien Roussel', 'adhesion_ue'), ('Raphaël Glucksmann', 'ue_maintien'), ('Édouard Philippe', 'otan_pilier'),
-           ('Édouard Philippe', 'aide_militaire'), ('Natacha Polony', 'ue_budget'), ('Bruno Retailleau', 'ue_budget'),
-           ('Bruno Retailleau', 'aide_militaire'), ('Bruno Retailleau', 'adhesion_ue'), ('Nicolas Dupont-Aignan', 'sanctions')]:
+           ('Édouard Philippe', 'aide_militaire'), ('Natacha Polony', 'ue_budget'), ('Nicolas Dupont-Aignan', 'sanctions')]:
     CORR4[_k] = dict(RAP)
+CORR4[('Bruno Retailleau', 'aide_militaire')] = {'reponse': None}     # l'article ne dit pas si l'aide est militaire : reclassée en aide financière (Public Sénat)
+CORR4[('Teddy Riner', 'troupes')] = {'reponse': 'non_pendant'}       # « pas notre guerre » : vise l'envoi pendant le conflit, rien sur l'après
 REF_RAP = [('Gabriel Attal', 'règle d'), ('Marine Le Pen', 'islamistes')]   # référendums rapportés par un média
 # Public Sénat du 16/11/2026, relu le 26/11/2026 : formulations du journaliste (sauf mention d'une citation)
 PS = ['Public Sénat, « Aide à l’Ukraine : que proposent les candidats à la présidentielle ? »', 'https://www.publicsenat.fr/actualites/international/aide-a-lukraine-que-proposent-les-candidats-a-la-presidentielle', '16/11/2026']
@@ -338,7 +347,16 @@ AJOUT4 = {
     ('Jean-Luc Mélenchon', 'adhesion_ue'): {'reponse': 'contre', 'texte': 'Position de LFI : l’adhésion risquerait « d’aggraver sans précédent le dumping social qui fracture déjà l’UE » (communiqué cité par Public Sénat)', 'source': PS},
     ('Raphaël Glucksmann', 'adhesion_ue'): {'reponse': 'pour', 'texte': 'Selon Public Sénat, favorable à l’entrée de l’Ukraine dans l’Union européenne (formulation du journaliste)', 'source': PS},
 }
+AJOUT4.update({
+    ('Bruno Retailleau', 'aide_financiere'): {'reponse': 'maintenir', 'texte': 'Selon Public Sénat (propos sur BFMTV), veut maintenir l’aide à l’Ukraine au même niveau (formulation du journaliste)', 'source': PS},
+    ('Édouard Philippe', 'aide_financiere'): {'reponse': 'maintenir', 'texte': 'Programme : « soutien plein à l’Ukraine » ; selon Public Sénat, juge essentiel le soutien militaire et financier à Kiev', 'source': PS},
+    ('Édouard Philippe', 'avoirs'): {'reponse': 'oui', 'texte': 'Selon Public Sénat, favorable à la saisie des avoirs russes gelés (formulation du journaliste)', 'source': PS},
+})
 for _v in AJOUT4.values(): _v.update(RAP)
+AJOUT4.update({   # déclarations directes
+    ('Gabriel Attal', 'avoirs'): {'reponse': 'oui', 'texte': 'Saisir les avoirs russes : « faire payer les Russes avant les Français et les Européens »', 'source': ['Assemblée nationale (question au Gouvernement n° 433, G. Attal)', 'https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QG433', '05/03/2025'], 'verification': 'verifie'},
+    ('Raphaël Glucksmann', 'avoirs'): {'reponse': 'oui', 'texte': 'Saisir les quelque 210 Md€ d’avoirs russes gelés en Europe et les affecter à la défense de l’Ukraine', 'source': ['Public Sénat (citant le débat de la primaire sur LCI du 23/09/2026)', 'https://www.publicsenat.fr/actualites/international/aide-a-lukraine-que-proposent-les-candidats-a-la-presidentielle', '16/11/2026'], 'verification': 'verifie'},
+})
 AJOUT4[('Jean-Luc Mélenchon', 'adhesion_ue')].pop('rapporte')   # citation du communiqué de LFI : pas une reformulation
 def lots4():
     import glob
@@ -360,6 +378,7 @@ def positions4(publique):
                     t = x.get('texte') or ''
                     D[q] = {'r': x['reponse'], 'txt': t, 'source': x['source'][:3], 'ok': x.get('verification') == 'verifie'}
                     if x.get('rapporte'): D[q]['rap'] = True
+                    if re.search(r"^Position (de|du) |\(position d[eu] ", t): D[q]['parti'] = True   # position officielle du parti, pas du candidat
             if D: res[th][sl] = D
         refs = []
         for r in (e.get('referendums') or []):
@@ -367,6 +386,7 @@ def positions4(publique):
             if ok(r):
                 refs.append({'sujet': sujet_ref(r.get('sujet')), 'txt': r.get('texte') or '', 'source': r['source'][:3], 'ok': r.get('verification') == 'verifie'})
                 if r.get('rapporte'): refs[-1]['rap'] = True
+                if re.search(r"^Position (de|du) |\(position d[eu] ", r.get('texte') or ''): refs[-1]['parti'] = True
         if refs: res['referendums'][sl] = refs
     return res
 
