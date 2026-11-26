@@ -14,6 +14,7 @@
 !/valeurs/
 !/data_mv/
 !/data_mv2/
+!/site-fiches/
 
 # Secrets : jamais dans le dépôt
 /apk/cle/

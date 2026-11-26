@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les fiches de la présidentielle 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,600;9..144,900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE : un trombinoscope citoyen, sobre et précis, le même pour tous ; ton factuel, aucun jugement.
+   IDEA : la table où l'on étale une collection de cartes à jouer, chacune avec son verso documenté.
+   PICTURE : la grille des 43 cartes, portraits au fond surligneur, bord à la couleur du bloc officiel.
+   COLOUR and TYPE : charte de Retourne ta veste ; papier, encre, surligneur ; Fraunces, Atkinson, JetBrains Mono.
+   LAYOUT : titre court, barre d'outils, grille de cartes ; la fiche s'ouvre par-dessus ; comparateur en liste. */
+:root{color-scheme:light dark;
+  --page:light-dark(#eef0ec,#131518);--texte:light-dark(#15171a,#eceee8);--texte-2:light-dark(#4d535b,#a4aab1);--ligne:light-dark(#c9cdc6,#33383e);
+  --papier:#f8f9f6;--encre:#15171a;--encre-2:#4d535b;--fluo:#f1fb4e;--sarcelle:#0f5f66;
+  --titre:"Fraunces",Georgia,serif;--corps:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;--chiffre:"JetBrains Mono",ui-monospace,Menlo,monospace}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+[data-bloc="extreme-gauche"]{--bloc:#8f1d1d;--fonce:#5e1010;--clair:#f6e1df}
+[data-bloc="gauche"]{--bloc:#d63a32;--fonce:#9e241e;--clair:#fbe4e1}
+[data-bloc="ecolo"]{--bloc:#2e9a4e;--fonce:#1c6a34;--clair:#e1f2e6}
+[data-bloc="centre"]{--bloc:#f0931c;--fonce:#a85d00;--clair:#fdeed7}
+[data-bloc="divers"]{--bloc:#6a7077;--fonce:#454b51;--clair:#eceef0}
+[data-bloc="droite"]{--bloc:#2a6fcf;--fonce:#1a4a91;--clair:#e1eaf8}
+[data-bloc="extreme-droite"]{--bloc:#26367d;--fonce:#151e4a;--clair:#e2e5ef}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--page);color:var(--texte);font:17px/1.5 var(--corps);overflow-x:clip}
+a{color:inherit;text-underline-offset:2px}
+button,input{font:inherit}
+:focus-visible{outline:3px solid var(--sarcelle);outline-offset:2px}
+.contenu{max-width:1240px;margin:0 auto;padding:0 max(4vw,16px)}
+header.tete{padding:32px 0 8px}
+.marque{margin:0 0 8px;font-family:var(--chiffre);font-size:13px;color:var(--texte-2)}
+.marque span{background:var(--fluo);color:var(--encre);padding:0 .25em}
+h1{font-family:var(--titre);font-weight:900;font-size:clamp(32px,5.5vw,52px);line-height:1.05;margin:0 0 10px;text-wrap:balance}
+.chapo{margin:0;max-width:66ch;color:var(--texte-2)}
+nav.vues{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding-bottom:14px;border-bottom:2px solid var(--texte)}
+nav.vues a{min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border:1.5px solid var(--texte);border-radius:8px;text-decoration:none;font-family:var(--chiffre);font-weight:700;font-size:14px}
+nav.vues a[aria-current=page]{background:var(--fluo);color:var(--encre);border-color:var(--encre);box-shadow:2px 2px 0 var(--encre)}
+.outils{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:20px 0 6px}
+.outils input[type=search]{flex:1 1 220px;max-width:340px;min-height:44px;padding:0 12px;border:1.5px solid var(--texte);border-radius:8px;background:light-dark(#fff,#1d2024);color:var(--texte);font-size:16px}
+.puces{display:flex;flex-wrap:wrap;gap:6px}
+.puces button{min-height:44px;padding:0 12px;border:1.5px solid var(--ligne);border-radius:99px;background:transparent;color:var(--texte);cursor:pointer;font-size:14px;display:inline-flex;align-items:center;gap:7px}
+.puces button i{width:14px;height:10px;border-radius:3px;border:1.5px solid var(--texte);background:var(--bloc,transparent)}
+.puces button[aria-pressed=true]{border-color:var(--texte);background:var(--texte);color:var(--page)}
+.puces button[aria-pressed=true] i{border-color:var(--page)}
+.compte{font-family:var(--chiffre);font-size:13px;color:var(--texte-2);margin:4px 0 0}
+.grille{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:18px}
+.carte{display:flex;flex-direction:column;width:100%;height:100%;padding:7px;border:2px solid var(--encre);border-radius:14px;background:linear-gradient(160deg,var(--bloc) 0 55%,var(--fonce));color:var(--encre);cursor:pointer;text-align:left;box-shadow:0 8px 20px rgba(21,23,26,.18);transition:transform .15s}
+.carte:hover{transform:translateY(-3px)}
+.carte .portrait{aspect-ratio:4/5;border:1.5px solid var(--encre);border-radius:9px 9px 0 0;overflow:hidden;background-color:var(--fluo);background-image:radial-gradient(circle,rgba(21,23,26,.17) 0 1.1px,transparent 1.4px);background-size:7px 7px}
+.carte img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.carte .bas{flex:1;background:var(--papier);border:1.5px solid var(--encre);border-top:0;border-radius:0 0 9px 9px;padding:8px 10px 10px;display:grid;gap:3px;align-content:start}
+.carte b{font-family:var(--titre);font-weight:600;font-size:18px;line-height:1.1}
+.carte small{font-family:var(--chiffre);font-size:12px;line-height:1.3;color:var(--encre-2)}
+.vide{margin:30px 0;color:var(--texte-2)}
+.qz-carte{max-width:760px;margin:18px 0 8px;border:2px solid var(--texte);border-radius:14px;padding:clamp(16px,3vw,26px);background:light-dark(#fff,#1d2024);box-shadow:4px 4px 0 var(--texte)}
+.qz-meta{margin:0;font-family:var(--chiffre);font-size:13px;color:var(--texte-2)}
+.qz-q{font-family:var(--titre);font-weight:600;font-size:clamp(20px,3vw,26px);line-height:1.22;margin:8px 0 18px;text-wrap:pretty}
+.qz-rep{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:620px){.qz-rep{grid-template-columns:1fr}}
+.qz-rep button{min-height:54px;text-align:left;padding:10px 14px;border:1.5px solid var(--texte);border-radius:10px;background:transparent;color:var(--texte);cursor:pointer;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:16px;line-height:1.3}
+.qz-rep button:hover:not(:disabled){background:light-dark(#f4f6f1,#262a2f)}
+.qz-rep button b{font-family:var(--chiffre);font-size:13px;width:24px;height:24px;display:inline-grid;place-items:center;border:1.5px solid currentColor;border-radius:6px;flex:none}
+.qz-rep button span{flex:1}
+.qz-rep button em{flex-basis:100%;font-style:normal;font-family:var(--chiffre);font-size:12.5px;font-weight:700;padding-left:36px}
+.qz-rep button:disabled{cursor:default;color:var(--texte)}
+.qz-rep button.juste{background:light-dark(#dcf1e2,#163a22);border-color:#2e9a4e;border-width:2.5px}
+.qz-rep button.faux{background:light-dark(#fbe1de,#3e1a17);border-color:#d63a32;border-width:2.5px}
+.qz-rep button.retire{opacity:.35;text-decoration:line-through}
+.qz-suite > p{margin:12px 0 0;max-width:70ch}
+.qz-suite{margin-top:4px}
+.qz-suite:not(:empty){margin-top:16px;padding-top:4px;border-top:1px solid var(--ligne)}
+.qz-verdict{font-weight:700}
+.qz-src{font-family:var(--chiffre);font-size:12.5px;line-height:1.4;color:var(--texte-2)}
+.qz-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.qz-actions button{min-height:44px;padding:0 16px;border:1.5px solid var(--texte);border-radius:8px;background:transparent;color:var(--texte);font-family:var(--chiffre);font-weight:700;font-size:14px;cursor:pointer}
+.qz-actions button.prim{background:var(--fluo);color:var(--encre);border-color:var(--encre);box-shadow:2px 2px 0 var(--encre)}
+.qz-actions button:disabled{opacity:.45;cursor:default}
+details.qz-relecture{margin:28px 0}
+details.qz-relecture summary{cursor:pointer;font-family:var(--chiffre);font-weight:700;font-size:14px;min-height:44px;display:flex;align-items:center}
+.sous-vues{display:flex;flex-wrap:wrap;gap:4px 22px;margin:14px 0 0;border-bottom:1px solid var(--ligne)}
+.sous-vues a{min-height:44px;display:inline-flex;align-items:center;text-decoration:none;font-family:var(--chiffre);font-weight:700;font-size:14px;color:var(--texte-2);border-bottom:3px solid transparent;margin-bottom:-1px}
+.sous-vues a[aria-current=page]{color:var(--texte);border-bottom-color:var(--texte)}
+.sous-vues a:hover{color:var(--texte)}
+.portes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:26px 0 0}
+@media (max-width:900px){.portes{grid-template-columns:1fr}}
+.porte{display:flex;flex-direction:column;gap:6px;padding:24px 24px 20px;border:2px solid var(--texte);border-radius:16px;background:light-dark(#fff,#1d2024);box-shadow:5px 5px 0 var(--texte);text-decoration:none;color:var(--texte);min-height:240px;transition:transform .15s}
+.porte:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--texte)}
+.porte .num{font-family:var(--chiffre);font-weight:700;font-size:13px;align-self:flex-start;background:var(--fluo);color:var(--encre);padding:1px 8px;border-radius:4px}
+.porte h2{font-family:var(--titre);font-weight:900;font-size:clamp(26px,3vw,34px);line-height:1.05;margin:6px 0 2px}
+.porte p{margin:0;color:var(--texte-2)}
+.porte .porte-chiffre{margin-top:auto;padding-top:14px;font-family:var(--chiffre);font-size:13px}
+.porte .aller{font-family:var(--chiffre);font-weight:700;font-size:14px;text-decoration:underline;text-decoration-color:var(--fluo);text-decoration-thickness:4px;text-underline-offset:3px}
+.portes-2:empty{display:none}
+.portes-2{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 0}
+.portes-2 a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 16px;border:1.5px solid var(--texte);border-radius:10px;text-decoration:none;font-size:15px}
+.portes-2 a b{font-family:var(--chiffre);font-size:14px}
+.face-choix{display:flex;flex-wrap:wrap;gap:12px 16px;margin:18px 0 14px}
+.face-sel{display:grid;gap:4px;font-family:var(--chiffre);font-size:13px;color:var(--texte-2)}
+.face-sel select{min-height:44px;min-width:min(240px,100%);padding:0 10px;border:1.5px solid var(--texte);border-radius:8px;background:light-dark(#fff,#1d2024);color:var(--texte);font:16px var(--corps)}
+table.face{border-collapse:collapse;width:100%;min-width:680px;font-size:14.5px;line-height:1.42}
+table.face th,table.face td{border-bottom:1px solid var(--ligne);padding:10px 12px;text-align:left;vertical-align:top}
+table.face thead th{border-top:6px solid var(--bloc,transparent);border-bottom:2px solid var(--texte);background:light-dark(#fff,#1b1e22)}
+table.face thead th button{all:unset;cursor:pointer;font-family:var(--titre);font-weight:600;font-size:19px;line-height:1.15;text-decoration:underline;text-decoration-color:var(--ligne);text-underline-offset:3px}
+table.face thead th small{display:block;font-family:var(--chiffre);font-size:12px;color:var(--texte-2);margin-top:2px}
+table.face tbody th{width:12em;font-family:var(--chiffre);font-size:12.5px;font-weight:700;color:var(--texte-2)}
+table.face tr.groupe th{background:var(--papier);color:var(--encre);font-size:13px;padding:7px 12px;border-bottom:1.5px solid var(--texte)}
+table.face td p{margin:0 0 4px}
+table.face td ul{margin:0;padding-left:1.1em}
+table.face .nr{color:var(--texte-2)}
+.face-rep{font-weight:700}
+.face-src{font-family:var(--chiffre);font-size:12px;line-height:1.35;color:var(--texte-2)}
+footer.pied nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 10px}
+footer.pied nav a{font-family:var(--chiffre);font-weight:700;font-size:14px;min-height:36px;display:inline-flex;align-items:center}
+body[data-vue]:not([data-vue=accueil]) .chapo{display:none}
+@media (max-width:600px){body[data-vue]:not([data-vue=accueil]) h1{font-size:26px}}
+nav.vues a.sortie{border-style:dashed;font-weight:400}
+nav.vues a.sortie::after{content:" ↗";font-size:12px}
+.portes-2 a.jeu{border-style:dashed}
+/* accueil : les trois portes remplacent le menu, qui n'apparaît que dans les rubriques */
+body[data-vue=accueil] nav.vues a:not(.outil){display:none}
+body[data-vue=accueil]:not(.interne) nav.vues{display:none}
+h1 a{color:inherit;text-decoration:none}
+body:not([data-vue=accueil]) h1 a:hover{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--fluo)}
+/* le jeu : un autre univers, présenté à part des trois portes documentaires */
+.jeu-bloc{margin:40px 0 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px 40px;align-items:center;padding:clamp(20px,4vw,36px);border-radius:20px;background:#173f43;color:#f4f0e6;border:2px solid var(--encre);box-shadow:5px 5px 0 var(--texte)}
+@media (max-width:760px){.jeu-bloc{grid-template-columns:1fr}.jeu-bloc .jeu-ecran{justify-self:center;width:180px}}
+.jeu-bloc .jeu-sur{margin:0;font-family:var(--chiffre);font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#cfe3df}
+.jeu-bloc .jeu-logo{display:block;width:min(100%,420px);height:auto;margin:10px 0 14px;border-radius:12px;background:#f4f0e6}
+.jeu-bloc p{margin:0 0 12px;max-width:58ch;line-height:1.5}
+.jeu-bloc ul{list-style:none;margin:4px 0 16px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.jeu-bloc li{padding:5px 12px;border:1.5px solid #cfe3df;border-radius:99px;font-size:14px}
+.jeu-bloc li b{font-family:var(--chiffre)}
+.jeu-bloc .jeu-note{font-size:14.5px;color:#cfe3df;border-left:3px solid var(--fluo);padding-left:12px}
+.jeu-bloc .jeu-aller{display:inline-flex;align-items:center;gap:8px;min-height:50px;margin-top:6px;padding:0 20px;border:2px solid var(--encre);border-radius:10px;background:var(--fluo);color:var(--encre);font-family:var(--chiffre);font-weight:700;font-size:15px;text-decoration:none;box-shadow:3px 3px 0 var(--encre)}
+.jeu-bloc .jeu-boutons{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin:6px 0 0}
+.jeu-bloc .jeu-direct{color:#f4f0e6;font-family:var(--chiffre);font-size:14px;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center}
+.jeu-bloc .jeu-aller:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--encre)}
+.jeu-bloc .jeu-ecran{width:230px;height:auto;border-radius:22px;border:6px solid #0d1f21;box-shadow:0 12px 28px rgba(0,0,0,.35);transform:rotate(2.5deg)}
+@media (prefers-reduced-motion:reduce){.jeu-bloc .jeu-ecran{transform:none}}
+/* comparateur */
+.themes{display:flex;flex-wrap:wrap;gap:6px}
+.rangs{list-style:none;margin:18px 0 0;padding:0;border-top:2px solid var(--texte)}
+.rangs li{display:grid;grid-template-columns:54px minmax(0,13em) minmax(0,1fr);gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ligne)}
+.rangs .vignette{width:54px;height:66px;border:2px solid var(--bloc);border-radius:8px;overflow:hidden;background:var(--fluo);padding:0;cursor:pointer}
+.rangs .vignette img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.rangs .qui button{all:unset;cursor:pointer;font-family:var(--titre);font-weight:600;font-size:18px;line-height:1.15;text-decoration:underline;text-decoration-color:var(--ligne);text-underline-offset:3px}
+.rangs .qui button:focus-visible{outline:3px solid var(--sarcelle)}
+.rangs .qui small{display:block;font-family:var(--chiffre);font-size:12px;color:var(--texte-2)}
+.rangs .mesure p{margin:0}
+.rangs .mesure .src{font-family:var(--chiffre);font-size:12px;color:var(--texte-2);margin-top:3px}
+.rangs li.sans .mesure p{color:var(--texte-2);font-style:italic}
+.bascule{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:15px;cursor:pointer}
+.bascule input{width:20px;height:20px;accent-color:var(--sarcelle)}
+.axe{margin:18px 0 6px;padding:14px 16px 16px;border:2px solid var(--texte);border-radius:12px;background:light-dark(#fff,#1b1e22)}
+.axe h3{margin:0 0 2px;font-family:var(--titre);font-weight:900;font-size:22px;line-height:1.15}
+.axe .sous{margin:0 0 12px;font-size:14.5px;color:var(--texte-2)}
+.axe-grille{display:grid;grid-template-columns:minmax(0,11em) minmax(0,1fr);gap:0 14px;align-items:center}
+.axe-grille .piste{position:relative;height:34px;border-left:1px dashed var(--ligne);border-right:1px dashed var(--ligne)}
+.axe-grille .piste::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--ligne)}
+.axe-grille .graduations{position:relative;height:22px}
+.axe-grille .graduations span{position:absolute;transform:translateX(-50%);font-family:var(--chiffre);font-size:12.5px;color:var(--texte-2)}
+.axe-grille .repere{position:absolute;top:0;bottom:0;border-left:1px dotted var(--ligne)}
+.axe-grille .qui{all:unset;cursor:pointer;font-weight:700;font-size:15px;line-height:1.2;padding:6px 0;text-decoration:underline;text-decoration-color:var(--ligne);text-underline-offset:3px}
+.axe-grille .qui:focus-visible{outline:3px solid var(--sarcelle)}
+.axe-grille .seg{position:absolute;top:50%;height:12px;transform:translateY(-50%);border-radius:6px;background:var(--bloc);border:1.5px solid var(--encre);min-width:14px}
+.axe-grille .seg.point{width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%)}
+.axe-grille .val{position:absolute;top:-2px;font-family:var(--chiffre);font-size:12px;white-space:nowrap;color:var(--texte)}
+.axe-grille .fragile{font-family:var(--chiffre);font-size:11px;color:#9e241e;margin-left:6px}
+.axe-autres{margin:14px 0 0;display:grid;gap:8px}
+.axe-autres p{margin:0;font-size:14.5px}
+.axe-autres b{font-family:var(--chiffre);font-size:13px}
+.axe-autres button{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.axe-autres button:focus-visible{outline:3px solid var(--sarcelle)}
+.axe-grille .src-axe{display:block;font-family:var(--chiffre);font-weight:400;font-size:11px;margin-top:2px}
+.axe-grille .src-axe a{color:var(--texte-2)}
+.src-inline{font-family:var(--chiffre);font-size:12px;color:var(--texte-2)}
+.axe .note{margin:12px 0 0;font-size:13.5px;color:var(--texte-2)}
+.axe{overflow:hidden}
+.axe-grille .qui small{display:none;font-family:var(--chiffre);font-weight:400;font-size:11.5px;color:var(--texte-2);text-decoration:none;margin-top:2px}
+@media (max-width:600px){.axe-grille{grid-template-columns:minmax(0,7.5em) minmax(0,1fr);gap:0 10px}.axe-grille .qui{font-size:14px}.axe-grille .val{display:none}.axe-grille .qui small{display:block}.axe-grille .graduations span{font-size:11px}}
+/* méthode */
+.methode{max-width:70ch;padding:10px 0 20px}
+.methode h2{font-family:var(--titre);font-weight:900;font-size:28px;line-height:1.1;margin:26px 0 8px}
+.methode li{margin:6px 0}
+footer.pied{margin-top:48px;padding:22px 0 40px;border-top:2px solid var(--texte);font-size:14.5px;color:var(--texte-2)}
+/* la fiche */
+dialog.fiche{padding:0;border:0;background:transparent;width:100%;max-width:min(580px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:visible}
+dialog.fiche::backdrop{background:rgba(21,23,26,.62)}
+.f-carte{background:var(--bloc);border:2px solid var(--encre);border-radius:18px;padding:10px;color:var(--encre);display:flex;flex-direction:column;max-height:calc(100dvh - 24px)}
+.f-tete{background:var(--papier);border:1.5px solid var(--encre);border-radius:12px 12px 0 0;padding:12px;display:grid;grid-template-columns:64px minmax(0,1fr) 44px;gap:12px;align-items:center}
+.f-tete img{width:64px;height:80px;object-fit:cover;object-position:top;border:1.5px solid var(--encre);border-radius:8px;background:var(--fluo)}
+.f-type{margin:0;font-family:var(--chiffre);font-size:12px;color:var(--encre-2)}
+.f-tete h2{font-family:var(--titre);font-weight:600;font-size:clamp(22px,5vw,28px);line-height:1.05;margin:2px 0 4px}
+.f-statut{margin:0;font-family:var(--chiffre);font-size:13px;line-height:1.35}
+.f-fermer{width:44px;height:44px;align-self:start;font-size:26px;line-height:1;border:1.5px solid var(--encre);border-radius:8px;background:var(--fluo);color:var(--encre);cursor:pointer;box-shadow:2px 2px 0 var(--encre)}
+.f-onglets{display:flex;background:var(--papier);border-inline:1.5px solid var(--encre)}
+.f-panneaux{display:contents}
+#f-panneaux{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+.f-onglets{overflow-x:auto;flex:none}
+.f-tete,.f-pied{flex:none}
+.f-onglets button{flex:1 0 auto;padding:0 12px;min-height:44px;font-family:var(--chiffre);font-weight:700;font-size:14px;background:var(--papier);color:var(--encre-2);border:0;border-block:1.5px solid var(--encre);cursor:pointer}
+.f-onglets button+button{border-left:1.5px solid var(--encre)}
+.f-onglets [aria-selected=true]{background:var(--fluo);color:var(--encre)}
+.f-panneau{background:var(--papier);border:1.5px solid var(--encre);border-top:0;padding:14px 16px 18px;overflow-y:auto;flex:1 1 auto;min-height:0;font-size:16px;line-height:1.45}
+.f-pied{background:var(--papier);border:1.5px solid var(--encre);border-top:0;border-radius:0 0 12px 12px;padding:10px 16px;font-family:var(--chiffre);font-size:12.5px;color:var(--encre-2);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.f-pied button{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.f-rub{margin:16px 0 6px;font-family:var(--chiffre);font-weight:700;font-size:13px;color:var(--fonce)}
+.f-rub:first-child{margin-top:0}
+.f-id{display:grid;grid-template-columns:7em minmax(0,1fr);gap:4px 12px;margin:0}
+.f-id dt{color:var(--encre-2)}.f-id dd{margin:0}
+.f-frise{list-style:none;margin:0;padding:0 0 0 12px;border-left:3px solid var(--bloc);display:grid;gap:7px}
+.f-frise li{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:10px;align-items:baseline}
+.f-frise b{font-family:var(--chiffre);font-size:13px}
+.f-encart{margin:0;padding:10px 12px;border-radius:8px;background:var(--clair)}
+.f-src{margin:6px 0 0;font-family:var(--chiffre);font-size:12.5px;line-height:1.4;color:var(--encre-2)}
+.f-theme{padding:10px 0;border-bottom:1px dashed #c3c7cc}
+.f-theme .f-rub{margin:0 0 4px}
+.f-theme p{margin:0}.f-theme.vide>p:not(.f-src){color:var(--encre-2);font-style:italic}
+.f-note{margin:12px 0 0;font-size:14px;color:var(--encre-2)}
+.f-citation{margin:0;padding:10px 12px;border-radius:8px;background:var(--clair)}
+.f-citation p:first-child{margin:0;font-family:var(--titre);font-weight:600;font-size:18px;line-height:1.25}
+.f-anecdote{margin:8px 0 0}
+
+.barres{list-style:none;margin:14px 0 0;padding:0;border-top:2px solid var(--texte)}
+.barres li{display:grid;grid-template-columns:2.2em 44px minmax(0,12em) minmax(0,1fr);gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--ligne)}
+.barres li.top{background:light-dark(rgba(241,251,78,.35),rgba(241,251,78,.08))}
+.barres .rang{font-family:var(--chiffre);font-weight:700;font-size:14px;text-align:right;color:var(--texte-2)}
+.barres .vignette{width:44px;height:54px;border:2px solid var(--bloc);border-radius:7px;overflow:hidden;background:var(--fluo);padding:0;cursor:pointer}
+.barres .vignette img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.barres .qui{font-family:var(--titre);font-weight:600;font-size:17px;line-height:1.15}
+.barres .val{display:grid;gap:4px}
+.barres .val b{font-family:var(--chiffre);font-size:14px;white-space:nowrap}
+.barres .val small{font-size:13px;color:var(--texte-2)}
+.barres .jauge{height:10px;border:1px solid var(--texte);border-radius:3px;background:transparent}
+.barres .jauge i{display:block;height:100%;background:var(--bloc);border-radius:2px}
+.f-note-page{margin:14px 0 0;font-size:14.5px;color:var(--texte-2);max-width:70ch}
+@media (max-width:600px){.barres li{grid-template-columns:1.8em 40px minmax(0,1fr);gap:4px 10px}.barres .vignette{width:40px;height:50px;grid-row:span 2}.barres .val{grid-column:3}}
+/* version de travail */
+.scroll{overflow-x:auto}
+.bandeau{background:#c8102e;color:#fff;padding:10px max(4vw,16px);font-weight:700;font-size:15px}
+.badge{display:inline-block;margin:2px 4px 2px 0;padding:2px 7px;border-radius:4px;font-family:var(--chiffre);font-size:11.5px;line-height:1.5;border:1px solid var(--encre);background:#fff;color:var(--encre)}
+.badge.alerte{background:#ffe1e1;border-color:#9e241e;color:#7a1a15}
+.badge.ok{background:#e2f0ef;border-color:#0a3f44;color:#0a3f44}
+.badge.neutre{background:#eceee9;border-color:#4d535b;color:#2f343a}
+.dossier{border:1.5px solid var(--encre);border-radius:9px;padding:10px 12px;margin:10px 0;background:#fff}
+.dossier h4{margin:0 0 4px;font-family:var(--titre);font-weight:600;font-size:17px;line-height:1.2}
+.dossier ol{margin:8px 0 0;padding-left:18px;font-size:14.5px}
+.dossier li{margin:3px 0}
+.liste-verif{margin:4px 0 0;padding-left:18px;font-size:14.5px}
+.liste-verif li{margin:4px 0}
+.tab-valider{width:100%;border-collapse:collapse;margin-top:16px;font-size:15px}
+.tab-valider th,.tab-valider td{padding:8px 10px;border-bottom:1px solid var(--ligne);text-align:left;vertical-align:top}
+.tab-valider td.n{text-align:right;font-family:var(--chiffre);white-space:nowrap}
+.tab-cat td{font-size:14.5px}
+.tab-valider button{all:unset;cursor:pointer;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+@media (max-width:600px){
+  .grille{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .carte b{font-size:16px}
+  .rangs li{grid-template-columns:48px minmax(0,1fr);gap:4px 12px}
+  .rangs .vignette{width:48px;height:58px;grid-row:span 2}
+  dialog.fiche{max-width:100vw;max-height:100dvh;margin:0}
+  .f-carte{border-radius:0;border-width:0;min-height:100dvh;max-height:100dvh}
+  .f-frise li{grid-template-columns:1fr;gap:0}
+}
+/* ---- les équipes : constellation */
+.eq-mise{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,300px);gap:18px;align-items:start;margin-top:16px}
+.ciel{position:relative;aspect-ratio:1/1;width:100%;max-width:720px;border-radius:14px;border:2px solid var(--texte);background:var(--papier);color:var(--encre);
+  background-image:radial-gradient(circle,var(--ligne) 1px,transparent 1.2px);background-size:22px 22px;box-shadow:4px 4px 0 var(--texte)}
+.ciel svg{position:absolute;inset:0;width:100%;height:100%}
+.ciel .orbite{fill:none;stroke:var(--encre);stroke-width:1.6;stroke-dasharray:2 7;stroke-linecap:round;opacity:.55}
+.ciel .rayon{stroke:var(--encre);stroke-width:1.4;opacity:.35}
+.ciel .rayon.parti{stroke-dasharray:5 6}
+.ciel .soleil{position:absolute;left:50%;top:50%;width:27%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:0;z-index:1}
+.ciel .soleil .por{width:100%;aspect-ratio:1/1;border-radius:14px;overflow:hidden;border:2.5px solid var(--encre);background:var(--fluo);box-shadow:4px 4px 0 var(--encre)}
+.ciel .soleil img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.ciel .soleil b{margin-top:-14px;position:relative;background:var(--encre);color:var(--papier);font:700 clamp(11px,1.8vw,15px)/1.1 var(--chiffre);padding:5px 10px;border-radius:999px;white-space:nowrap;border:2px solid var(--papier)}
+.astre{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;padding:4px;color:var(--encre);cursor:pointer;max-width:10em;z-index:2}
+.astre i{display:grid;place-items:center;width:clamp(34px,6.6vw,52px);aspect-ratio:1/1;border-radius:50%;background:var(--g);border:2px solid var(--encre);box-shadow:2px 2px 0 var(--encre);color:var(--encre);font:700 clamp(11px,1.9vw,15px)/1 var(--chiffre);font-style:normal;letter-spacing:.02em;transition:transform .12s}
+.astre span{font:700 12.5px/1.15 var(--corps);text-align:center;background:var(--papier);border:1.5px solid var(--encre);border-radius:6px;padding:2px 6px}
+.astre:hover i{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--encre)}
+.astre.parti i{background:var(--papier);border-style:dashed;box-shadow:none;color:var(--encre-2)}
+.astre.parti span{color:var(--encre-2);border-style:dashed}
+.astre.muet span{display:none}.astre.muet:hover span,.astre.muet.choisi span{display:block;position:absolute;top:100%;white-space:nowrap;z-index:3}
+.astre:hover{z-index:4}
+.astre.choisi i{outline:3px solid var(--sarcelle);outline-offset:3px}
+.astre.choisi span{background:var(--fluo)}
+.astre.fragile i{border-color:#b3261e;border-style:dotted}
+.eq-detail{border:2px solid var(--texte);border-radius:12px;padding:14px 16px;background:light-dark(#fff,#1b1e22);min-height:120px}
+.eq-detail h3{margin:0 0 2px;font-family:var(--titre);font-weight:600;font-size:21px;line-height:1.15}
+.eq-detail p{margin:4px 0}
+.eq-detail .r{font-weight:700}
+.eq-detail .vide{margin:0;color:var(--texte-2)}
+.eq-legende{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--chiffre);font-size:12.5px;color:var(--texte-2)}
+.eq-legende i{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--g);margin-right:6px;vertical-align:-1px;border:1px solid var(--texte)}
+.eq-legende .pointille i{background:transparent;border:1.5px dashed var(--texte-2)}
+.eq-liste h3{margin:22px 0 6px;font-family:var(--chiffre);font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px}
+.eq-liste h3 i{width:11px;height:11px;border-radius:50%;background:var(--g);border:1px solid var(--texte)}
+.eq-liste ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--ligne)}
+.eq-liste li{padding:8px 0;border-bottom:1px solid var(--ligne);display:grid;grid-template-columns:minmax(0,15em) minmax(0,1fr);gap:4px 14px}
+.eq-liste li button{all:unset;cursor:pointer;font-weight:700;text-decoration:underline;text-decoration-color:var(--ligne);text-underline-offset:3px}
+.eq-liste li button:focus-visible{outline:3px solid var(--sarcelle)}
+.eq-liste li.parti{color:var(--texte-2)}
+.eq-liste .src-inline{grid-column:2}
+.f-eq ul{list-style:none;margin:0;padding:0}
+.f-eq li{padding:5px 0;border-bottom:1px solid #d9dcd5}
+.f-eq li small{display:block;font-family:var(--chiffre);font-size:12px;color:var(--encre-2)}
+.vign{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--g);border:2px solid var(--texte);font:700 16px/1 var(--chiffre);color:#14161a;flex:none}
+.eq-tete{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+.eq-detail h4{margin:14px 0 4px;font-family:var(--chiffre);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--texte-2)}
+.trajet{display:flex;flex-wrap:wrap;gap:4px 2px;align-items:center;margin:2px 0;padding:0;list-style:none}
+.trajet li{font-family:var(--chiffre);font-size:12.5px;border:1.5px solid var(--texte);border-radius:999px;padding:2px 8px;background:light-dark(#fff,#24272c)}
+.trajet li+li{margin-left:16px;position:relative}.trajet li+li::before{content:'→';position:absolute;left:-14px;top:1px;color:var(--texte-2)}
+.trajet li small{color:var(--texte-2);margin-left:4px}
+.eq-detail ul.idees{margin:2px 0;padding-left:18px}.eq-detail ul.idees li{margin:4px 0}
+.passes{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none;font-family:var(--chiffre);font-size:12.5px}
+.passes li{border:1.5px solid var(--texte);border-radius:999px;padding:3px 10px;background:light-dark(#fff,#24272c)}
+.passes b{margin-left:6px}
+.passes .lbl{border:0;background:none;padding:3px 0;color:var(--texte-2)}
+.eq-titre{font-family:var(--titre)!important;font-size:22px!important;font-weight:600!important;margin-top:26px!important}
+.eq-reste{margin-top:22px;border-top:2px solid var(--texte);padding-top:8px}.eq-reste summary::before{content:"▸";margin-right:8px}.eq-reste[open] summary::before{content:"▾"}.eq-reste summary{cursor:pointer;list-style:none;font-family:var(--chiffre);font-weight:700;font-size:14px;min-height:44px;display:flex;align-items:center}
+.f-bouton{margin-top:14px;min-height:44px;padding:0 14px;border:1.5px solid var(--encre);border-radius:8px;background:var(--fluo);color:var(--encre);font-family:var(--chiffre);font-weight:700;cursor:pointer;box-shadow:2px 2px 0 var(--encre)}
+@media (max-width:760px){.eq-mise{grid-template-columns:1fr}.astre span{display:none}.astre.choisi span{display:block;font-size:11px}.ciel .soleil{width:23%}.ciel .soleil .por{border-radius:10px;box-shadow:3px 3px 0 var(--encre)}.astre i{width:28px;font-size:10px;box-shadow:1.5px 1.5px 0 var(--encre)}.ciel{box-shadow:3px 3px 0 var(--texte)}.eq-liste li{grid-template-columns:1fr}.eq-liste .src-inline{grid-column:1}}
+.positions{margin:18px 0 6px}
+.positions .intro{margin:0 0 12px;font-size:14.5px;color:var(--texte-2);max-width:60em}
+.colonnes{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));border:2px solid var(--texte);border-radius:12px;overflow:hidden;background:light-dark(#fff,#1b1e22);box-shadow:3px 3px 0 var(--texte)}
+.colonne{border-left:1.5px solid var(--texte);display:flex;flex-direction:column;min-width:0}
+.colonne:first-child{border-left:0}
+.colonne h3{margin:0;padding:10px 10px 8px;font-family:var(--chiffre);font-size:13px;font-weight:700;line-height:1.25;background:var(--papier);color:var(--encre);border-bottom:1.5px solid var(--texte);min-height:6.2em}
+.colonne h3 small{display:block;font-weight:400;color:var(--encre-2);margin-top:3px}
+.colonne ul{list-style:none;margin:0;padding:6px 8px 10px;display:grid;gap:8px}
+.colonne .vide{color:var(--texte-2);font-size:13px;padding:8px 2px}
+.pos{display:grid;grid-template-columns:40px minmax(0,1fr);gap:2px 8px;align-items:start}
+.pos .vignette{grid-row:span 3;width:40px;height:50px;border:2px solid var(--bloc);border-radius:7px;overflow:hidden;background:var(--fluo);padding:0;cursor:pointer}.pos .vignette img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.pos button.nom{all:unset;cursor:pointer;font-weight:700;font-size:14px;line-height:1.2;text-decoration:underline;text-decoration-color:var(--ligne);text-underline-offset:3px}
+.pos button.nom:focus-visible{outline:3px solid var(--sarcelle)}
+.pos p{margin:0;font-size:13px;line-height:1.35}
+.pos .src{font-family:var(--chiffre);font-size:11.5px;color:var(--texte-2)}
+.pos .fragile{grid-column:2}
+.sujets{display:grid;gap:14px}
+.sujet{border:2px solid var(--texte);border-radius:12px;background:light-dark(#fff,#1b1e22);box-shadow:3px 3px 0 var(--texte);overflow:hidden}
+.sujet h3{margin:0;padding:9px 12px;font-family:var(--chiffre);font-size:14px;font-weight:700;background:var(--papier);color:var(--encre);border-bottom:1.5px solid var(--texte)}
+.sujet ul{list-style:none;margin:0;padding:10px 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px 16px}
+.sans-pos{margin:12px 0 0;font-size:14px;color:var(--texte-2)}
+.sans-pos summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
+@media (max-width:760px){.colonnes{grid-template-columns:1fr}.colonne{border-left:0;border-top:1.5px solid var(--texte)}.colonne:first-child{border-top:0}.colonne h3{min-height:0}}
+.coin-erreur{position:fixed;right:14px;bottom:14px;z-index:20;min-height:40px;padding:0 14px;border:1.5px solid var(--encre);border-radius:999px;background:var(--papier);color:var(--encre);font:700 13px var(--chiffre);box-shadow:2px 2px 0 var(--encre);cursor:pointer}
+.coin-erreur::before{content:'!';display:inline-grid;place-items:center;width:18px;height:18px;margin-right:7px;border-radius:50%;background:var(--fluo);border:1.5px solid var(--encre);font-size:11px}
+.coin-erreur:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--encre)}
+.coin-erreur:focus-visible{outline:3px solid var(--sarcelle);outline-offset:2px}
+.avis-erreur{max-width:min(520px,calc(100vw - 32px));border:2px solid var(--encre);border-radius:14px;background:var(--papier);color:var(--encre);padding:18px 20px;box-shadow:4px 4px 0 var(--encre)}
+.avis-erreur::backdrop{background:rgba(20,22,26,.45)}
+.avis-erreur h2{margin:0 0 8px;font-family:var(--titre);font-weight:900;font-size:24px}
+.avis-erreur p{margin:8px 0;line-height:1.45}
+.avis-erreur .ae-contact{font-family:var(--chiffre);font-weight:700}
+.avis-erreur .ae-astuce{font-size:13.5px;color:var(--encre-2)}
+.f-actions{display:flex;gap:14px;flex-wrap:wrap}
+.pied{padding-bottom:64px}
+.q-cat-titre{margin:26px 0 0;font-family:var(--titre);font-weight:900;font-size:24px}
+.q-cats{margin-top:10px}
+.q-grille{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))!important}
+.q-ind h3{font-size:15px!important}
+.q-ind .unite{margin:2px 0 4px;font-family:var(--chiffre);font-size:12px;color:var(--texte-2)}
+.q-ind text.an{font-size:12px;fill:var(--texte-2)}
+.q-ind text.gy{font-size:11px;fill:var(--texte-2)}
+.q-ind .tick,.q-ind .axe-x{stroke:var(--texte);stroke-width:1}
+.q-ind text.an.recent{font-style:italic}
+.q-ind text.v{font-size:14px!important}
+.q-plus{margin-top:6px}.q-plus summary::before{content:"▸ "}.q-plus[open] summary::before{content:"▾ "}.q-plus summary{cursor:pointer;list-style:none;font-family:var(--chiffre);font-size:12px;color:var(--texte-2);min-height:32px;display:flex;align-items:center}
+.q-plus .m{font-family:var(--chiffre);font-size:12px;color:var(--texte-2);margin:4px 0}
+.q-loi-tete{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:10px;align-items:start}
+.q-pic{width:44px;height:44px;border-radius:10px;border:2px solid var(--texte);background:var(--papier);display:grid;place-items:center}
+.picto{width:26px;height:26px;fill:none;stroke:var(--encre);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mode{display:inline-block;font:700 11.5px/1 var(--chiffre);padding:5px 8px;border-radius:999px;border:1.5px solid var(--texte);white-space:nowrap}
+.mode.mvote{background:light-dark(#fff,#24272c)}.mode.m493{background:var(--fluo);color:var(--encre)}.mode.mcong{background:var(--encre);color:var(--papier)}.mode.mdec{background:#d9dcd5;color:var(--encre);border-style:dashed}
+.q-leg{font-size:13px;color:var(--texte-2);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.frise-enve{overflow-x:auto;margin:14px 0 0;border:2px solid var(--texte);border-radius:14px;background:var(--papier);box-shadow:4px 4px 0 var(--texte);
+  background-image:radial-gradient(circle,var(--ligne) 1px,transparent 1.2px);background-size:22px 22px}
+.frise{position:relative;min-width:1240px;height:var(--h,330px);margin:0 60px 0 24px;color:var(--encre)}
+.frise .an{position:absolute;top:140px;transform:translateX(-50%);font:700 13px var(--chiffre);border-left:1.5px solid var(--encre);padding-left:4px;height:20px}
+.frise::before{content:'';position:absolute;left:0;right:0;top:150px;height:2px;background:var(--encre)}
+.frise .fin,.frise .auj{position:absolute;top:118px;transform:translateX(-100%);font:600 11px var(--chiffre);color:var(--encre-2);white-space:nowrap}
+.frise .auj{transform:translateX(-50%);top:162px}
+.frise .auj::before{content:'';position:absolute;left:50%;top:-14px;height:12px;border-left:2px solid var(--encre)}
+.gouv{position:absolute;top:22px;height:96px;border:2px solid var(--encre);border-radius:12px;background:var(--fluo);box-shadow:3px 3px 0 var(--encre);display:flex;align-items:center;gap:8px;padding:0 8px;overflow:hidden;min-width:0}
+.gouv[data-k="1"]{background:light-dark(#fff,#24272c)}
+.gouv .tete{flex:none;width:52px;height:64px;border-radius:8px;overflow:hidden;border:2px solid var(--encre);background:var(--papier);display:grid;place-items:center}
+.gouv .tete img{width:100%;height:100%;object-fit:cover;object-position:top}
+.gouv .tete b{font:700 16px var(--chiffre)}
+.gouv .nom{display:flex;flex-direction:column;min-width:0}
+.gouv .nom b{font:700 15px var(--titre);white-space:nowrap}
+.gouv .nom small{font:11px var(--chiffre);color:var(--encre-2);white-space:nowrap}
+.evt{position:absolute;top:calc(186px + var(--r) * 44px);transform:translateX(-7px);display:grid;grid-template-columns:14px auto;gap:0 6px;align-items:center;white-space:nowrap}
+.evt::before{content:'';position:absolute;left:6px;top:calc(-36px - var(--r) * 44px);height:calc(36px + var(--r) * 44px);border-left:1.5px dotted var(--encre)}
+.evt i{width:14px;height:14px;transform:rotate(45deg);background:var(--papier);border:2px solid var(--encre);grid-row:span 2}
+.evt.t-election i{background:var(--fluo)}.evt.t-dissolution i,.evt.t-censure i{background:var(--encre)}
+.evt span{font:700 12.5px var(--corps)}.evt small{font:11px var(--chiffre);color:var(--encre-2)}
+.hemis{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:18px}
+.hemi-carte{margin:0;border:2px solid var(--texte);border-radius:12px;padding:12px 14px;background:light-dark(#fff,#1b1e22);box-shadow:3px 3px 0 var(--texte)}
+.hemi-carte figcaption{font:700 14px var(--chiffre)}
+.hemi{width:100%;max-width:360px;display:block;margin:6px auto}
+.hemi circle{fill:var(--bloc)}
+.hemi-leg{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px}
+.hemi-leg i{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--bloc);margin-right:5px;vertical-align:-1px;border:1px solid var(--texte)}
+.q-chrono{list-style:none;margin:16px 0 0;padding:0;border-left:2px solid var(--texte);margin-left:8px}
+.q-chrono li{position:relative;padding:4px 0 14px 22px}
+.q-chrono li::before{content:'';position:absolute;left:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--papier);border:2px solid var(--texte)}
+.q-chrono li.t-election::before,.q-chrono li.t-dissolution::before{background:var(--fluo)}
+.q-chrono li.t-censure::before{background:var(--texte)}
+.q-chrono .d{font-family:var(--chiffre);font-size:12.5px;font-weight:700;margin-right:8px}
+.q-chrono .ty{font-family:var(--chiffre);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--texte-2);margin-right:6px}
+.q-chrono p{margin:2px 0}
+.q-lois{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+.q-lois li{border:2px solid var(--texte);border-radius:12px;padding:10px 14px;background:light-dark(#fff,#1b1e22);box-shadow:3px 3px 0 var(--texte)}
+.q-lois h3{margin:0 0 4px;font-family:var(--titre);font-weight:600;font-size:19px;line-height:1.2}
+.q-lois .m{font-family:var(--chiffre);font-size:12px;color:var(--texte-2)}
+.q-lois p{margin:4px 0}
+.q-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:16px}
+.q-ind{border:2px solid var(--texte);border-radius:12px;padding:12px 14px 10px;background:light-dark(#fff,#1b1e22);box-shadow:3px 3px 0 var(--texte);display:flex;flex-direction:column}
+.q-ind h3{margin:0;font-family:var(--chiffre);font-size:13.5px;font-weight:700;line-height:1.3}
+.q-ind .def{margin:3px 0 6px;font-size:12.5px;color:var(--texte-2);line-height:1.35}
+.q-ind svg{width:100%;height:auto;display:block;overflow:visible}
+.q-ind .grille-l{stroke:var(--ligne);stroke-width:1}
+.q-ind .mandat{fill:var(--fluo);opacity:.28}
+.q-ind .ligne{fill:none;stroke:var(--encre);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.q-ind .pt{fill:var(--encre);stroke:light-dark(#fff,#1b1e22);stroke-width:2}
+.q-ind .pt.recent{fill:light-dark(#fff,#1b1e22);stroke:var(--encre)}
+.q-ind .hit{fill:transparent;cursor:default}
+.q-ind text{font-family:var(--chiffre);font-size:11px;fill:var(--texte-2)}
+.q-ind text.v{fill:var(--texte);font-weight:700;font-size:12px}
+.q-ind .tab{margin:6px 0 0;font-family:var(--chiffre);font-size:11.5px;color:var(--texte-2);line-height:1.5}
+.q-ind .f-src{margin-top:auto;padding-top:6px}
+.q-tip{position:fixed;pointer-events:none;z-index:30;background:var(--encre);color:var(--papier);font:700 12px var(--chiffre);padding:4px 8px;border-radius:6px;display:none}
+.eq-manquent{flex-basis:100%;margin:4px 0 0;font-family:var(--chiffre);font-size:12.5px;color:var(--texte-2)}
+.carte .portrait{position:relative}
+.esp{display:inline-block;font:700 11px/1 var(--chiffre);padding:4px 7px;border:1.5px solid var(--encre);border-radius:999px;color:var(--encre);letter-spacing:.02em;vertical-align:1px}
+.esp-declaree{background:var(--fluo)}
+.esp-envisagee{background:var(--papier)}
+.esp-retrait{background:#d9dcd5;color:var(--encre-2);border-style:dashed}
+.carte .portrait .esp{position:absolute;left:7px;top:7px;box-shadow:1.5px 1.5px 0 var(--encre)}
+.f-statut .esp{margin-right:4px}
+.matrice-enve{overflow-x:auto;border:2px solid var(--texte);border-radius:12px;box-shadow:3px 3px 0 var(--texte);background:light-dark(#fff,#1b1e22)}
+.matrice{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+.matrice th,.matrice td{border-bottom:1px solid var(--ligne);padding:6px 8px;text-align:left;vertical-align:middle}
+.matrice thead th{background:var(--papier);color:var(--encre);font-family:var(--chiffre);font-size:12px;font-weight:700;border-bottom:1.5px solid var(--texte);vertical-align:bottom}
+.matrice tbody th{position:sticky;left:0;background:inherit;background:light-dark(#fff,#1b1e22);border-left:5px solid var(--bloc);min-width:9em}
+.matrice .nom{all:unset;cursor:pointer;font-weight:700;text-decoration:underline;text-decoration-color:var(--ligne);text-underline-offset:3px}
+.matrice .rep{min-height:34px;padding:2px 10px;border:1.5px solid var(--texte);border-radius:999px;background:var(--papier);color:var(--encre);font:600 13px var(--corps);cursor:pointer}
+.matrice .rep:hover,.matrice .rep:focus-visible{background:var(--fluo)}
+.matrice .rep.fragile{border-style:dashed}
+.matrice .nr{color:var(--texte-2)}
+.matrice-detail{position:sticky;bottom:8px;z-index:5;box-shadow:3px 3px 0 var(--texte);margin:10px 0 0;padding:10px 14px;border:2px solid var(--texte);border-radius:12px;background:light-dark(#fff,#1b1e22);min-height:3em}
+.matrice-detail p{margin:4px 0}.matrice-detail .q{font-family:var(--chiffre);font-weight:700;font-size:13px}
+.axe-groupe{grid-column:1/-1;margin:14px 0 2px;padding-top:8px;border-top:1.5px solid var(--texte);font-family:var(--chiffre);font-weight:700;font-size:13px}
+.barres .groupe-titre{display:block;margin:20px 0 4px;padding:0;border:0;font-family:var(--titre);font-weight:900;font-size:21px}
+.barres .groupe-sans{display:block;margin:18px 0 0;border:0;font-size:14px;color:var(--texte-2)}
+.espace-titre{margin:26px 0 2px;font-family:var(--titre);font-weight:900;font-size:26px;line-height:1.1}
+.espace-titre:first-child{margin-top:8px}
+.espace-def{margin:0 0 12px;font-family:var(--chiffre);font-size:13px;color:var(--texte-2)}
+.perim{margin-left:auto}
+@media (max-width:600px){.coin-erreur{right:10px;bottom:10px;font-size:12px;min-height:36px;padding:0 11px}}
+@media (prefers-reduced-motion:reduce){.carte{transition:none}.carte:hover{transform:none}}
+</style>
+</head>
+<body data-vue="accueil">
+<!--BANDEAU-->
+<div class="contenu">
+<header class="tete">
+  <p class="marque"><span>À peu près d’accord</span> · titre provisoire</p>
+  <h1><a href="#accueil">Les fiches de la présidentielle 2027</a></h1>
+  <p class="chapo">Parcours, mandats et propositions de 43 personnalités candidates, pressenties ou en retrait, vérifiés le 25 novembre 2026. Chaque fait renvoie à sa source. Aucune note sur les personnes ni sur leurs idées.</p>
+  <nav class="vues" aria-label="Rubriques">
+    <a href="#accueil" data-g="accueil">Accueil</a><a href="#candidats" data-g="personnalites">Les candidats</a><a href="#programmes" data-g="comparer">Les programmes</a><a href="#quinquennat" data-g="quinquennat">Le quinquennat</a><!--NAVQUIZ--><!--NAVVALIDER--><!--NAVJUSTICE-->
+  </nav>
+</header>
+
+<main>
+<section id="v-accueil">
+  <div class="portes">
+    <a class="porte" href="#candidats"><span class="num">1</span><h2>Qui sont-ils ?</h2><p>Portraits, parcours, mandats et équipes de campagne.</p><p class="porte-chiffre" id="pc-1"></p><span class="aller">Voir les candidats</span></a>
+    <a class="porte" href="#programmes"><span class="num">2</span><h2>Que proposent-ils ?</h2><p>Leurs propositions sujet par sujet, ou trois personnalités face à face.</p><p class="porte-chiffre" id="pc-2"></p><span class="aller">Comparer les programmes</span></a>
+    <a class="porte" href="#quinquennat"><span class="num">3</span><h2>Que s’est-il passé depuis 2022 ?</h2><p>Gouvernements, Parlement, lois adoptées et chiffres officiels.</p><p class="porte-chiffre" id="pc-3"></p><span class="aller">Revoir le quinquennat</span></a>
+  </div>
+  <div class="portes-2" id="portes-2"></div>
+  <aside class="jeu-bloc" id="jeu-bloc" aria-labelledby="jeu-titre" hidden>
+    <div>
+      <p class="jeu-sur" id="jeu-titre">Et pour s’amuser : le jeu</p>
+      <img class="jeu-logo" src="img/jeu-logo.webp" alt="Retourne ta veste, le jeu de cartes de la présidentielle 2027" width="736" height="224">
+      <p>Pose tes personnalités sur le plateau, retourne celles de l’adversaire pour leur faire changer de camp : à la fin, la majorité des sièges l’emporte.</p>
+      <ul>
+        <li><b>43</b> personnalités</li>
+        <li><b>24</b> cartes action : 49.3, Mercato, Passation…</li>
+        <li>Solo contre l’IA, carrière ou à deux</li>
+        <li>Sans pub, sans compte</li>
+      </ul>
+      <p class="jeu-note">Ici, tout est factuel et sourcé. Le jeu, lui, est de l’humour assumé, avec la même règle pour tout le monde. Depuis chaque carte, un lien mène à la fiche factuelle de la personnalité, ici.</p>
+      <p class="jeu-boutons"><a class="jeu-aller" id="jeu-aller" target="_blank" rel="noopener">Découvrir Retourne ta veste ↗</a><a class="jeu-direct" id="jeu-direct" target="_blank" rel="noopener" hidden>ou lancer une partie tout de suite</a></p>
+    </div>
+    <img class="jeu-ecran" src="img/jeu-partie.webp" alt="Une partie en cours : le plateau, les cartes posées et la main du joueur" width="360" height="622" loading="lazy">
+  </aside>
+</section>
+
+<section id="v-personnalites" aria-labelledby="t-perso" hidden>
+  <h2 id="t-perso" class="cache" hidden>Les personnalités</h2>
+  <div class="outils">
+    <input type="search" id="recherche" placeholder="Chercher un nom" aria-label="Chercher un nom">
+    <div class="puces" id="blocs" role="group" aria-label="Filtrer par bloc"></div>
+  </div>
+  <p class="compte" id="compte" aria-live="polite"></p>
+  <div id="grille"></div>
+</section>
+
+<section id="v-comparer" aria-labelledby="t-comp" hidden>
+  <div class="outils">
+    <div class="themes puces" id="themes" role="group" aria-label="Thème"></div>
+    <div class="puces perim" role="group" aria-label="Personnalités comparées"></div>
+    <label class="bascule"><input type="checkbox" id="masquer"> Masquer les cases vides</label>
+  </div>
+  <p class="compte" id="compte-theme" aria-live="polite"></p>
+  <div class="positions" id="positions" hidden></div>
+  <div class="axe" id="axe" hidden></div>
+  <ul class="rangs" id="rangs"></ul>
+</section>
+
+<section id="v-face" hidden>
+  <p class="compte">Jusqu’à trois personnalités, tous les sujets, avec la même grille et les mêmes sources que la comparaison par sujet.</p>
+  <div id="face"></div>
+</section>
+
+<section id="v-chiffres" hidden>
+  <div class="outils"><div class="puces" id="mesures" role="group" aria-label="Chiffre"></div><div class="puces perim" role="group" aria-label="Personnalités comparées"></div></div>
+  <p class="compte" id="def-mesure"></p>
+  <ol class="barres" id="barres"></ol>
+  <p class="f-note-page">Un chiffre mesure un parcours, pas la valeur d’une personne ni de ses idées. Ex æquo rangés par ordre alphabétique.</p>
+</section>
+
+<section id="v-equipes" hidden>
+  <p class="compte" id="eq-intro"></p>
+  <div class="outils"><div class="puces" id="eq-qui" role="group" aria-label="Candidat"></div></div>
+  <p class="compte" id="eq-statut"></p>
+  <ul class="passes" id="eq-passes"></ul>
+  <div class="eq-mise">
+    <div>
+      <div class="ciel" id="ciel" role="img"></div>
+      <ul class="eq-legende" id="eq-legende"></ul>
+    </div>
+    <aside class="eq-detail" id="eq-detail" aria-live="polite"></aside>
+  </div>
+  <div class="eq-liste" id="eq-liste"></div>
+  <p class="f-note-page" id="eq-note"></p>
+</section>
+
+<section id="v-quinquennat" hidden>
+  <p class="compte">Le second mandat d’Emmanuel Macron, du 14 mai 2022 à aujourd’hui : ce qui s’est passé, ce qui a été voté, ce que disent les chiffres officiels. Ni bilan noté ni jugement.</p>
+  <div class="outils"><div class="puces" id="q-onglets" role="group" aria-label="Partie"></div></div>
+  <div id="q-corps"></div>
+  <p class="f-note-page">Un indicateur décrit une situation ; il ne mesure pas à lui seul l’effet d’une politique, car d’autres facteurs jouent (conjoncture mondiale, énergie, démographie…). Chaque chiffre est celui publié par l’organisme cité, à la date indiquée ; il peut être révisé.</p>
+</section>
+
+<section id="v-apprendre" hidden>
+  <p class="compte" id="qz-intro"></p>
+  <div class="outils"><div class="puces" id="qz-modes" role="group" aria-label="Partie"></div></div>
+  <div id="qz-corps" aria-live="polite"></div>
+  <details class="qz-relecture" id="qz-relecture"></details>
+</section>
+
+<section id="v-methode" class="methode" hidden>
+  <h2>D’où viennent ces fiches</h2>
+  <p>Chaque fiche reprend une personnalité du jeu de cartes <i>Retourne ta veste</i>&nbsp;: candidats déclarés, pressentis, battus à une primaire ou ayant renoncé, chacun avec son statut exact.</p>
+  <ul>
+    <li><b>Parcours</b>&nbsp;: identité, mandats et fonctions, situation au Parlement. L’identité n’apparaît que si une source fiable l’établit.</li>
+    <li><b>Idées</b>&nbsp;: dans chaque fiche, les mêmes cinq thèmes de programme pour tout le monde (retraites, dépenses publiques, énergie, immigration, école)&nbsp;; le comparateur y ajoute l’Europe, l’OTAN et la défense, et les référendums. Une mesure n’est retenue que si la personne l’a formulée elle-même, avec une date et une source.</li>
+    <li><b>Une case vide n’est pas une position</b>&nbsp;: c’est une proposition que nous n’avons pas trouvée, ou pas encore pu vérifier.</li>
+    <li><b>Ordre</b>&nbsp;: alphabétique, pour que personne ne soit mis en avant. Seule la page «&nbsp;Les chiffres&nbsp;» trie, sur des faits mesurables (voix, années de mandat, candidatures, consultations), jamais sur les affaires judiciaires.</li>
+  </ul>
+  <h2>Europe, OTAN, référendums : des catégories fixées à l’avance</h2>
+  <ul>
+    <li><b>Europe en sept questions indépendantes</b>&nbsp;: rester dans l’Union, modifier les traités, primauté du droit national, budget de l’Union, emprunt commun, défense intégrée, coopération de défense entre États. On peut répondre oui à l’une et non à l’autre&nbsp;: aucune étiquette d’ensemble.</li>
+    <li><b>Ukraine en cinq questions</b>&nbsp;: aide militaire, aide financière, soldats français ou européens en Ukraine, adhésion de l’Ukraine à l’Union, sanctions contre la Russie. Seule la position la plus récente est retenue, avec sa date.</li>
+    <li><b>OTAN en trois questions</b>&nbsp;: rester dans l’Alliance, rester dans son commandement intégré, renforcer un pilier européen.</li>
+    <li><b>Déclarations directes</b>&nbsp;: une position vient de la personne elle-même (entretien, discours, tribune, programme). La reformulation d’un journaliste sans citation ne suffit pas. La position d’un parti n’est retenue que pour son candidat, et elle est signalée comme telle.</li>
+    <li><b>Source lue</b>&nbsp;: une réponse n’est publiée que si la page source a été ouverte et dit explicitement ce qui est écrit.</li>
+    <li><b>Une proposition, pas une étiquette</b>&nbsp;: une colonne décrit ce qui est proposé, pas la personne. Sans proposition trouvée, la case reste vide.</li>
+    <li><b>Référendums</b>&nbsp;: la liste des référendums que chacun propose, regroupés par sujet, et le référendum d’initiative citoyenne (RIC) à part.</li>
+  </ul>
+  <h2>Le quinquennat : des faits, pas un bilan noté</h2>
+  <ul>
+    <li><b>Trois parties</b>&nbsp;: la chronologie (gouvernements, élections, censures), les principales lois promulguées, et les indicateurs officiels (Insee, Douanes, DGEF, Ofpra, RTE, Citepa, lois de finances).</li>
+    <li><b>Les séries telles que publiées</b>, de 2021 (repère avant le mandat) à la dernière valeur disponible, sans calcul ni ajustement de notre part.</li>
+    <li><b>Pas de causalité</b>&nbsp;: aucun «&nbsp;grâce à&nbsp;» ni «&nbsp;à cause de&nbsp;». Un chiffre décrit une situation, il ne note pas une politique.</li>
+  </ul>
+  <h2>Les équipes : seulement les rôles officiels</h2>
+  <ul>
+    <li><b>Retenu</b>&nbsp;: les rôles annoncés par la campagne ou rapportés par un média national daté (direction, porte-parole, programme, communication, finances, organisation), et les élus ou responsables qui ont déclaré eux-mêmes leur soutien.</li>
+    <li><b>Jamais retenu</b>&nbsp;: les «&nbsp;proches&nbsp;», conseillers officieux, liens familiaux, rumeurs, et toute information judiciaire.</li>
+    <li><b>Les particuliers</b>&nbsp;: une personne sans mandat ni fonction publique n’apparaît que si un média national la cite dans son rôle. Un nom publié par la seule campagne (un mandataire financier, par exemple) n’est pas repris.</li>
+    <li><b>Parti ou campagne</b>&nbsp;: le premier cercle ne compte que des fonctions de campagne annoncées. Un porte-parole du parti figure dans la liste, pas au premier cercle.</li>
+    <li><b>Le schéma montre le premier cercle</b>&nbsp;: la ou les personnes qui dirigent chaque fonction (direction, comité politique, porte-parole, programme, communication, finances, relations avec les élus). Adjoints, membres, conseillers et soutiens sont dans la liste dépliable.</li>
+    <li><b>Origines et idées</b>&nbsp;: le parcours politique se limite aux partis (adhésion ou étiquette d’élection) et aux postes au gouvernement, sourcés, et seulement pour les élus et anciens membres du gouvernement. Pour le premier cercle, une ou deux idées que la personne porte en son nom (proposition de loi, rapport, tribune, déclaration), reformulées sans appréciation.</li>
+    <li><b>Daté</b>&nbsp;: une équipe change vite. Chaque rôle porte sa date et sa source&nbsp;; un départ connu reste visible, en pointillé.</li>
+    <li><b>Une équipe n’est pas un jugement</b>&nbsp;: la taille d’une équipe relevée dépend surtout de ce que la campagne a rendu public.</li>
+  </ul>
+  <h2>La justice : seulement ce qu’un juge a décidé</h2>
+  <ul>
+    <li><b>Affiché</b>&nbsp;: les décisions rendues par un tribunal sur le fond. Une condamnation non définitive porte son stade (appel, pourvoi) et la présomption d’innocence. Une décision fiscale, électorale ou disciplinaire n’est jamais présentée comme une condamnation pénale.</li>
+    <li><b>Affiché aussi</b>&nbsp;: les affaires closes en faveur de la personne (relaxe, non-lieu, classement sans suite, plainte irrecevable), pour que rien ne soit caché.</li>
+    <li><b>Jamais affiché</b>&nbsp;: les enquêtes, plaintes, mises en examen, témoins assistés et renvois en procès, tant qu’aucun jugement n’est rendu.</li>
+    <li><b>Ni total ni classement</b>&nbsp;: les dossiers ne sont jamais comptés par personne.</li>
+  </ul>
+  <p>Les votes détaillés des parlementaires sont accessibles par le lien officiel de chaque fiche.</p>
+  <h2>Une erreur&nbsp;?</h2>
+  <p>Ce site rassemble beaucoup de données : 43 personnalités, des centaines de sources de presse, de programmes et de sites officiels. Malgré les vérifications, des erreurs, des oublis ou des informations dépassées restent possibles. Pour signaler une erreur ou faire évoluer une fiche, utilisez le bouton «&nbsp;Une erreur&nbsp;?&nbsp;» en bas de page ou «&nbsp;Signaler une erreur&nbsp;» dans chaque fiche. Chaque signalement est relu, et la correction est datée.</p>
+</section>
+<section id="v-categories" hidden>
+  <p class="compte">Une catégorie à la fois, chaque cas daté et sourcé. Ni total par personne, ni rang : ordre alphabétique des personnes.</p>
+  <div class="outils"><div class="puces" id="categories" role="group" aria-label="Catégorie"></div></div>
+  <p class="compte" id="def-categorie"></p>
+  <div class="scroll"><table class="tab-valider tab-cat" id="tab-cat"></table></div>
+  <p class="f-note-page" id="note-cat"></p>
+</section>
+
+<section id="v-valider" hidden>
+  <p class="compte">Chaque ligne ouvre la fiche sur son onglet Justice. Rien de ce tableau n'est publié sur le site partageable.</p>
+  <div class="scroll"><table class="tab-valider stack" id="tab-valider"></table></div>
+</section>
+</main>
+
+<button type="button" class="coin-erreur" id="coin-erreur" aria-haspopup="dialog">Une erreur&nbsp;? Dites-le-nous</button>
+<dialog class="avis-erreur" id="avis-erreur" aria-labelledby="ae-titre">
+  <h2 id="ae-titre">Des erreurs sont possibles</h2>
+  <p>Ce site rassemble beaucoup de données : 43 personnalités, des centaines de sources de presse, de programmes et de sites officiels. Malgré les vérifications, des erreurs, des oublis ou des informations dépassées restent possibles.</p>
+  <p>Si vous en repérez une, si une position a changé ou si vous êtes concerné par une fiche, n’hésitez pas à nous écrire&nbsp;: chaque signalement est relu, et la correction est datée.</p>
+  <p class="ae-contact" id="ae-contact"></p>
+  <p class="ae-astuce">Astuce&nbsp;: depuis une fiche, le bouton «&nbsp;Signaler une erreur&nbsp;» précise de quelle personne il s’agit.</p>
+  <button type="button" class="f-bouton" id="ae-fermer">Fermer</button>
+</dialog>
+<footer class="pied"><nav aria-label="Informations"><a href="#methode">La méthode</a><a href="#" id="pied-erreur">Signaler une erreur</a></nav>Projet indépendant, sans publicité ni financement politique. Portraits illustrés, générés par IA avec le même traitement pour tous. Données arrêtées au 25/11/2026.</footer>
+</div>
+
+<dialog class="fiche" id="fiche" aria-labelledby="f-nom">
+  <div class="f-carte" id="f-carte">
+    <header class="f-tete">
+      <img id="f-img" alt="" width="240" height="300">
+      <div><p class="f-type">Fiche factuelle · vérifiée le 25/11/2026</p><h2 id="f-nom"></h2><p class="f-statut" id="f-statut"></p></div>
+      <button type="button" class="f-fermer" id="f-fermer" aria-label="Fermer la fiche">×</button>
+    </header>
+    <div class="f-onglets" role="tablist" aria-label="Rubriques de la fiche" id="f-onglets"></div>
+    <div id="f-panneaux"></div>
+    <footer class="f-pied"><span>Chaque fait renvoie à sa source.</span><span class="f-actions"><button type="button" id="f-signaler">Signaler une erreur</button><button type="button" id="f-lien">Copier le lien de cette fiche</button></span></footer>
+  </div>
+</dialog>
+
+<script type="application/json" id="donnees">/*DONNEES*/</script>
+<script>
+{
+const INTERNE = /*INTERNE*/false;
+const JEU = '/*JEU*/';   /* site du jeu Retourne ta veste : vide = aucun lien */
+const JEU_PARTIE = '/*JEU_PARTIE*/';   /* le jeu lui-même */
+document.body.classList.toggle('interne', INTERNE);   /* adresse du jeu Retourne ta veste : vide = aucun lien */
+const P = JSON.parse(document.getElementById('donnees').textContent);
+const THEMES = [['retraites','Retraites'],['depenses','Dépenses publiques'],['energie','Énergie'],['immigration','Immigration'],['ecole','École'],['europe','Europe'],['otan','OTAN et défense'],['ukraine','Ukraine'],['referendums','Référendums']];
+const BLOCS = [['extreme-gauche','Extrême gauche'],['gauche','Gauche'],['ecolo','Écologistes'],['centre','Centre'],['droite','Droite'],['extreme-droite','Extrême droite'],['divers','Divers']];
+const cleTri = p => p.slug.replace(/^(de|le)-/, '');
+P.sort((a, b) => cleTri(a).localeCompare(cleTri(b), 'fr'));
+const PAR = Object.fromEntries(P.map(p => [p.slug, p]));
+const $ = id => document.getElementById(id);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const lien = s => { const a = el('a', null, s[0] + (s[2] ? ', ' + s[2] : '')); a.href = s[1]; a.rel = 'noopener'; a.target = '_blank'; return a; };
+const sources = (liste, cls) => { const p = el('p', cls, 'Sources : '); liste.forEach((s, i) => { if (i) p.append(' · '); p.append(lien(s)); }); return p; };
+const statut = p => p.f.candidature || p.etiquette;
+const nbMesures = p => THEMES.slice(0, 5).filter(t => p.f.programme.mesures[t[0]]).length;
+
+/* ---- les personnalités */
+let filtre = '', recherche = '';
+function rendreBlocs(){
+  const z = $('blocs'); z.textContent = '';
+  [['', 'Tous']].concat(BLOCS).forEach(([k, n]) => {
+    const b = el('button'); b.type = 'button'; b.setAttribute('aria-pressed', String(k === filtre));
+    if (k){ b.dataset.bloc = k; b.append(el('i')); }
+    b.append(n); b.onclick = () => { filtre = k; rendreBlocs(); rendreGrille(); };
+    z.append(b);
+  });
+}
+function carteGrille(p){
+  const li = el('li'), b = el('button', 'carte'); b.type = 'button'; b.dataset.bloc = p.bloc;
+  b.setAttribute('aria-haspopup', 'dialog');
+  const fig = el('span', 'portrait'), img = el('img'); img.src = 'img/' + p.slug + '.webp'; img.alt = ''; img.loading = 'lazy'; img.width = 240; img.height = 300; fig.append(img, puceEspace(p));
+  const bas = el('span', 'bas'); bas.append(el('b', null, p.nom), el('small', null, statut(p)), el('small', null, p.blocNom + ' · ' + nbMesures(p) + '/5 thèmes renseignés'));
+  b.append(fig, bas); b.onclick = () => ouvrir(p.slug, b);
+  li.append(b); return li;
+}
+function rendreGrille(){
+  const n = recherche.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const liste = P.filter(p => (!filtre || p.bloc === filtre) && (!n || p.nom.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().includes(n)));
+  const z = $('grille'); z.textContent = '';
+  ESPACES.forEach(([k, titre, def]) => {
+    const l = liste.filter(p => p.espace === k); if (!l.length) return;
+    const h = el('h2', 'espace-titre', titre + ' · ' + l.length); const d = el('p', 'espace-def', def); const g = el('ul', 'grille');
+    l.forEach(p => g.append(carteGrille(p))); z.append(h, d, g);
+  });
+  $('compte').textContent = liste.length ? liste.length + (liste.length > 1 ? ' personnalités' : ' personnalité') : '';
+  if (!liste.length) z.append(el('p', 'vide', 'Aucune personnalité ne correspond.'));
+}
+$('recherche').addEventListener('input', e => { recherche = e.target.value.trim(); rendreGrille(); });
+
+/* ---- trois espaces : candidatures déclarées, envisagées, en retrait */
+const ESPACES = [['declaree', 'Candidatures déclarées', 'A annoncé sa candidature.'], ['envisagee', 'Candidatures envisagées ou citées', 'N’a pas annoncé, mais s’est dit prêt, a lancé une démarche ou est régulièrement cité.'], ['retrait', 'En retrait', 'A renoncé, a été battu à une primaire ou a écarté une candidature.']];
+let perim = 'declaree';
+const ESP_COURT = {declaree: 'Déclarée', envisagee: 'Envisagée', retrait: 'En retrait'};
+const puceEspace = p => { const s = el('span', 'esp esp-' + p.espace, ESP_COURT[p.espace]); s.title = (ESPACES.find(e => e[0] === p.espace) || [, , ''])[2]; return s; };
+const PC = () => P.filter(p => perim === 'toutes' || p.espace === 'declaree' || (perim === 'avec' && p.espace === 'envisagee'));
+function rendrePerim(){
+  document.querySelectorAll('.perim').forEach(z => {
+    z.textContent = '';
+    [['declaree', 'Déclarées (' + P.filter(p => p.espace === 'declaree').length + ')'], ['avec', '+ envisagées'], ['toutes', 'Toutes (' + P.length + ')']].forEach(([k, n]) => {
+      const b = el('button', null, n); b.type = 'button'; b.setAttribute('aria-pressed', String(k === perim));
+      b.onclick = () => { perim = k; rendrePerim(); rendreRangs(); rendreBarres(); }; z.append(b);
+    });
+  });
+}
+/* ---- comparer par thème */
+let theme = 'retraites';
+function rendreThemes(){
+  const z = $('themes'); z.textContent = '';
+  THEMES.filter(([k]) => k !== 'ukraine' || Object.keys(POS2.ukraine || {}).length).forEach(([k, n]) => { const b = el('button', null, n); b.type = 'button'; b.setAttribute('aria-pressed', String(k === theme)); b.onclick = () => { theme = k; rendreThemes(); rendreRangs(); history.replaceState(null, '', '#programmes-' + k); }; z.append(b); });
+}
+function rendreRangs(){
+  rendreAxe();
+  if (rendrePositions()) return;
+  const masquer = $('masquer').checked, r = $('rangs'); r.textContent = '';
+  let n = 0;
+  PC().forEach(p => {
+    const m = p.f.programme.mesures[theme];
+    if (m) n++;
+    if (!m && masquer) return;
+    const li = el('li', m ? '' : 'sans'); li.dataset.bloc = p.bloc;
+    const v = el('button', 'vignette'); v.type = 'button'; v.setAttribute('aria-label', 'Fiche de ' + p.nom);
+    const img = el('img'); img.src = 'img/' + p.slug + '.webp'; img.alt = ''; img.loading = 'lazy'; v.append(img); v.onclick = () => ouvrir(p.slug, v);
+    const q = el('div', 'qui'), nb = el('button', null, p.nom); nb.type = 'button'; nb.onclick = () => ouvrir(p.slug, nb); q.append(nb, el('small', null, statut(p)));
+    const me = el('div', 'mesure');
+    me.append(el('p', null, m ? m.texte : 'Pas de proposition identifiée dans les sources consultées.'));
+    if (m){ const s = el('p', 'src'); s.append(lien(m.source)); me.append(s); }
+    li.append(v, q, me); r.append(li);
+  });
+  $('compte-theme').textContent = n + ' proposition' + (n > 1 ? 's' : '') + ' identifiée' + (n > 1 ? 's' : '') + ' sur ' + PC().length + ' personnalités. Même grille et même ordre pour tous.';
+}
+$('masquer').addEventListener('change', rendreRangs);
+
+const BADGES = {
+  nature: {penal: 'pénal', civil: 'civil', fiscal: 'fiscal', electoral: 'électoral', disciplinaire: 'disciplinaire'},
+  stade: {plainte: 'plainte', enquete: 'enquête', temoin_assiste: 'témoin assisté', mise_en_examen: 'mise en examen', renvoi_proces: 'renvoi en procès', condamnation_premiere_instance: 'condamnation 1re instance', condamnation_appel: 'condamnation en appel', condamnation_definitive: 'condamnation définitive', classement_sans_suite: 'classement sans suite', plainte_irrecevable: 'plainte irrecevable', non_lieu: 'non-lieu', relaxe: 'relaxe', acquittement: 'acquittement', assignation: 'assignation', jugement_premiere_instance: 'jugement 1re instance', arret_appel: 'arrêt d’appel', decision_definitive: 'décision définitive', demande_rejetee: 'demande rejetée', redressement: 'redressement', recours: 'recours', decision_juridictionnelle: 'décision juridictionnelle', ineligibilite: 'inéligibilité', rejet_comptes: 'rejet des comptes', procedure: 'procédure', sanction: 'sanction'},
+  etat: {en_cours_confirme: 'en cours (confirmé)', cloture: 'clôturé', recours_a_verifier: 'recours à vérifier', non_etabli: 'situation non établie'},
+  verification: {verifie: 'source consultée', source_non_relue: 'source non relue', a_verifier: 'à vérifier'}
+};
+const ETAT_PUBLIC = {en_cours_confirme: 'recours en cours', cloture: 'définitif ou clos', recours_a_verifier: 'recours éventuel non vérifié', non_etabli: 'suite non connue'};
+const badge = (t, cls) => el('span', 'badge ' + (cls || 'neutre'), t);
+function justice(f){
+  const d = el('div');
+  d.append(el('p', 'f-note', INTERNE ? 'Version de travail : seuls les dossiers marqués « publiable » apparaissent sur le site public (règle : jugements sur le fond).'
+    : 'Ne figurent ici que les décisions rendues par un tribunal sur le fond, et les affaires closes en faveur de la personne. Les enquêtes, plaintes et mises en examen ne sont pas mentionnées.'));
+  if (f.justice_mention) d.append(el('p', 'f-encart', f.justice_mention));
+  if (!f.justice.length) return d;
+  f.justice.forEach(j => {
+    const b = el('div', 'dossier');
+    b.append(el('h4', null, j.dossier));
+    if (j.cadre) b.append(el('p', 'f-src', j.cadre));
+    const ligne = el('p');
+    ligne.append(badge(BADGES.nature[j.nature]), badge(BADGES.stade[j.stade]),
+      badge((INTERNE ? BADGES.etat : ETAT_PUBLIC)[j.etat], j.etat === 'cloture' ? 'ok' : j.etat === 'en_cours_confirme' ? 'neutre' : 'alerte'));
+    if (INTERNE) ligne.append(badge(j.mise_en_cause_personnelle === 'oui' ? 'mise en cause personnelle' : 'mise en cause non établie', j.mise_en_cause_personnelle === 'oui' ? 'neutre' : 'alerte'),
+      badge(BADGES.verification[j.verification], j.verification === 'verifie' ? 'ok' : 'alerte'),
+      badge(j.publiable ? 'publiable' : 'non publiable', j.publiable ? 'ok' : 'alerte'));
+    b.append(ligne);
+    const ol = el('ol'); j.etapes.forEach(e => { const li = el('li'); li.append(el('b', null, e.date + ' : '), e.texte); ol.append(li); }); b.append(ol);
+    const src = el('p', 'f-src', 'Sources : ');
+    j.sources.forEach((s, i) => { if (i) src.append(' · '); src.append(lien(s)); if (INTERNE && s[3] && s[3] !== 'verifie') src.append(' ', badge(BADGES.verification[s[3]] || s[3], 'alerte')); });
+    b.append(src); d.append(b);
+  });
+  return d;
+}
+function verifier(f){
+  const d = el('div');
+  const bloc = (titre, liste) => { if (!liste || !liste.length) return; d.append(el('h3', 'f-rub', titre + ' (' + liste.length + ')')); const ul = el('ul', 'liste-verif'); liste.forEach(x => ul.append(el('li', null, x))); d.append(ul); };
+  bloc('Écarts avec la carte du jeu', f.ecarts_carte);
+  bloc('Points à vérifier', f.a_verifier);
+  bloc('Corrections intégrées le 25/11/2026', f.corrections);
+  if (!d.childNodes.length) d.append(el('p', null, 'Rien à signaler.'));
+  return d;
+}
+function rendreValider(){
+  const t = $('tab-valider'); if (!t) return;
+  t.replaceChildren();
+  const h = t.insertRow(); ['Personnalité', 'Dossiers', 'Non clos', 'À vérifier', 'Écarts carte'].forEach(x => { const th = el('th', null, x); h.append(th); });
+  PC().forEach(p => {
+    const r = t.insertRow(), b = el('button', null, p.nom); b.type = 'button';
+    b.onclick = () => { ouvrir(p.slug, b); choisir($('o-justice'), false); };
+    r.insertCell().append(b);
+    const nonclos = p.f.justice.filter(j => j.etat !== 'cloture').length;
+    [p.f.justice.length, nonclos, (p.f.a_verifier || []).length, (p.f.ecarts_carte || []).length].forEach(v => { const c = r.insertCell(); c.className = 'n'; c.textContent = v; });
+  });
+}
+/* ---- Europe, OTAN, référendums : catégories définies à l'avance, mêmes pour tous */
+const POS2 = Object.assign({}, /*POS2*/{});
+const CATS2 = {
+  europe: {intro: 'Ce que chacun propose pour la place de la France dans l’Union européenne. Les colonnes vont du départ à davantage d’intégration ; elles décrivent une proposition, pas une personne.',
+    cats: [['sortie', 'Quitter l’Union européenne', 'avec ou sans référendum'], ['referendum_appartenance', 'Référendum sur l’appartenance', 'sans prôner la sortie'],
+      ['renegocier', 'Renégocier les traités', 'primauté du droit national, Europe des nations'], ['desobeir', 'Ne plus appliquer certaines règles', 'sans quitter l’Union'],
+      ['reformer', 'Rester et réformer', 'réformes ciblées dans le cadre actuel'], ['approfondir', 'Plus d’intégration', 'défense, budget ou emprunt communs']]},
+  otan: {intro: 'La place de la France dans l’OTAN, puis l’objectif de budget de défense que chacun chiffre.',
+    cats: [['sortie_otan', 'Quitter l’OTAN', ''], ['sortie_commandement', 'Quitter le commandement intégré', 'rester dans l’Alliance'],
+      ['rester', 'Rester', 'sans changement proposé'], ['pilier_europeen', 'Rester et renforcer un pilier européen', 'défense européenne dans ou à côté de l’OTAN']]}
+};
+function entreePos(p, x){
+  const li = el('li', 'pos'), v = el('button', 'vignette'); li.dataset.bloc = p.bloc; v.type = 'button'; v.setAttribute('aria-label', 'Fiche de ' + p.nom);
+  const img = el('img'); img.src = 'img/' + p.slug + '.webp'; img.alt = ''; img.loading = 'lazy'; v.append(img); v.onclick = () => ouvrir(p.slug, v);
+  const nb = el('button', 'nom', p.nom); nb.type = 'button'; nb.onclick = () => ouvrir(p.slug, nb);
+  li.append(v, nb, el('p', null, x.txt));
+  const s = el('p', 'src'); s.append(lien(x.source)); li.append(s);
+  if (INTERNE && !x.ok) li.append(el('span', 'fragile', 'à vérifier : non publié'));
+  return li;
+}
+function sansPosition(places){
+  const reste = PC().filter(p => !places.has(p.slug)), d = el('details', 'sans-pos');
+  d.append(el('summary', null, 'Pas de position relevée : ' + reste.length + ' personnalités'), el('p', null, reste.map(p => p.nom).join(' · ')));
+  return d;
+}
+const QUE = [
+  ['ue_maintien', 'Rester dans l’Union ?', {rester: 'Rester', quitter: 'Quitter', referendum: 'Référendum'}],
+  ['ue_traites', 'Modifier les traités ?', {oui: 'Oui', non: 'Non'}],
+  ['ue_primaute', 'Droit national au-dessus du droit européen ?', {oui: 'Oui', non: 'Non'}],
+  ['ue_budget', 'Budget de l’Union, contribution française', {augmenter: 'Augmenter', reduire: 'Réduire'}],
+  ['ue_emprunt', 'Emprunt européen commun ?', {oui: 'Oui', non: 'Non'}],
+  ['ue_defense_commune', 'Défense intégrée (armée, budget communs) ?', {oui: 'Oui', non: 'Non'}],
+  ['ue_cooperation_defense', 'Coopération de défense entre États ?', {oui: 'Oui', non: 'Non'}]
+];
+const QOTAN = [
+  ['otan_alliance', 'Rester dans l’Alliance ?', {rester: 'Rester', quitter: 'Quitter'}],
+  ['otan_commandement', 'Commandement militaire intégré', {rester: 'Rester', quitter: 'Quitter'}],
+  ['otan_pilier', 'Renforcer un pilier européen ?', {oui: 'Oui', non: 'Non'}]
+];
+const QUK = [
+  ['aide_militaire', 'Aide militaire (armes, formation)', {augmenter: 'Augmenter', maintenir: 'Maintenir', reduire: 'Réduire', arreter: 'Arrêter'}],
+  ['aide_financiere', 'Aide financière (budget, prêts)', {augmenter: 'Augmenter', maintenir: 'Maintenir', reduire: 'Réduire', arreter: 'Arrêter'}],
+  ['troupes', 'Soldats en Ukraine (français ou européens) ?', {oui: 'Oui', oui_apres_cessez_le_feu: 'Après un cessez-le-feu', non: 'Non'}],
+  ['adhesion_ue', 'Ukraine dans l’Union européenne', {pour: 'Pour', contre: 'Contre', pas_maintenant: 'Pas maintenant'}],
+  ['sanctions', 'Sanctions contre la Russie', {renforcer: 'Renforcer', maintenir: 'Maintenir', alleger: 'Alléger ou lever'}]
+];
+const MATRICES = {
+  europe: [QUE, 'Sept questions indépendantes : on peut vouloir une coopération de défense et moins de budget européen, ou rester dans l’Union et réviser les traités. Chaque case reprend ce que la personne propose ; touchez-la pour lire la proposition et sa source.'],
+  otan: [QOTAN, 'Trois questions indépendantes : on peut rester dans l’Alliance, quitter son commandement intégré et vouloir un pilier européen. Le budget de défense visé, quand il est chiffré, suit sous le tableau.'],
+  ukraine: [QUK, 'Cinq questions indépendantes sur la guerre en Ukraine. L’aide militaire et l’aide financière sont distinguées. Chaque case reprend ce que la personne a dit ; touchez-la pour lire la position et sa source. Une position peut évoluer avec le conflit : la date compte.']
+};
+function rendreEurope(z, D){
+  const [QUE, intro] = MATRICES[theme];
+  z.append(el('p', 'intro', intro));
+  const qui = PC().filter(p => D[p.slug]), enve = el('div', 'matrice-enve'), t = el('table', 'matrice');
+  const th = el('tr'); th.append(el('th', null, '')); QUE.forEach(([, q]) => th.append(el('th', null, q))); const thead = el('thead'); thead.append(th); t.append(thead);
+  const tb = el('tbody'), det = el('div', 'matrice-detail'); det.setAttribute('aria-live', 'polite'); det.append(el('p', 'vide', 'Touchez une case pour afficher la proposition et sa source.'));
+  qui.forEach(p => {
+    const tr = el('tr'); tr.dataset.bloc = p.bloc; const n = el('th'); n.scope = 'row'; const nb = el('button', 'nom', p.nom); nb.type = 'button'; nb.onclick = () => ouvrir(p.slug, nb); n.append(nb); tr.append(n);
+    QUE.forEach(([k, q, lab]) => {
+      const td = el('td'), x = D[p.slug][k];
+      if (!x){ td.append(el('span', 'nr', '—')); td.title = 'Pas de position relevée'; }
+      else {
+        const b = el('button', 'rep' + (INTERNE && !x.ok ? ' fragile' : ''), lab[x.r] || x.r); b.type = 'button';
+        b.onclick = () => { det.textContent = ''; det.append(el('p', 'q', p.nom + ' · ' + q), el('p', null, x.txt)); const s = el('p', 'f-src'); s.append(lien(x.source)); det.append(s); if (INTERNE && !x.ok) det.append(badge('à vérifier : non publié', 'alerte')); if (innerWidth < 760) det.scrollIntoView({block: 'nearest', behavior: 'smooth'}); };
+        td.append(b);
+      }
+      tr.append(td);
+    });
+    tb.append(tr);
+  });
+  t.append(tb); enve.append(t); z.append(enve, det, sansPosition(new Set(Object.keys(D))));
+  $('compte-theme').textContent = qui.length + ' personnalité' + (qui.length > 1 ? 's' : '') + ' avec au moins une réponse sourcée, sur ' + PC().length + '. Un tiret : pas de position relevée.';
+}
+function rendrePositions(){
+  const z = $('positions');
+  if (!['europe', 'otan', 'ukraine', 'referendums'].includes(theme)){ z.hidden = true; $('rangs').hidden = false; $('masquer').parentElement.hidden = false; return false; }
+  z.hidden = false; z.replaceChildren(); $('rangs').hidden = true; $('masquer').parentElement.hidden = true;
+  const D = POS2[theme] || {}, places = new Set(Object.keys(D));
+  if (theme === 'referendums'){
+    z.append(el('p', 'intro', 'Les référendums que chacun propose d’organiser, regroupés par sujet. Une même personne peut en proposer plusieurs.'));
+    const parSujet = new Map();
+    PC().forEach(p => (D[p.slug] || []).forEach(r => { if (!parSujet.has(r.sujet)) parSujet.set(r.sujet, []); parSujet.get(r.sujet).push([p, r]); }));
+    const g = el('div', 'sujets');
+    [...parSujet].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0], 'fr')).forEach(([sujet, liste]) => {
+      const s = el('section', 'sujet'), titre = sujet === 'RIC' ? 'Référendum d’initiative citoyenne (RIC)' : sujet.charAt(0).toUpperCase() + sujet.slice(1);
+      s.append(el('h3', null, titre + ' · ' + liste.length));
+      const ul = el('ul'); liste.forEach(([p, r]) => ul.append(entreePos(p, r))); s.append(ul); g.append(s);
+    });
+    if (!parSujet.size) g.append(el('p', 'vide', 'Aucune proposition relevée pour l’instant.'));
+    z.append(g, sansPosition(places));
+    $('compte-theme').textContent = places.size + ' personnalité' + (places.size > 1 ? 's proposent' : ' propose') + ' au moins un référendum, sur ' + PC().length + '. Même grille pour tous.';
+    return true;
+  }
+  if (MATRICES[theme]){ rendreEurope(z, D); return true; }
+  const C = CATS2[theme]; z.append(el('p', 'intro', C.intro));
+  const cols = el('div', 'colonnes'); cols.style.setProperty('--n', C.cats.length);
+  C.cats.forEach(([k, titre, precision]) => {
+    const c = el('section', 'colonne'), h = el('h3', null, titre); if (precision) h.append(el('small', null, precision)); c.append(h);
+    const qui = PC().filter(p => D[p.slug] && D[p.slug].cat === k).sort((a, b) => cleTri(a).localeCompare(cleTri(b), 'fr'));
+    const ul = el('ul'); qui.forEach(p => ul.append(entreePos(p, D[p.slug]))); if (!qui.length) ul.append(el('li', 'vide', 'Personne pour l’instant.'));
+    c.append(ul); cols.append(c);
+  });
+  z.append(cols, sansPosition(places));
+  $('compte-theme').textContent = places.size + ' position' + (places.size > 1 ? 's' : '') + ' relevée' + (places.size > 1 ? 's' : '') + ' sur ' + PC().length + ' personnalités. Chaque position est celle que la personne a formulée, avec sa source.';
+  return true;
+}
+/* ---- règles graduées : seulement les chiffres que les candidats donnent eux-mêmes */
+const AXES = {
+  retraites: {
+    titre: 'Âge légal de départ proposé',
+    sous: 'L’âge légal proposé, ou l’âge visé quand c’est le seul chiffre donné (précisé à côté). Un âge de taux plein n’est pas placé sur l’axe. Une fourchette est un segment.',
+    min: 59.5, max: 65.5, graduations: [60, 61, 62, 63, 64, 65],
+    positions: {
+      melenchon: [62, 62, '62 ans d’abord, puis 60 à taux plein à terme'],
+      arthaud: [60, 60, '60 ans'], roussel: [60, 60, '60 ans'], ruffin: [60, 60, '60 ans'],
+      'le-pen': [60, 62, '60 à 62 ans selon l’âge d’entrée dans la vie active'],
+      tondelier: [62, 62, '62 ans ; 60 pour carrières longues et métiers pénibles'],
+      faure: [62, 62, '62 ans (abrogation de 2023)'], glucksmann: [62, 62, '62 ans comme base, avec décote'],
+      autain: [62, 62, '62 ans (abrogation du report à 64)'],
+      hollande: [63, 63, 'vers 63 ans en 2028'],
+      retailleau: [63, 63, '63 ans minimum ; taux plein à 65'],
+      philippe: [65, 65, '65 ans en moins de dix ans'], lisnard: [65, 65, '65 ans'], 'dupont-aignan': [62.75, 62.75, '62 ans et 9 mois']
+    },
+    autres: [
+      ['Pas d’âge légal', {attal: 'supprimer l’âge légal', guedj: 'supprimer l’âge légal', villepin: 'retraite par points, âge choisi'}],
+      ['Proposition sans âge de départ', {riner: 'garder la répartition, sans âge ni durée', philippot: 'baisser l’âge de départ, sans chiffre', cazeneuve: 'agir par la durée de cotisation, sans nouveau recul', rousseau: 'contribution sur les bénéfices des vendeurs de PER', branco: 'supprimer l’abattement fiscal de 10 % sur les pensions', knafo: 'passage progressif à la capitalisation'}]
+    ]
+  }
+};
+Object.assign(AXES, /*AXES*/{});
+function rendreAxe(){
+  const z = $('axe'), A = AXES[theme];
+  if (!A){ z.hidden = true; return; }
+  z.hidden = false; z.replaceChildren();
+  z.append(el('h3', null, A.titre), el('p', 'sous', A.sous));
+  const pos = x => ((x - A.min) / (A.max - A.min) * 100) + '%';
+  const g = el('div', 'axe-grille');
+  const grad = el('div', 'graduations'); A.graduations.forEach(g0 => { const [v, lab] = Array.isArray(g0) ? g0 : [g0, String(g0)]; const s = el('span', null, lab); s.style.left = pos(v); grad.append(s); });
+  g.append(el('span'), grad);
+  const lire = slug => { const v = A.positions[slug]; return Array.isArray(v) ? {a: v[0], b: v[1], txt: v[2]} : v; };
+  const visible = p => { const v = A.positions[p.slug]; if (!v) return false; return Array.isArray(v) ? !!p.f.programme.mesures[theme] : (INTERNE || v.publiable); };
+  const gi = p => (A.groupes || []).indexOf(lire(p.slug).g || '');
+  const presents = PC().filter(visible)
+    .sort((a, b) => gi(a) - gi(b) || lire(a.slug).a - lire(b.slug).a || lire(a.slug).b - lire(b.slug).b || cleTri(a).localeCompare(cleTri(b), 'fr'));
+  let gPrec = null;
+  presents.forEach(p => {
+    const gp = lire(p.slug).g; if (A.groupes && gp !== gPrec){ g.append(el('p', 'axe-groupe', gp)); gPrec = gp; }
+    const {a, b, txt, source, publiable} = lire(p.slug), m = p.f.programme.mesures[theme] || {};
+    const q = el('button', 'qui', p.nom); q.type = 'button'; q.onclick = () => ouvrir(p.slug, q); q.append(el('small', null, txt));
+    const piste = el('div', 'piste'); piste.dataset.bloc = p.bloc;
+    A.graduations.forEach(g0 => { const v = Array.isArray(g0) ? g0[0] : g0; const r = el('i', 'repere'); r.style.left = pos(v); piste.append(r); });
+    const seg = el('span', 'seg' + (a === b ? ' point' : ''));
+    if (a === b) seg.style.left = pos(a); else { seg.style.left = pos(a); seg.style.width = 'calc(' + pos(b) + ' - ' + pos(a) + ')'; }
+    seg.title = txt; seg.setAttribute('role', 'img'); seg.setAttribute('aria-label', p.nom + ' : ' + txt);
+    const v = el('span', 'val', txt); v.style.left = 'min(calc(' + pos(b) + ' + 12px), calc(100% - 9em))'; if ((b - A.min) / (A.max - A.min) > .7){ v.style.left = 'auto'; v.style.right = 'calc(100% - ' + pos(a) + ' + 12px)'; }
+    piste.append(seg, v);
+    if (INTERNE && (m.publiable === false || publiable === false)) q.append(el('span', 'fragile', 'non publié'));
+    if (source){ const sm = el('span', 'src-axe'); sm.append(lien(source)); q.append(sm); }
+    g.append(q, piste);
+  });
+  z.append(g);
+  const autres = el('div', 'axe-autres');
+  A.autres.forEach(([titre, liste]) => {
+    const qui = PC().filter(p => { const v = liste[p.slug]; if (!v) return false; return typeof v === 'string' ? !!p.f.programme.mesures[theme] : (INTERNE || v.publiable); });
+    if (!qui.length) return;
+    const ligne = el('p'); ligne.append(el('b', null, titre + ' : '));
+    qui.forEach((p, i) => { if (i) ligne.append(' · '); const b = el('button', null, p.nom); b.type = 'button'; b.onclick = () => ouvrir(p.slug, b); const v = liste[p.slug]; ligne.append(b, ' (' + (typeof v === 'string' ? v : v.txt) + ')'); if (typeof v !== 'string' && v.source){ ligne.append(' '); const sl = lien(v.source); sl.className = 'src-inline'; ligne.append(sl); } });
+    autres.append(ligne);
+  });
+  const places = new Set(PC().filter(visible).map(p => p.slug).concat(A.autres.flatMap(([, l]) => PC().filter(p => l[p.slug] && (typeof l[p.slug] === 'string' ? p.f.programme.mesures[theme] : (INTERNE || l[p.slug].publiable))).map(p => p.slug))));
+  autres.append(el('p', null, (A.sansTexte || 'Pas de proposition identifiée') + ' : ' + PC().filter(p => !places.has(p.slug)).length + ' personnalités.'));
+  z.append(autres, el('p', 'note', A.note || 'Ni score ni position politique : seulement le chiffre que chacun donne, et sa source. Les autres thèmes auront leur règle quand assez de candidats auront chiffré leurs propositions.'));
+}
+/* ---- les chiffres, triés */
+const presid = p => (p.annees || []).filter(a => /^\d{4}$/.test(a) && +a < 2027).length;
+const MESURES = [
+  ['voix', 'Voix', p => p.methode ? p.methode.voix : 0, p => p.methode && p.methode.voix ? p.methode.voix.toLocaleString('fr-FR') + ' voix' : 'aucun résultat', p => p.methode ? p.methode.election : '', 'Meilleur score en voix à une élection, sur son nom ou en tête de liste (résultats officiels). Classé par type d’élection : on ne compare pas une présidentielle à des municipales.'],
+  ['national', 'Mandat national', p => p.methode ? p.methode.national : 0, p => p.methode && p.methode.national ? p.methode.national.toLocaleString('fr-FR') + ' ans' : 'aucun', () => '', 'Années de mandat national : député, sénateur, député européen, membre du gouvernement, président de la République ; chevauchements comptés une fois.'],
+  ['local', 'Élu local', p => p.methode ? p.methode.local : 0, p => p.methode && p.methode.local ? p.methode.local.toLocaleString('fr-FR') + ' ans' : 'aucun', () => '', 'Années d’élu local : conseiller municipal, départemental ou régional, adjoint, maire ; chevauchements comptés une fois.'],
+  ['presidentielles', 'Présidentielles', presid, p => { const n = presid(p); return n ? n + (n > 1 ? ' candidatures' : ' candidature') : 'aucune'; }, p => (p.annees || []).filter(a => /^\d{4}$/.test(a) && +a < 2027).join(' · '), 'Candidatures officielles à l’élection présidentielle avant 2027.'],
+];
+let mesure = 'voix';
+function rendreMesures(){
+  const z = $('mesures'); z.textContent = '';
+  MESURES.forEach(([k, n]) => { const b = el('button', null, n); b.type = 'button'; b.setAttribute('aria-pressed', String(k === mesure)); b.onclick = () => { mesure = k; rendreMesures(); rendreBarres(); }; z.append(b); });
+}
+const TYPES_ELECTION = [['présidentielle', 'Présidentielle'], ['européennes', 'Européennes'], ['législatives', 'Législatives'], ['régionales', 'Régionales'], ['municipales', 'Municipales']];
+const typeElection = p => { const e = ((p.methode || {}).election || '').toLowerCase(); const t = TYPES_ELECTION.find(([k]) => e.startsWith(k)); return t ? t[0] : null; };
+function rendreBarres(){
+  const [, , val, aff, detail, def] = MESURES.find(m => m[0] === mesure);
+  $('def-mesure').textContent = def;
+  const o = $('barres'); o.textContent = '';
+  if (mesure === 'voix'){
+    TYPES_ELECTION.forEach(([k, titre]) => {
+      const l = PC().filter(p => typeElection(p) === k && val(p) > 0); if (!l.length) return;
+      o.append(el('li', 'groupe-titre', titre)); barres(o, l, val, aff, detail);
+    });
+    const sans = PC().filter(p => !typeElection(p) || !(val(p) > 0));
+    if (sans.length) o.append(el('li', 'groupe-sans', 'Sans résultat à son nom ou en tête de liste : ' + sans.map(p => p.nom).join(' · ')));
+    return;
+  }
+  barres(o, PC(), val, aff, detail);
+}
+function barres(o, l, val, aff, detail){
+  const liste = l.slice().sort((a, b) => (val(b) || 0) - (val(a) || 0) || cleTri(a).localeCompare(cleTri(b), 'fr'));
+  const max = Math.max(...liste.map(p => val(p) || 0)) || 1;
+  let rang = 0, prec = null;
+  liste.forEach((p, i) => {
+    const v = val(p) || 0; if (v !== prec){ rang = i + 1; prec = v; }
+    const li = el('li', rang <= 5 && v > 0 ? 'top' : ''); li.dataset.bloc = p.bloc;
+    const vg = el('button', 'vignette'); vg.type = 'button'; vg.setAttribute('aria-label', 'Fiche de ' + p.nom);
+    const img = el('img'); img.src = 'img/' + p.slug + '.webp'; img.alt = ''; img.loading = 'lazy'; vg.append(img); vg.onclick = () => ouvrir(p.slug, vg);
+    const zone = el('div', 'val'), j = el('span', 'jauge'), barre = el('i'); barre.style.width = (v / max * 100) + '%'; j.append(barre);
+    zone.append(el('b', null, aff(p)), j); const dt = detail(p); if (dt) zone.append(el('small', null, dt));
+    li.append(el('span', 'rang', v > 0 ? rang : '–'), vg, el('span', 'qui', p.nom), zone);
+    o.append(li);
+  });
+}
+/* ---- la justice par catégorie (version de travail ; publiée seulement après validation) */
+const CATEGORIES = [
+  ['definitive', 'Condamnations définitives', j => j.nature === 'penal' && j.stade === 'condamnation_definitive', 'Condamnations pénales devenues définitives : plus aucun recours possible.'],
+  ['non-definitive', 'Condamnations non définitives', j => j.nature === 'penal' && ['condamnation_premiere_instance', 'condamnation_appel'].includes(j.stade), 'Condamnations pénales frappées d’appel ou de pourvoi, ou dont le caractère définitif n’est pas établi. Présomption d’innocence.'],
+  ['proces', 'Renvois en procès', j => j.stade === 'renvoi_proces', 'Personnes renvoyées devant un tribunal, pas encore jugées. Présomption d’innocence.'],
+  ['examen', 'Mises en examen', j => j.stade === 'mise_en_examen', 'Mises en examen ou inculpations : indices graves ou concordants, sans jugement. Présomption d’innocence.'],
+  ['temoin', 'Témoins assistés', j => j.stade === 'temoin_assiste', 'Statut intermédiaire : ni mis en examen, ni simple témoin.'],
+  ['enquetes', 'Enquêtes et plaintes', j => j.nature === 'penal' && ['enquete', 'plainte'].includes(j.stade), 'Enquêtes ouvertes ou plaintes déposées, sans mise en examen connue. Présomption d’innocence.'],
+  ['faveur', 'Closes en leur faveur', j => ['relaxe', 'non_lieu', 'classement_sans_suite', 'plainte_irrecevable', 'acquittement', 'demande_rejetee'].includes(j.stade), 'Relaxes, non-lieux, classements sans suite, plaintes irrecevables, demandes rejetées.'],
+  ['autres', 'Hors pénal', j => ['fiscal', 'electoral', 'disciplinaire'].includes(j.nature) || (j.nature === 'civil' && j.stade !== 'demande_rejetee'), 'Contentieux fiscaux, sanctions électorales, procédures disciplinaires ou civiles : aucune n’est une condamnation pénale.']
+];
+const CATS = INTERNE ? CATEGORIES : CATEGORIES.filter(c => ['definitive', 'non-definitive', 'autres', 'faveur'].includes(c[0]));
+let categorie = 'definitive';
+function rendreCategories(){
+  const z = $('categories'); if (!z) return; z.textContent = '';
+  CATS.forEach(([k, n]) => { const b = el('button', null, n); b.type = 'button'; b.setAttribute('aria-pressed', String(k === categorie)); b.onclick = () => { categorie = k; rendreCategories(); rendreTableCat(); }; z.append(b); });
+}
+function rendreTableCat(){
+  const t = $('tab-cat'); if (!t) return;
+  const [, , test, def] = CATEGORIES.find(c => c[0] === categorie);
+  $('def-categorie').textContent = def;
+  t.replaceChildren();
+  const h = t.insertRow(); ['Personnalité', 'Dossier', 'Dernière étape', 'État', 'Source'].forEach(x => h.append(el('th', null, x)));
+  let vide = true;
+  P.forEach(p => (p.f.justice || []).filter(test).forEach(j => {
+    vide = false;
+    const r = t.insertRow(), b = el('button', null, p.nom); b.type = 'button';
+    b.onclick = () => { ouvrir(p.slug, b); choisir($('o-justice'), false); };
+    r.insertCell().append(b);
+    const c2 = r.insertCell(); c2.append(el('span', null, j.dossier)); c2.append(el('br'), badge(BADGES.stade[j.stade]));
+    const e = j.etapes[j.etapes.length - 1] || {}; r.insertCell().textContent = (e.date ? e.date + ' : ' : '') + (e.texte || '');
+    const c4 = r.insertCell(); c4.append(badge((INTERNE ? BADGES.etat : ETAT_PUBLIC)[j.etat], j.etat === 'cloture' ? 'ok' : j.etat === 'en_cours_confirme' ? 'neutre' : 'alerte'));
+    if (INTERNE && !j.publiable) c4.append(badge('non publiable', 'alerte'));
+    const s = j.sources[j.sources.length - 1]; const c5 = r.insertCell(); if (s) c5.append(lien(s));
+  }));
+  if (vide){ const r = t.insertRow(), c = r.insertCell(); c.colSpan = 5; c.textContent = 'Aucun cas dans cette catégorie.'; }
+  $('note-cat').textContent = INTERNE ? 'Version de travail : le site public ne montre que les catégories jugées (condamnations, hors pénal, closes en faveur) et les dossiers publiables.' : 'On ne montre que ce qu’un juge a décidé, jamais ce dont une personne est seulement soupçonnée. Recherches arrêtées au 25/11/2026, sans prétendre à l’exhaustivité.';
+}
+/* ---- les équipes : une constellation par candidat (rôles officiels, datés, sourcés) */
+const GROUPES = [['direction', 'Direction de campagne', '#f1fb4e'], ['comite', 'Comité politique', '#ffe2a8'], ['porte-parole', 'Porte-parole', '#7fd6dd'], ['programme', 'Programme', '#c3a8ff'],
+  ['communication', 'Communication', '#ff9fb6'], ['finances', 'Finances', '#98e6a0'], ['organisation', 'Organisation', '#ffc56b'], ['soutiens', 'Soutiens déclarés', '#cfd5e2']];
+const GNOM = Object.fromEntries(GROUPES.map(g => [g[0], g])), avecEquipe = () => P.filter(p => p.equipe && p.equipe.noeuds.length);
+let eqChoix = null, eqNoeud = null;
+function etoiles(svg, graine){
+  let s = graine; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 110; i++){ const c = document.createElementNS(svg.namespaceURI, 'circle'); c.setAttribute('class', 'etoile');
+    c.setAttribute('cx', (r() * 1000).toFixed(1)); c.setAttribute('cy', (r() * 1000).toFixed(1)); c.setAttribute('r', (0.6 + r() * 1.6).toFixed(2)); c.setAttribute('opacity', (0.25 + r() * 0.6).toFixed(2)); svg.append(c); }
+}
+const svgEl = (svg, tag, attrs) => { const e = document.createElementNS(svg.namespaceURI, tag); Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v)); svg.append(e); return e; };
+const quandRole = n => (n.depuis ? 'depuis ' + n.depuis : '') + (n.etat === 'parti' ? (n.jusqu_a ? ' · parti(e) le ' + n.jusqu_a : ' · a quitté ce rôle') : '');
+function rendreEquipeQui(){
+  const z = $('eq-qui'); z.textContent = ''; const liste = avecEquipe();
+  if (!eqChoix || !liste.some(p => p.slug === eqChoix)) eqChoix = liste.length ? liste[0].slug : null;
+  liste.forEach(p => { const b = el('button'); b.type = 'button'; b.dataset.bloc = p.bloc; b.append(el('i'), p.nom); b.setAttribute('aria-pressed', String(p.slug === eqChoix));
+    b.onclick = () => { eqChoix = p.slug; eqNoeud = null; rendreEquipeQui(); rendreEquipe(); }; z.append(b); });
+  const manquent = P.filter(p => p.espace === 'declaree' && !liste.includes(p));
+  if (manquent.length){ const m = el('p', 'eq-manquent', 'Équipe pas encore relevée : ' + manquent.map(p => p.nom).join(' · ')); z.append(m); }
+  $('eq-intro').textContent = 'Qui a un rôle officiel dans chaque campagne. Premier relevé : ' + liste.length + ' candidature' + (liste.length > 1 ? 's' : '') + ' sur ' + P.filter(p => p.espace === 'declaree').length + ' déclarées, les autres suivront avec la même grille.';
+}
+const initiales = nom => nom.replace(/\(.*?\)/g, '').split(/[\s-]+/).filter(m => m && m[0] === m[0].toUpperCase() && !/^(de|du|des|la|le|d’|l’)$/i.test(m)).map(m => m[0]).join('').slice(0, 3);
+const periode = x => x.de ? (x.a ? (x.a === x.de ? String(x.de) : x.de + '–' + x.a) : 'depuis ' + x.de) : '';
+function trajet(n){
+  const ul = el('ul', 'trajet');
+  const L = n.partis || [];
+  L.forEach((x, i) => { const li = el('li', null, x.parti); const pe = (i < L.length - 1 && x.de && !x.a) ? x.de + '–…' : periode(x); if (pe) li.append(el('small', null, pe)); ul.append(li); });
+  return ul;
+}
+function detailNoeud(p, n){
+  const d = $('eq-detail'); d.textContent = '';
+  if (!n){ d.append(el('h3', null, p.nom), el('p', 'vide', 'Choisissez une vignette ou un nom dans la liste : rôle, parcours politique et idées, chaque fois avec sa source.')); return; }
+  const g = GNOM[n.groupe] || GNOM.soutiens, t = el('div', 'eq-tete'), v = el('span', 'vign', initiales(n.nom)); v.style.setProperty('--g', g[2]); v.setAttribute('aria-hidden', 'true');
+  const tt = el('div'); tt.append(el('h3', null, n.nom), el('p', 'r', n.role)); t.append(v, tt); d.append(t);
+  if (n.qualite) d.append(el('p', null, n.qualite));
+  d.append(el('p', 'src-inline', g[1] + (quandRole(n) ? ' · ' + quandRole(n) : '')));
+  if (n.source){ const s = el('p', 'f-src'); s.append(lien(n.source)); d.append(s); }
+  if (INTERNE && n.verification !== 'verifie') d.append(badge(n.verification === 'source_non_relue' ? 'rôle : source non relue, non publié' : 'rôle à vérifier : non publié', 'alerte'));
+  if (n.partis && (n.partis.length || (n.gouvernement || []).length)){
+    d.append(el('h4', null, 'Parcours politique'));
+    if (n.partis.length) d.append(trajet(n));
+    (n.gouvernement || []).forEach(x => d.append(el('p', null, x.fonction + ' (gouvernement ' + x.gouvernement + (periode(x) ? ', ' + periode(x) : '') + ')')));
+    (n.sources_parcours || []).forEach(s => { const q = el('p', 'f-src'); q.append(lien(s)); d.append(q); });
+    if (INTERNE && n.bio_verification !== 'verifie') d.append(badge('parcours ' + (n.bio_verification || 'à vérifier') + ' : non publié', 'alerte'));
+  }
+  if (n.idees && n.idees.length){
+    d.append(el('h4', null, 'Idées portées en son nom'));
+    const ul = el('ul', 'idees');
+    n.idees.forEach(i => { const li = el('li', null, i.texte + ' '); const s = el('span', 'f-src'); s.append('(' + i.type + (i.date ? ', ' + i.date : '') + ') '); if (i.source) s.append(lien(i.source)); li.append(s); ul.append(li); });
+    d.append(ul);
+  }
+  if (INTERNE && n.bio_note) d.append(el('p', 'f-note', n.bio_note));
+  if (INTERNE && n.notes) d.append(el('p', 'f-note', n.notes));
+}
+function listeGroupes(noeuds, cible, quandClic){
+  GROUPES.forEach(g => {
+    const m = noeuds.filter(n => n.groupe === g[0]); if (!m.length) return;
+    const h = el('h3'); const pt = el('i'); pt.style.setProperty('--g', g[2]); h.append(pt, g[1]); const ul = el('ul');
+    m.forEach(n => {
+      const li = el('li', n.etat === 'parti' ? 'parti' : null), b = el('button', null, n.nom); b.type = 'button'; b.onclick = () => quandClic(n);
+      const t = el('div'); t.append(el('span', null, n.role + (n.qualite ? ' · ' + n.qualite : '')));
+      if (INTERNE && n.verification !== 'verifie') { t.append(' '); t.append(badge(n.verification === 'source_non_relue' ? 'non relue' : 'à vérifier', 'alerte')); }
+      if (n.partis && n.partis.length) t.append(trajet(n));
+      const s = el('span', 'src-inline', quandRole(n)); if (n.source){ s.append(quandRole(n) ? ' · ' : ''); s.append(lien(n.source)); }
+      li.append(b, t, s); ul.append(li);
+    });
+    cible.append(h, ul);
+  });
+}
+function rendreEquipe(){
+  const p = PAR[eqChoix], ciel = $('ciel'); ciel.textContent = ''; $('eq-liste').textContent = ''; $('eq-legende').textContent = '';
+  if (!p){ $('eq-statut').textContent = 'Aucune équipe relevée pour l’instant.'; $('eq-detail').textContent = ''; return; }
+  const e = p.equipe; ciel.dataset.bloc = p.bloc;
+  $('eq-statut').textContent = (e.candidature && e.candidature.statut ? e.candidature.statut + ' · ' : '') + 'équipe relevée le ' + e.date + '.';
+  $('eq-passes').textContent = '';
+  const cercle = e.noeuds.filter(n => n.cercle === 1), reste = e.noeuds.filter(n => n.cercle !== 1);
+  ciel.setAttribute('aria-label', 'Premier cercle de l’équipe de ' + p.nom + ' : ' + cercle.length + ' personnes. Le détail est dans la liste sous le schéma.');
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('viewBox', '0 0 1000 1000'); svg.setAttribute('aria-hidden', 'true'); ciel.append(svg);
+  const presents = GROUPES.filter(g => cercle.some(n => n.groupe === g[0]));
+  const ARC = 70, ECART = 40, r0 = 235, r1 = 430, rayons = [];
+  presents.forEach((g, k) => { const n = cercle.filter(m => m.groupe === g[0]).length; rayons.push(Math.max(k ? rayons[k - 1] + ECART : r0, n * ARC / (2 * Math.PI))); });
+  const haut = rayons[rayons.length - 1];
+  if (rayons.length === 1) rayons[0] = 300;
+  else { const cible = Math.min(r1, Math.max(haut, r0 + (rayons.length - 1) * 70)); rayons.forEach((R, k) => { rayons[k] = r0 + (R - r0) * (cible - r0) / (haut - r0); }); }
+  const astres = [];
+  const places = [];   // pour chaque orbite, on tourne l'ensemble pour s'écarter au mieux des planètes déjà posées
+  presents.forEach((g, k) => {
+    const R = rayons[k], membres = cercle.filter(n => n.groupe === g[0]), n = membres.length, serre = 2 * Math.PI * R / n < 118;
+    svgEl(svg, 'circle', {class: 'orbite', cx: 500, cy: 500, r: R});
+    let mieux = 0, score = -1;
+    for (let t = 0; t < 72; t++){
+      const dec = t * 5 * Math.PI / 180; let pire = 1e9;
+      for (let j = 0; j < n; j++){
+        const a = dec + 2 * Math.PI * j / n, x = 500 + R * Math.cos(a), y = 500 + R * Math.sin(a);
+        places.forEach(([px, py]) => { pire = Math.min(pire, Math.hypot((x - px) * 0.33, y - py)); });   // une étiquette est large : on compte surtout l'écart vertical
+      }
+      if (pire > score){ score = pire; mieux = dec; }
+    }
+    membres.forEach((m, j) => {
+      const a = mieux + 2 * Math.PI * j / n, x = 500 + R * Math.cos(a), y = 500 + R * Math.sin(a);
+      svgEl(svg, 'line', {class: 'rayon' + (m.etat === 'parti' ? ' parti' : ''), x1: 500, y1: 500, x2: x.toFixed(1), y2: y.toFixed(1)});
+      astres.push([m, g, x, y, serre]); places.push([x, y]);
+    });
+  });
+  const so = el('div', 'soleil'), por = el('div', 'por'), im = el('img'); im.src = 'img/' + p.slug + '.webp'; im.alt = ''; por.append(im); so.append(por, el('b', null, p.nom)); ciel.append(so);
+  const boutons = new Map();
+  astres.forEach(([m, g, x, y, serre]) => {
+    const b = el('button', 'astre' + (serre ? ' muet' : '') + (m.etat === 'parti' ? ' parti' : '') + (INTERNE && m.verification !== 'verifie' ? ' fragile' : ''));
+    b.type = 'button'; b.tabIndex = -1; b.setAttribute('aria-hidden', 'true'); b.style.left = x / 10 + '%'; b.style.top = y / 10 + '%'; b.style.setProperty('--g', g[2]);
+    b.append(el('i', null, initiales(m.nom)), el('span', null, m.nom)); b.onclick = () => choisirNoeud(p, m, boutons); ciel.append(b); boutons.set(m, b);
+  });
+  presents.forEach(g => { const li = el('li'); li.style.setProperty('--g', g[2]); li.append(el('i'), g[1]); $('eq-legende').append(li); });
+  if (cercle.some(n => n.etat === 'parti')){ const li = el('li', 'pointille'); li.append(el('i'), 'a quitté ce rôle'); $('eq-legende').append(li); }
+  if (!cercle.length) $('eq-detail').append(el('p', 'vide', 'Aucun responsable de fonction relevé pour l’instant.'));
+  const pr = el('h3', 'eq-titre', 'Premier cercle'); $('eq-liste').append(pr);
+  listeGroupes(cercle, $('eq-liste'), n => { choisirNoeud(p, n, boutons); $('eq-detail').scrollIntoView({block: 'nearest'}); });
+  if (reste.length){
+    const d = el('details', 'eq-reste'), s = el('summary', null, 'Le reste de l’équipe et les soutiens déclarés (' + reste.length + ')'); d.append(s);
+    listeGroupes(reste, d, n => { detailNoeud(p, n); $('eq-detail').scrollIntoView({block: 'nearest'}); }); $('eq-liste').append(d);
+  }
+  if (INTERNE && e.ecartes && e.ecartes.length){
+    $('eq-liste').append(el('h3', null, 'Écartés (version de travail)')); const ul = el('ul', 'liste-verif'); e.ecartes.forEach(x => ul.append(el('li', null, x))); $('eq-liste').append(ul);
+  }
+  if (INTERNE && e.notes && e.notes.length){
+    $('eq-liste').append(el('h3', null, 'Notes de recherche')); const ul = el('ul', 'liste-verif'); e.notes.forEach(x => ul.append(el('li', null, x))); $('eq-liste').append(ul);
+  }
+  $('eq-note').textContent = 'Seulement les rôles officiels et les soutiens déclarés, chacun daté et sourcé. Les orbites rangent les fonctions : la distance au candidat ne mesure ni une proximité ni une influence. La taille du relevé dépend de ce que la campagne a rendu public, pas de la taille réelle de l’équipe. Le parcours partisan n’est indiqué que pour les élus et anciens membres du gouvernement.';
+  detailNoeud(p, eqNoeud && e.noeuds.includes(eqNoeud) ? eqNoeud : null);
+}
+function choisirNoeud(p, n, boutons){
+  eqNoeud = n; boutons.forEach((b, m) => b.classList.toggle('choisi', m === n)); detailNoeud(p, n);
+}
+function equipeFiche(p){
+  const d = el('div', 'f-eq'), e = p.equipe;
+  if (!e || !e.noeuds.length){
+    d.append(el('p', 'f-encart', 'Équipe pas encore relevée. Le relevé avance candidature par candidature, avec la même grille pour tous.'));
+    return d;
+  }
+  const bloc = (noeuds, cible) => GROUPES.forEach(g => {
+    const m = noeuds.filter(n => n.groupe === g[0]); if (!m.length) return;
+    cible.append(el('h3', 'f-rub', g[1])); const ul = el('ul');
+    m.forEach(n => { const li = el('li', null, n.nom + ' · ' + n.role); if (n.partis && n.partis.length) li.append(trajet(n)); const s = el('small', null, quandRole(n)); if (n.source){ s.append(quandRole(n) ? ' · ' : ''); s.append(lien(n.source)); } li.append(s); ul.append(li); });
+    cible.append(ul);
+  });
+  const cercle = e.noeuds.filter(n => n.cercle === 1), reste = e.noeuds.filter(n => n.cercle !== 1);
+  d.append(el('p', 'f-src', 'Premier cercle : qui dirige chaque fonction de la campagne. Relevé le ' + e.date + '.'));
+  if (cercle.length) bloc(cercle, d); else d.append(el('p', 'f-encart', 'Aucun responsable de fonction relevé pour l’instant.'));
+  if (reste.length){ const det = el('details', 'eq-reste'); det.append(el('summary', null, 'Le reste de l’équipe et les soutiens déclarés (' + reste.length + ')')); bloc(reste, det); d.append(det); }
+  const b = el('button', 'f-bouton', 'Voir la constellation'); b.type = 'button';
+  b.onclick = () => { eqChoix = p.slug; eqNoeud = null; dlg.close(); location.hash = '#equipes'; rendreEquipeQui(); rendreEquipe(); };
+  d.append(b);
+  return d;
+}
+/* ---- signaler une erreur */
+const CONTACT = '/*CONTACT*/';
+function contactLien(sujet){
+  if (!CONTACT) return null;
+  const a = el('a', null, CONTACT); a.href = 'mailto:' + CONTACT + '?subject=' + encodeURIComponent(sujet); return a;
+}
+function ouvrirAvis(sujet){
+  const c = $('ae-contact'); c.textContent = '';
+  const a = contactLien(sujet || 'Fiches 2027 : signalement');
+  if (a){ c.append('Écrire à : ', a); } else c.textContent = 'Adresse de contact : bientôt indiquée ici.';
+  const d = $('avis-erreur'); if (d.open) d.close(); d.showModal();
+}
+$('coin-erreur').onclick = () => ouvrirAvis();
+$('ae-fermer').onclick = () => $('avis-erreur').close();
+$('f-signaler').onclick = () => { const s = 'Fiches 2027 : erreur sur la fiche ' + $('f-nom').textContent + ' (' + location.href + ')'; dlg.close(); ouvrirAvis(s); };
+/* ---- le quinquennat 2022-2027 : chronologie en frise, lois avec pictogrammes, indicateurs par catégorie */
+const QUINQ = Object.assign({chronologie: [], lois: [], indicateurs: []}, /*QUINQ*/{});
+let qPartie = 'indicateurs', qCat = 'toutes';
+const nbFr = v => (Math.abs(v) >= 1000 ? Math.round(v).toLocaleString('fr-FR') : String(Math.round(v * 10) / 10).replace('.', ','));
+const NS = 'http://www.w3.org/2000/svg';
+const svgN = (t, a, parent) => { const e = document.createElementNS(NS, t); Object.entries(a || {}).forEach(([k, v]) => e.setAttribute(k, v)); if (parent) parent.append(e); return e; };
+const jour = d => { const [j, m, y] = d.split('/').map(Number); return new Date(y, m - 1, j); };
+/* pictogrammes de thème (trait, 24×24) */
+const PICTO = {
+  retraites: 'M7 3h10M7 21h10M8 3c0 4 8 5 8 9s-8 5-8 9M16 3c0 4-8 5-8 9s8 5 8 9',
+  travail: 'M4 8h16v11H4zM9 8V5h6v3M4 13h16',
+  immigration: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18',
+  'énergie': 'M13 2L5 14h6l-1 8 8-12h-6z',
+  'défense': 'M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z',
+  institutions: 'M3 9l9-5 9 5M5 10v8M10 10v8M14 10v8M19 10v8M3 20h18',
+  'finances publiques': 'M17 6.5a7 7 0 1 0 0 11M4 10h9M4 14h9',
+  'santé': 'M9 3h6v6h6v6h-6v6H9v-6H3V9h6z',
+  'éducation': 'M3 6l9-3 9 3-9 3zM7 8v5c0 2 10 2 10 0V8M21 6v6',
+  'sécurité': 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3',
+  logement: 'M3 11l9-7 9 7M5 10v10h14V10M10 20v-5h4v5',
+  agriculture: 'M12 21V9M12 9c-3 0-5-2-5-5 3 0 5 2 5 5zM12 14c-3 0-5-2-5-5M12 14c3 0 5-2 5-5-3 0-5 2-5 5z',
+  environnement: 'M5 19C5 11 11 5 20 5c0 9-6 15-14 15M5 19l8-8',
+  autre: 'M12 4a8 8 0 1 0 0 16a8 8 0 1 0 0-16M8 12h8'
+};
+function picto(theme){ const s = svgN('svg', {viewBox: '0 0 24 24', class: 'picto', 'aria-hidden': 'true'}); svgN('path', {d: PICTO[theme] || PICTO.autre}, s); return s; }
+function modeAdoption(x){ return ({'493': ['49.3', 'm493'], congres: ['Congrès', 'mcong'], decret: ['Décret', 'mdec']})[x.mode] || ['Vote', 'mvote']; }
+/* hémicycle : 577 sièges en arcs, de gauche à droite */
+function hemicycle(parts, titre){
+  const tot = parts.reduce((s, p) => s + p[1], 0), rows = 11, R0 = 34, R1 = 92, places = [];
+  const rad = Array.from({length: rows}, (_, i) => R0 + i * (R1 - R0) / (rows - 1)), sumR = rad.reduce((s, r) => s + r, 0);
+  let reste = tot; rad.forEach((r, i) => { const n = i === rows - 1 ? reste : Math.round(tot * r / sumR); reste -= n;
+    for (let k = 0; k < n; k++){ const a = Math.PI - Math.PI * (k + 0.5) / n; places.push({x: 100 + r * Math.cos(a), y: 100 - r * Math.sin(a), a}); } });
+  places.sort((u, v) => v.a - u.a);
+  const s = svgN('svg', {viewBox: '0 0 200 106', class: 'hemi', role: 'img', 'aria-label': titre + ' : ' + parts.map(p => p[0] + ' ' + p[1]).join(', ')});
+  let i = 0; parts.forEach(([n, k, bloc]) => { for (let j = 0; j < k && i < places.length; j++, i++){ const c = svgN('circle', {cx: places[i].x.toFixed(1), cy: places[i].y.toFixed(1), r: 2.6}, s); c.dataset.bloc = bloc; } });
+  return s;
+}
+const ASSEMBLEES = {
+  '19/06/2022': [['Nupes et alliés', 131, 'gauche'], ['Ensemble', 245, 'centre'], ['Autres', 51, 'divers'], ['LR', 61, 'droite'], ['RN', 89, 'extreme-droite']],
+  '07/07/2024': [['NFP', 182, 'gauche'], ['Ensemble', 168, 'centre'], ['Autres', 39, 'divers'], ['LR', 45, 'droite'], ['RN et alliés', 143, 'extreme-droite']]
+};
+const PORTRAITS = {'Élisabeth Borne': 'img/q-borne.webp', 'Gabriel Attal': 'img/attal.webp', 'François Bayrou': 'img/q-bayrou.webp'};
+function gouvernements(){   // tirés de la chronologie : « X nommé(e) Premier ministre »
+  const L = [];
+  QUINQ.chronologie.forEach(x => { const m = x.type === 'gouvernement' && x.texte.match(/^(.+?) (?:de nouveau )?nommée? Premi[eè]re? ministre/);
+    if (m && (!L.length || L[L.length - 1][0] !== m[1])) L.push([m[1], x.date, null, PORTRAITS[m[1]] || null]); });
+  L.forEach((g, i) => { if (L[i + 1]) g[2] = L[i + 1][1]; });
+  return L;
+}
+function libelleCourt(x){ const t = x.texte;
+  const R = [[/^Législatives/, 'Législatives'], [/^Européennes/, 'Européennes'], [/dissolution/i, 'Dissolution'], [/^Motion de censure/, 'Censure de Barnier'], [/confiance/, 'Confiance refusée à Bayrou'],
+    [/IVG/, 'IVG dans la Constitution'], [/^Budget 2026/, 'Budget 2026 adopté'], [/^Remaniement/, 'Remaniement'], [/municipales/i, 'Municipales'], [/^Sénatoriales/, 'Sénatoriales'],
+    [/Nouvelle-Calédonie/, 'Révision Nouvelle-Calédonie rejetée'], [/Corse/, 'Révision Corse non adoptée'], [/investiture/i, 'Investiture']];
+  for (const [re, l] of R) if (re.test(t)) return l; return null; }
+function frise(z){
+  const d0 = jour('07/05/2022'), d1 = new Date(2027, 4, 14), X = d => Math.max(0, Math.min(100, (d - d0) / (d1 - d0) * 100));
+  const enve = el('div', 'frise-enve'), f = el('div', 'frise'); enve.append(f);
+  // années
+  for (let y = 2023; y <= 2027; y++){ const t = el('span', 'an', String(y)); t.style.left = X(new Date(y, 0, 1)) + '%'; f.append(t); }
+  const fin = el('span', 'fin', 'Fin du mandat · mai 2027'); fin.style.left = '100%'; f.append(fin);
+  const auj = el('span', 'auj', 'Aujourd’hui'); auj.style.left = X(new Date()) + '%'; f.append(auj);
+  // gouvernements
+  gouvernements().forEach(([nom, a, b, img], k) => {
+    const g = el('div', 'gouv'); g.style.left = X(jour(a)) + '%'; g.style.width = (X(b ? jour(b) : new Date()) - X(jour(a))) + '%'; g.dataset.k = k % 2;
+    const tete = el('span', 'tete'); if (img){ const im = el('img'); im.src = img; im.alt = ''; tete.append(im); } else tete.append(el('b', null, initiales(nom)));
+    const lab = el('span', 'nom'); lab.append(el('b', null, nom.split(' ').slice(-1)[0]), el('small', null, a.slice(3) + (b ? ' → ' + b.slice(3) : ' →')));
+    g.append(tete, lab); g.title = nom + ', Premier ministre du ' + a + (b ? ' au ' + b : ''); f.append(g);
+  });
+  // événements
+  const ev = QUINQ.chronologie.map(x => [x, libelleCourt(x)]).filter(([x, l]) => l && x.type !== 'gouvernement' || (l === 'Remaniement'));
+  const LARG = 1240, fins = [];   // placement glouton : chaque étiquette sur la première ligne libre
+  ev.forEach(([x, l]) => {
+    const p = X(jour(x.date)), larg = (Math.max(l.length * 7.2, 70) + 30) / LARG * 100;
+    let rang = fins.findIndex(fn => fn < p); if (rang < 0){ rang = fins.length; fins.push(0); } fins[rang] = p + larg;
+    const m = el('div', 'evt t-' + x.type); m.style.left = p + '%'; m.style.setProperty('--r', rang);
+    m.append(el('i'), el('span', null, l), el('small', null, x.date)); m.title = x.texte; f.append(m);
+  });
+  f.style.setProperty('--h', (200 + fins.length * 44) + 'px');
+  z.append(enve);
+  // hémicycles
+  const hs = el('div', 'hemis');
+  Object.entries(ASSEMBLEES).forEach(([d, parts]) => {
+    if (!QUINQ.chronologie.some(x => x.date === d)) return;
+    const c = el('figure', 'hemi-carte'); c.append(el('figcaption', null, 'Assemblée élue le ' + d), hemicycle(parts, 'Assemblée élue le ' + d));
+    const leg = el('ul', 'hemi-leg'); parts.forEach(([n, k, bloc]) => { const li = el('li'); li.dataset.bloc = bloc; li.append(el('i'), n + ' ', el('b', null, String(k))); leg.append(li); });
+    c.append(leg, el('p', 'f-src', 'Majorité absolue : 289 sièges sur 577. Mêmes regroupements aux deux dates : la coalition de gauche, Ensemble, LR, le RN et ses alliés, et « Autres » (divers gauche, divers droite, centristes, régionalistes…). Décomptes AFP d’après les résultats du ministère de l’Intérieur.')); hs.append(c);
+  });
+  z.append(hs);
+}
+function rendreQuinquennat(){
+  const o = $('q-onglets'); o.textContent = '';
+  [['indicateurs', 'Les chiffres officiels'], ['lois', 'Les lois votées'], ['chronologie', 'La chronologie']].forEach(([k, n]) => {
+    const b = el('button', null, n); b.type = 'button'; b.setAttribute('aria-pressed', String(k === qPartie)); b.onclick = () => { qPartie = k; rendreQuinquennat(); }; o.append(b);
+  });
+  const z = $('q-corps'); z.textContent = '';
+  const badgeQ = x => INTERNE && x.verification !== 'verifie' ? badge('à vérifier : non publié', 'alerte') : null;
+  if (qPartie === 'chronologie'){
+    z.append(el('p', 'intro', 'Les Premiers ministres successifs, les élections et les votes qui ont compté, sur la durée du mandat. Le détail daté et sourcé suit la frise.'));
+    frise(z);
+    const det = el('details', 'eq-reste'); det.append(el('summary', null, 'Le détail, étape par étape (' + QUINQ.chronologie.length + ')'));
+    const ul = el('ul', 'q-chrono');
+    QUINQ.chronologie.forEach(x => { const li = el('li', 't-' + x.type), p = el('p'); p.append(el('span', 'd', x.date), el('span', 'ty', x.type), x.texte);
+      const s = el('p', 'f-src'); s.append(lien(x.source)); li.append(p, s); const b = badgeQ(x); if (b) li.append(b); ul.append(li); });
+    det.append(ul); z.append(det); return;
+  }
+  if (qPartie === 'lois'){
+    z.append(el('p', 'intro', 'Les principaux textes du mandat. Le pictogramme dit le thème, l’étiquette dit comment le texte a été adopté. Sélection : chaque loi de finances, la loi de financement de la sécurité sociale qui a changé les retraites, les lois de programmation, la révision de la Constitution, et au moins une loi de réforme par grand thème. La liste n’est pas exhaustive : tous les textes sont sur Légifrance.'));
+    const leg = el('p', 'q-leg'); [['Vote', 'mvote', 'voté par le Parlement'], ['49.3', 'm493', 'adopté sans vote par l’article 49.3'], ['Congrès', 'mcong', 'révision de la Constitution'], ['Décret', 'mdec', 'voie réglementaire']].forEach(([n, c, d]) => { leg.append(el('span', 'mode ' + c, n), ' ' + d + '   '); }); z.append(leg);
+    const ul = el('ul', 'q-lois');
+    QUINQ.lois.forEach(x => { const li = el('li'), t = el('div', 'q-loi-tete'), [mn, mc] = modeAdoption(x);
+      const pic = el('span', 'q-pic'); pic.append(picto(x.theme)); pic.title = x.theme;
+      const tt = el('div'); tt.append(el('p', 'm', x.date_promulgation + ' · ' + x.theme), el('h3', null, x.titre));
+      t.append(pic, tt, el('span', 'mode ' + mc, mn)); li.append(t, el('p', null, x.contenu));
+      const det = el('details', 'q-plus'); det.append(el('summary', null, 'Adoption, Conseil constitutionnel, source'), el('p', 'm', x.adoption || ''));
+      if (x.censure_cc) det.append(el('p', 'm', 'Conseil constitutionnel : ' + x.censure_cc));
+      const s = el('p', 'f-src'); s.append(lien(x.source)); det.append(s); li.append(det); const b = badgeQ(x); if (b) li.append(b); ul.append(li); });
+    z.append(ul); return;
+  }
+  const CATS = [['emploi', 'Emploi et activité', ['chomage', 'taux_emploi', 'croissance_pib', 'solde_commercial']], ['prix', 'Prix et niveau de vie', ['inflation', 'pauvrete']],
+    ['finances', 'Finances publiques', ['dette_publique', 'deficit_public', 'depenses_publiques', 'prelevements_obligatoires', 'budget_armees']],
+    ['immigration', 'Immigration et asile', ['premiers_titres_sejour', 'premieres_demandes_asile']], ['energie', 'Énergie et climat', ['nucleaire', 'emissions_ges']]];
+  const pc = el('div', 'puces q-cats'); pc.setAttribute('role', 'group'); pc.setAttribute('aria-label', 'Catégorie');
+  [['toutes', 'Toutes']].concat(CATS.map(c => [c[0], c[1]])).forEach(([k, n]) => { const b = el('button', null, n); b.type = 'button'; b.setAttribute('aria-pressed', String(k === qCat)); b.onclick = () => { qCat = k; rendreQuinquennat(); }; pc.append(b); });
+  z.append(pc, el('p', 'intro', 'Séries publiées par les organismes officiels, sur un vrai axe du temps. 2021 sert de repère avant le mandat ; la zone jaune commence le 14 mai 2022 ; un point annuel est placé au milieu de son année ; un point creux est la dernière valeur publiée en 2026, encore provisoire. Ces chiffres décrivent une évolution pendant le mandat ; ils ne disent pas à eux seuls ce qui revient à l’action du gouvernement.'));
+  const tip = $('q-tip') || (() => { const t = el('div', 'q-tip'); t.id = 'q-tip'; document.body.append(t); return t; })();
+  const parCle = Object.fromEntries(QUINQ.indicateurs.map(x => [x.cle, x]));
+  CATS.filter(c => qCat === 'toutes' || c[0] === qCat).forEach(([, titre, cles]) => {
+    const inds = cles.map(k => parCle[k]).filter(Boolean); if (!inds.length) return;
+    z.append(el('h2', 'q-cat-titre', titre)); const g = el('div', 'q-grille');
+    inds.forEach(ind => g.append(carteIndicateur(ind, tip, badgeQ))); z.append(g);
+  });
+}
+const tps = p => { p = String(p); const y = +p.slice(-4); const t = p.match(/^T(\d)/); if (t) return y + (+t[1] - 0.5) / 4;
+  const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  const mo = MOIS.findIndex(m => p.toLowerCase().startsWith(m)); return mo >= 0 ? y + (mo + 0.5) / 12 : y + 0.5; };
+function graduations(lo, hi){ const brut = (hi - lo) / 3, p = Math.pow(10, Math.floor(Math.log10(brut))), pas = [1, 2, 2.5, 5, 10].map(k => k * p).find(k => k >= brut);
+  const L = []; for (let v = Math.ceil(lo / pas) * pas; v <= hi + 1e-9; v += pas) L.push(+v.toFixed(6)); return L; }
+function carteIndicateur(ind, tip, badgeQ){
+  const c = el('article', 'q-ind'); c.append(el('h3', null, ind.nom), el('p', 'unite', ind.unite ? 'en ' + ind.unite : ''));
+  const pts = (ind.serie || []).map(x => ({p: String(x.periode), t: tps(x.periode), v: +x.valeur}));
+  if (ind.derniere && ind.derniere.valeur != null) pts.push({p: String(ind.derniere.periode), t: tps(ind.derniere.periode), v: +ind.derniere.valeur, recent: true});
+  if (pts.length >= 2){
+    const W = 340, H = 180, ml = 44, mr = 14, mt = 22, mb = 26, vs = pts.map(x => x.v);
+    let lo = Math.min(...vs), hi = Math.max(...vs); if (hi === lo){ hi += 1; lo -= 1; } const pad = (hi - lo) * 0.15; lo -= pad; hi += pad;
+    const t0 = Math.floor(pts[0].t), t1 = Math.max(Math.ceil(pts[pts.length - 1].t), 2027);
+    const X = t => ml + (t - t0) / (t1 - t0) * (W - ml - mr), Y = v => mt + (hi - v) / (hi - lo) * (H - mt - mb);
+    const svg = svgN('svg', {viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': ind.nom + ' : ' + pts.map(x => x.p + ' ' + nbFr(x.v)).join(', ')});
+    const debut = 2022 + 134 / 365;   // 14 mai 2022
+    svgN('rect', {class: 'mandat', x: X(debut), y: mt - 8, width: X(Math.min(t1, 2027 + 133 / 365)) - X(debut), height: H - mt - mb + 8}, svg);
+    graduations(lo, hi).forEach(v => { svgN('line', {class: 'grille-l', x1: ml, x2: W - mr, y1: Y(v), y2: Y(v)}, svg);
+      const t = svgN('text', {class: 'gy', x: ml - 6, y: Y(v) + 4, 'text-anchor': 'end'}, svg); t.textContent = nbFr(v); });
+    for (let y = t0; y <= t1; y++){ svgN('line', {class: 'tick', x1: X(y), x2: X(y), y1: H - mb, y2: H - mb + 4}, svg);
+      if (y < t1){ const t = svgN('text', {class: 'an', x: X(y + 0.5), y: H - 8, 'text-anchor': 'middle'}, svg); t.textContent = String(y); } }
+    svgN('line', {class: 'axe-x', x1: ml, x2: W - mr, y1: H - mb, y2: H - mb}, svg);
+    svgN('path', {class: 'ligne', d: pts.map((x, i) => (i ? 'L' : 'M') + X(x.t).toFixed(1) + ' ' + Y(x.v).toFixed(1)).join(' ')}, svg);
+    pts.forEach((x, i) => {
+      svgN('circle', {class: 'pt' + (x.recent ? ' recent' : ''), cx: X(x.t), cy: Y(x.v), r: 4.5}, svg);
+      const hit = svgN('rect', {class: 'hit', x: X(x.t) - 16, y: 0, width: 32, height: H}, svg);
+      const montrer = e => { tip.textContent = x.p + ' : ' + nbFr(x.v) + (ind.unite ? ' ' + ind.unite : ''); tip.style.display = 'block'; tip.style.left = (e.clientX + 12) + 'px'; tip.style.top = (e.clientY - 30) + 'px'; };
+      hit.addEventListener('mouseenter', montrer); hit.addEventListener('mousemove', montrer); hit.addEventListener('click', montrer);
+      hit.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+    });
+    const lab = (x, anc) => { const t = svgN('text', {class: 'v', x: X(x.t), y: Y(x.v) - 10, 'text-anchor': anc}, svg); t.textContent = nbFr(x.v); };
+    lab(pts[0], 'start'); lab(pts[pts.length - 1], 'end');
+    c.append(svg);
+    if (pts[pts.length - 1].recent) c.append(el('p', 'unite', '○ ' + pts[pts.length - 1].p + ' : dernière valeur publiée, provisoire'));
+  } else c.append(el('p', 'unite', 'Série non disponible pour l’instant.'));
+  const det = el('details', 'q-plus'); det.append(el('summary', null, 'Définition, valeurs, source'));
+  if (ind.definition) det.append(el('p', 'm', ind.definition));
+  if (pts.length) det.append(el('p', 'm', pts.map(x => x.p + ' : ' + nbFr(x.v)).join(' · ')));
+  if (ind.note_pub) det.append(el('p', 'm', ind.note_pub));
+  if (INTERNE && ind.note) det.append(el('p', 'f-note', ind.note));
+  c.append(det);
+  if (ind.source){ const s = el('p', 'f-src'); s.append('Série : ', lien(ind.source)); c.append(s); }
+  if (ind.source_derniere){ const s = el('p', 'f-src'); s.append('Dernière valeur : ', lien(ind.source_derniere)); c.append(s); }
+  const bq = badgeQ(ind); if (bq) c.append(bq);
+  return c;
+}
+/* ---- la fiche */
+const dlg = $('fiche');
+const ONGLETS = [['parcours', 'Parcours'], ['idees', 'Idées'], ['reperes', 'Repères'], ['equipe', 'Équipe'], ['justice', 'Justice']].concat(INTERNE ? [['verifier', 'À vérifier']] : []);
+const onglets = ONGLETS.map(([k, n], i) => {
+  const o = el('button', null, n); o.type = 'button'; o.setAttribute('role', 'tab'); o.id = 'o-' + k; o.setAttribute('aria-controls', 'p-' + k);
+  const pn = el('section', 'f-panneau'); pn.id = 'p-' + k; pn.setAttribute('role', 'tabpanel'); pn.setAttribute('aria-labelledby', o.id); pn.tabIndex = 0;
+  $('f-onglets').append(o); $('f-panneaux').append(pn); return o;
+});
+let declencheur = null, ouverte = null;
+function choisir(o, focus){
+  onglets.forEach(x => { const oui = x === o; x.setAttribute('aria-selected', String(oui)); x.tabIndex = oui ? 0 : -1; $(x.getAttribute('aria-controls')).hidden = !oui; });
+  if (focus) o.focus();
+}
+onglets.forEach((o, i) => {
+  o.onclick = () => choisir(o, false);
+  o.onkeydown = e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d){ e.preventDefault(); choisir(onglets[(i + d + onglets.length) % onglets.length], true); } };
+});
+$('f-fermer').onclick = () => dlg.close();
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+dlg.addEventListener('close', () => {
+  ouverte = null;
+  if (location.hash.startsWith('#fiche-')) history.replaceState(null, '', '#' + vueCourante);
+  if (declencheur && document.contains(declencheur)) declencheur.focus();
+});
+$('f-lien').onclick = async () => {
+  const b = $('f-lien');
+  try { await navigator.clipboard.writeText(location.href.split('#')[0] + '#fiche-' + ouverte); b.textContent = 'Lien copié'; }
+  catch(e){ b.textContent = 'Lien : #fiche-' + ouverte; }
+  setTimeout(() => { b.textContent = 'Copier le lien de cette fiche'; }, 2500);
+};
+function parcours(f){
+  const d = el('div'), id = f.identite || {};
+  const lignes = [['Naissance', id.naissance], ['Formation', id.formation], ['Parti', id.parti]].filter(x => x[1]);
+  const sourcee = id.sources && id.sources.length;
+  if (lignes.length && (sourcee || INTERNE)){
+    d.append(el('h3', 'f-rub', 'Identité'));
+    const dl = el('dl', 'f-id'); lignes.forEach(x => dl.append(el('dt', null, x[0]), el('dd', null, x[1]))); d.append(dl);
+    if (id.sources && id.sources.length) d.append(sources(id.sources, 'f-src'));
+    if (INTERNE && (id.verification === 'a_verifier' || !sourcee)) d.append(badge('identité sans source : non publiée', 'alerte'));
+  }
+  if (f.mandats.length){
+    d.append(el('h3', 'f-rub', 'Mandats et fonctions'));
+    const ol = el('ol', 'f-frise'); f.mandats.forEach(m => { const li = el('li'); li.append(el('b', null, m.periode), el('span', null, m.intitule)); ol.append(li); }); d.append(ol);
+  }
+  d.append(el('h3', 'f-rub', 'Au Parlement'));
+  const pa = el('p', 'f-encart', (f.parlement && f.parlement.detail) || 'Pas de mandat parlementaire en cours.');
+  if (f.parlement && f.parlement.lien_votes){ pa.append(' '); pa.append(lien(['Ses votes sur le site officiel', f.parlement.lien_votes])); }
+  d.append(pa);
+  if (f.mandats_sources && f.mandats_sources.length) d.append(sources(f.mandats_sources, 'f-src'));
+  return d;
+}
+function idees(p){
+  const f = p.f, d = el('div'), pr = f.programme, maj = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+  d.append(el('p', 'f-src', maj(pr.statut) + (pr.reference ? ' · ' + pr.reference : '.')));
+  THEMES.slice(0, 5).forEach(([k, n]) => {
+    const m = pr.mesures[k], b = el('div', 'f-theme' + (m ? '' : ' vide'));
+    b.append(el('h3', 'f-rub', n), el('p', null, m ? m.texte : 'Pas de proposition identifiée dans les sources consultées.'));
+    if (m){ const s = el('p', 'f-src'); s.append(lien(m.source)); b.append(s); }
+    if (INTERNE && m && m.publiable === false) b.append(badge('source fragile : non publiée', 'alerte'));
+    d.append(b);
+  });
+  // Europe, OTAN, Ukraine, référendums : les mêmes réponses que dans le comparateur
+  const ligne = (titre, rep, x) => { const b = el('div', 'f-theme'); b.append(el('h3', 'f-rub', titre), el('p', null, (rep ? rep + ' : ' : '') + x.txt)); const s = el('p', 'f-src'); s.append(lien(x.source)); b.append(s); if (INTERNE && !x.ok) b.append(badge('à vérifier : non publié', 'alerte')); return b; };
+  [['europe', QUE, 'Europe'], ['otan', QOTAN, 'OTAN'], ['ukraine', QUK, 'Ukraine']].forEach(([k, Q, nom]) => {
+    const D = (POS2[k] || {})[p.slug]; if (!D) return;
+    Q.forEach(([q, titre, lab]) => { if (D[q]) d.append(ligne(nom + ' · ' + titre, lab[D[q].r] || D[q].r, D[q])); });
+  });
+  ((POS2.referendums || {})[p.slug] || []).forEach(r => d.append(ligne('Référendum · ' + r.sujet, '', r)));
+  d.append(el('p', 'f-note', 'Les mêmes thèmes et les mêmes questions pour toutes les fiches. Une case absente n’est pas une position : rien n’a été trouvé dans les sources lues.'));
+  return d;
+}
+function reperes(p){
+  const d = el('div'), m = p.methode, fr = x => x.toLocaleString('fr-FR');
+  if (m){
+    d.append(el('h3', 'f-rub', 'En chiffres'));
+    const dl = el('dl', 'f-id');
+    const ligne = (t, v, src) => { const dd = el('dd', null, v); if (src){ dd.append(el('br')); const s = el('span', 'f-src'); s.append(lien(src)); dd.append(s); } dl.append(el('dt', null, t), dd); };
+    ligne('Urnes', m.voix ? fr(m.voix) + ' voix, ' + m.election : m.election.charAt(0).toUpperCase() + m.election.slice(1), m.voixSource);
+    ligne('Mandat national', m.national ? fr(m.national) + ' ans' : 'aucun');
+    ligne('Élu local', m.local ? fr(m.local) + ' ans' : 'aucun mandat');
+    d.append(dl);
+    if (m.remarque) d.append(el('p', 'f-note', m.remarque));
+  }
+  d.append(el('h3', 'f-rub', 'Présidentielles'));
+  d.append(el('p', null, p.annees && p.annees.length ? p.annees.join(' · ') : '—'));
+  d.append(el('p', 'f-note', 'Les années de mandat comptent les chevauchements une seule fois. Les citations et anecdotes restent dans le jeu Retourne ta veste.'));
+  return d;
+}
+function ouvrir(slug, depuis){
+  const p = PAR[slug]; if (!p) return;
+  declencheur = depuis || null; ouverte = slug;
+  $('f-carte').dataset.bloc = p.bloc;
+  $('f-img').src = 'img/' + p.slug + '.webp';
+  $('f-nom').textContent = p.nom; $('f-statut').textContent = ''; $('f-statut').append(puceEspace(p), ' ' + statut(p));
+  $('p-parcours').replaceChildren(parcours(p.f)); $('p-idees').replaceChildren(idees(p)); $('p-reperes').replaceChildren(reperes(p));
+  $('p-equipe').replaceChildren(equipeFiche(p)); $('p-justice').replaceChildren(justice(p.f));
+  if (INTERNE) $('p-verifier').replaceChildren(verifier(p.f));
+  choisir(onglets[0], false);
+  if (!dlg.open) dlg.showModal();
+  $('f-fermer').focus();
+}
+
+/* ---- le quiz (version de travail) : chaque question est tirée d'une donnée vérifiée du site et renvoie à sa source */
+const SRC_CONST = ['Constitution du 4 octobre 1958, texte intégral en vigueur (Conseil constitutionnel)', 'https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/texte-integral-de-la-constitution-du-4-octobre-1958-en-vigueur', 'consulté le 26/11/2026'];
+/* [question, [bonne réponse, autres…], explication] — relu sur le texte de la Constitution le 26/11/2026 */
+const Q_INSTIT = [
+  ['Pour combien d’années le président de la République est-il élu ?', ['5 ans', '4 ans', '6 ans', '7 ans'], 'Article 6 : le président est élu pour cinq ans au suffrage universel direct.'],
+  ['Combien de mandats présidentiels consécutifs une même personne peut-elle exercer au plus ?', ['2', '1', '3', 'Aucune limite'], 'Article 6 : nul ne peut exercer plus de deux mandats consécutifs.'],
+  ['Si personne n’obtient la majorité absolue au premier tour de la présidentielle, quand a lieu le second tour ?', ['Le 14e jour suivant', 'Le 7e jour suivant', 'Le 10e jour suivant', 'Le 21e jour suivant'], 'Article 7 : le second tour a lieu le quatorzième jour suivant le premier.'],
+  ['En cas de vacance de la présidence, qui exerce provisoirement les fonctions de président ?', ['Le président du Sénat', 'Le Premier ministre', 'La présidente ou le président de l’Assemblée nationale', 'Le président du Conseil constitutionnel'], 'Article 7 : l’intérim revient au président du Sénat, qui ne peut toutefois ni dissoudre ni organiser un référendum (articles 11 et 12).'],
+  ['Après les élections qui suivent une dissolution, combien de temps faut-il attendre pour dissoudre à nouveau l’Assemblée ?', ['Un an', 'Six mois', 'Deux ans', 'Aucun délai'], 'Article 12 : il ne peut y avoir de nouvelle dissolution dans l’année qui suit ces élections.'],
+  ['Combien de députés l’Assemblée nationale peut-elle compter au maximum ?', ['577', '348', '500', '650'], 'Article 24 : le nombre de députés ne peut excéder 577.'],
+  ['Combien de sénateurs le Sénat peut-il compter au maximum ?', ['348', '300', '377', '577'], 'Article 24 : le nombre de sénateurs ne peut excéder 348.'],
+  ['Quelle part des députés doit signer une motion de censure pour qu’elle soit recevable ?', ['Un dixième', 'Un cinquième', 'Un quart', 'Un tiers'], 'Article 49 : une motion de censure doit être signée par au moins un dixième des membres de l’Assemblée nationale.'],
+  ['Pour faire tomber le gouvernement, une motion de censure doit réunir…', ['La majorité des membres composant l’Assemblée', 'La majorité des suffrages exprimés', 'Les trois cinquièmes des députés', 'Les deux tiers des députés'], 'Article 49 : la motion n’est adoptée qu’à la majorité des membres composant l’Assemblée, et non des seuls votants.'],
+  ['En dehors des textes budgétaires (État et Sécurité sociale), pour combien d’autres textes le Premier ministre peut-il utiliser le 49.3 par session ?', ['Un seul', 'Aucun', 'Trois', 'Sans limite'], 'Article 49, alinéa 3 : en plus des lois de finances et de financement de la Sécurité sociale, un seul autre projet ou proposition de loi par session.'],
+  ['Combien de membres nommés compte le Conseil constitutionnel ?', ['9', '7', '12', '15'], 'Article 56 : neuf membres, nommés pour neuf ans, mandat non renouvelable ; le Conseil se renouvelle par tiers tous les trois ans.'],
+  ['Pour être adoptée par le Congrès, une révision de la Constitution doit réunir…', ['Les trois cinquièmes des suffrages exprimés', 'La majorité absolue', 'Les deux tiers des suffrages exprimés', 'Les trois quarts des suffrages exprimés'], 'Article 89 : le projet n’est approuvé que s’il réunit la majorité des trois cinquièmes des suffrages exprimés.'],
+  ['Un référendum d’initiative partagée doit être lancé par un cinquième des parlementaires et soutenu par…', ['Un dixième des électeurs inscrits', 'Un vingtième des électeurs inscrits', 'Un cinquième des électeurs inscrits', 'Un million de signatures, quel que soit le nombre d’inscrits'], 'Article 11 : l’initiative vient d’un cinquième des membres du Parlement, soutenue par un dixième des électeurs inscrits.'],
+  ['En principe, comment la France autorise-t-elle l’entrée d’un nouvel État dans l’Union européenne ?', ['Par référendum', 'Par décret du président de la République', 'Par un vote du seul Sénat', 'Par une décision du Conseil constitutionnel'], 'Article 88-5 : le texte est soumis au référendum, sauf si chaque assemblée vote à la majorité des trois cinquièmes une motion permettant la voie parlementaire.']
+];
+const QZ_MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+const qzDate = d => { const [j, m, a] = d.split('/'); return (+j === 1 ? '1er' : +j) + ' ' + QZ_MOIS[+m - 1] + ' ' + a; };
+const qzNb = (v, u) => { const n = Math.abs(v).toLocaleString('fr-FR', {maximumFractionDigits: Math.abs(v) >= 1000 ? 0 : 1}); const s = (v < 0 ? '−' : '') + n; return u === 'nombre' ? s : s + ' ' + u; };
+const qzVerifiee = x => x && x.source && (!INTERNE || !x.verification || x.verification === 'verifie');
+const qzMelange = (l, r) => { l = l.slice(); for (let i = l.length - 1; i > 0; i--){ const j = Math.floor(r() * (i + 1)); [l[i], l[j]] = [l[j], l[i]]; } return l; };
+/* une question : {cat, q, bonne, autres:[3], expl, source, retrait?} */
+function questionsQuiz(){
+  const Q = [];
+  Q_INSTIT.forEach(([q, [bonne, ...autres], expl]) => Q.push({cat: 'Les institutions', q, bonne, autres, expl, source: SRC_CONST}));
+  const lois = QUINQ.lois.filter(qzVerifiee);
+  const MODES = {vote: 'Vote du Parlement', '493': 'Article 49.3, sans vote final', congres: 'Congrès (révision de la Constitution)', decret: 'Décret, sans vote du Parlement'};
+  const court = t => t.replace(/\s*\([^)]*décret[^)]*\)/i, '').replace(/ n° [\d-]+/, '');
+  lois.forEach(x => {
+    const nom = '« ' + court(x.titre) + ' »', an = x.date_promulgation.slice(6);
+    if (MODES[x.mode]) Q.push({cat: 'Le quinquennat', q: 'Comment ce texte a-t-il été adopté ? ' + nom, bonne: MODES[x.mode], autres: Object.entries(MODES).filter(([k]) => k !== x.mode).map(([, v]) => v), expl: 'Adoption : ' + x.adoption + '.', source: x.source});
+    if (x.mode !== 'decret') Q.push({cat: 'Le quinquennat', q: 'En quelle année a été promulguée la ' + nom.replace('« Loi', '« loi') + ' ?', bonne: an, autres: ['2022', '2023', '2024', '2025', '2026'].filter(a => a !== an), expl: 'Promulguée le ' + qzDate(x.date_promulgation) + '. ' + x.contenu + '.', source: x.source});
+  });
+  const chrono = QUINQ.chronologie.filter(qzVerifiee);
+  const pm = chrono.filter(x => x.type === 'gouvernement').map(x => [x, (x.texte.match(/^(.+?) (?:de nouveau )?nommée? Premi[eè]re? ministre/) || [])[1]]).filter(([, n]) => n);
+  const noms = [...new Set(pm.map(([, n]) => n))];
+  if (noms.length >= 4) pm.forEach(([x, n]) => Q.push({cat: 'Le quinquennat', q: 'Qui a été nommé à Matignon le ' + qzDate(x.date) + ' ?', bonne: n, autres: noms.filter(m => m !== n), expl: x.texte + '.', source: x.source}));
+  chrono.filter(x => x.type !== 'gouvernement').forEach(x => {
+    const an = x.date.slice(6);
+    if (x.texte.includes(an)) return;   // l'année est dans l'énoncé : question sans intérêt
+    Q.push({cat: 'Le quinquennat', q: 'En quelle année ? ' + x.texte, bonne: an, autres: ['2022', '2023', '2024', '2025', '2026'].filter(a => a !== an), expl: 'Le ' + qzDate(x.date) + '.', source: x.source});
+  });
+  QUINQ.indicateurs.filter(qzVerifiee).forEach(ind => {
+    const pts = ind.serie.filter(s => s.valeur != null);
+    const vals = [...new Map(pts.map(s => [qzNb(s.valeur, ind.unite), s])).values()];
+    if (vals.length < 4) return;
+    vals.forEach(s => {
+      const bonne = qzNb(s.valeur, ind.unite);
+      Q.push({cat: 'Les chiffres officiels', q: ind.nom + ' : quelle valeur a été publiée pour ' + s.periode + ' ?', bonne, autres: vals.filter(t => t !== s).map(t => qzNb(t.valeur, ind.unite)),
+        expl: 'Série publiée : ' + pts.map(t => t.periode + ' : ' + qzNb(t.valeur, ind.unite)).join(' ; ') + '. ' + (ind.note_pub || ''), source: ind.source});
+    });
+  });
+  /* qui répond quoi : les autres choix sont des candidats déclarés qui ont répondu autre chose, jamais une position qu'ils n'ont pas prise */
+  const declares = new Set(P.filter(p => p.espace === 'declaree').map(p => p.slug));
+  [['europe', 'Europe', QUE], ['otan', 'OTAN', QOTAN], ['ukraine', 'Ukraine', QUK]].forEach(([th, nomTh, QS]) => {
+    const D = POS2[th] || {};
+    QS.forEach(([k, titre, lab]) => {
+      const rep = Object.entries(D).filter(([s, v]) => declares.has(s) && v[k] && v[k].ok).map(([s, v]) => [s, v[k]]);
+      Object.keys(lab).forEach(r => {
+        const oui = rep.filter(([, x]) => x.r === r), non = rep.filter(([, x]) => x.r !== r);
+        if (!oui.length || non.length < 3) return;
+        /* une seule question par réponse : la bonne est tirée parmi tous ceux qui l'ont donnée */
+        const variantes = oui.map(([s, x]) => ({bonne: PAR[s].nom, expl: PAR[s].nom + ' (' + (x.source[2] || 'date non indiquée') + ') : ' + x.txt + '.', source: x.source}));
+        Q.push(Object.assign({cat: 'Qui dit quoi ?', q: nomTh + ', « ' + titre + ' » : lequel de ces candidats répond « ' + lab[r] + ' » dans ses déclarations relevées ?',
+          autres: non.map(([t]) => PAR[t].nom), detail: non.map(([t, y]) => [PAR[t].nom, lab[y.r] || y.r]), variantes}, variantes[0]));
+      });
+    });
+  });
+  return Q;
+}
+let QZ = null, qzEtat = null;
+function graine(s){ let h = 1779033703 ^ s.length; for (let i = 0; i < s.length; i++){ h = Math.imul(h ^ s.charCodeAt(i), 3432918353); h = h << 13 | h >>> 19; } return () => { h = Math.imul(h ^ h >>> 16, 2246822507); h = Math.imul(h ^ h >>> 13, 3266489909); h ^= h >>> 16; return (h >>> 0) / 4294967296; }; }
+function tirage(n, r){
+  /* une question par catégorie à tour de rôle, pour varier */
+  const parCat = {}; qzMelange(QZ, r).forEach(q => (parCat[q.cat] = parCat[q.cat] || []).push(q));
+  const cats = qzMelange(Object.keys(parCat), r), out = [];
+  while (out.length < n && cats.some(c => parCat[c].length)) cats.forEach(c => { if (out.length < n && parCat[c].length) out.push(parCat[c].shift()); });
+  return out.map(q => { if (q.variantes) q = Object.assign({}, q, q.variantes[Math.floor(r() * q.variantes.length)]); const autres = qzMelange(q.autres, r).slice(0, 3); return Object.assign({}, q, {choix: qzMelange([q.bonne, ...autres], r)}); });
+}
+const aujourdhui = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+function lancerQuiz(mode){
+  const jour = mode === 'jour';
+  qzEtat = {mode, liste: tirage(jour ? 5 : 10, jour ? graine('trombi' + aujourdhui()) : Math.random), i: 0, score: 0};
+  rendreQuiz();
+}
+function rendreQuiz(){
+  if (!QZ){
+    QZ = questionsQuiz();
+    const n = c => QZ.filter(q => q.cat === c).length;
+    $('qz-intro').textContent = 'Version de travail, pas encore sur le site public. ' + QZ.length + ' questions disponibles, toutes tirées des données vérifiées du site : ' +
+      ['Les institutions', 'Le quinquennat', 'Les chiffres officiels', 'Qui dit quoi ?'].map(c => c.toLowerCase() + ' ' + n(c)).join(', ') + '. Une correction dans les données corrige aussi la question.';
+    const m = $('qz-modes'); m.textContent = '';
+    [['jour', 'Le quiz du jour (5 questions)'], ['rapide', 'Partie rapide (10 questions)']].forEach(([k, t]) => { const b = el('button', null, t); b.type = 'button'; b.setAttribute('aria-pressed', 'false'); b.onclick = () => { m.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); lancerQuiz(k); }; m.append(b); });
+    rendreRelecture();
+  }
+  const z = $('qz-corps'); z.textContent = '';
+  if (!qzEtat){ z.append(el('p', 'vide', 'Choisissez une partie pour commencer.')); return; }
+  const E = qzEtat;
+  if (E.i >= E.liste.length){
+    const c = el('div', 'qz-carte'); c.append(el('p', 'qz-meta', E.mode === 'jour' ? 'Quiz du jour · ' + qzDate(aujourdhui().split('-').reverse().join('/')) : 'Partie rapide'), el('p', 'qz-q', E.score + ' bonne' + (E.score > 1 ? 's' : '') + ' réponse' + (E.score > 1 ? 's' : '') + ' sur ' + E.liste.length));
+    c.append(el('p', null, E.mode === 'jour' ? 'Revenez demain : cinq nouvelles questions, les mêmes pour tout le monde.' : 'Chaque partie tire dix nouvelles questions au hasard.'));
+    const a = el('div', 'qz-actions'), b = el('button', 'prim', E.mode === 'jour' ? 'Faire une partie rapide' : 'Rejouer'); b.type = 'button'; b.onclick = () => { $('qz-modes').querySelectorAll('button').forEach((x, i) => x.setAttribute('aria-pressed', String(i === 1))); lancerQuiz('rapide'); }; a.append(b); c.append(a);
+    z.append(c); return;
+  }
+  const q = E.liste[E.i], c = el('div', 'qz-carte');
+  c.append(el('p', 'qz-meta', 'Question ' + (E.i + 1) + '/' + E.liste.length + ' · ' + q.cat + ' · score ' + E.score), el('h2', 'qz-q', q.q));
+  const g = el('div', 'qz-rep'), btns = [], suite = el('div', 'qz-suite'), actions = el('div', 'qz-actions');
+  let fini = false;
+  const indice = el('button', null, 'Indice : retirer deux réponses'); indice.type = 'button';
+  indice.onclick = () => { indice.disabled = true; qzMelange(btns.filter(b => b.dataset.v !== q.bonne), Math.random).slice(0, 2).forEach(b => { b.disabled = true; b.classList.add('retire'); }); };
+  q.choix.forEach((v, i) => {
+    const b = el('button'); b.type = 'button'; b.dataset.v = v; b.append(el('b', null, 'ABCD'[i]), el('span', null, v));
+    b.onclick = () => {
+      if (fini) return; fini = true; indice.disabled = true;
+      const ok = v === q.bonne; if (ok) E.score++;
+      btns.forEach(x => { x.disabled = true; if (x.dataset.v === q.bonne){ x.classList.add('juste'); x.append(el('em', null, '✓ bonne réponse')); } else if (x === b){ x.classList.add('faux'); x.append(el('em', null, '✗ votre choix')); } });
+      suite.append(el('p', 'qz-verdict', ok ? 'Bonne réponse.' : 'Ce n’est pas ça : la réponse est « ' + q.bonne + ' ».'), el('p', null, q.expl));
+      if (q.detail){ const ch = q.choix.filter(n => n !== q.bonne), d = q.detail.filter(([n]) => ch.includes(n)); if (d.length) suite.append(el('p', null, 'Les autres répondent : ' + d.map(([n, r]) => n + ', « ' + r + ' »').join(' ; ') + '. Une position peut évoluer : la date compte.')); }
+      const s = el('p', 'qz-src', 'Source : '); s.append(lien(q.source)); suite.append(s);
+      const n = el('button', 'prim', E.i + 1 < E.liste.length ? 'Question suivante' : 'Voir le score'); n.type = 'button'; n.onclick = () => { E.i++; rendreQuiz(); $('qz-corps').scrollIntoView({block: 'start', behavior: 'smooth'}); };
+      actions.replaceChildren(n); n.focus();
+    };
+    btns.push(b); g.append(b);
+  });
+  actions.append(indice);
+  c.append(g, suite, actions); z.append(c);
+}
+function rendreRelecture(){
+  const d = $('qz-relecture'); d.textContent = '';
+  d.append(el('summary', null, 'Relire les ' + QZ.length + ' questions et leurs réponses'));
+  const t = el('table', 'tab-valider stack'), h = t.createTHead().insertRow();
+  ['Catégorie', 'Question', 'Réponse', 'Autres choix possibles', 'Source'].forEach(x => h.append(el('th', null, x)));
+  const tb = t.createTBody();
+  QZ.forEach(q => { const r = tb.insertRow(); r.insertCell().textContent = q.cat; r.insertCell().textContent = q.q; r.insertCell().textContent = q.variantes ? q.variantes.map(v => v.bonne).join(' ou ') : q.bonne; r.insertCell().textContent = q.autres.join(' · '); const c = r.insertCell(); (q.variantes || [q]).forEach((v, i) => { if (i) c.append(' · '); c.append(lien(v.source)); }); });
+  const s = el('div', 'scroll'); s.append(t); d.append(s);
+}
+/* ---- les vues, sur le #nom de l'adresse */
+let vueCourante = 'accueil';
+const VUES = ['accueil', 'personnalites', 'equipes', 'chiffres', 'comparer', 'face', 'quinquennat', 'methode'].concat(INTERNE ? ['valider', 'apprendre', 'categories'] : []);
+const ALIAS = {candidats: 'personnalites', programmes: 'comparer', 'parcours-en-chiffres': 'chiffres'};
+const GROUPE = {equipes: 'personnalites', chiffres: 'personnalites', face: 'comparer'};
+const SOUS = {personnalites: [['candidats', 'personnalites', 'Le trombinoscope'], ['equipes', 'equipes', 'Les équipes de campagne'], ['parcours-en-chiffres', 'chiffres', 'Les parcours en chiffres']],
+  comparer: [['programmes', 'comparer', 'Par sujet'], ['face-a-face', 'face', 'Face à face']]};
+Object.values(SOUS).forEach(l => l.forEach(([, v]) => {
+  const n = el('nav', 'sous-vues'); n.setAttribute('aria-label', 'Sous-rubriques');
+  l.forEach(([h, w, t]) => { const a = el('a', null, t); a.href = '#' + h; if (w === v) a.setAttribute('aria-current', 'page'); n.append(a); });
+  $('v-' + v).prepend(n);
+}));
+function rendreAccueil(){
+  const n = k => P.filter(p => p.espace === k).length;
+  $('pc-1').textContent = n('declaree') + ' candidatures déclarées · ' + n('envisagee') + ' envisagées · ' + n('retrait') + ' en retrait';
+  $('pc-2').textContent = THEMES.length + ' sujets comparés, chaque position avec sa source';
+  $('pc-3').textContent = QUINQ.lois.length + ' textes, ' + QUINQ.indicateurs.length + ' indicateurs officiels, ' + QUINQ.chronologie.length + ' dates';
+  if (JEU){
+    $('jeu-bloc').hidden = false; $('jeu-aller').href = JEU;
+    if (JEU_PARTIE){ $('jeu-direct').href = JEU_PARTIE; $('jeu-direct').hidden = false; }
+    const n = el('a', 'sortie', 'Le jeu'); n.href = JEU; n.target = '_blank'; n.rel = 'noopener'; n.title = 'Retourne ta veste, le jeu de cartes satirique (s’ouvre à part)';
+    document.querySelector('nav.vues').insertBefore(n, document.querySelector('nav.vues a[href="#quinquennat"]').nextSibling);
+    const f = el('a', null, 'Retourne ta veste, le jeu'); f.href = JEU; f.target = '_blank'; f.rel = 'noopener'; document.querySelector('footer.pied nav').append(f);
+  }
+  if (INTERNE){ const a = el('a'); a.href = '#apprendre'; a.append(el('b', null, 'Le quiz'), ' testez vos connaissances, chaque réponse sourcée'); $('portes-2').prepend(a); }
+}
+$('pied-erreur').onclick = e => { e.preventDefault(); $('coin-erreur').click(); };
+let faceChoix = [];
+function rendreFace(){
+  const z = $('face'); z.textContent = '';
+  const choix = el('div', 'face-choix'), sels = [];
+  for (let i = 0; i < 3; i++){
+    const lab = el('label', 'face-sel'); lab.append(el('span', null, 'Personnalité ' + (i + 1)));
+    const s = el('select'); s.append(new Option(i ? '(aucune)' : 'Choisir…', ''));
+    [['declaree', 'Candidatures déclarées'], ['envisagee', 'Candidatures envisagées'], ['retrait', 'En retrait']].forEach(([k, n]) => { const g = document.createElement('optgroup'); g.label = n; P.filter(p => p.espace === k).forEach(p => g.append(new Option(p.nom, p.slug))); s.append(g); });
+    s.value = faceChoix[i] || '';
+    s.onchange = () => { faceChoix = [...new Set(sels.map(x => x.value).filter(Boolean))]; history.replaceState(null, '', '#face-a-face' + (faceChoix.length ? '-' + faceChoix.join(',') : '')); rendreFace(); };
+    sels.push(s); lab.append(s); choix.append(lab);
+  }
+  z.append(choix);
+  const L = faceChoix.map(s => PAR[s]).filter(Boolean);
+  if (!L.length){ z.append(el('p', 'vide', 'Choisissez une, deux ou trois personnalités pour voir leurs propositions côte à côte.')); return; }
+  const src = s => { const p = el('p', 'face-src'); p.append(lien(s)); return p; };
+  const frag = x => INTERNE && x && (x.ok === false || x.publiable === false) ? el('span', 'fragile', 'à vérifier : non publié') : '';
+  const lignes = [];
+  THEMES.slice(0, 5).forEach(([k, n]) => lignes.push(['Programme', n, p => { const m = p.f.programme.mesures[k]; if (!m) return null; const d = el('div'); d.append(el('p', null, m.texte), src(m.source), frag(m)); return d; }]));
+  [['europe', 'Europe', QUE], ['otan', 'OTAN et défense', QOTAN], ['ukraine', 'Ukraine', QUK]].forEach(([th, nm, QS]) => QS.forEach(([q, t, lab]) => lignes.push([nm, t, p => {
+    const x = ((POS2[th] || {})[p.slug] || {})[q]; if (!x) return null;
+    const d = el('div'); d.append(el('p', 'face-rep', lab[x.r] || x.r), el('p', null, x.txt), src(x.source), frag(x)); return d; }])));
+  lignes.push(['Référendums', 'Référendums proposés', p => { const l = (POS2.referendums || {})[p.slug]; if (!l || !l.length) return null;
+    const u = el('ul'); l.forEach(r => { const li = el('li'); li.append(el('p', null, r.sujet + ' : ' + r.txt), src(r.source), frag(r)); u.append(li); }); return u; }]);
+  const t = el('table', 'face'), hr = t.createTHead().insertRow();
+  hr.append(el('th', null, ''));
+  L.forEach(p => { const th = el('th'); th.dataset.bloc = p.bloc; th.scope = 'col'; const b = el('button', null, p.nom); b.type = 'button'; b.onclick = () => ouvrir(p.slug, b); th.append(b, el('small', null, statut(p))); hr.append(th); });
+  const tb = t.createTBody(); let groupe = null, n = 0;
+  lignes.forEach(([g, titre, f]) => {
+    const cells = L.map(f); if (cells.every(c => !c)) return;
+    if (g !== groupe){ groupe = g; const r = tb.insertRow(); r.className = 'groupe'; const th = el('th', null, g); th.colSpan = L.length + 1; r.append(th); }
+    const r = tb.insertRow(); const th = el('th', null, titre); th.scope = 'row'; r.append(th); n++;
+    cells.forEach(c => { const td = r.insertCell(); if (c) td.append(c); else { td.className = 'nr'; td.textContent = '—'; } });
+  });
+  z.append(el('p', 'compte', n + ' sujet' + (n > 1 ? 's' : '') + ' où au moins une des personnalités choisies a une position relevée. Un tiret : rien trouvé dans les sources lues, ce qui n’est pas une position.'));
+  const env = el('div', 'matrice-enve'); env.append(t); z.append(env);
+}
+function route(){
+  let h = decodeURIComponent(location.hash.slice(1)), m;
+  if (h.startsWith('fiche-') && PAR[h.slice(6)]){ montrer(vueCourante === 'accueil' ? 'personnalites' : vueCourante); ouvrir(h.slice(6), null); return; }
+  if ($('fiche').open) $('fiche').close();
+  if ((m = h.match(/^programmes-(.+)$/)) && THEMES.some(t => t[0] === m[1])){ theme = m[1]; rendreThemes(); rendreRangs(); h = 'comparer'; }
+  if ((m = h.match(/^face-a-face(?:-(.+))?$/))){ if (m[1]) faceChoix = m[1].split(',').filter(x => PAR[x]).slice(0, 3); rendreFace(); h = 'face'; }
+  h = ALIAS[h] || h;
+  montrer(VUES.includes(h) ? h : 'accueil');
+}
+function montrer(v){
+  const avant = vueCourante; vueCourante = v; document.body.dataset.vue = v;
+  VUES.forEach(x => { $('v-' + x).hidden = x !== v; });
+  const g = GROUPE[v] || v;
+  document.querySelectorAll('nav.vues a').forEach(a => { if ((a.dataset.g || a.hash.slice(1)) === g) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  if (avant !== v && (GROUPE[avant] || avant) !== g) scrollTo({top: 0});
+}
+window.addEventListener('hashchange', route);
+rendreAccueil(); rendreFace(); rendreBlocs(); rendreGrille(); rendreThemes(); rendreRangs(); rendreMesures(); rendreBarres(); rendreCategories(); rendreTableCat(); rendreEquipeQui(); rendreEquipe(); rendrePerim(); rendreQuinquennat(); if (INTERNE){ rendreValider(); rendreQuiz(); } route();
+}
+</script>
+</body>
+</html>
