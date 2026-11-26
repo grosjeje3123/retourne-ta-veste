@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retourne ta veste · le jeu de cartes de la présidentielle 2027</title>
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/icone-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,600;9..144,900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Idée de mise en page : des cartes à collectionner posées sur la table.
+   Recto en couleur avec toutes les infos, dos guilloché commun à toutes les cartes.
+   Gabarit identique pour chaque carte : portrait de hauteur fixe, infos dessous.
+   Cartes candidat : bord à la couleur du bloc officiel (grille du ministère), du rouge au bleu nuit ;
+   vert pour Les Écologistes, gris pour « divers ». Jamais une couleur choisie au cas par cas.
+   Cartes action : encre et surligneur. Les couleurs de la carte ne suivent pas le thème ; tout est en cqi. */
+:root{
+  --page:#eef0ec; --page-texte:#15171a; --page-texte-2:#4d535b;
+  --c-papier:#f8f9f6; --c-encre:#15171a; --c-encre-2:#4d535b;
+  --c-surligneur:#f1fb4e; --c-menu:#f8df86;   /* jaune des menus, plus doux que le surligneur du jeu */ --c-violet:#0f5f66; --c-violet-fonce:#0a3f44; --c-violet-clair:#e2f0ef;   /* ex-violet de l'interface, passé en sarcelle : aucune couleur de parti (les noms restent) */
+  --c-action:#15171a; --c-action-clair:#f6f8d2;   /* cartes action et dos de carte : encre et surligneur, aucune couleur de parti */
+  --c-sarcelle:#0f5f66; --c-sarcelle-clair:#e2f0ef;
+  --titre:"Fraunces", "Iowan Old Style", Georgia, serif;
+  --texte:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --chiffre:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --page:#131518; --page-texte:#eceee8; --page-texte-2:#a4aab1; color-scheme:dark; }
+}
+:root[data-theme="dark"]{ --page:#131518; --page-texte:#eceee8; --page-texte-2:#a4aab1; color-scheme:dark; }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--page-texte);font-family:var(--texte);font-size:17px;line-height:1.5}
+.page{max-width:1120px;margin:0 auto;padding:28px 20px 56px}
+.marque{font-family:var(--chiffre);font-size:13px;color:var(--page-texte-2);margin:0 0 10px}
+.fluo{background:var(--c-surligneur);color:var(--c-encre);padding:0 .2em}
+h1{font-family:var(--titre);font-weight:900;font-size:clamp(30px,6vw,46px);line-height:1.05;margin:0 0 10px;text-wrap:balance}
+.chapo{margin:0;color:var(--page-texte-2);max-width:62ch}
+.soutenir{margin:36px 0 0;max-width:62ch;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:16px 18px;border:2px solid var(--c-encre);border-radius:12px;background:var(--c-surligneur);color:var(--c-encre);box-shadow:4px 4px 0 var(--c-encre)}
+.mot-auteur a{color:inherit;text-underline-offset:2px}
+.soutenir p{margin:0;flex:1 1 280px;line-height:1.45}
+.soutenir .bouton{text-decoration:none;display:inline-flex;align-items:center;gap:6px;background:var(--c-papier)}
+.mot-auteur{margin:14px 0 0;max-width:62ch;padding:10px 14px;border-left:4px solid var(--c-sarcelle);border-radius:0 8px 8px 0;background:rgba(15,95,102,.1);font-size:16px;line-height:1.45}
+.groupe{font-family:var(--titre);font-weight:900;font-size:clamp(23px,4vw,30px);line-height:1.1;margin:48px 0 6px}
+.groupe-texte{margin:0;color:var(--page-texte-2);max-width:66ch}
+.table{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:flex-start;margin-top:26px}
+.emplacement{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.legende{display:flex;align-items:center;gap:12px;font-family:var(--chiffre);font-size:13px;color:var(--page-texte-2);min-height:32px}
+.retourner{font-family:var(--chiffre);font-size:13px;background:transparent;color:var(--page-texte);border:1px solid var(--page-texte);border-radius:2px;padding:6px 10px;cursor:pointer}
+.retourner:focus-visible,a:focus-visible{outline:3px solid var(--c-violet);outline-offset:2px}
+.note{font-size:14.5px;color:var(--page-texte-2);margin:40px auto 0;max-width:66ch;text-align:center}
+
+/* Carte retournable */
+.retournable,.carte-seule{width:clamp(270px,86vw,330px);container-type:inline-size}
+.retournable{perspective:1400px;cursor:pointer}
+.interieur{position:relative;width:100%;aspect-ratio:5/8;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,.7,.3,1)}
+.retournable.retournee .interieur{transform:rotateY(180deg)}
+@media (prefers-reduced-motion:reduce){ .interieur{transition:none} }
+.face{position:absolute;inset:0;border:2px solid var(--c-encre);border-radius:16px;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;box-shadow:0 1px 0 rgba(21,23,26,.10),0 12px 28px rgba(21,23,26,.26)}
+.dos{transform:rotateY(180deg)}
+.carte-seule .face{position:relative;inset:auto;width:100%;aspect-ratio:5/8;transform:none}
+
+/* Recto, commun */
+.recto{background:var(--c-action);padding:2.4cqi;display:flex;flex-direction:column;gap:1.8cqi;color:var(--c-encre)}
+.recto.candidat{background:linear-gradient(160deg,var(--bloc) 0%,var(--bloc) 55%,var(--bloc-fonce) 100%)}
+[data-bloc="extreme-gauche"]{--bloc:#8f1d1d;--bloc-fonce:#5e1010;--bloc-clair:#f6e1df}
+[data-bloc="gauche"]{--bloc:#d63a32;--bloc-fonce:#9e241e;--bloc-clair:#fbe4e1}
+[data-bloc="ecolo"]{--bloc:#2e9a4e;--bloc-fonce:#1c6a34;--bloc-clair:#e1f2e6}
+[data-bloc="centre"]{--bloc:#f0931c;--bloc-fonce:#a85d00;--bloc-clair:#fdeed7}
+[data-bloc="divers"]{--bloc:#6a7077;--bloc-fonce:#454b51;--bloc-clair:#eceef0}
+[data-bloc="droite"]{--bloc:#2a6fcf;--bloc-fonce:#1a4a91;--bloc-clair:#e1eaf8}
+[data-bloc="extreme-droite"]{--bloc:#26367d;--bloc-fonce:#151e4a;--bloc-clair:#e2e5ef}
+/* Jauge du haut de carte : l'échiquier de gauche à droite, le repère sur le bloc officiel */
+.axe{position:relative;width:34cqi;height:2.6cqi;border:1px solid var(--c-papier);border-radius:2cqi;background:linear-gradient(90deg,#8f1d1d 0%,#d63a32 27%,#f0931c 50%,#2a6fcf 73%,#26367d 100%)}
+.axe i{position:absolute;left:var(--x);top:50%;width:4.4cqi;height:4.4cqi;transform:translate(-50%,-50%) rotate(45deg);background:var(--c-papier);border:1.5px solid var(--c-encre);box-shadow:1px 1px 0 var(--c-encre)}
+.nuancier{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 8px}
+.nuancier li{display:inline-flex;align-items:center;gap:6px;font-family:var(--chiffre);font-size:13px;color:var(--page-texte)}
+.nuancier li::before{content:"";width:18px;height:12px;border-radius:3px;border:1.5px solid var(--page-texte);background:var(--bloc)}
+.haut{display:flex;justify-content:space-between;align-items:center;padding:0 .8cqi;min-height:9.6cqi}
+.type{font-family:var(--chiffre);font-weight:700;font-size:3.1cqi;letter-spacing:.1em;text-transform:uppercase;color:var(--c-papier)}
+.code{font-family:var(--titre);font-weight:900;font-size:7.6cqi;line-height:1;background:var(--c-surligneur);color:var(--c-encre);border:1.5px solid var(--c-encre);padding:.4cqi 2.2cqi .9cqi;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--c-encre)}
+.bloc{font-family:var(--chiffre);font-weight:700;font-size:3.1cqi;line-height:1;letter-spacing:.06em;text-transform:uppercase;background:var(--c-surligneur);color:var(--c-encre);border:1.5px solid var(--c-encre);padding:1.4cqi 2.2cqi;transform:rotate(-2deg);box-shadow:2px 2px 0 var(--c-encre)}
+.panneau{flex:1 1 auto;min-height:0;background:var(--c-papier);border:1.5px solid var(--c-encre);border-radius:9px;overflow:hidden;display:flex;flex-direction:column}
+.portrait{position:relative;flex:0 0 62cqi;margin:0;overflow:hidden;border-bottom:1.5px solid var(--c-encre);
+  background-color:var(--c-surligneur);
+  background-image:radial-gradient(circle,rgba(21,23,26,.17) 0 1.15px,transparent 1.5px),radial-gradient(circle,rgba(21,23,26,.17) 0 1.15px,transparent 1.5px);
+  background-size:8px 8px;background-position:0 0,4px 4px}
+/* Fenêtre commune à tous les portraits : de 3 % à 62 % de la hauteur de l'image */
+.portrait img{position:absolute;height:169.5%;width:auto;max-width:none;left:50%;top:-5.1%;transform:translateX(-50%)}
+.etiquette{position:absolute;font-family:var(--chiffre);font-weight:700;font-size:2.8cqi;line-height:1;letter-spacing:.06em;text-transform:uppercase;padding:1.2cqi 1.8cqi}
+.etiquette{top:1.8cqi;right:1.8cqi;background:var(--c-encre);color:var(--c-papier)}
+.tampon{position:absolute;right:2.4cqi;bottom:2.8cqi;font-family:var(--chiffre);font-weight:700;font-size:3.1cqi;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--c-action);background:rgba(248,249,246,.92);border:2px solid var(--c-action);border-radius:3px;padding:1.2cqi 2cqi;transform:rotate(-6deg)}
+.tampon sup{text-transform:none;letter-spacing:0}
+.candidat .tampon{color:var(--bloc-fonce);border-color:var(--bloc-fonce)}
+.infos{flex:1 1 auto;min-height:0;padding:2.6cqi 3.2cqi 2.8cqi;display:flex;flex-direction:column;gap:2cqi}
+.identite h3{font-family:var(--titre);font-weight:600;font-size:6.5cqi;line-height:1.05;margin:0}
+.role{font-family:var(--chiffre);font-size:3.1cqi;line-height:1.3;color:var(--c-encre-2);margin:.8cqi 0 0}
+sup{font-size:.68em;line-height:0}
+.sources{margin:auto 0 0;font-family:var(--chiffre);font-size:2.75cqi;line-height:1.4;color:var(--c-encre-2)}
+.sources a{color:var(--c-encre);text-underline-offset:2px}
+
+/* Recto, carte action */
+.pouvoir{border-top:1.5px solid var(--c-encre);padding-top:2cqi}
+.pouvoir p{margin:0;font-size:4cqi;line-height:1.3}
+.pouvoir .petit{font-family:var(--chiffre);font-size:3.1cqi;color:var(--c-encre-2);margin-top:1.3cqi}
+.vraie-vie{background:var(--c-action-clair);border-radius:6px;padding:2cqi 2.4cqi;display:grid;gap:1.3cqi}
+.vraie-vie .lib{font-family:var(--chiffre);font-weight:700;font-size:2.9cqi;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--c-action);margin:0}
+.vraie-vie p{margin:0;font-size:3.6cqi;line-height:1.3}
+.ligne{display:grid;grid-template-columns:29cqi 1fr auto;gap:2cqi;align-items:center;font-size:3.4cqi;line-height:1.2}
+.barre{height:2.8cqi;border:1px solid var(--c-encre);background:var(--c-papier)}
+.barre i{display:block;height:100%;width:calc(var(--v) / var(--max) * 100%);background:var(--c-encre)}
+.ligne.elle .barre i{background:var(--c-surligneur);border-right:1px solid var(--c-encre)}
+.ligne b{font-family:var(--chiffre);font-size:3.6cqi;font-variant-numeric:tabular-nums;min-width:5cqi;text-align:right}
+.frise{list-style:none;margin:0;padding:0;display:grid;gap:1cqi}
+.frise li{display:grid;grid-template-columns:9cqi 1fr;gap:1.8cqi;font-size:3.4cqi;line-height:1.25;align-items:baseline}
+.frise b{font-family:var(--chiffre);font-size:3.2cqi;color:var(--c-action)}
+
+/* Recto, carte candidat */
+/* Les quatre chiffres, chacun sur son bord : ↑ dans le bandeau du haut, → et ← sur les côtés du portrait, ↓ en bas du portrait */
+.cote{position:absolute;z-index:2;display:inline-flex;align-items:center;gap:.9cqi;padding:1cqi 2cqi 1cqi 1.6cqi;background:var(--c-papier);color:var(--c-encre);border:1.5px solid var(--c-encre);border-radius:99px;box-shadow:2px 2px 0 var(--c-encre);font-family:var(--chiffre);font-weight:700;font-size:4.6cqi;line-height:1;cursor:help}
+.cote .picto{width:3.6cqi;height:3.6cqi;flex:none;opacity:.75}
+.haut{position:relative}
+.haut .cote-h{left:50%;top:50%;transform:translate(-50%,-50%)}
+.portrait .cote-d{right:1.8cqi;top:50%;transform:translateY(-50%)}
+.portrait .cote-g{left:1.8cqi;top:50%;transform:translateY(-50%)}
+.portrait .cote-b{left:40%;bottom:1.8cqi;transform:translateX(-50%)}
+/* Pictogrammes des côtés dans les textes */
+.pi{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.16em;margin:0 .12em}
+.pi svg{display:block;width:100%;height:100%}
+.regles-cotes{list-style:none;margin:6px 0 8px;padding:0;display:grid;gap:3px}
+.regles-cotes li{margin:0}
+/* Étoiles : présidentielles déjà disputées, sans effet sur le jeu */
+.mc .etoiles{position:absolute;z-index:1;left:3.5cqi;bottom:22cqi;font-size:12cqi;line-height:1;letter-spacing:-.5cqi;color:var(--c-papier);-webkit-text-stroke:1.3px var(--c-encre);paint-order:stroke fill;text-shadow:1px 1px 0 var(--c-encre)}
+.phrase{margin:0;background:var(--bloc-clair,var(--c-sarcelle-clair));border-radius:6px;padding:2cqi 2.4cqi;display:grid;gap:1.1cqi}
+.phrase p{margin:0;font-family:var(--titre);font-weight:600;font-size:4.2cqi;line-height:1.22}
+.phrase footer{font-family:var(--chiffre);font-size:2.8cqi;line-height:1.3;color:var(--c-encre-2)}
+.faits{margin:0;display:grid;gap:1.3cqi;border-top:1.5px solid var(--c-encre);padding-top:1.9cqi}
+.faits div{display:grid;grid-template-columns:15cqi 1fr;gap:1.6cqi;align-items:baseline}
+.faits dt{font-family:var(--chiffre);font-weight:700;font-size:2.7cqi;letter-spacing:.06em;text-transform:uppercase;color:var(--bloc-fonce,var(--c-sarcelle))}
+.faits dd{margin:0;font-size:3.3cqi;line-height:1.28}
+.dense .faits dd{font-size:3cqi;line-height:1.24}
+.dense .phrase p{font-size:3.9cqi}
+.dense .infos{gap:1.6cqi}
+.dense .sources{font-size:2.55cqi}
+.annees{font-family:var(--chiffre);font-variant-numeric:tabular-nums}
+.annees b{background:var(--c-surligneur);border:1px solid var(--c-encre);padding:0 .7cqi}
+
+/* Dos */
+.dos{background:radial-gradient(circle at 50% 50%,#3d434b 0%,#23272c 42%,var(--c-action) 100%)}
+.dos svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+/* ===== Le jeu, Retourne ta veste =====
+   IDÉE : une partie de cartes posée sur un tapis sarcelle, le plateau (4×4 avec bancs bloqués, ou 3×3) figurant les sièges.
+   IMAGE : les cartes en miniature (portrait, losange de valeurs, bandeau du camp) et un hémicycle de 10 sièges pour le score.
+   COULEURS : sarcelle neutre pour le tapis (aucun bloc ne la porte) ; ton camp en surligneur, celui de l'IA en encre ; encre et surligneur pour les cartes action.
+   TYPE : Fraunces pour les titres et bannières, JetBrains Mono pour les chiffres, Atkinson pour le texte. */
+[hidden]{display:none !important}
+.cache-visuel{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+button:focus-visible,.case:focus-visible{outline:3px solid var(--c-surligneur);outline-offset:2px}
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-family:var(--chiffre);font-weight:700;font-size:15px;background:var(--c-menu);color:var(--c-encre);border:2px solid var(--c-encre);border-radius:3px;padding:11px 16px;min-height:44px;box-shadow:3px 3px 0 var(--c-encre);text-decoration:none}
+.cta:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--c-encre)}
+#vue-cartes{padding-bottom:100px}
+.cta-flottant{position:fixed;right:20px;bottom:20px;z-index:20;margin:0;box-shadow:3px 3px 0 var(--c-encre),0 8px 22px rgba(0,0,0,.28);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}
+.cta-flottant.visible{opacity:1;transform:none;pointer-events:auto}
+.cta-flottant.visible:hover{transform:translate(-1px,-1px)}
+@media (max-width:600px){ .cta-flottant{left:50%;right:auto;bottom:14px;transform:translate(-50%,12px)} .cta-flottant.visible,.cta-flottant.visible:hover{transform:translateX(-50%)} }
+@media (prefers-reduced-motion:reduce){ .cta-flottant{transition:none} }
+.groupe-texte a{color:inherit;text-underline-offset:2px}
+
+.jeu{max-width:1180px;margin:0 auto;padding:14px 16px 48px}
+.tete-jeu{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.retour{font-family:var(--chiffre);font-size:14px;color:var(--page-texte);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.titre-jeu{font-family:var(--titre);font-weight:900;font-size:clamp(28px,4.4vw,40px);line-height:1.05;margin:0;flex:1 1 auto}
+.boutons-jeu{display:flex;gap:8px;flex-wrap:wrap}
+.bouton,.bouton-sec{font-family:var(--chiffre);font-weight:700;font-size:14px;min-height:44px;padding:10px 14px;border-radius:3px;border:2px solid var(--c-encre);cursor:pointer}
+.bouton{background:var(--c-menu);color:var(--c-encre);box-shadow:2px 2px 0 var(--c-encre)}
+.bouton-sec{background:transparent;color:inherit;border-color:currentColor}
+.bouton:disabled,.bouton-sec:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+
+.tapis{margin-top:10px;border-radius:22px;padding:16px;color:var(--c-papier);
+  background:radial-gradient(ellipse at 50% -10%,rgba(255,255,255,.14),transparent 55%),repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 2px,transparent 2px 9px),var(--c-sarcelle);
+  box-shadow:inset 0 0 0 2px var(--c-encre),0 14px 30px rgba(21,23,26,.25)}
+.arene{display:grid;grid-template-columns:minmax(130px,1fr) auto minmax(130px,1fr);gap:16px;align-items:start}
+.camp{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:6px}
+.camp-nom{margin:0;font-family:var(--chiffre);font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.oeil{font-weight:400}
+.pastille{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid var(--c-encre);flex:none}
+.pastille.j{background:var(--c-surligneur)}.pastille.ia{background:var(--c-encre);border-color:var(--c-papier)}
+.main{display:flex;flex-direction:column;align-items:center;min-height:130px}
+.carte-main{display:block;width:104px;padding:0;border:0;background:none;color:inherit;cursor:pointer;transition:transform .18s ease;border-radius:10px;will-change:transform}
+.main .carte-main+.carte-main{margin-top:-56px}
+@media (hover:hover){ .main-joueur .carte-main:not(:disabled):hover{transform:translateX(-6px)} }
+.main-joueur .carte-main.sel{transform:translateX(-18px)}
+.main-joueur .carte-main.sel .mc{outline:3px solid var(--c-papier);outline-offset:-3px}
+.carte-main:disabled{cursor:default}
+.carte-main.ia{cursor:default}
+.carte-main.cible{cursor:pointer}
+.main-vide{margin:0;font-family:var(--chiffre);font-size:13px;opacity:.8}
+.lien-details{background:none;border:0;color:var(--c-papier);font-family:var(--chiffre);font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:44px;padding:0 6px}
+
+.centre{display:flex;flex-direction:column;align-items:center;gap:8px}
+.tete-plateau{display:flex;align-items:center;gap:12px;width:100%;justify-content:center;flex-wrap:wrap}
+.tableau{display:flex;flex-direction:column;align-items:center;margin:0}
+.tableau svg{width:150px;height:auto;display:block}
+.siege-j{fill:var(--c-surligneur);stroke:var(--c-encre);stroke-width:2}
+.siege-ia{fill:var(--c-encre);stroke:var(--c-papier);stroke-width:1.6}
+.siege-vide{fill:none;stroke:var(--c-papier);stroke-width:1.6;stroke-dasharray:3 3;opacity:.7}
+.perchoir-dessin{fill:var(--c-papier)}
+.compte{margin:-2px 0 0;display:flex;align-items:baseline;gap:10px;font-family:var(--chiffre);font-size:13px}
+.compte b{font-family:var(--titre);font-weight:900;font-size:26px;line-height:1}
+/* Carte Proclamé : rappel du départage sous le score */
+.procl{margin:3px 0 0;padding:1px 8px;border-radius:99px;background:var(--c-action);color:var(--c-papier);font-family:var(--chiffre);font-size:11px;font-weight:700;white-space:nowrap}
+/* Le Homard : la carte invitée quitte l'hémicycle */
+.case.invitee .rot{transition:transform .5s ease-in,opacity .5s ease-in;transform:translateY(-16px) scale(.55) rotate(-10deg);opacity:0}
+@media (prefers-reduced-motion:reduce){ .case.invitee .rot{transition:opacity .3s} }
+/* Ça suffit ! : la carte action annulée reste visible, grisée */
+.slot-btn.annulee .ma{filter:grayscale(1);opacity:.5}
+.slot-btn.annulee .slot-lib{text-decoration:line-through}
+.slot-suisse{display:block;margin-top:4px;font-family:var(--chiffre);font-size:12px;line-height:1.2;text-align:center;max-width:12em}
+.slot-suisse b{font-weight:700}
+/* Accueil du jeu : quatre tuiles sur le tapis, le décor du lieu derrière */
+.accueil{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:14px;padding:26px 6px 18px;text-align:center}
+.accueil-titre{margin:0;font-family:var(--titre);font-weight:900;font-size:clamp(42px,9vw,68px);line-height:1;text-shadow:0 2px 0 var(--c-encre),0 4px 18px rgba(0,0,0,.55)}
+.logo-titre{display:block;width:min(100%,520px);height:auto;margin:0 auto 4px;border-radius:14px;border:2px solid var(--c-encre);box-shadow:0 6px 18px rgba(0,0,0,.45)}
+@media (max-height:700px){.logo-titre{width:min(100%,380px)}}
+.accueil-sous{margin:-4px 0 6px;font-family:var(--chiffre);font-size:14px;text-shadow:0 1px 3px rgba(0,0,0,.85)}
+.tuiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:min(620px,100%)}
+.tuile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:150px;padding:16px 16px 14px;text-align:left;font:inherit;color:var(--c-encre);background:var(--c-papier);border:2px solid var(--c-encre);border-radius:16px;box-shadow:4px 4px 0 var(--c-encre);cursor:pointer;transition:transform .12s,box-shadow .12s}
+.tuile svg{width:34px;height:34px;margin-bottom:10px;flex:none}
+.tuile b{font-family:var(--titre);font-weight:900;font-size:25px;line-height:1.05;max-width:100%;overflow-wrap:break-word}
+#t-ligne b{font-size:min(25px,5.3vw)}   /* « Multijoueur » : le mot le plus long des tuiles, il doit tenir sur un petit téléphone */
+.tuile span{font-size:14.5px;line-height:1.3;color:var(--c-encre-2)}
+.tuile:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--c-encre)}
+.tuile:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--c-encre)}
+.tuile:focus-visible{outline:3px solid var(--c-surligneur);outline-offset:3px}
+.tuile-solo{background:var(--c-menu)}
+.tuile-solo span{color:var(--c-encre)}
+.tuile.bientot{background:#d9dcd6}
+.mode.mode-bientot{opacity:.7}
+.pastille-bientot{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;background:var(--c-encre);color:var(--c-papier);font-family:var(--chiffre);font-size:11px;font-weight:700;letter-spacing:.04em;vertical-align:middle}
+.tuile.bientot::after{content:"bientôt";position:absolute;top:14px;right:14px;padding:2px 7px;font-family:var(--chiffre);font-weight:700;font-size:11px;letter-spacing:.04em;color:var(--c-papier);background:var(--c-encre);border-radius:3px}
+.tuile-reprendre{min-height:0;width:min(620px,100%);flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:12px 16px;color:var(--c-papier);background:var(--c-violet);border-color:var(--c-encre)}
+.tuile-reprendre b{margin:0;font-size:21px}
+.tuile-reprendre span{color:var(--c-violet-clair)}
+.accueil-liens{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 10px;margin:4px 0 0;font-family:var(--chiffre);font-size:14px;text-shadow:0 1px 3px rgba(0,0,0,.85)}
+.accueil-liens a{color:inherit;text-underline-offset:3px;min-height:24px;display:inline-flex;align-items:center}
+.accueil-bilan{margin:0;font-size:14px;opacity:.9;text-shadow:0 1px 3px rgba(0,0,0,.85)}
+.accueil-bilan:empty{display:none}
+button.retour{background:none;border:0;padding:0;cursor:pointer}
+.jeu.sur-accueil .titre-jeu{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.jeu.sur-accueil .boutons-jeu{margin-left:auto}
+@media (prefers-reduced-motion:reduce){ .tuile{transition:none} .tuile:hover,.tuile:active{transform:none} }
+@media (max-width:600px){
+  .accueil{padding:18px 0 10px;gap:12px}
+  .tuiles{gap:10px}
+  .tuile{min-height:132px;padding:12px 12px 11px;border-radius:14px;box-shadow:3px 3px 0 var(--c-encre)}
+  .tuile svg{width:30px;height:30px;margin-bottom:8px}
+  .tuile b{font-size:22px}
+  .tuile span{font-size:13.5px}
+  .tuile.tuile-reprendre{min-height:0;padding:11px 14px}
+  .tuile.bientot::after{top:12px;right:12px}
+}
+/* Panneaux Solo et En ligne : deux grands boutons de mode */
+/* Tutoriel : la bulle de leçon coiffe l'arène ; au téléphone, elle prend la place du camp adverse */
+.tuto{grid-column:1/-1;justify-self:center;box-sizing:border-box;width:min(620px,100%);min-height:154px;display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:var(--c-papier);color:var(--c-encre);border:2px solid var(--c-encre);border-radius:14px;box-shadow:3px 3px 0 var(--c-encre)}
+.tuto-tete{margin:0;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:28px;font-family:var(--chiffre);font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--c-violet)}
+.tuto-tete .lien-inline{flex:none;font-weight:400;letter-spacing:0;text-transform:none;color:var(--c-encre-2);min-height:28px}
+.tuto-texte{margin:0;font-size:16px;line-height:1.4}
+.tuto .bouton{align-self:flex-end;margin-top:auto;min-height:40px;padding:8px 16px}
+.case.tuto-cible{box-shadow:inset 0 0 0 3px var(--c-surligneur);animation:tuto-pouls 1.1s ease-in-out infinite}
+.carte-main.tuto-cible,.slot-btn.tuto-cible{animation:tuto-saut 1.1s ease-in-out infinite}
+.slot-btn.tuto-cible .ma{outline:3px solid var(--c-surligneur);outline-offset:2px}
+.carte-main.tuto-hors{filter:brightness(.5) saturate(.5)}
+@keyframes tuto-pouls{0%,100%{background:rgba(241,251,78,.1)}50%{background:rgba(241,251,78,.34)}}
+@keyframes tuto-saut{0%,100%{transform:none}50%{transform:translateY(-7px)}}
+@media (prefers-reduced-motion:reduce){ .case.tuto-cible,.carte-main.tuto-cible,.slot-btn.tuto-cible{animation:none} .case.tuto-cible{background:rgba(241,251,78,.26)} .carte-main.tuto-cible .mc{outline:3px solid var(--c-surligneur);outline-offset:-3px} }
+.tuile-tuto{min-height:0;width:min(620px,100%);flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:12px 16px;background:var(--c-menu)}
+.tuile-tuto b{margin:0;font-size:21px}
+.tuile-tuto span{color:var(--c-encre)}
+.credits{margin:6px 0 0;display:grid;gap:10px;font-size:15px;line-height:1.45}
+.credits p{margin:0}
+.politique h3{margin:6px 0 -4px;font-size:16px}
+.politique .maj{font-size:13px;opacity:.75}
+.credits .hommage{padding:10px 12px;border-left:4px solid var(--c-surligneur);background:rgba(241,251,78,.08)}
+.tuto-bilan{margin:10px 0;padding-left:20px;display:grid;gap:6px;font-size:15px;line-height:1.4}
+@media (max-width:860px){
+  .tuto{min-height:172px}
+  .arene.en-tuto .camp-ia,.arene.en-tuto .lieu-jeu{display:none}
+}
+@media (max-width:600px){ .tuile.tuile-tuto{min-height:0;padding:11px 14px} .tuto-texte{font-size:15.5px} }
+/* Variante « Flèches » (à l'essai) : de petites flèches sur le bord de la carte, et deux chiffres en bas (Attaque, Défense). Le portrait reste visible */
+.mv b.fl{--t:14.5cqi;width:var(--t);height:var(--t);transform:rotate(var(--r));filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))}
+.mv b.fl svg{display:block;width:100%;height:100%;overflow:visible}
+.mv b.fl path{fill:var(--c-papier);stroke:var(--c-encre);stroke-width:1.5;stroke-linejoin:round}
+.mv .fl-h{--r:0deg;left:calc(50% - var(--t) / 2);top:8cqi}
+.mv .fl-hd{--r:45deg;right:2.5cqi;top:8.5cqi}
+.mv .fl-d{--r:90deg;right:1.5cqi;top:calc(50% - 10cqi - var(--t) / 2)}
+.mv .fl-bd{--r:135deg;right:2.5cqi;bottom:22cqi}
+.mv .fl-b{--r:180deg;left:calc(50% - var(--t) / 2);bottom:21.5cqi}
+.mv .fl-bg{--r:225deg;left:2.5cqi;bottom:22cqi}
+.mv .fl-g{--r:270deg;left:1.5cqi;top:calc(50% - 10cqi - var(--t) / 2)}
+.mv .fl-hg{--r:315deg;left:2.5cqi;top:8.5cqi}
+.mn.mn-fl{display:flex;align-items:center;justify-content:space-between;gap:1cqi;padding:2cqi 2cqi 2.5cqi;font-size:9.5cqi}
+.mn-fl .nom{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.mn-fl .st{flex:none;display:flex;align-items:center;gap:.8cqi;font-size:14.5cqi;line-height:1;letter-spacing:-.04em;padding:.8cqi 2.6cqi .8cqi 2cqi;border-radius:999px;background:var(--c-surligneur);color:var(--c-encre);border:1px solid var(--c-encre)}
+.mn-fl .st.def{background:var(--c-encre);color:var(--c-papier);border-color:var(--c-papier)}
+.mn-fl .st svg{width:8.5cqi;height:8.5cqi;fill:currentColor}
+.arene.en-fleches .legende-cotes{display:none}
+.duel-des{position:fixed;inset:0;z-index:60;display:grid;place-items:center;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(0,0,0,.45),rgba(0,0,0,.15) 60%,transparent 80%);animation:dd-entre .22s ease-out}
+.duel-des.sort{opacity:0;transition:opacity .22s}
+.dd-boite{display:flex;flex-direction:column;align-items:center;gap:12px;padding:14px 22px 16px;border-radius:18px;background:var(--c-papier);border:3px solid var(--c-encre);box-shadow:0 12px 34px rgba(0,0,0,.5);max-width:min(92vw,420px)}
+.dd-titre{margin:0;font-family:var(--titre);font-weight:900;font-size:clamp(19px,5.6vw,26px);line-height:1.15;text-align:center;color:var(--c-encre)}
+.dd-des{display:flex;align-items:flex-start;gap:clamp(10px,4vw,22px)}
+.dd-contre{align-self:center;margin-top:6px;font-family:var(--chiffre);font-weight:800;font-size:13px;color:var(--c-encre);opacity:.7}
+.dd-camp{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:0}
+.dd-nom{max-width:34vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--chiffre);font-weight:800;font-size:14px;padding:2px 9px;border-radius:999px;border:1.5px solid var(--c-encre)}
+.dd-nom.moi{background:var(--c-surligneur);color:var(--c-encre)}
+.dd-nom.lui{background:var(--c-encre);color:var(--c-papier)}
+.dd-lib{font-family:var(--chiffre);font-weight:600;font-size:12.5px;line-height:1.3;text-align:center;white-space:nowrap;color:var(--c-encre)}
+.dd-lib b{font-weight:800;font-size:14px}
+.duel-des .de-face{position:relative;display:grid;place-items:center;width:clamp(78px,24vw,104px);aspect-ratio:1;border-radius:22%;background:#fffdf6;color:var(--c-encre);border:3px solid var(--c-encre);box-shadow:inset -7px -8px 0 rgba(0,0,0,.13),inset 5px 5px 0 #fff,0 8px 16px rgba(0,0,0,.35)}
+.duel-des .de-face b{font-family:var(--chiffre);font-weight:800;font-size:clamp(42px,13vw,58px);line-height:1}
+.duel-des .de-face i{position:absolute;width:11%;aspect-ratio:1;border-radius:50%;background:var(--c-encre);opacity:.5}
+.duel-des .de-face i:nth-child(1){left:11%;top:11%}.duel-des .de-face i:nth-child(2){right:11%;top:11%}.duel-des .de-face i:nth-child(3){left:11%;bottom:11%}.duel-des .de-face i:nth-child(4){right:11%;bottom:11%}
+.duel-des.roule .att .de-face{animation:dd-roule .36s linear infinite}
+.duel-des.roule .def .de-face{animation:dd-roule .36s linear infinite reverse}
+.duel-des.pose .de-face{animation:dd-pose .32s ease-out}
+.dd-camp.gagne .de-face{background:var(--c-surligneur);box-shadow:inset -7px -8px 0 rgba(0,0,0,.12),0 0 0 4px var(--c-encre),0 10px 20px rgba(0,0,0,.4)}
+.dd-camp.perd .de-face{background:#d9d5cc;color:#6b665d;border-color:#6b665d;box-shadow:none}
+.dd-camp.perd .dd-nom{opacity:.6}
+.case.en-duel{z-index:5}
+.case.bouclier .mc{animation:bouclier .9s ease-out}
+@keyframes bouclier{0%,100%{box-shadow:none}30%{box-shadow:0 0 0 4px var(--c-violet-clair),0 0 18px var(--c-violet-clair)}}
+@media (prefers-reduced-motion:reduce){ .case.bouclier .mc{animation:none;outline:3px solid var(--c-violet-clair)} }
+.case.en-duel .mc{outline:3px solid var(--c-papier);outline-offset:-3px}
+@keyframes dd-entre{0%{opacity:0}100%{opacity:1}}
+@keyframes dd-roule{0%{transform:rotate(0) translate(0,0)}25%{transform:rotate(-24deg) translate(-6px,-14px)}50%{transform:rotate(16deg) translate(4px,0)}75%{transform:rotate(-10deg) translate(-2px,-7px)}100%{transform:rotate(0) translate(0,0)}}
+@keyframes dd-pose{0%{transform:scale(1.25)}60%{transform:scale(.95)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){ .duel-des,.duel-des .de-face{animation:none!important} }
+#form-options[data-regles="fleches"] .seul-classique{display:none}
+.mode-verrou{cursor:default;opacity:.92;border-style:dashed !important;box-shadow:none !important}
+.mode-verrou b i{font-style:normal;font-family:var(--chiffre);font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid currentColor;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+.mode-verrou .lien-inline{justify-self:start;margin-top:4px;min-height:32px}
+.mode-essai b i{font-style:normal;font-family:var(--chiffre);font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--c-menu);color:var(--c-encre);border:1px solid var(--c-encre);border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+.modes{display:grid;gap:10px;margin:2px 0 14px}
+.mode{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;padding:13px 16px;text-align:left;font:inherit;color:var(--c-encre);background:transparent;border:2px solid var(--c-encre);border-radius:12px;cursor:pointer}
+.mode b{font-family:var(--titre);font-weight:900;font-size:22px;line-height:1.1}
+.mode span{font-size:15px;line-height:1.35;color:var(--c-encre-2)}
+.mode-principal{background:var(--c-menu);box-shadow:3px 3px 0 var(--c-encre)}
+.mode-principal span{color:var(--c-encre)}
+.b-niveau.actuel{background:var(--c-menu);box-shadow:3px 3px 0 var(--c-encre)}.b-niveau.actuel span{color:var(--c-encre)}
+.mode:hover{background:var(--c-violet-clair)}
+.mode-principal:hover{background:var(--c-menu);transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--c-encre)}
+.mode:focus-visible{outline:3px solid var(--c-violet);outline-offset:2px}
+/* « Le savais-tu ? » : l'anecdote du bilan de fin de partie */
+.savais{margin:14px 0 6px;padding:11px 14px 10px;background:#fff;border:2px solid var(--c-encre);border-radius:12px;box-shadow:3px 3px 0 var(--c-encre);font-size:15px;line-height:1.4}
+.savais-titre{display:inline-block;margin:0 0 6px;padding:1px 8px 2px;background:var(--c-surligneur);border:1.5px solid var(--c-encre);border-radius:4px;font-family:var(--titre);font-weight:900;font-size:15px;line-height:1.2;transform:rotate(-2deg)}
+.savais-texte{margin:0}
+.savais-source{margin:6px 0 0;font-family:var(--chiffre);font-size:11px;line-height:1.4;color:var(--c-encre-2)}
+.savais-source a{color:inherit}
+/* Cour des comptes : la carte contrôlée passe sous la loupe avant de rejuger ses voisines */
+.case.controlee .rot{animation:controle .38s ease-in-out 2}
+.case.controlee::after{content:'';position:absolute;inset:3px;border-radius:8px;border:3px dashed var(--c-violet-clair);pointer-events:none;animation:controle-cadre .5s ease-out both}
+@keyframes controle{50%{transform:scale(1.08)}}
+@keyframes controle-cadre{from{opacity:0;transform:scale(1.18)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){ .case.controlee .rot,.case.controlee::after{animation:none} }
+.perchoir{margin:0;min-height:52px;flex:1 1 220px;max-width:360px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;text-align:center;font-weight:700;font-size:16px;line-height:1.3}
+.perchoir .bouton-sec{min-height:40px;padding:6px 12px}
+.plateau{--case:clamp(84px,11.5vw,128px);display:grid;grid-template-columns:repeat(3,var(--case));gap:8px;padding:10px;border-radius:16px;background:var(--fond-plateau,rgba(6,34,37,.5));box-shadow:inset 0 2px 12px rgba(0,0,0,.4),0 0 0 1.5px rgba(248,249,246,.18)}
+.case{position:relative;display:block;width:var(--case);aspect-ratio:4/5;padding:0;border:0;border-radius:10px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1.5px rgba(248,249,246,.2);color:inherit;font:inherit;cursor:pointer;perspective:700px}
+.case.libre{cursor:default}
+.case.libre.jouable{cursor:pointer;box-shadow:inset 0 0 0 2px rgba(241,251,78,.6)}
+.case.libre.jouable:hover{background:rgba(241,251,78,.14)}
+.case .rot{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.case .rot>.mc{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.case .rot>.verso{transform:rotateY(180deg)}
+.case.cible{cursor:pointer}
+/* Grand hémicycle, 4 × 4 */
+.plateau.n4{--case:clamp(70px,8.6vw,106px);grid-template-columns:repeat(4,var(--case));gap:7px}
+/* Banc bloqué : hachures et plaque */
+.case.banc{cursor:help;container-type:inline-size;display:grid;place-items:center;
+  background:repeating-linear-gradient(135deg,rgba(248,249,246,.12) 0 6px,rgba(248,249,246,.03) 6px 12px),var(--fond-banc,rgba(6,24,27,.6));
+  box-shadow:inset 0 0 0 1.5px rgba(248,249,246,.3)}
+.banc-plaque{display:flex;flex-direction:column;align-items:center;gap:5cqi;width:80%;padding:8cqi 3cqi 7cqi;border-radius:7px;background:var(--c-papier);color:var(--c-encre);border:1.5px solid var(--c-encre);box-shadow:2px 2px 0 rgba(0,0,0,.45);transform:rotate(-3deg)}
+.banc-plaque svg{width:40cqi;height:40cqi}
+.banc-plaque b{font-family:var(--chiffre);font-weight:700;font-size:8.6cqi;line-height:1;text-transform:uppercase;white-space:nowrap}
+@container (max-width:92px){ .banc-plaque b{display:none} .banc-plaque{width:66%;padding:9cqi 3cqi} .banc-plaque svg{width:46cqi;height:46cqi} }
+/* Glisser-déposer */
+.main-joueur .carte-main{touch-action:none;-webkit-user-select:none;user-select:none}
+@media (hover:hover){ .main-joueur .carte-main:not(:disabled){cursor:grab} }
+.carte-main.glisse{opacity:.3}
+.fantome{position:fixed;left:0;top:0;z-index:60;pointer-events:none;will-change:transform;filter:drop-shadow(0 16px 22px rgba(0,0,0,.45))}
+.fantome .mc{box-shadow:none}
+.case.survolee{background:rgba(241,251,78,.22);box-shadow:inset 0 0 0 3px var(--c-surligneur)}
+body.glisse-en-cours,body.glisse-en-cours *{cursor:grabbing!important;-webkit-user-select:none;user-select:none}
+.case.cible .mc,.carte-main.cible .mc{outline:3px dashed var(--c-papier);outline-offset:-6px}
+.legende-cotes{margin:2px 0 0;max-width:600px;font-family:var(--chiffre);font-size:13px;line-height:1.6;text-align:center;opacity:.92}
+/* Lieux : même mise en page, décor différent (motifs en CSS, aucune image) */
+.lieu-jeu{margin:0;display:flex;align-items:center;justify-content:center;gap:4px 8px;flex-wrap:wrap;font-family:var(--chiffre);font-size:13px;line-height:1.3;text-align:center;cursor:help}
+.lieu-jeu b{display:inline-flex;align-items:center;gap:6px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.lieu-jeu svg{width:16px;height:16px;flex:none}
+.txt-court{display:none}
+.lieu-jeu span{opacity:.85}
+.lieu-jeu span::before{content:"· "}
+.tapis[data-lieu="republique"]{--fond-plateau:rgba(16,20,24,.5);--fond-banc:rgba(12,16,20,.6);
+  background:radial-gradient(ellipse at 50% -10%,rgba(255,255,255,.14),transparent 55%),radial-gradient(circle at 50% 50%,rgba(255,255,255,.07) 0 40%,transparent 44%) 0 0/24px 20px,#46525c}
+.tapis[data-lieu="trocadero"]{--fond-plateau:rgba(14,12,26,.5);--fond-banc:rgba(10,8,20,.6);
+  background:radial-gradient(ellipse at 86% -6%,rgba(241,200,110,.42),transparent 42%),radial-gradient(circle,rgba(255,236,190,.5) 0 1px,transparent 1.7px) 0 0/34px 29px,linear-gradient(#2c2346,#1c1a2e)}
+.tapis[data-lieu="senat"]{--fond-plateau:rgba(16,22,24,.55);--fond-banc:rgba(12,16,18,.6);
+  background:radial-gradient(ellipse at 50% -10%,rgba(214,140,80,.32),transparent 55%),linear-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.5px) 0 0/26px 26px,linear-gradient(90deg,rgba(255,255,255,.07) 1.5px,transparent 1.5px) 0 0/26px 26px,#38474c}
+.tapis[data-lieu="chateau"]{--fond-plateau:rgba(8,26,20,.55);--fond-banc:rgba(6,20,15,.6);
+  background:radial-gradient(ellipse at 50% -10%,rgba(255,224,140,.2),transparent 55%),repeating-linear-gradient(90deg,rgba(212,175,55,.17) 0 2px,transparent 2px 30px),#1d4636}
+.tapis[data-lieu="tele"]{--fond-plateau:rgba(0,0,0,.45);--fond-banc:rgba(0,0,0,.55);
+  background:radial-gradient(ellipse at 14% -6%,rgba(122,70,190,.55),transparent 48%),radial-gradient(ellipse at 86% -6%,rgba(15,140,150,.5),transparent 48%),#141519}
+/* Fond vu d’en haut, sous le jeu ; ombre portée sur les textes du tapis pour qu’ils restent lisibles */
+.tapis{position:relative;overflow:hidden;isolation:isolate}
+.tapis.repeint{box-shadow:inset 0 0 0 2px var(--c-encre),0 14px 30px rgba(21,23,26,.251)}
+.decor{position:absolute;inset:0;z-index:0;pointer-events:none;will-change:transform}
+.decor svg{display:block;width:100%;height:100%}
+.decor img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.arene{position:relative;z-index:1}
+.tapis .camp-nom,.tapis .lieu-jeu,.tapis .perchoir,.tapis .compte,.tapis .legende-cotes,.tapis .slot-lib,.tapis .main-vide,.tapis .lien-details{text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 10px rgba(0,0,0,.5)}
+/* Bouton des sons */
+.b-son{display:inline-flex;align-items:center;justify-content:center;min-width:44px;padding:8px 10px}
+.b-son svg{width:22px;height:22px}
+.b-son .croix,.b-son.muet .onde{display:none}
+.b-son.muet .croix{display:inline}
+/* Tirage au sort : le lieu, puis la pièce */
+.tirage{position:fixed;left:50%;top:50%;z-index:26;transform:translate(-50%,-50%);width:min(380px,calc(100vw - 32px));text-align:center;background:var(--c-encre);color:var(--c-papier);border:2px solid var(--c-papier);border-radius:16px;box-shadow:6px 6px 0 rgba(0,0,0,.45);padding:18px 18px 16px;pointer-events:none}
+.tirage p{margin:0}
+.tirage-lieu{display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--titre);font-weight:900;font-size:25px;line-height:1.1}
+.tirage-lieu svg{width:22px;height:22px;flex:none}
+.tirage-sous{font-family:var(--chiffre);font-size:13px;opacity:.85;margin-top:4px}
+.tirage-titre{font-family:var(--chiffre);font-weight:700;font-size:14px;margin-top:14px}
+.piece-scene{height:124px;display:grid;place-items:center;perspective:600px}
+.piece{position:relative;width:86px;height:86px;transform-style:preserve-3d}
+.piece .face{position:absolute;inset:0;display:grid;place-items:center;border-radius:50%;font-family:var(--titre);font-weight:900;font-size:24px;-webkit-backface-visibility:hidden;backface-visibility:hidden;border:3px solid var(--c-papier);box-shadow:inset 0 0 0 5px rgba(0,0,0,.14)}
+.face-j{background:var(--c-surligneur);color:var(--c-encre)}
+.face-ia{background:#2a2e34;color:var(--c-papier);transform:rotateY(180deg)}
+.piece.lance{animation:lancer 1.15s cubic-bezier(.2,.7,.3,1) forwards}
+.piece.pose-ia{transform:rotateY(180deg)}
+@keyframes lancer{0%{transform:translateY(0) rotateY(0)}45%{transform:translateY(-34px) rotateY(calc(var(--fin) * .55))}100%{transform:translateY(0) rotateY(var(--fin))}}
+.tirage-resultat{min-height:31px;font-family:var(--titre);font-weight:900;font-size:24px;color:var(--c-surligneur)}
+.tirage-regle{min-height:44px;max-width:300px;margin:6px auto 0;font-size:15px;line-height:1.4}
+
+/* Carte en miniature */
+.mc{display:block;position:relative;isolation:isolate;container-type:inline-size;aspect-ratio:4/5;width:100%;border-radius:9px;overflow:hidden;border:3px solid var(--bord);
+  background-color:var(--c-surligneur);
+  background-image:radial-gradient(circle,rgba(21,23,26,.17) 0 1.1px,transparent 1.4px),radial-gradient(circle,rgba(21,23,26,.17) 0 1.1px,transparent 1.4px);background-size:7px 7px;background-position:0 0,3.5px 3.5px;
+  box-shadow:0 2px 0 rgba(0,0,0,.3),0 8px 16px rgba(0,0,0,.3)}
+.mc.j{--bord:var(--c-surligneur);--bande:var(--c-surligneur);--bande-t:var(--c-encre)}
+/* Carte de l'IA : fond nuit, pois clairs. Une carte prise change donc de fond en entier, pas seulement de liseré */
+.mc.ia{--bord:var(--c-encre);--bande:var(--c-encre);--bande-t:var(--c-papier);background-color:#2b2f36;
+  background-image:radial-gradient(circle,rgba(248,249,246,.2) 0 1.1px,transparent 1.4px),radial-gradient(circle,rgba(248,249,246,.2) 0 1.1px,transparent 1.4px)}
+.mc.n{--bord:var(--c-papier);--bande:var(--c-papier);--bande-t:var(--c-encre);background-color:var(--c-papier)}
+/* Face-à-face : quand le joueur 2 tient le téléphone, ses cartes (camp J pour le moteur) gardent le fond nuit, celles du joueur 1 le surligneur */
+body.local-inverse .mc.j{--bord:var(--c-encre);--bande:var(--c-encre);--bande-t:var(--c-papier);background-color:#2b2f36;
+  background-image:radial-gradient(circle,rgba(248,249,246,.2) 0 1.1px,transparent 1.4px),radial-gradient(circle,rgba(248,249,246,.2) 0 1.1px,transparent 1.4px)}
+body.local-inverse .mc.ia{--bord:var(--c-surligneur);--bande:var(--c-surligneur);--bande-t:var(--c-encre);background-color:var(--c-surligneur);
+  background-image:radial-gradient(circle,rgba(21,23,26,.17) 0 1.1px,transparent 1.4px),radial-gradient(circle,rgba(21,23,26,.17) 0 1.1px,transparent 1.4px)}
+body.local-inverse .pastille.j{background:var(--c-encre);border-color:var(--c-papier)}
+body.local-inverse .pastille.ia{background:var(--c-surligneur);border-color:var(--c-encre)}
+body.local-inverse .face-j{background:var(--c-encre);color:var(--c-papier)}
+body.local-inverse .face-ia{background:var(--c-surligneur);color:var(--c-encre)}
+body.local-inverse .dd-nom.moi{background:var(--c-encre);color:var(--c-papier)}
+body.local-inverse .dd-nom.lui{background:var(--c-surligneur);color:var(--c-encre)}
+.passe-main{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;background:#15171a;color:var(--c-papier)}
+.passe-main.vers-j2{background:radial-gradient(circle at 50% 35%,#2b2f36,#15171a 70%)}
+.passe-main.vers-j1{background:radial-gradient(circle at 50% 35%,#4b4f1c,#15171a 70%)}
+.pm-boite{max-width:360px;text-align:center}
+.pm-sur{margin:0 0 6px;font-family:var(--chiffre);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.passe-main h2{margin:0 0 12px;font-family:var(--titre);font-weight:900;font-size:clamp(28px,8vw,40px);line-height:1.1}
+.passe-main h2 b{color:var(--c-surligneur)}
+.passe-main p{font-size:17px;line-height:1.45;margin:0 0 14px}
+.pm-score{font-family:var(--chiffre);font-weight:700}
+.passe-main .bouton{margin-top:10px;font-size:18px;padding:14px 22px}
+.pm-menu{display:block;margin:18px auto 0;background:none;border:0;color:var(--c-papier);opacity:.7;text-decoration:underline;font-size:15px;cursor:pointer}
+.ligne-nom{display:flex;align-items:center;gap:10px;margin:10px 0}
+.format-local{border:0;padding:0;margin:14px 0 6px}
+.format-local legend{font-weight:700;margin-bottom:6px}
+.format-local label{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:16px}
+.format-local small{opacity:.75}
+.pm-match{font-family:var(--chiffre);font-weight:800;font-size:14px;letter-spacing:.04em;color:var(--c-surligneur)}
+.score-match{font-family:var(--chiffre);font-size:16px;margin:-4px 0 10px}
+.ligne-nom label{min-width:74px;font-weight:700}
+.ligne-nom input{flex:1;min-width:0;font-size:17px;padding:9px 11px;border:2px solid var(--c-encre);border-radius:8px}
+/* Éclat au moment où une carte change de camp */
+@keyframes eclat{0%{outline:5px solid var(--eclat);outline-offset:-5px}100%{outline:5px solid transparent;outline-offset:-5px}}
+.case.eclat .mc{animation:eclat .6s ease-out}
+.case.pour-j{--eclat:rgba(241,251,78,.95)}
+.case.pour-ia{--eclat:rgba(248,249,246,.8)}
+.mc::after{content:"";position:absolute;inset:0;border-radius:6px;box-shadow:inset 0 0 0 1.5px var(--c-encre);pointer-events:none}
+.mc[data-bloc]::before{content:"";position:absolute;z-index:1;left:0;right:0;top:0;height:6.5cqi;background:var(--bloc);border-bottom:1px solid var(--c-encre)}
+.mc[data-bloc] .badge{top:9cqi}
+.mc[data-bloc] .badge+.badge{top:37cqi}
+.mc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* Petites cartes du jeu : un gros chiffre détouré sur chaque bord qui se bat (les pictos restent sur les grandes cartes et la légende) */
+.mv{position:absolute;inset:0;z-index:2;pointer-events:none}
+.mv b{position:absolute;z-index:0;font-family:var(--chiffre);font-weight:800;font-size:min(26cqi,26px);line-height:1;letter-spacing:-.07em;color:var(--c-encre)}
+/* Contour clair : une copie du chiffre, épaissie, glissée dessous (sans dépendre de paint-order) */
+.mv b i{position:absolute;left:0;top:0;z-index:-1;font-style:normal;color:var(--c-papier);-webkit-text-stroke:min(5cqi,5px) var(--c-papier)}
+.mv .h{top:6cqi;left:50%;transform:translateX(-50%)}
+.mv .b{bottom:21cqi;left:50%;transform:translateX(-50%)}   /* juste au-dessus du bandeau du nom */
+.mv .g{left:3cqi;top:50%;transform:translateY(-50%)}
+.mv .d{right:3cqi;top:50%;transform:translateY(-50%)}
+.mv .boost{color:var(--c-violet)}
+.mn{position:absolute;left:0;right:0;bottom:0;background:var(--bande);color:var(--bande-t);font-family:var(--chiffre);font-weight:700;font-size:11.5cqi;line-height:1;text-align:center;padding:4cqi 2cqi 4.5cqi;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{position:absolute;top:4cqi;right:4cqi;width:25cqi;height:25cqi;border-radius:50%;background:var(--c-action);border:1.5px solid var(--c-papier);display:grid;place-items:center}
+.badge svg{width:64%;height:64%}
+.badge+.badge{top:32cqi}
+.mc.dos-mini{--bord:var(--c-encre);background:radial-gradient(circle at 50% 45%,#3d434b 0%,#23272c 48%,var(--c-action) 100%)}
+.mc.dos-mini svg{position:absolute;inset:0;width:100%;height:100%}
+@keyframes pose{from{transform:translateY(-16px) scale(1.08);opacity:.2}to{transform:none;opacity:1}}
+.mc.pose{animation:pose .34s cubic-bezier(.2,.8,.3,1)}
+@keyframes bascule{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+.rot.bascule{animation:bascule .72s cubic-bezier(.3,.7,.3,1)}
+@keyframes menace{0%,100%{outline:4px solid var(--c-surligneur);outline-offset:-4px}50%{outline:4px solid rgba(241,251,78,.3);outline-offset:-4px}}
+.case.menace .rot>.mc:first-child{animation:menace .9s ease-in-out infinite}
+
+/* Cartes action en miniature */
+.slot{display:flex;flex-direction:column;align-items:center;margin-top:4px}
+.slot-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer}
+.slot-btn.inerte{cursor:default}
+.slot-lib{font-family:var(--chiffre);font-size:13px}
+.ma{position:relative;display:block;width:88px;aspect-ratio:4/5;border-radius:9px;overflow:hidden;border:3px solid var(--c-action);background:var(--c-action);container-type:inline-size;box-shadow:0 6px 14px rgba(0,0,0,.3)}
+.ma img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ma-code{position:absolute;left:5cqi;right:5cqi;bottom:6cqi;text-align:center;font-family:var(--titre);font-weight:900;font-size:13.5cqi;line-height:.95;background:var(--c-surligneur);color:var(--c-encre);border:1.5px solid var(--c-encre);padding:2.5cqi 1.5cqi 3.5cqi;transform:rotate(-3deg);text-wrap:balance;overflow-wrap:anywhere}
+.ma-dos{background:radial-gradient(circle at 50% 45%,#3d434b 0%,#23272c 48%,var(--c-action) 100%);border-color:var(--c-encre)}
+.ma-dos .ma-code{left:30%;right:30%;bottom:auto;top:32%;font-size:26cqi;line-height:1}
+.ma.jouee{filter:grayscale(1) brightness(.75)}
+@media (hover:hover){ .slot-btn:not(.inerte):hover .ma{transform:translateY(-3px)} }
+
+.journal{list-style:none;margin:14px auto 0;padding:0;max-width:760px;display:grid;gap:4px;font-size:15px;color:var(--page-texte-2)}
+.journal li:first-child{color:var(--page-texte)}
+
+/* Panneaux */
+.voile{position:fixed;inset:0;z-index:20;background:rgba(10,12,14,.62);display:grid;place-items:center;padding:16px}
+.dialogue{width:min(620px,100%);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;background:var(--c-papier);color:var(--c-encre);border:2px solid var(--c-encre);border-radius:16px;box-shadow:6px 6px 0 var(--c-encre);padding:22px;font-size:16px}
+.dialogue>h2,.dialogue form>h2{font-family:var(--titre);font-weight:900;font-size:30px;line-height:1.05;margin:0 0 12px}
+.dialogue>p,.dialogue form>p,.dialogue>div>p.annonce-titre{margin:0 0 10px}
+.dialogue fieldset{border:0;padding:0;margin:0 0 14px}
+.dialogue legend{font-family:var(--chiffre);font-weight:700;font-size:13px;margin-bottom:6px}
+.choix{display:grid;gap:6px}
+.choix.trois{grid-template-columns:repeat(3,minmax(0,1fr))}
+.choix.deux{grid-template-columns:repeat(2,minmax(0,1fr))}
+.choix label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1.5px solid var(--c-encre);border-radius:8px;cursor:pointer;min-height:44px;line-height:1.3}
+.choix label:has(input:checked){background:var(--c-menu)}
+.choix input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--c-violet);flex:none}
+.choix small{display:block;color:var(--c-encre-2);font-size:14px;margin-top:2px}
+.pied{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:16px}
+/* Boutons du bas toujours visibles quand le panneau défile */
+.dialogue .pied{position:sticky;bottom:-22px;margin:16px -22px -22px;padding:12px 22px 22px;background:linear-gradient(to bottom,rgba(248,249,246,0),var(--c-papier) 14px);z-index:2}
+@media (max-width:600px){ .dialogue .pied{bottom:-18px;margin:16px -18px -18px;padding:12px 18px 18px} }
+.aide{color:var(--c-encre-2);font-size:15px}
+.aide.fort{color:var(--c-encre);font-weight:700}
+.aide:empty{display:none}
+.sous-titre{font-family:var(--chiffre);font-weight:700;font-size:13px;margin:12px 0 6px}
+.regles{margin:0 0 12px;padding-left:22px;display:grid;gap:8px}
+.regles a{color:var(--c-violet)}
+.carte-dialogue{display:flex;justify-content:center;margin:4px 0 12px}
+.cotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.rangee,.vivier{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+@media (max-width:600px){ .vivier:not(.prise){grid-template-columns:repeat(4,minmax(0,1fr));gap:10px} }
+.choix-carte{position:relative;display:block;padding:0;border:0;background:none;cursor:pointer;border-radius:10px}
+.choix-carte:disabled{cursor:default}
+.choix-carte.pris .mc{outline:4px solid var(--c-violet);outline-offset:-4px}
+.vivier .choix-carte.pris::after{content:"✓";position:absolute;top:-6px;right:-6px;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:var(--c-violet);color:#fff;font-weight:700;font-size:14px;border:2px solid var(--c-papier)}
+.vivier .choix-carte:not(:disabled):hover .mc,.rangee .choix-carte:hover .mc{transform:translateY(-3px)}
+.vivier .choix-carte .mc{transition:transform .15s}
+/* Carrière : le classeur, la prise, la perte */
+.classeur-lien{margin:8px 0 0}
+.classeur{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin:10px 0 4px}
+.case-classeur{display:block}
+.mc.absente{filter:grayscale(1);opacity:.38}
+.case-classeur.absente .ma{filter:grayscale(1);opacity:.38}
+.titre-actions{margin:18px 0 2px;font-size:18px}
+.classeur-actions{grid-template-columns:repeat(auto-fill,minmax(64px,1fr))}
+.classeur-actions .ma{width:100%}
+.gain-action .ma{width:64px;flex:none}
+/* La prise : les cartes de l'IA en grand ; la carte choisie porte « Prise ! », les autres s'effacent */
+.prise-titre{margin:14px 0 8px;font-family:var(--titre);font-weight:900;font-size:20px;line-height:1.15}
+.vivier.prise{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 6px}
+@media (min-width:601px){ .vivier.prise{grid-template-columns:repeat(5,minmax(0,1fr))} }
+.prise .choix-carte:not(:disabled) .mc{box-shadow:0 0 0 3px var(--c-surligneur),0 6px 14px rgba(0,0,0,.25)}
+.prise .choix-carte.pris .mc{outline:4px solid var(--c-surligneur);outline-offset:-4px}
+.prise .choix-carte.pris::after{content:"Prise\00a0!";top:-19px;right:auto;left:50%;bottom:auto;width:auto;height:auto;padding:2px 9px;transform:translateX(-50%) rotate(-6deg);border-radius:4px;background:var(--c-surligneur);color:var(--c-encre);border:2px solid var(--c-encre);font-family:var(--titre);font-weight:900;font-size:15px}
+.prise.choisie .choix-carte:not(.pris) .mc{opacity:.4}
+.prise .choix-carte.deja .mc{filter:grayscale(1);opacity:.5}
+.prise .choix-carte{position:relative}
+.etat-lib{position:absolute;left:50%;top:-7px;transform:translateX(-50%);z-index:2;font-family:var(--chiffre);font-weight:800;font-size:11px;line-height:1.2;white-space:nowrap;padding:2px 7px;border-radius:999px;border:1.5px solid var(--c-encre);pointer-events:none}
+.neuve .etat-lib{background:#1f7a3a;color:#fff}
+.reprise .etat-lib{background:var(--c-surligneur);color:var(--c-encre)}
+.prise-album{margin:-4px 0 8px}
+.code-partie{font-family:var(--chiffre);font-weight:700;font-size:44px;letter-spacing:.18em;text-align:center;margin:10px 0;padding:6px 0 8px;background:var(--c-menu);border:2px solid var(--c-encre);border-radius:10px;box-shadow:3px 3px 0 var(--c-encre)}
+.lien-partie input{width:100%;font:inherit;font-size:14px;padding:9px 10px;border:1.5px solid var(--c-encre);border-radius:6px;background:#fff;color:var(--c-encre)}
+.rejoindre-ligne{margin:10px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.rejoindre-ligne input{width:7.5ch;font-family:var(--chiffre);font-weight:700;font-size:18px;letter-spacing:.12em;text-transform:uppercase;padding:7px 8px;border:1.5px solid var(--c-encre);border-radius:6px;background:#fff;color:var(--c-encre)}
+.rejoindre-ligne input[aria-invalid="true"]{outline:3px solid #d63a32}
+.choix label.grise{opacity:.45;cursor:not-allowed}
+/* Profils en ligne : avatars, profil, recherche, classement */
+.avatar{--av-taille:28px;display:inline-grid;place-items:center;flex:none;width:var(--av-taille);height:var(--av-taille);border-radius:50%;background:var(--av-fond);color:var(--av-trait);border:2px solid var(--c-encre);vertical-align:middle;margin-right:6px}
+.avatar svg{width:64%;height:64%}
+.camp-nom .avatar{margin-right:5px;border-color:var(--c-papier)}
+.ligne-pseudo{display:flex;gap:8px;margin:4px 0 0}
+.ligne-pseudo input{flex:1;min-width:0;font:inherit;font-size:17px;padding:9px 10px;border:1.5px solid var(--c-encre);border-radius:6px;background:#fff;color:var(--c-encre)}
+.ligne-pseudo input[aria-invalid="true"]{outline:3px solid #d63a32}
+.choix-pictos{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+.picto-av,.couleur-av{padding:3px;border:2px solid transparent;border-radius:50%;background:none;cursor:pointer;display:grid;place-items:center;min-height:44px}
+.picto-av .avatar{margin:0}
+.picto-av[aria-checked="true"],.couleur-av[aria-checked="true"]{border-color:var(--c-violet);box-shadow:0 0 0 2px var(--c-surligneur)}
+.choix-couleurs{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.couleur-av{width:38px;height:38px;min-height:38px;border:2px solid var(--c-encre)}
+.couleur-av[aria-checked="true"]{outline:3px solid var(--c-violet);outline-offset:2px}
+.apercu-profil{display:flex;align-items:center;gap:4px;font-size:18px;margin:12px 0 4px}
+.ligne-profil{margin:10px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.ligne-profil .avatar{margin-right:2px}
+.recherche{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+.recherche .points{display:inline-flex;gap:5px}
+.recherche .points i{width:10px;height:10px;border-radius:50%;background:var(--c-violet);animation:points 1s ease-in-out infinite}
+.recherche .points i:nth-child(2){animation-delay:.15s}.recherche .points i:nth-child(3){animation-delay:.3s}
+@keyframes points{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-6px);opacity:1}}
+.classement{list-style:none;margin:10px 0;padding:0;display:grid;gap:4px}
+.classement li{display:flex;align-items:center;gap:8px;min-width:0;padding:6px 8px;border:1.5px solid rgba(21,23,26,.18);border-radius:8px}
+.classement li.moi{background:var(--c-menu);border-color:var(--c-encre)}
+.classement .rang{font-family:var(--chiffre);font-weight:700;min-width:2.2ch;text-align:right}
+.classement .avatar{margin:0}
+.classement .pseudo{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.classement .score{font-family:var(--chiffre);font-size:14px;white-space:nowrap}
+.classement .score small{color:var(--c-encre-2)}
+@media (max-width:600px){ .classement .score .mot{display:none} }
+@media (max-width:600px){ .choix-pictos{grid-template-columns:repeat(4,minmax(0,1fr))} }
+@media (prefers-reduced-motion:reduce){ .recherche .points i{animation:none;opacity:1} }
+.deja-lib{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%) rotate(-8deg);font-family:var(--chiffre);font-weight:700;font-size:11px;line-height:1.2;background:var(--c-encre);color:var(--c-papier);padding:2px 6px;border-radius:3px;white-space:nowrap}
+/* La perte : la carte cédée en grand et en couleur, tamponnée « Cédée » */
+.perte{display:flex;gap:16px;align-items:center;margin:12px 0}
+.carte-perdue{position:relative;flex:none;width:118px}
+.carte-perdue .mc{width:100%;transform:rotate(-4deg);box-shadow:0 6px 14px rgba(0,0,0,.25)}
+.carte-perdue::after{content:"Cédée";position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) rotate(-14deg);padding:2px 8px;font-family:var(--titre);font-weight:900;font-size:16px;color:#fff;background:#b3261e;border:2px solid var(--c-encre);border-radius:4px;box-shadow:2px 2px 0 var(--c-encre)}
+.perte p{margin:0;font-size:16px}
+.perte.recase .carte-perdue .mc{transform:rotate(3deg)}
+.perte.recase .carte-perdue::after{content:"Recasé";background:#1f7a3a;transform:translate(-50%,-50%) rotate(10deg)}
+.score-final{display:flex;align-items:center;gap:10px;font-family:var(--chiffre);font-size:16px}
+.score-final b{font-family:var(--titre);font-weight:900;font-size:40px;line-height:1}
+
+.banniere{position:fixed;left:50%;top:40%;z-index:30;transform:translate(-50%,-50%) rotate(-3deg) scale(.6);opacity:0;pointer-events:none;font-family:var(--titre);font-weight:900;font-size:clamp(28px,7vw,56px);line-height:1;background:var(--c-surligneur);color:var(--c-encre);border:2px solid var(--c-encre);box-shadow:5px 5px 0 var(--c-encre);padding:10px 22px 14px;width:max-content;max-width:calc(100vw - 36px);box-sizing:border-box;text-align:center;text-wrap:balance;overflow-wrap:break-word;transition:opacity .2s,transform .28s cubic-bezier(.2,.9,.3,1.3)}
+.banniere.on{opacity:1;transform:translate(-50%,-50%) rotate(-3deg) scale(1)}
+.annonce{position:fixed;left:50%;top:50%;z-index:25;transform:translate(-50%,-50%);display:flex;gap:16px;align-items:center;width:min(520px,calc(100vw - 32px));background:var(--c-action);color:var(--c-papier);border:2px solid var(--c-encre);border-radius:14px;box-shadow:6px 6px 0 var(--c-encre);padding:14px}
+.annonce .ma{width:104px;flex:none;border-color:var(--c-papier)}
+.annonce p{margin:0 0 6px}
+.annonce>div{min-width:0;overflow-wrap:break-word;hyphens:auto}
+@media (max-width:600px){ .annonce{gap:12px;padding:12px} .annonce .ma{width:76px} .annonce-titre{font-size:20px} .annonce p{font-size:15px} }
+.annonce-titre{font-family:var(--titre);font-weight:900;font-size:24px;line-height:1.05}
+.annonce-nom{font-family:var(--chiffre);font-size:13px;opacity:.85}
+
+/* La méthode des valeurs */
+.regle{margin:26px 0 0;max-width:780px;background:var(--c-papier);color:var(--c-encre);border:2px solid var(--c-encre);border-radius:14px;box-shadow:5px 5px 0 var(--c-encre);padding:20px 22px 12px}
+.regle h2{font-family:var(--titre);font-weight:900;font-size:clamp(23px,3.4vw,28px);line-height:1.1;margin:0 0 10px;text-wrap:balance}
+.regle-corps p{margin:0 0 10px;max-width:68ch}
+.regle-corps a{color:var(--c-violet);text-underline-offset:2px}
+.regle-cotes{list-style:none;margin:4px 0 12px;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 20px}
+.regle-cotes li{display:flex;flex-direction:column;border-top:1.5px solid var(--c-encre);padding-top:6px}
+.regle-cotes b{font-family:var(--chiffre);font-size:14px}
+.formule{display:inline-block;font-family:var(--chiffre);font-weight:700;font-size:clamp(15px,2.4vw,19px);background:var(--c-surligneur);color:var(--c-encre);border:1.5px solid var(--c-encre);padding:6px 12px;transform:rotate(-1deg);margin:2px 0 14px !important}
+.calcul-carte{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:8px;font-size:15px}
+.calcul-carte li{border-top:1.5px solid var(--c-encre);padding-top:6px}
+.calcul-carte b{font-family:var(--chiffre)}
+.lien-inline{background:none;border:0;padding:0 2px;color:inherit;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:24px}
+.methode{margin-top:8px}
+.methode>p,.methode li{max-width:72ch}
+.methode ul{padding-left:20px;display:grid;gap:6px}
+.scroll{overflow-x:auto;margin-top:16px}
+.bareme{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;margin:10px 0 14px;max-width:640px}
+.bareme div{border:1.5px solid currentColor;border-radius:6px;text-align:center;padding:4px 2px 5px;font-family:var(--chiffre);line-height:1.15}
+.bareme b{display:block;font-size:17px}
+.bareme span{display:block;font-size:11px;opacity:.8;white-space:nowrap}
+.bareme::before{content:"Rivaux devancés → note";grid-column:1/-1;font-family:var(--chiffre);font-size:12px;opacity:.8}
+@media (max-width:600px){.bareme{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.aide-tableau{font-size:14px;color:var(--page-texte-2);max-width:72ch}
+.sommaire{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.sommaire a{font-family:var(--chiffre);font-size:13.5px;padding:7px 11px;border:1.5px solid var(--page-texte);border-radius:999px;color:var(--page-texte);text-decoration:none}
+.sommaire a b{font-weight:700}
+.album-barre{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:4px 0 14px}
+.b-album{font-family:var(--chiffre);font-weight:800;font-size:14px;padding:8px 14px;border-radius:999px;border:2px solid var(--page-texte);background:var(--c-menu);color:var(--c-encre);cursor:pointer}
+.b-album[aria-pressed="true"]{background:transparent;color:var(--page-texte)}
+.album-aide{font-size:14px}
+.album-sous-titre{grid-column:1/-1;margin:10px 0 0;font-family:var(--chiffre);font-weight:700;font-size:14px}
+.album-grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px;margin:0 0 22px}
+.album-case{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:var(--page-texte)}
+.album-case img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;border:2px solid var(--page-texte);background:#ddd}
+.album-case span{font-family:var(--chiffre);font-size:11.5px;font-weight:700;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.album-case.manque img{filter:grayscale(1) brightness(.35) contrast(.6);opacity:.55}
+.album-case.manque span{opacity:.6}
+.vue-album .emplacement.manque .retournable{filter:grayscale(1);opacity:.32}
+.vue-album .emplacement.manque{position:relative}
+.vue-album .emplacement.manque::before{content:"À gagner";position:absolute;z-index:3;left:50%;top:38%;transform:translate(-50%,-50%) rotate(-8deg);font-family:var(--chiffre);font-weight:800;font-size:13px;padding:3px 9px;border-radius:4px;background:var(--c-encre);color:var(--c-papier);pointer-events:none}
+@media (hover:hover){.sommaire a:hover{background:var(--c-surligneur);color:var(--c-encre)}}   /* sur téléphone, le survol resterait collé après un toucher */
+.tab-points tbody tr{scroll-margin-top:72px}
+.tab-points tbody tr:target th,.tab-points tbody tr:target td{background:color-mix(in srgb,var(--c-surligneur) 55%,var(--page))}
+.haut-page{margin:10px 0 0;font-family:var(--chiffre);font-size:13.5px}
+.tab-points{border-collapse:separate;border-spacing:0;width:100%;min-width:900px;font-size:14px}
+.tab-points th,.tab-points td{padding:8px 10px;border-bottom:1px solid color-mix(in srgb,var(--page-texte) 22%,transparent);text-align:left;vertical-align:top}
+.tab-points thead th{font-family:var(--chiffre);font-size:13px;font-weight:700;vertical-align:bottom;position:sticky;top:0;background:var(--page);z-index:1}
+.tab-points thead th small{display:block;font-weight:400;font-size:11.5px;color:var(--page-texte-2)}
+.tab-points th[scope=row]{position:sticky;left:0;z-index:1;background:var(--page);border-left:6px solid var(--bloc,#999);min-width:150px;font-family:var(--titre,inherit);font-size:15px}
+.tab-points th[scope=row] small{display:block;font-family:var(--chiffre);font-weight:400;font-size:11.5px;color:var(--page-texte-2)}
+.tab-points .cpt{display:flex;gap:9px;align-items:flex-start}
+.tab-points .pt{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:6px;background:var(--page-texte);color:var(--page);font-family:var(--chiffre);font-weight:700;font-size:16px}
+.tab-points .fait{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700}
+.tab-points small{display:block;font-weight:400;font-size:12.5px;color:var(--page-texte-2);white-space:normal}
+.tab-points a{color:inherit;text-underline-offset:2px}
+.tab-points td.src{min-width:150px}
+h3.sous-titre{font-family:var(--titre,inherit);font-size:22px;margin:44px 0 6px}
+.regles-justice{max-width:72ch}
+.regles-justice li{margin:5px 0}
+.tab-justice{border-collapse:separate;border-spacing:0;width:100%;min-width:680px;font-size:14px}
+.tab-justice th,.tab-justice td{padding:8px 10px;border-bottom:1px solid color-mix(in srgb,var(--page-texte) 22%,transparent);text-align:left;vertical-align:top}
+.tab-justice thead th{font-family:var(--chiffre);font-size:13px;font-weight:700;vertical-align:bottom}
+.tab-justice th[scope=row]{border-left:6px solid var(--bloc,#999);min-width:140px;font-family:var(--titre,inherit);font-size:15px}
+.tab-justice th[scope=row] small{display:block;font-family:var(--chiffre);font-weight:400;font-size:11.5px;color:var(--page-texte-2)}
+.tab-justice td.issue{font-weight:700}
+.tab-justice a{color:inherit;text-underline-offset:2px}
+.tab-valeurs{border-collapse:collapse;width:100%;min-width:820px;font-size:15px}
+.tab-valeurs th,.tab-valeurs td{padding:8px 10px;border-bottom:1px solid color-mix(in srgb,var(--page-texte) 22%,transparent);text-align:right;vertical-align:top}
+.tab-valeurs th{font-family:var(--chiffre);font-size:13px;font-weight:700;vertical-align:bottom}
+.tab-valeurs th:first-child,.tab-valeurs td:first-child,.tab-valeurs td:last-child,.tab-valeurs th:last-child{text-align:left}
+.tab-valeurs td{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tab-valeurs small{display:block;font-size:13px;color:var(--page-texte-2);white-space:normal}
+.tab-valeurs a{color:inherit;text-underline-offset:2px}
+.tab-valeurs .notes{font-family:var(--chiffre);font-weight:700}
+
+@media (max-width:860px){
+  .arene{grid-template-columns:minmax(0,1fr);gap:12px}
+  .camp-ia{order:1}.centre{order:2}.camp-joueur{order:3}
+  .camp{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-items:center;justify-items:start;padding-top:0}
+  .camp-nom{grid-column:1;grid-row:1;justify-content:flex-start}
+  .slot{grid-column:2;grid-row:1;margin:0}
+  .slot-btn{flex-direction:row;gap:8px}
+  .slot .ma{width:42px;border-width:2px}
+  .main{grid-column:1/-1;grid-row:2;flex-direction:row;justify-content:center;width:100%;min-height:0;gap:6px}
+  .lien-details{grid-column:1/-1;grid-row:3;justify-self:center}
+  .main .carte-main+.carte-main{margin-top:0}
+  .main .carte-main{width:calc((100% - 24px) / 5);max-width:96px}
+  .main-ia .carte-main{width:40px}
+  .main-joueur .carte-main:not(:disabled):hover{transform:none}
+  .main-joueur .carte-main.sel{transform:translateY(-10px)}
+  .main-joueur .mn{display:none}
+  .main-joueur .mn.mn-fl{display:flex;justify-content:center;gap:3cqi}
+  .main-joueur .mn-fl .nom{display:none}
+  .main-joueur .mv .b{bottom:4cqi}   /* pas de bandeau de nom dans la main : le chiffre du bas descend */
+  .main-ia .mv{display:none}
+  .plateau{--case:calc((min(100vw,560px) - 96px) / 3)}
+  .plateau.n4{--case:calc((min(100vw,560px) - 94px) / 4);gap:6px;padding:8px}
+}
+/* Tablette en portrait : le plateau et la main grandissent avec l'écran, sans dépasser la hauteur disponible */
+@media (min-width:601px) and (max-width:860px){
+  .plateau{--case:min(calc((min(100vw,780px) - 96px) / 3), max(calc((min(100vw,560px) - 96px) / 3), calc((100dvh - 620px) / 3.75)))}
+  .plateau.n4{--case:min(calc((min(100vw,780px) - 94px) / 4), max(calc((min(100vw,560px) - 94px) / 4), calc((100dvh - 620px) / 5)))}
+  .main .carte-main{max-width:112px}
+  .main-ia .carte-main{width:44px}
+}
+@media (max-width:600px){
+  .tapis{padding:12px;border-radius:16px}
+  .jeu{padding:6px 12px 40px}
+  .tete-jeu{justify-content:space-between;flex-wrap:nowrap}
+  .titre-jeu{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .retour{font-size:13px}
+  .txt-long{display:none}.txt-court{display:inline}
+  .tete-jeu{column-gap:8px}.boutons-jeu{gap:5px}
+  .boutons-jeu .bouton-sec.b-son{min-width:40px;padding:6px}
+  .lieu-jeu{flex-direction:column;gap:2px}.lieu-jeu span::before{content:none}
+  .boutons-jeu .bouton,.boutons-jeu .bouton-sec{font-size:13px;padding:8px 10px}
+  .slot-lib{display:none}
+  .legende-cotes{display:none}   /* au téléphone, la légende reste dans « Comment jouer » : la main tient dans l'écran */
+  .tete-plateau{flex-wrap:nowrap;gap:10px}
+  .tableau svg{width:96px}
+  .compte{font-size:13px;gap:6px}
+  .compte b{font-size:20px}
+  .perchoir{font-size:15px;min-height:48px;flex:1 1 auto;justify-content:flex-start;text-align:left}
+  .case{aspect-ratio:1/1}
+  .case .rot>.mc{aspect-ratio:auto;height:100%}
+  .main-ia .carte-main{width:34px}
+  .slot .ma{width:36px}
+  .choix.trois,.choix.deux{grid-template-columns:minmax(0,1fr)}
+  .regle{padding:16px 16px 8px}
+  .regle-cotes{grid-template-columns:minmax(0,1fr)}
+  .rangee,.vivier{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .dialogue{padding:18px}
+  /* Le camp adverse tient sur deux lignes serrées : le nom au-dessus de sa main, sa carte action à droite */
+  .arene{gap:9px}
+  .camp-ia .slot{grid-row:1/3;align-self:center}
+  .camp-ia .main{grid-column:1;justify-content:flex-start}
+}
+/* Téléphone court (petit écran, ou barres du navigateur) : on gagne encore un peu de hauteur pour que la main reste visible */
+@media (max-width:600px) and (max-height:780px) and (orientation:portrait){
+  .jeu{padding-top:2px}
+  .tapis{padding:10px 12px}
+  .lieu-jeu span{display:none}
+  .tableau svg{width:80px}
+  .compte b{font-size:18px}
+  .centre{gap:6px}
+  .camp-joueur .slot .ma{width:30px}
+  .perchoir{font-size:14px;line-height:1.25;gap:6px}
+  .perchoir .bouton-sec{min-height:32px;padding:3px 12px;font-size:13px}
+}
+/* Pluie d'objets au lancement d'une carte action (pains au chocolat, feuilles d'impôts…) */
+.pluie{position:fixed;inset:0;z-index:29;pointer-events:none;overflow:hidden}
+.pluie i{position:absolute;top:-70px;left:var(--x);width:var(--l);will-change:transform;animation:pl-tombe var(--d) cubic-bezier(.45,.05,.75,1) var(--t) both}
+.pluie i svg,.pluie i img{display:block;width:100%;height:auto;overflow:visible;transform:rotate(var(--r));filter:drop-shadow(0 3px 3px rgba(0,0,0,.28))}
+@keyframes pl-tombe{from{transform:translate3d(0,0,0) rotate(0deg)}to{transform:translate3d(0,calc(100vh + 140px),0) rotate(var(--rr))}}
+.pluie.volette i{animation-name:pl-volette;animation-timing-function:linear}
+@keyframes pl-volette{0%{transform:translate3d(0,0,0) rotate(0deg)}25%{transform:translate3d(7vw,calc(25vh + 35px),0) rotate(28deg)}50%{transform:translate3d(-6vw,calc(50vh + 70px),0) rotate(-24deg)}75%{transform:translate3d(6vw,calc(75vh + 105px),0) rotate(20deg)}100%{transform:translate3d(0,calc(100vh + 140px),0) rotate(-12deg)}}
+.pluie.file i{top:var(--y);left:-80px;animation-name:pl-file;animation-timing-function:cubic-bezier(.5,0,.6,1)}
+@keyframes pl-file{from{transform:translate3d(0,0,0) rotate(0deg)}to{transform:translate3d(calc(100vw + 160px),-18vh,0) rotate(var(--rr))}}
+.pluie .gros{position:absolute;left:50%;top:62%;font-family:var(--titre);font-weight:900;font-size:clamp(34px,10vw,72px);line-height:1;color:#c8102e;border:5px solid #c8102e;border-radius:10px;padding:6px 18px 10px;background:rgba(255,255,255,.55);white-space:nowrap;transform:translate(-50%,-50%) rotate(-9deg);animation:pl-tampon .38s cubic-bezier(.2,1.5,.4,1) .15s both,pl-efface .45s ease-in 1.55s forwards}
+@keyframes pl-tampon{from{transform:translate(-50%,-50%) rotate(-9deg) scale(2.6);opacity:0}to{transform:translate(-50%,-50%) rotate(-9deg) scale(1);opacity:1}}
+@keyframes pl-efface{to{opacity:0}}
+/* Manga : traits de vitesse, portrait en gros plan, onomatopée */
+.pluie.manga{z-index:31}   /* au-dessus du bandeau de la carte : l'onomatopée le remplace */
+.pluie.manga .mg-fond{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%,rgba(255,255,255,.94) 0,rgba(255,255,255,.86) 38%,rgba(255,255,255,.55) 75%,rgba(255,255,255,.2) 100%);animation:mg-fond 1.9s ease both}
+.pluie.manga .mg-traits{position:absolute;inset:0;width:100%;height:100%;fill:#15171a;animation:mg-traits 1.9s linear both}
+.pluie.manga .mg-case{position:absolute;left:50%;top:44%;width:min(54vw,40vh);aspect-ratio:4/5;overflow:hidden;background:#f4f1e8;border:5px solid #15171a;box-shadow:9px 9px 0 #15171a;animation:mg-case 1.9s cubic-bezier(.2,1.2,.4,1) both}
+.pluie.manga .mg-case img{display:block;width:100%;height:125%;object-fit:cover;object-position:50% 12%;filter:contrast(1.15) saturate(1.1)}
+.pluie.manga .mg-cri{position:absolute;left:50%;top:74%;font-family:var(--titre);font-weight:900;font-size:clamp(20px,var(--fs),88px);line-height:1.05;white-space:nowrap;text-align:center;color:#f2e900;-webkit-text-stroke:2px #15171a;text-shadow:4px 4px 0 #15171a,-2px -2px 0 #15171a,2px -2px 0 #15171a,-2px 2px 0 #15171a;animation:mg-cri 1.9s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes mg-fond{0%{opacity:0}8%{opacity:1}82%{opacity:1}100%{opacity:0}}
+@keyframes mg-traits{0%{opacity:0;transform:scale(1.25) rotate(0)}10%{opacity:1}82%{opacity:1}100%{opacity:0;transform:scale(1) rotate(6deg)}}
+@keyframes mg-case{0%{opacity:0;transform:translate(-50%,-50%) rotate(-14deg) scale(1.9)}14%{opacity:1;transform:translate(-50%,-50%) rotate(-5deg) scale(1)}80%{opacity:1;transform:translate(-50%,-50%) rotate(-5deg) scale(1.04)}100%{opacity:0;transform:translate(-50%,-50%) rotate(-5deg) scale(.9)}}
+@keyframes mg-cri{0%,12%{opacity:0;transform:translate(-50%,-50%) rotate(-8deg) scale(3)}24%{opacity:1;transform:translate(-50%,-50%) rotate(-8deg) scale(1)}80%{opacity:1;transform:translate(-50%,-50%) rotate(-8deg) scale(1.06)}100%{opacity:0;transform:translate(-50%,-50%) rotate(-8deg) scale(1.2)}}
+/* Canon : jaillissement depuis la carte action, puis retombée */
+.pluie.canon i{top:var(--oy);left:var(--ox);margin:calc(var(--l) / -2) 0 0 calc(var(--l) / -2);animation:pl-canon var(--d) var(--t) both}
+@keyframes pl-canon{0%{transform:translate3d(0,0,0) rotate(0) scale(.2);animation-timing-function:cubic-bezier(.15,.75,.35,1)}32%{transform:translate3d(calc(var(--dx) * .55),var(--up),0) rotate(calc(var(--rr) * .35)) scale(1);animation-timing-function:cubic-bezier(.55,0,.85,.6)}100%{transform:translate3d(var(--dx),calc(100vh + 80px - var(--oy)),0) rotate(var(--rr)) scale(1)}}
+.pluie.canon i svg,.pluie.canon i img{filter:none}   /* des dizaines d'objets : pas d'ombre, trop coûteuse sur petit téléphone */
+/* Objet géant : il tombe et rebondit, ou il traverse l'écran */
+.pluie.geant .geant{top:50%;left:50%;width:min(64vw,46vh);margin:calc(min(64vw,46vh) / -2) 0 0 calc(min(64vw,46vh) / -2)}
+.pluie.geant .geant svg,.pluie.geant .geant img{transform:none;filter:drop-shadow(0 14px 14px rgba(0,0,0,.45))}
+.pluie.geant.chute .geant{transform-origin:50% 100%;animation:pl-chute 1.9s both}
+.pluie.geant.passe .geant{animation:pl-passe 2s linear both}
+@keyframes pl-chute{0%{transform:translateY(-110vh) rotate(-18deg);animation-timing-function:cubic-bezier(.55,0,1,.6)}32%{transform:translateY(0) rotate(3deg) scale(1.12,.86);animation-timing-function:ease-out}42%{transform:translateY(-5vh) rotate(-2deg) scale(.95,1.06);animation-timing-function:ease-in}52%{transform:translateY(0) scale(1.04,.97)}60%{transform:translateY(0) scale(1)}84%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(0) scale(.3);opacity:0}}
+@keyframes pl-passe{0%{transform:translate(-110vw,0) rotate(-8deg)}12.5%{transform:translate(-82vw,-3vh) rotate(6deg)}25%{transform:translate(-55vw,0) rotate(-6deg)}37.5%{transform:translate(-27vw,-3vh) rotate(6deg)}50%{transform:translate(0,0) rotate(-6deg)}62.5%{transform:translate(27vw,-3vh) rotate(6deg)}75%{transform:translate(55vw,0) rotate(-6deg)}87.5%{transform:translate(82vw,-3vh) rotate(6deg)}100%{transform:translate(110vw,0) rotate(-8deg)}}
+/* Petite secousse du tapis à l'impact */
+.tapis.secoue{animation:tapis-secoue .4s linear}
+@keyframes tapis-secoue{0%,100%{transform:translate(0,0)}15%{transform:translate(-7px,4px)}30%{transform:translate(6px,-5px)}45%{transform:translate(-5px,-3px)}60%{transform:translate(4px,3px)}80%{transform:translate(-2px,1px)}}
+/* Trophées : bannière de déblocage, tuile de l'accueil et salle des trophées */
+.bronze{--tr:#b87333}.argent{--tr:#aab3bd}.or{--tr:#e2ac1f}.platine{--tr:#58c5dc}
+.coupe{flex:none;width:30px;height:30px;fill:var(--tr,#888);stroke:var(--c-encre);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+.trophee-toast{position:fixed;left:50%;top:max(12px,env(safe-area-inset-top));z-index:45;display:flex;align-items:center;gap:12px;width:min(420px,calc(100vw - 24px));box-sizing:border-box;padding:10px 14px;background:var(--c-encre);color:var(--c-papier);border:2px solid var(--tr,#888);border-radius:14px;box-shadow:0 10px 26px rgba(0,0,0,.45);pointer-events:none;opacity:0;transform:translate(-50%,-140%);transition:transform .32s cubic-bezier(.2,1.2,.3,1),opacity .2s}
+.trophee-toast.on{opacity:1;transform:translate(-50%,0)}
+.trophee-toast .coupe{width:38px;height:38px;stroke:#000}
+.trophee-toast span{display:flex;flex-direction:column;min-width:0;line-height:1.25}
+.trophee-toast small{font-family:var(--chiffre);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--tr,#bbb)}
+.trophee-toast b{font-family:var(--titre);font-weight:900;font-size:19px}
+.trophee-toast i{font-style:normal;font-size:13px;opacity:.85}
+.tuile.tuile-trophees{grid-column:1/-1;min-height:0;flex-direction:row;align-items:center;flex-wrap:wrap;gap:6px 12px;padding:12px 16px}
+.tuile-trophees .tt-texte{display:flex;align-items:baseline;gap:10px;flex:1}
+.tr-barre{display:block;width:100%;height:6px;border-radius:3px;background:rgba(21,23,26,.14);overflow:hidden}
+.tr-barre span{display:block;height:100%;background:var(--c-encre);border-radius:3px}
+.tr-bilan{display:flex;align-items:center;gap:12px;margin:0 0 4px;font-family:var(--chiffre);white-space:nowrap}
+.tr-bilan b{font-family:var(--titre);font-size:28px}
+.tr-barre.grande{height:10px;border-radius:5px}
+.tr-titre{margin:16px 0 6px;font-family:var(--titre);font-size:18px}
+.tr-titre small{font-family:var(--chiffre);font-size:12px;font-weight:400;opacity:.7;margin-left:6px}
+.trophees{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.trophee{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid rgba(21,23,26,.2);border-radius:10px}
+.trophee .coupe{opacity:.3;fill:#9a9a9a}
+.trophee.obtenu{border-color:var(--c-encre);background:rgba(255,255,255,.55)}
+.trophee.obtenu .coupe{opacity:1;fill:var(--tr)}
+.trophee .tr-texte{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;line-height:1.25}
+.trophee .tr-texte i{font-style:normal;font-size:13px;opacity:.8}
+.trophee:not(.obtenu) .tr-texte b{opacity:.75}
+.trophee .tr-texte .tr-barre{margin-top:4px}
+.trophee .tr-etat{flex:none;font-family:var(--chiffre);font-size:11px;text-align:right;opacity:.8;max-width:84px}
+.trophee .tr-ok{display:block;font-weight:700}
+/* La fête de fin de partie : confettis, serpentins, et les têtes du camp gagnant qui surgissent en chapeau pointu.
+   Sous le voile du bilan (z-index 19 < 20) ; rien n'y est cliquable. */
+.fete{position:fixed;inset:0;z-index:19;pointer-events:none;overflow:hidden}
+.fete .cf{position:absolute;top:-5vh;left:var(--x);width:var(--w);height:var(--h);background:var(--c);border-radius:var(--r);box-shadow:inset 0 0 0 1px rgba(21,23,26,.25);animation:cf-pluie var(--d) linear var(--t) both}
+.fete .cf.canon{top:auto;bottom:-3vh;animation:cf-canon var(--d) var(--t) both}
+.fete .sp{position:absolute;top:-26vh;left:var(--x);width:var(--w);animation:cf-pluie var(--d) linear var(--t) both}
+.fete .sp svg{display:block;width:100%;height:auto}
+@keyframes cf-pluie{from{transform:translate3d(0,0,0) rotate(0deg) rotateX(0deg)}to{transform:translate3d(var(--dx),118vh,0) rotate(var(--rot)) rotateX(var(--rx))}}
+@keyframes cf-canon{
+  0%{transform:translate3d(0,0,0) rotate(0deg);animation-timing-function:cubic-bezier(.1,.75,.35,1)}
+  40%{transform:translate3d(var(--px),var(--py),0) rotate(calc(var(--rot) * .45)) rotateX(calc(var(--rx) * .4));animation-timing-function:cubic-bezier(.45,0,.9,.5)}
+  100%{transform:translate3d(var(--fx),30vh,0) rotate(var(--rot)) rotateX(var(--rx))}
+}
+.fete .tetes{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:flex-end}
+.fete .tete{position:relative;flex:none;width:var(--l);aspect-ratio:240/300;margin:0 calc(var(--l) * -.07);transform:translateY(12%);animation:tete-surgit .7s cubic-bezier(.18,.9,.32,1.28) var(--t) both}
+.fete .tete-saute{position:absolute;inset:0;transform-origin:50% 92%;will-change:transform;animation:tete-danse var(--dd) ease-in-out calc(var(--t) + .7s) infinite alternate}
+.fete .tete img{display:block;width:100%;height:100%;filter:drop-shadow(0 8px 12px rgba(0,0,0,.38))}
+@keyframes tete-surgit{from{transform:translateY(112%)}to{transform:translateY(12%)}}
+@keyframes tete-danse{0%{transform:translateY(0) rotate(calc(var(--sw) * -1))}50%{transform:translateY(-10%) rotate(0deg)}100%{transform:translateY(0) rotate(var(--sw))}}
+.fete.fin .tete{animation:tete-part .5s cubic-bezier(.5,0,.9,.4) both}
+@keyframes tete-part{to{transform:translateY(118%)}}
+.fete .chapeau{position:absolute;width:46%;overflow:visible;transform:translate(-50%,-86%) rotate(var(--rh));transform-origin:50% 100%;filter:drop-shadow(1px 2px 0 rgba(21,23,26,.3));animation:chapeau .4s cubic-bezier(.2,.9,.3,1.5) calc(var(--t) + .4s) both}
+@keyframes chapeau{from{transform:translate(-50%,-86%) rotate(var(--rh)) scale(0)}to{transform:translate(-50%,-86%) rotate(var(--rh)) scale(1)}}
+/* La langue de belle-mère : un embout, un ruban rayé qui se déroule, un rouleau au bout */
+.fete .langue{position:absolute;width:calc(var(--l) * .74);height:calc(var(--l) * .085);transform:translateY(-50%) rotate(var(--rl));transform-origin:0 50%}
+.fete .langue.g{transform:translateY(-50%) scaleX(-1) rotate(var(--rl))}
+.fete .langue i{position:absolute;display:block}
+.fete .langue .bec{left:-4%;top:20%;width:15%;height:60%;background:var(--c-papier);border:1.5px solid var(--c-encre);border-radius:2px}
+.fete .langue .ruban{left:10%;top:14%;width:90%;height:72%;background:repeating-linear-gradient(90deg,var(--cl) 0 11%,var(--c-papier) 11% 15%);border:1.5px solid var(--c-encre);border-radius:2px 50% 50% 2px/2px 50% 50% 2px;transform-origin:0 50%;transform:scaleX(.05);animation:langue 1.6s ease-in-out var(--tl) infinite}
+.fete .langue .bout{left:10%;top:50%;width:calc(var(--l) * .12);aspect-ratio:1;border-radius:50%;border:calc(var(--l) * .024) solid var(--cl);box-shadow:0 0 0 1.5px var(--c-encre),inset 0 0 0 1.5px var(--c-encre);transform:translate(-25%,-50%);animation:bout 1.6s ease-in-out var(--tl) infinite}
+@keyframes langue{0%,18%{transform:scaleX(.05)}34%,58%{transform:scaleX(1)}76%,100%{transform:scaleX(.05)}}
+@keyframes bout{0%,18%{left:10%;width:calc(var(--l) * .12)}34%,58%{left:94%;width:calc(var(--l) * .055)}76%,100%{left:10%;width:calc(var(--l) * .12)}}
+@media (prefers-reduced-motion:reduce){
+  .fete .cf,.fete .sp{display:none}
+  .fete .tete,.fete .tete-saute,.fete .chapeau,.fete .langue .ruban,.fete .langue .bout,.fete.fin .tete{animation:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .mc.pose,.rot.bascule,.case.menace .mc,.case.eclat .mc,.piece.lance{animation:none}
+  .banniere,.carte-main{transition:none}
+}
+
+/* ===== Fiche factuelle (le verso), ouverte depuis la collection =====
+   Mêmes couleurs que les cartes, quel que soit le thème de la page : bord du bloc, papier, encre. */
+.fiche-site{margin:8px 0 0}.fiche-site a{font-weight:700}
+.fiche{padding:0;border:0;background:transparent;width:100%;max-width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:visible}
+.fiche::backdrop{background:rgba(21,23,26,.62)}
+.fiche-carte{background:var(--bloc,var(--c-action));border:2px solid var(--c-encre);border-radius:18px;padding:10px;color:var(--c-encre);display:flex;flex-direction:column;max-height:calc(100dvh - 24px)}
+.fiche-tete{background:var(--c-papier);border:1.5px solid var(--c-encre);border-radius:12px 12px 0 0;padding:12px;display:grid;grid-template-columns:64px 1fr 44px;gap:12px;align-items:center}
+.fiche-mini{width:64px;height:80px;object-fit:cover;object-position:top;border:1.5px solid var(--c-encre);border-radius:8px;background:var(--c-surligneur)}
+.fiche-type{margin:0;font-family:var(--chiffre);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-encre-2)}
+.fiche h2{font-family:var(--titre);font-weight:600;font-size:clamp(22px,5vw,28px);line-height:1.05;margin:2px 0 4px}
+.fiche-statut{margin:0;font-family:var(--chiffre);font-size:12.5px;line-height:1.35}
+.fiche-fermer{width:44px;height:44px;align-self:start;font-size:26px;line-height:1;border:1.5px solid var(--c-encre);border-radius:8px;background:var(--c-surligneur);color:var(--c-encre);cursor:pointer;box-shadow:2px 2px 0 var(--c-encre)}
+.fiche-onglets{display:flex;background:var(--c-papier);border-left:1.5px solid var(--c-encre);border-right:1.5px solid var(--c-encre)}
+.fiche-onglets button{flex:1;min-height:44px;font-family:var(--chiffre);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:var(--c-papier);color:var(--c-encre-2);border:0;border-top:1.5px solid var(--c-encre);border-bottom:1.5px solid var(--c-encre);cursor:pointer}
+.fiche-onglets button+button{border-left:1.5px solid var(--c-encre)}
+.fiche-onglets [aria-selected="true"]{background:var(--c-surligneur);color:var(--c-encre)}
+.fiche-onglets button:focus-visible,.fiche-fermer:focus-visible,.fiche-panneau:focus-visible{outline:3px solid var(--c-violet);outline-offset:-3px}
+.fiche-panneau{background:var(--c-papier);border:1.5px solid var(--c-encre);border-top:0;padding:14px 16px 18px;overflow-y:auto;flex:1 1 auto;min-height:0;font-size:15.5px;line-height:1.45}
+.fiche-pied{background:var(--c-papier);border:1.5px solid var(--c-encre);border-top:0;border-radius:0 0 12px 12px;padding:10px 16px;font-family:var(--chiffre);font-size:12px;line-height:1.4;color:var(--c-encre-2)}
+.fiche a{color:var(--c-encre);text-underline-offset:2px}
+.fiche-rub{margin:16px 0 6px;font-family:var(--chiffre);font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--bloc-fonce,var(--c-sarcelle))}
+.fiche-rub:first-child{margin-top:0}
+.fiche-id-liste{display:grid;grid-template-columns:92px 1fr;gap:4px 12px;margin:0}
+.fiche-id-liste dt{color:var(--c-encre-2)}
+.fiche-id-liste dd{margin:0}
+.fiche-frise{list-style:none;margin:0;padding:0 0 0 12px;border-left:3px solid var(--bloc,var(--c-encre));display:grid;gap:7px}
+.fiche-frise li{display:grid;grid-template-columns:9.5em 1fr;gap:10px;align-items:baseline}
+.fiche-frise b{font-family:var(--chiffre);font-size:12.5px}
+.fiche-encart{margin:0;padding:10px 12px;border-radius:8px;background:var(--bloc-clair,#eef0ec)}
+.fiche-sources{margin:6px 0 0;font-family:var(--chiffre);font-size:12px;line-height:1.4;color:var(--c-encre-2)}
+.fiche-chapo{margin:0 0 4px;font-family:var(--chiffre);font-size:12.5px;line-height:1.4;color:var(--c-encre-2)}
+.fiche-theme{padding:10px 0;border-bottom:1px dashed #c3c7cc}
+.fiche-theme .fiche-rub{margin:0 0 4px}
+.fiche-mesure{margin:0}
+.fiche-theme.vide .fiche-mesure{color:var(--c-encre-2);font-style:italic}
+.fiche-note{margin:12px 0 0;font-size:13.5px;color:var(--c-encre-2)}
+.emplacement .legende{flex-wrap:wrap;justify-content:center;text-align:center}
+.legende .ouvrir-fiche{background:var(--c-surligneur);color:var(--c-encre);border-color:var(--c-encre)}
+@media (max-width:560px){
+  .fiche{max-width:100vw;max-height:100dvh;margin:0}
+  .fiche-carte{border-radius:0;border-width:0;min-height:100dvh;max-height:100dvh}
+  .fiche-frise li{grid-template-columns:1fr;gap:0}
+}
+</style>
+</head>
+<body>
+<main id="vue-cartes" class="page">
+  <p class="marque"><span class="fluo">Retourne ta veste</span> · présidentielle 2027</p>
+  <h1>Les cartes du jeu</h1>
+  <p class="chapo">Tout tient sur une seule face, en couleur, avec le même gabarit pour chaque carte. Le dos est commun à tout le jeu. Clique sur une carte pour la retourner, ou sur «&nbsp;La fiche&nbsp;» pour son parcours et ses propositions, sources à l’appui.</p>
+  <p class="mot-auteur"><b>Un mot de l’auteur.</b> Je n’appartiens à aucun bord politique, et ce jeu ne roule pour personne. Avec autant de candidats, déclarés, pressentis ou recalés, mieux vaut en rire qu’en pleurer. La même règle vaut pour toutes les cartes, et chaque fait renvoie à sa source.<span data-don hidden> Le jeu est fait sur mon temps libre, sans pub&nbsp;: <a href="#soutenir">le soutenir</a>.</span></p>
+  <a class="cta" id="cta-haut" href="#jouer">Jouer à Retourne ta veste <span aria-hidden="true">→</span></a>
+  <a class="cta cta-flottant" id="cta-flottant" href="#jouer" tabindex="-1" aria-hidden="true">Jouer <span aria-hidden="true">→</span></a>
+  <nav class="sommaire" aria-label="Sur cette page">
+    <a href="#regle">Le calcul des points</a><a href="#methode"><b>Le tableau des points</b></a><a href="#cartes-candidat">Les cartes candidat</a><a href="#cartes-action">Les cartes action</a><a href="#justice">Les affaires closes</a>
+  </nav>
+
+  <aside class="regle" id="regle" aria-labelledby="titre-regle">
+    <h2 id="titre-regle">La règle de calcul, la même pour les <span data-n="cand">43</span></h2>
+    <div class="regle-corps">
+      <p><b>Pas de note à la tête du client.</b> Chaque côté de carte compare les <span data-n="cand">43</span> candidats sur un fait public, et le même calcul s’applique à tout le monde&nbsp;: aucune note n’est retouchée à la main, aucun sondage n’entre en compte.</p>
+      <ul class="regle-cotes">
+        <li><b>↑<i class="pi" data-picto="0"></i>Urnes</b><span>son meilleur score en voix à une élection</span></li>
+        <li><b>→<i class="pi" data-picto="1"></i>Expérience</b><span>ses années de mandat national</span></li>
+        <li><b>↓<i class="pi" data-picto="2"></i>Terrain</b><span>ses années d’élu local</span></li>
+        <li><b>←<i class="pi" data-picto="3"></i>Buzz</b><span>combien de fois on consulte sa page Wikipédia</span></li>
+      </ul>
+      <p><b>Sur chaque fait, on classe les <span data-n="cand">43</span>&nbsp;:</b> le premier a 10, le dernier 1, les autres entre les deux, au prorata des rivaux qu’ils devancent. Des ex æquo ont la même note.</p>
+      <p class="formule">note = 1 + 9 × rivaux devancés ÷ <span data-n="riv">42</span></p>
+      <div class="bareme" role="group" aria-label="Barème : rivaux devancés, puis note"></div>
+      <p>On arrondit à l’unité. Exemple&nbsp;: <span id="exemple-calcul">devancer 29 rivaux sur 42 donne 1 + 9 × 29 ÷ 42 = 7,2, arrondi à 7</span>. Les étoiles ★ comptent les présidentielles déjà disputées&nbsp;; elles ne changent rien au jeu.</p>
+      <p>Ces chiffres comptent des voix, des années et des consultations. Ils ne jugent ni les idées, ni les programmes, ni les personnes. <a href="#methode">Le tableau des points, carte par carte</a>.</p>
+    </div>
+  </aside>
+
+  <h2 class="groupe" id="cartes-candidat">Cartes candidat</h2>
+  <p class="groupe-texte">Le bord de chaque carte prend la couleur de son bloc dans la grille officielle du ministère de l'Intérieur, et la jauge du haut situe ce bloc de gauche à droite. Une seule exception, par convention&nbsp;: le vert pour Les Écologistes, que la grille classe à gauche. Les quatre chiffres du coin sont des faits publics, classés de 1 à 10 entre les <span data-n="cand">43</span> candidats&nbsp;: ↑ urnes, → expérience, ↓ terrain, ← buzz (<a href="#regle">la règle de calcul</a>). Survole un chiffre pour voir le fait qui est derrière. Le deck de lancement réunissait les 16 candidats que testent au moins 3 instituts de sondage. Depuis novembre 2026, il s’ouvre, par vagues, aux personnalités que la presse présente comme candidates, prétendantes ou pressenties pour 2027, y compris celles qui ont renoncé&nbsp;: leur statut exact est écrit sur la carte, et à chaque vague les chiffres de tous sont recalculés ensemble.</p>
+  <ul class="nuancier" aria-label="Couleurs des blocs">
+    <li data-bloc="extreme-gauche">Extrême gauche</li><li data-bloc="gauche">Gauche</li><li data-bloc="ecolo">Écologistes</li><li data-bloc="centre">Centre</li><li data-bloc="droite">Droite</li><li data-bloc="extreme-droite">Extrême droite</li><li data-bloc="divers">Divers, hors grille</li>
+  </ul>
+  <p class="album-barre" id="album-barre" hidden><button type="button" class="b-album" id="b-album" aria-pressed="false"></button><span class="album-aide" id="album-aide"></span></p>
+  <div class="album-grille" id="album-grille" hidden></div>
+  <div class="table" id="table-candidats"></div>
+
+  <h2 class="groupe" id="cartes-action">Cartes action</h2>
+  <p class="groupe-texte">Un visage seulement pour un record ou une première, documentés et sourcés.</p>
+  <div class="table" id="table-actions"></div>
+
+  <section class="methode" id="methode" aria-labelledby="titre-methode">
+    <h2 class="groupe" id="titre-methode">Le tableau des points</h2>
+    <p class="groupe-texte">Chaque chiffre de chaque carte, le fait qui est derrière et sa source. Ce que compte chaque côté, arrêté au <span id="date-verif"></span>&nbsp;:</p>
+    <ul>
+      <li><b>↑ Urnes</b>&nbsp;: le plus grand nombre de voix obtenu à une élection, sur son nom ou en tête de liste (résultats officiels).</li>
+      <li><b>→ Expérience</b>&nbsp;: années de mandat national (député, sénateur, député européen, membre du gouvernement, président de la République), chevauchements comptés une fois.</li>
+      <li><b>↓ Terrain</b>&nbsp;: années d’élu local (conseiller municipal ou d’arrondissement, départemental ou régional, adjoint, maire).</li>
+      <li><b>← Buzz</b>&nbsp;: consultations de la page Wikipédia en français pendant un mois type, c’est-à-dire la médiane de novembre 2025 à octobre 2026 (<a href="https://wikimedia.org/api/rest_v1/#/Pageviews%20data" rel="noopener">statistiques publiques de Wikimedia</a>, robots exclus).</li>
+    </ul>
+    <p class="groupe-texte">Sur chaque côté, on range les <span data-n="cand">43</span> cartes de la plus petite valeur à la plus grande et on compte les rivaux que chacune devance&nbsp;; le barème donne la note. Ex æquo, même note.</p>
+    <div class="bareme" role="group" aria-label="Barème : rivaux devancés, puis note"></div>
+    <p class="aide-tableau">Dans chaque case&nbsp;: la note, le fait, puis le nombre de rivaux devancés sur <span data-n="riv">42</span>. Les cartes sont rangées par bloc, comme dans la collection.</p>
+    <div class="scroll"><table class="tab-points" id="tab-valeurs"></table></div>
+    <p class="haut-page"><a href="#cartes">↑ Haut de la page</a></p>
+    <h3 class="sous-titre" id="justice">La ligne «&nbsp;Justice&nbsp;» des cartes</h3>
+    <ul class="regles-justice">
+      <li><b>Sur la carte</b>&nbsp;: seulement ce qu’un tribunal a jugé sur le fond. Une condamnation, définitive ou non (alors avec son stade et la présomption d’innocence), ou une décision fiscale, électorale ou disciplinaire, présentée comme telle et jamais comme une condamnation pénale. Si rien de tel n’a été trouvé, la carte indique «&nbsp;Aucune condamnation identifiée dans les sources consultées&nbsp;».</li>
+      <li><b>Ici seulement</b>&nbsp;: les affaires closes en faveur de la personne (relaxe, non-lieu, classement sans suite, plainte irrecevable), détaillées dans le tableau ci-dessous pour que rien ne soit caché.</li>
+      <li><b>Nulle part</b>&nbsp;: les enquêtes, plaintes, mises en examen, témoins assistés et renvois en procès, tant qu’aucun jugement n’a été rendu. On ne montre que ce qu’un juge a décidé, jamais ce dont une personne est seulement soupçonnée.</li>
+      <li><b>Les limites</b>&nbsp;: «&nbsp;issue non connue&nbsp;» veut dire que nous n’avons trouvé aucune suite publique. Une carte sans condamnation indique ce que nos sources montrent, sans prétendre à l’exhaustivité.</li>
+    </ul>
+    <p class="aide-tableau">Affaires closes en faveur de la personne, relevées lors de nos vérifications (liste arrêtée au <span id="date-verif-j"></span>, sans prétendre à l’exhaustivité)&nbsp;:</p>
+    <div class="scroll"><table class="tab-justice" id="tab-justice"></table></div>
+  </section>
+
+  <p class="note">Tous les portraits sont générés par IA, avec le même traitement pour chacun&nbsp;: détourage, liseré blanc et fond surligneur à points, appliqués par le même script. Chaque fait de la carte renvoie à sa source. En justice, on ne retient que ce qu’un tribunal a jugé sur le fond, avec la présomption d’innocence quand rien n’est définitif&nbsp;; les affaires closes en faveur de la personne sont listées dans <a href="#justice">la ligne «&nbsp;Justice&nbsp;» des cartes</a>.</p>
+  <aside class="soutenir" id="soutenir" data-don hidden>
+    <p><b>Financez la démocratie… enfin, ce jeu.</b> Jeu indépendant, sans publicité et sans financement politique, fait sur mon temps libre. S’il vous a fait rire, offrez un café au développeur.</p>
+    <a class="bouton" data-don-lien href="#" target="_blank" rel="noopener">Offrir un café <span aria-hidden="true">→</span></a>
+  </aside>
+</main>
+
+<main id="vue-jeu" class="jeu" hidden>
+  <header class="tete-jeu">
+    <a class="retour" id="lien-cartes" href="#cartes" aria-label="Retour aux cartes"><span class="txt-long">← Les cartes</span><span class="txt-court">← Cartes</span></a>
+    <button type="button" class="retour" id="b-accueil" hidden>← Menu</button>
+    <h1 class="titre-jeu">Retourne ta veste</h1>
+    <div class="boutons-jeu">
+      <button type="button" class="bouton-sec b-son" id="b-son" aria-pressed="true" aria-label="Sons rigolos" title="Couper les sons"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="onde" d="M15.5 9a4 4 0 0 1 0 6M18.2 6.5a7.5 7.5 0 0 1 0 11"/><path class="croix" d="M16 9.5l5 5M21 9.5l-5 5"/></svg></button>
+    </div>
+  </header>
+  <div class="tapis">
+    <div class="decor" id="decor" aria-hidden="true"></div>
+      <section class="accueil" id="accueil" aria-labelledby="titre-accueil" hidden>
+        <p class="accueil-titre" id="titre-accueil"><img class="logo-titre" src="img/logo-titre.webp" width="1500" height="500" alt="Retourne ta veste, le jeu de cartes de la présidentielle 2027"></p>
+        <button type="button" class="tuile tuile-reprendre" id="t-reprendre" hidden><b>Reprendre la partie</b><span id="t-reprendre-sous"></span></button>
+        <button type="button" class="tuile tuile-tuto" id="t-tuto" hidden><b>Première séance</b><span>Apprends à jouer en trois leçons guidées · 3 minutes</span></button>
+        <div class="tuiles">
+          <button type="button" class="tuile tuile-solo" id="t-solo"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5h8v5.5a4 4 0 0 1-8 0z"/><path d="M8 5.5H4.5V7A3.5 3.5 0 0 0 8 10.5M16 5.5h3.5V7a3.5 3.5 0 0 1-3.5 3.5"/><path d="M12 13v3.5"/><path d="M8.5 20.5h7M9.5 16.5h5v4h-5z"/></svg><b>Solo</b><span>Carrière&nbsp;: gagne les cartes de l’IA</span></button>
+          <button type="button" class="tuile" id="t-ligne"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.3 2.8-5.2 5.5-5.2s4.9 1.9 5.5 5.2"/><circle cx="16.5" cy="9" r="2.6"/><path d="M15.2 14.1c.4-.1.9-.2 1.3-.2 2.3 0 4 1.6 4.5 4.6"/></svg><b>Multijoueur</b><span id="t-ligne-sous">À deux sur ce téléphone, ou en ligne</span></button>
+          <button type="button" class="tuile" id="t-deck"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="11.5" height="15.5" rx="2"/><path d="M5 6.5v12A2.5 2.5 0 0 0 7.5 21H16"/></svg><b>Mon deck</b><span id="t-deck-sous">Tes cartes, et celles à gagner</span></button>
+          <button type="button" class="tuile" id="t-options"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5h9M17 6.5h3M4 12h3M11 12h9M4 17.5h11M19 17.5h1"/><circle cx="15" cy="6.5" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17.5" r="2"/></svg><b>Réglages</b><span>Plateau, lieu, règles, sons</span></button>
+          <button type="button" class="tuile tuile-trophees" id="t-trophees" hidden><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5L7 21l5-2.6 5 2.6-1.5-7.5"/><path d="M12 6.6l.8 1.6 1.7.2-1.3 1.2.3 1.7-1.5-.8-1.5.8.3-1.7-1.3-1.2 1.7-.2z" fill="currentColor" stroke="none"/></svg><span class="tt-texte"><b>Trophées</b><span id="t-trophees-sous">0 sur 41</span></span><span class="tr-barre"><span id="t-trophees-barre"></span></span></button>
+        </div>
+        <p class="accueil-liens"><a href="#methode">Le calcul des points</a><span aria-hidden="true">·</span><button type="button" class="lien-inline" id="b-credits">Crédits</button></p>
+        <p class="accueil-bilan" id="accueil-bilan"></p>
+      </section>
+    <div class="arene">
+      <aside class="tuto" id="tuto" aria-label="Tutoriel" hidden>
+        <p class="tuto-tete"><span id="tuto-etiquette"></span><button type="button" class="lien-inline" id="tuto-passer" aria-label="Passer le tutoriel">Passer</button></p>
+        <p class="tuto-texte" id="tuto-texte" aria-live="polite"></p>
+        <button type="button" class="bouton" id="tuto-suivant" hidden>Suivant</button>
+      </aside>
+      <section class="camp camp-ia" aria-label="Camp de l’IA">
+        <p class="camp-nom"><span class="pastille ia" aria-hidden="true"></span><span id="nom-adv">L’IA · <span id="niveau-ia">Assemblée</span></span><span class="oeil" id="oeil-ia" hidden>· lit ta main</span></p>
+        <div class="main main-ia" id="main-ia"></div>
+        <div class="slot" id="action-ia"></div>
+      </section>
+      <section class="centre" aria-label="Le plateau">
+        <p class="lieu-jeu" id="lieu-jeu"></p>
+        <div class="tete-plateau">
+          <div class="tableau" id="tableau" role="img">
+            <svg viewBox="0 0 220 110" id="hemi" aria-hidden="true"></svg>
+            <p class="compte" aria-hidden="true"><span>Toi <b id="score-j">5</b></span><span><b id="score-ia">5</b> <span id="lib-adv">IA</span></span></p>
+            <p class="procl" id="procl" aria-hidden="true" hidden></p>
+          </div>
+          <p class="perchoir" aria-live="polite"><span id="perchoir-texte">Prépare ta partie.</span> <button type="button" class="bouton-sec" id="b-annuler" hidden>Annuler</button></p>
+        </div>
+        <div class="plateau" id="plateau"></div>
+        <p class="legende-cotes"><span>↑<i class="pi" data-picto="0"></i>Urnes</span> · <span>→<i class="pi" data-picto="1"></i>Expérience</span> · <span>↓<i class="pi" data-picto="2"></i>Terrain</span> · <span>←<i class="pi" data-picto="3"></i>Buzz</span> · <span>★&nbsp;=&nbsp;présidentielle passée</span> · <span id="leg-coins" hidden>coin ↗&nbsp;=&nbsp;↑&nbsp;+&nbsp;→ ·</span> <button type="button" class="lien-inline" id="b-calcul">la règle de calcul</button></p>
+      </section>
+      <section class="camp camp-joueur" aria-label="Ton camp">
+        <p class="camp-nom"><span class="pastille j" aria-hidden="true"></span><span id="nom-moi">Toi</span><span class="oeil" id="oeil-j" hidden>· main de l’IA visible</span></p>
+        <div class="main main-joueur" id="main-joueur"></div>
+        <button type="button" class="lien-details" id="b-details" hidden>Voir la carte</button>
+        <div class="slot" id="action-joueur"></div>
+      </section>
+    </div>
+  </div>
+  <h2 class="cache-visuel">Journal de la partie</h2>
+  <ol class="journal cache-visuel" id="journal" aria-live="polite"></ol>
+  <p class="note">Jeu indépendant, qui ne roule pour personne. Au fond, la politique est une belle comédie&nbsp;: mieux vaut en rire qu’en pleurer. Chiffres publics, images générées par IA.</p>
+</main>
+
+<div class="voile" id="voile" hidden><div class="dialogue" id="dialogue" role="dialog" aria-modal="true" aria-labelledby="titre-dialogue"></div></div>
+<div class="banniere" id="banniere" aria-hidden="true"></div>
+<div class="trophee-toast" id="trophee" role="status" aria-live="polite" hidden></div>
+<div class="annonce" id="annonce" role="status" hidden></div>
+<div class="fete" id="fete" aria-hidden="true" hidden></div>
+<div class="pluie" id="pluie" aria-hidden="true" hidden></div>
+<div class="tirage" id="tirage" role="status" aria-live="polite" hidden>
+  <p class="tirage-lieu" id="tirage-lieu"></p>
+  <p class="tirage-sous" id="tirage-sous"></p>
+  <p class="tirage-titre">Pile ou face&nbsp;: qui ouvre la séance&nbsp;?</p>
+  <div class="piece-scene" aria-hidden="true"><div class="piece" id="piece"><span class="face face-j">Toi</span><span class="face face-ia">IA</span></div></div>
+  <p class="tirage-resultat" id="tirage-resultat"></p>
+  <p class="tirage-regle" id="tirage-regle"></p>
+</div>
+
+<script>window.APDA_DON = '';  /* lien de la page de dons (Ko-fi, Tipeee, Liberapay…) : vide = rien ne s’affiche */
+window.APDA_CONTACT = '';  /* lien pour signaler une erreur dans une fiche (mailto: ou formulaire) : vide = rien ne s’affiche */
+window.APDA_FICHES = 'https://trombi-2027.jerome-hosdez.workers.dev/';  /* site factuel « Le Trombi 2027 » : le verso y renvoie ; vide = pas de lien. À changer pour le nom de domaine définitif. (APDA_SITE reste l’adresse du jeu, pour les invitations en ligne.) */</script>
+<script src="donnees.js"></script>
+<script src="fiches.js"></script>  <!-- export public des fiches : après donnees.js, qui crée window.APDA -->
+<script src="cartes.js"></script>
+<script src="fiche.js"></script>
+<script src="moteur.js"></script>
+<script src="sons.js"></script>
+<script src="tetes.js"></script>
+<script src="profil.js"></script>
+<script src="trophees.js"></script>
+<script src="jeu.js"></script>
+<script>
+{
+  if (window.APDA_DON){
+    document.querySelectorAll('[data-don]').forEach(e => { e.hidden = false; });
+    document.querySelectorAll('[data-don-lien]').forEach(e => { e.href = window.APDA_DON; });
+  }
+  const D = window.APDA, R = window.APDA_RENDU;
+  document.querySelectorAll('[data-picto]').forEach(e => { e.innerHTML = R.PICTOS[+e.dataset.picto]; e.setAttribute('aria-hidden', 'true'); });
+  const tc = document.getElementById('table-candidats'), ta = document.getElementById('table-actions');
+  function poser(table, c, recto){
+    const fig = document.createElement('figure');
+    fig.className = 'emplacement';
+    fig.innerHTML = '<div class="retournable"><div class="interieur">' + recto(c, false) + R.dos(true) + '</div></div>' +
+      '<figcaption class="legende">' + c.nom + ' <button type="button" class="retourner" aria-pressed="false">Retourner</button></figcaption>';
+    table.appendChild(fig);
+  }
+  D.CANDIDATS.forEach(c => {
+    poser(tc, c, R.rectoCandidat);
+    tc.lastChild.dataset.slug = (c.mini.match(/([^\/]+)\.webp$/) || [, ''])[1];
+    // Le verso factuel : un bouton à côté de « Retourner », si la carte a sa fiche
+    if (window.APDA_FICHE && APDA_FICHE.existe(c.nom)){
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'retourner ouvrir-fiche'; b.textContent = 'La fiche';
+      b.setAttribute('aria-haspopup', 'dialog');
+      b.addEventListener('click', () => APDA_FICHE.ouvrir(c.nom, b));
+      tc.lastChild.querySelector('.legende').appendChild(b);
+    }
+  });
+  D.ACTIONS.forEach(c => { poser(ta, c, R.rectoAction); ta.lastChild.dataset.act = (c.mini.match(/([^\/]+)\.webp$/) || [, ''])[1]; });
+  const seul = document.createElement('figure');
+  seul.className = 'emplacement';
+  seul.innerHTML = '<div class="carte-seule">' + R.dos(false) + '</div><figcaption class="legende">Dos, commun à toutes les cartes</figcaption>';
+  ta.appendChild(seul);
+  R.dessinerTousLesDos(document);
+
+  document.querySelectorAll('.emplacement').forEach(emp => {
+    const carte = emp.querySelector('.retournable');
+    if (!carte) return;
+    const bouton = emp.querySelector('.retourner'), r = emp.querySelector('.recto'), d = emp.querySelector('.dos');
+    function basculer(){
+      const x = carte.classList.toggle('retournee');
+      bouton.setAttribute('aria-pressed', String(x));
+      r.setAttribute('aria-hidden', String(x));
+      d.setAttribute('aria-hidden', String(!x));
+    }
+    bouton.addEventListener('click', basculer);
+    carte.addEventListener('click', e => { if (e.target.closest('a')) return; basculer(); });
+  });
+
+  // Tableau de la méthode
+  // Date d'arrêt des données : la plus récente des vérifications (cartes ajoutées après coup comprises)
+  const jma = s => s.split('/').reverse().join('');
+  document.getElementById('date-verif').textContent = D.CANDIDATS.reduce((m, c) => c.verifie && jma(c.verifie) > jma(m) ? c.verifie : m, D.VERIFIE);
+  // Taille du deck : les textes de la règle suivent le nombre de cartes candidat
+  const NC = D.CANDIDATS.length, NR = NC - 1, k0 = Math.round(NR * 2 / 3), kEx = Number.isInteger(9 * k0 / NR) ? k0 + 1 : k0, xEx = 1 + 9 * kEx / NR;
+  // (exemple choisi pour montrer un arrondi : si le calcul tombe juste, on prend un rival de plus)
+  document.querySelectorAll('[data-n]').forEach(e => { e.textContent = e.dataset.n === 'riv' ? NR : NC; });
+  document.getElementById('exemple-calcul').textContent = 'devancer ' + kEx + ' rivaux sur ' + NR + ' donne 1 + 9 × ' + kEx + ' ÷ ' + NR + ' = ' +
+    (Math.round(xEx * 10) / 10).toLocaleString('fr-FR') + (Math.round(xEx) === xEx ? '' : ', arrondi à ' + Math.round(xEx));
+  const fr = n => n.toLocaleString('fr-FR');
+  const ans = x => x ? String(x).replace('.', ',') + '&nbsp;ans' : '—';
+  const lien = s => '<a href="' + s[1] + '" rel="noopener">' + s[0] + '</a>';
+  // Barème : pour chaque note, les nombres de rivaux devancés qui y mènent (arrondi au plus proche, 0,5 vers le haut)
+  const noteDe = k => Math.floor(1 + 9 * k / NR + 0.5);
+  const bareme = [];
+  for (let k = 0; k <= NR; k++){ const v = noteDe(k); (bareme[v] = bareme[v] || []).push(k); }
+  const htmlBareme = bareme.map((ks, v) => ks ? '<div><span>' + (ks.length > 1 ? ks[0] + '–' + ks[ks.length - 1] : ks[0]) + '</span><b>' + R.chiffre(v) + '</b></div>' : '').join('');
+  document.querySelectorAll('.bareme').forEach(e => { e.innerHTML = htmlBareme; });
+  // Tableau des points : une ligne par carte, une case par côté (note, fait, rivaux devancés)
+  const COTES_T = [
+    ['↑ Urnes', 'meilleur score en voix', m => m.voix ? fr(m.voix) + ' voix' : 'aucune voix', m => '<a href="' + m.voixSource[1] + '" rel="noopener">' + m.election + '</a>'],
+    ['→ Expérience', 'années de mandat national', m => m.national ? ans(m.national) : 'aucun mandat', m => ''],
+    ['↓ Terrain', 'années d’élu local', m => m.local ? ans(m.local) : 'aucun mandat', m => ''],
+    ['← Buzz', 'vues Wikipédia, mois type', m => fr(m.vues) + ' vues', m => 'par mois']
+  ];
+  const dev = n => n === 0 ? 'ne devance personne' : 'devance ' + n;
+  document.getElementById('tab-valeurs').innerHTML =
+    '<caption class="cache-visuel">Le tableau des points : pour chaque carte et chaque côté, la note, le fait mesuré et le nombre de rivaux devancés</caption>' +
+    '<thead><tr><th scope="col">Carte</th>' + COTES_T.map(c => '<th scope="col">' + c[0] + '<small>' + c[1] + '</small></th>').join('') + '<th scope="col">Sources des mandats</th></tr></thead><tbody>' +
+    D.CANDIDATS.map(c => {
+      const m = c.methode;
+      return '<tr id="pts-' + (c.mini.match(/([^\/]+)\.webp$/) || [, ''])[1] + '" data-bloc="' + R.teinte(c) + '"><th scope="row">' + c.nom + '<small>' + c.bloc + '</small></th>' +
+        COTES_T.map((k, i) => '<td><div class="cpt"><span class="pt" aria-label="note ' + c.valeurs[i] + '">' + R.chiffre(c.valeurs[i]) + '</span><span class="fait">' + k[2](m) +
+          (k[3](m) ? '<small>' + k[3](m) + '</small>' : '') + '<small>' + dev(m.devance[i]) + '</small></span></div></td>').join('') +
+        '<td class="src">' + m.mandatsSources.map(lien).join(' · ') + (m.remarque ? '<small>' + m.remarque + '</small>' : '') + '</td></tr>';
+    }).join('') + '</tbody>';
+
+  // Affaires closes en faveur de la personne (champ horsCarte des cartes) : une ligne par affaire
+  document.getElementById('date-verif-j').textContent = document.getElementById('date-verif').textContent;
+  document.getElementById('tab-justice').innerHTML =
+    '<caption class="cache-visuel">Affaires closes en faveur de la personne : affaire, issue et sources</caption>' +
+    '<thead><tr><th scope="col">Carte</th><th scope="col">Affaire</th><th scope="col">Issue</th><th scope="col">Sources</th></tr></thead><tbody>' +
+    D.CANDIDATS.filter(c => c.horsCarte).map(c => c.horsCarte.map((a, i) =>
+      '<tr data-bloc="' + R.teinte(c) + '">' + (i ? '' : '<th scope="row" rowspan="' + c.horsCarte.length + '">' + c.nom + '<small>sa carte&nbsp;: ' + c.justice.replace(/<[^>]+>/g, '') + '</small></th>') +
+      '<td>' + a[0] + '</td><td class="issue">' + a[1] + '</td><td>' + a[2].map(lien).join(' · ') + '</td></tr>').join('')).join('') + '</tbody>';
+
+  // Mon album (Carrière) : les cartes jamais gagnées sont grisées sur demande
+  const barreAlbum = document.getElementById('album-barre'), bAlbum = document.getElementById('b-album');
+  function lireAlbum(){
+    try {
+      const cl = JSON.parse(localStorage.getItem('hemicycle-classeur') || 'null');
+      if (!cl) return null;
+      const s = new Set([].concat(cl.album || [], cl.cartes || []));
+      s.actions = new Set(cl.actions || []);
+      return s.size ? s : null;
+    } catch (e){ return null; }
+  }
+  function majAlbum(forcer){
+    const al = lireAlbum();
+    barreAlbum.hidden = !al;
+    if (!al){ tc.classList.remove('vue-album'); ta.classList.remove('vue-album'); return; }
+    if (forcer != null){ tc.classList.toggle('vue-album', forcer); ta.classList.toggle('vue-album', forcer); }
+    ta.querySelectorAll('.emplacement[data-act]').forEach(f => f.classList.toggle('manque', !al.actions.has(f.dataset.act)));
+    const actif = tc.classList.contains('vue-album'), n = D.CANDIDATS.length;
+    let k = 0;
+    tc.querySelectorAll('.emplacement[data-slug]').forEach(f => { const a = al.has(f.dataset.slug); f.classList.toggle('manque', !a); if (a) k++; });
+    bAlbum.textContent = actif ? 'Voir toutes les cartes' : 'Mon album : ' + k + '/' + n;
+    bAlbum.setAttribute('aria-pressed', actif ? 'true' : 'false');
+    const g = document.getElementById('album-grille');
+    g.hidden = !actif;
+    if (actif) g.innerHTML = D.CANDIDATS.map(c => { const s = (c.mini.match(/([^\/]+)\.webp$/) || [, ''])[1], a = al.has(s);
+      return '<a class="album-case' + (a ? '' : ' manque') + '" href="#' + s + '" data-vers="' + s + '"><img src="' + c.mini + '" alt="" loading="lazy"><span>' + (a ? (c.court || c.nom) : '?') + '</span></a>'; }).join('') +
+      '<p class="album-sous-titre">Cartes action&nbsp;: ' + al.actions.size + '/' + D.ACTIONS.length + ' · elles ne se perdent jamais</p>' +
+      D.ACTIONS.map(c => { const s = (c.mini.match(/([^\/]+)\.webp$/) || [, ''])[1], a = al.actions.has(s);
+        return '<span class="album-case action' + (a ? '' : ' manque') + '"><img src="' + c.mini + '" alt="" loading="lazy"><span>' + (a ? c.code : '?') + '</span></span>'; }).join('');
+    document.getElementById('album-aide').textContent = actif ? (k < n ? 'Album : ' + k + '/' + n + '. Les cartes grisées te manquent encore : gagne-les en Carrière.' : 'Album complet : bravo !') : '';
+  }
+  bAlbum.addEventListener('click', () => majAlbum(!tc.classList.contains('vue-album')));
+  document.getElementById('album-grille').addEventListener('click', e => { const l = e.target.closest('[data-vers]'); if (!l) return; e.preventDefault(); const f = tc.querySelector('.emplacement[data-slug="' + l.dataset.vers + '"]'); if (f) f.scrollIntoView({ block: 'center' }); });
+  majAlbum();
+
+  // Deux vues sur la même page : le jeu (#jouer, ou l'adresse nue) et la collection (#cartes et les ancres des fiches)
+  function route(){
+    const h = location.hash, invit = /^#jouer\/([A-Za-z0-9]{4})$/.exec(h), jeu = h === '#jouer' || h === '' || h === '#' || !!invit;   // sans précision, on arrive sur le jeu ; #cartes mène à la collection
+    document.getElementById('vue-cartes').hidden = jeu;
+    document.getElementById('vue-jeu').hidden = !jeu;
+    if (jeu){ window.scrollTo(0, 0); window.HemicycleJeu.ouvrir(invit ? invit[1].toUpperCase() : ''); }
+    else {
+      if (window.HemicycleJeu && window.HemicycleJeu.fermer) window.HemicycleJeu.fermer();
+      const cible = h.length > 1 ? document.getElementById(h.slice(1)) : null;
+      if (cible && cible.closest('#vue-cartes') && cible.id !== 'vue-cartes') cible.scrollIntoView();
+      else if (h === '#cartes') window.scrollTo(0, 0);
+      if (h === '#album'){ majAlbum(true); barreAlbum.scrollIntoView(); } else majAlbum();
+    }
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  // Bouton « Jouer » flottant : il apparaît une fois celui du haut sorti de l'écran
+  const haut = document.getElementById('cta-haut'), flottant = document.getElementById('cta-flottant');
+  if (haut && flottant && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(e){
+      const voir = !e[0].isIntersecting && e[0].boundingClientRect.top < 0;
+      flottant.classList.toggle('visible', voir);
+      flottant.tabIndex = voir ? 0 : -1;
+      if (voir) flottant.removeAttribute('aria-hidden'); else flottant.setAttribute('aria-hidden', 'true');
+    }).observe(haut);
+  }
+}
+</script>
+</body>
+</html>
