@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Le Trombi 2027 · Les fiches de la présidentielle</title>
 <link rel="icon" href="img/icone-trombi-32.png" sizes="32x32">
@@ -62,7 +63,8 @@ nav.vues a[aria-current=page]{background:var(--fluo);color:var(--encre);border-c
 .sous-vues a[aria-current=page]{color:var(--texte);border-bottom-color:var(--texte)}
 .sous-vues a:hover{color:var(--texte)}
 .portes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:26px 0 0}
-@media (max-width:900px){.portes{grid-template-columns:1fr}}
+@media (max-width:1000px){.portes{gap:14px}.porte{padding:18px 16px 16px}.porte h2{font-size:clamp(21px,2.9vw,26px)}}
+@media (max-width:620px){.portes{grid-template-columns:1fr}.porte h2{font-size:26px}}
 .porte{display:flex;flex-direction:column;gap:6px;padding:24px 24px 20px;border:2px solid var(--texte);border-radius:16px;background:light-dark(#fff,#1d2024);box-shadow:5px 5px 0 var(--texte);text-decoration:none;color:var(--texte);min-height:240px;transition:transform .15s}
 .porte:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--texte)}
 .porte .num{font-family:var(--chiffre);font-weight:700;font-size:13px;align-self:flex-start;background:var(--fluo);color:var(--encre);padding:1px 8px;border-radius:4px}
@@ -100,11 +102,9 @@ nav.vues a.sortie::after{content:" ↗";font-size:12px}
 body[data-vue=accueil] nav.vues a:not(.outil){display:none}
 body[data-vue=accueil]:not(.interne) nav.vues{display:none}
 h1 a{color:inherit;text-decoration:none;display:inline-block}
-h1 .logo{display:block;height:clamp(84px,14vw,150px);width:auto;max-width:100%}
+h1 .logo{display:block;height:clamp(110px,22vw,190px);width:auto;max-width:100%}
 body[data-vue]:not([data-vue=accueil]) h1 .logo{height:clamp(52px,7vw,76px)}
-/* en mode sombre, le logo garde son papier crème */
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) h1 .logo{background:#f9f6ef;border-radius:12px;padding:6px 12px}}
-:root[data-theme=dark] h1 .logo{background:#f9f6ef;border-radius:12px;padding:6px 12px}
+/* le logo porte son propre papier crème (dans l’image) : lisible même quand le navigateur assombrit la page de force */
 body:not([data-vue=accueil]) h1 a:hover{text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--fluo)}
 /* le jeu : un autre univers, présenté à part des trois portes documentaires */
 .jeu-bloc{margin:40px 0 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px 40px;align-items:center;padding:clamp(20px,4vw,36px);border-radius:20px;background:#173f43;color:#f4f0e6;border:2px solid var(--encre);box-shadow:5px 5px 0 var(--texte)}
@@ -458,7 +458,7 @@ main .f-src{color:var(--texte-2)}
 <!--BANDEAU-->
 <div class="contenu">
 <header class="tete">
-  <h1><a href="#accueil"><img class="logo" src="img/logo-trombi.webp" alt="Le Trombi 2027" width="1701" height="650"></a></h1>
+  <h1><a href="#accueil"><img class="logo" src="img/logo-trombi.webp" alt="Le Trombi 2027" width="1781" height="730"></a></h1>
   <p class="chapo">Parcours, mandats et propositions de 43 personnalités candidates, pressenties ou en retrait, vérifiés le 25 novembre 2026. Chaque fait renvoie à sa source. Aucune note sur les personnes ni sur leurs idées.</p>
   <nav class="vues" aria-label="Rubriques">
     <a href="#accueil" data-g="accueil">Accueil</a><a href="#candidats" data-g="personnalites">Les candidats</a><a href="#programmes" data-g="comparer">Les programmes</a><a href="#quinquennat" data-g="quinquennat">Le quinquennat</a><!--NAVVALIDER--><!--NAVJUSTICE-->
@@ -468,9 +468,9 @@ main .f-src{color:var(--texte-2)}
 <main>
 <section id="v-accueil">
   <div class="portes">
-    <a class="porte" href="#candidats"><span class="num">1</span><h2>Qui sont-ils ?</h2><p>Portraits, parcours, mandats et équipes de campagne.</p><p class="porte-chiffre" id="pc-1"></p><span class="aller">Voir les candidats</span></a>
-    <a class="porte" href="#programmes"><span class="num">2</span><h2>Que proposent-ils ?</h2><p>Leurs propositions sujet par sujet, ou trois personnalités face à face.</p><p class="porte-chiffre" id="pc-2"></p><span class="aller">Comparer les programmes</span></a>
-    <a class="porte" href="#quinquennat"><span class="num">3</span><h2>Que s’est-il passé depuis 2022 ?</h2><p>Gouvernements, Parlement, lois adoptées et chiffres officiels.</p><p class="porte-chiffre" id="pc-3"></p><span class="aller">Revoir le quinquennat</span></a>
+    <a class="porte" href="#candidats"><span class="num">1</span><h2>Qui sont-ils&nbsp;?</h2><p>Portraits, parcours, mandats et équipes de campagne.</p><p class="porte-chiffre" id="pc-1"></p><span class="aller">Voir les candidats</span></a>
+    <a class="porte" href="#programmes"><span class="num">2</span><h2>Que proposent-ils&nbsp;?</h2><p>Leurs propositions sujet par sujet, ou trois personnalités face à face.</p><p class="porte-chiffre" id="pc-2"></p><span class="aller">Comparer les programmes</span></a>
+    <a class="porte" href="#quinquennat"><span class="num">3</span><h2>Que s’est-il passé depuis 2022&nbsp;?</h2><p>Gouvernements, Parlement, lois adoptées et chiffres officiels.</p><p class="porte-chiffre" id="pc-3"></p><span class="aller">Revoir le quinquennat</span></a>
   </div>
   <div class="portes-2" id="portes-2"></div>
   <aside class="jeu-bloc" id="jeu-bloc" aria-labelledby="jeu-titre" hidden>

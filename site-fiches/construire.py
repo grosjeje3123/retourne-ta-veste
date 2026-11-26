@@ -501,7 +501,7 @@ def ecrire(dossier, donnees, est_interne):
     h = modele.replace('/*DONNEES*/', json.dumps(donnees, ensure_ascii=False).replace('</', '<\\/'))
     h = h.replace('/*INTERNE*/false', 'true' if est_interne else 'false')
     h = h.replace('/*AXES*/{}', json.dumps(dict(axes(not est_interne), **axe_defense(not est_interne)), ensure_ascii=False).replace('</', '<\\/'))
-    h = h.replace("'/*CONTACT*/'", json.dumps(os.environ.get('CONTACT', '')))
+    h = h.replace("'/*CONTACT*/'", json.dumps(os.environ.get('CONTACT', 'contact@letrombi2027.org')))
     h = h.replace("'/*DON*/'", json.dumps(os.environ.get('DON', 'https://ko-fi.com/jeromehosdez')))   # page de dons (Ko-fi) ; DON='' la masque
     # le jeu : section /jeu/ du site public (Cloudflare y copie carte2/ à chaque déploiement) ; la version de travail garde les pages claude.ai
     h = h.replace("'/*JEU*/'", json.dumps(os.environ.get('JEU', 'https://claude.ai/artifact/Anm66e7aUxudHeaKVphekT' if est_interne else 'jeu/')))
