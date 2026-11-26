@@ -478,7 +478,7 @@ def ecrire(dossier, donnees, est_interne):
     h = h.replace('/*INTERNE*/false', 'true' if est_interne else 'false')
     h = h.replace('/*AXES*/{}', json.dumps(dict(axes(not est_interne), **axe_defense(not est_interne)), ensure_ascii=False).replace('</', '<\\/'))
     h = h.replace("'/*CONTACT*/'", json.dumps(os.environ.get('CONTACT', '')))
-    h = h.replace("'/*DON*/'", json.dumps(os.environ.get('DON', '')))   # page de dons : vide tant que le cadre (déontologue, impôts) n'est pas clarifié
+    h = h.replace("'/*DON*/'", json.dumps(os.environ.get('DON', 'https://ko-fi.com/jeromehosdez')))   # page de dons (Ko-fi) ; DON='' la masque
     h = h.replace("'/*JEU*/'", json.dumps(os.environ.get('JEU', 'https://claude.ai/artifact/Anm66e7aUxudHeaKVphekT')))   # site du jeu
     h = h.replace("'/*JEU_PARTIE*/'", json.dumps(os.environ.get('JEU_PARTIE', 'https://claude.ai/artifact/Lr13UVdrBU6mtgAwh4MJui')))   # le jeu lui-même
     h = h.replace('/*QUINQ*/{}', json.dumps(quinquennat(not est_interne), ensure_ascii=False).replace('</', '<\\/'))
