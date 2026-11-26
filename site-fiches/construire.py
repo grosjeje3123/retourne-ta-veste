@@ -320,6 +320,26 @@ Q4 = {'europe': ('ue_maintien', 'ue_traites', 'ue_primaute', 'ue_budget', 'ue_em
       'otan': ('otan_alliance', 'otan_commandement', 'otan_pilier'),
       'ukraine': ('aide_militaire', 'aide_financiere', 'troupes', 'adhesion_ue', 'sanctions')}
 CORR4 = {}   # relecture de la grille fine : (nom, question) -> champs corrigés
+# Décision du 26/11/2026 : une position rapportée par un média national daté, sans citation directe du candidat,
+# est publiée et signalée « rapportée par un média ». Restent exclues : les déductions, les relais de tiers
+# (réseaux sociaux), les sources non lues et les chaînes passant par des médias d'État étrangers.
+RAP = {'verification': 'verifie', 'rapporte': True}
+for _k in [('Fabien Roussel', 'adhesion_ue'), ('Raphaël Glucksmann', 'ue_maintien'), ('Édouard Philippe', 'otan_pilier'),
+           ('Édouard Philippe', 'aide_militaire'), ('Natacha Polony', 'ue_budget'), ('Bruno Retailleau', 'ue_budget'),
+           ('Bruno Retailleau', 'aide_militaire'), ('Bruno Retailleau', 'adhesion_ue'), ('Nicolas Dupont-Aignan', 'sanctions')]:
+    CORR4[_k] = dict(RAP)
+REF_RAP = [('Gabriel Attal', 'règle d'), ('Marine Le Pen', 'islamistes')]   # référendums rapportés par un média
+# Public Sénat du 16/11/2026, relu le 26/11/2026 : formulations du journaliste (sauf mention d'une citation)
+PS = ['Public Sénat, « Aide à l’Ukraine : que proposent les candidats à la présidentielle ? »', 'https://www.publicsenat.fr/actualites/international/aide-a-lukraine-que-proposent-les-candidats-a-la-presidentielle', '16/11/2026']
+AJOUT4 = {
+    ('Éric Zemmour', 'aide_militaire'): {'reponse': 'arreter', 'texte': 'Selon Public Sénat, veut mettre fin à toute forme de soutien à l’Ukraine et privilégier la voie diplomatique (formulation du journaliste)', 'source': PS},
+    ('Nicolas Dupont-Aignan', 'aide_militaire'): {'reponse': 'arreter', 'texte': 'Selon Public Sénat, veut mettre fin à toute forme de soutien à l’Ukraine et privilégier la voie diplomatique (formulation du journaliste)', 'source': PS},
+    ('Jean-Luc Mélenchon', 'troupes'): {'reponse': 'non', 'texte': 'Position de LFI : l’envoi de forces au sol fait partie de ses lignes rouges, selon Public Sénat (formulation du journaliste)', 'source': PS},
+    ('Jean-Luc Mélenchon', 'adhesion_ue'): {'reponse': 'contre', 'texte': 'Position de LFI : l’adhésion risquerait « d’aggraver sans précédent le dumping social qui fracture déjà l’UE » (communiqué cité par Public Sénat)', 'source': PS},
+    ('Raphaël Glucksmann', 'adhesion_ue'): {'reponse': 'pour', 'texte': 'Selon Public Sénat, favorable à l’entrée de l’Ukraine dans l’Union européenne (formulation du journaliste)', 'source': PS},
+}
+for _v in AJOUT4.values(): _v.update(RAP)
+AJOUT4[('Jean-Luc Mélenchon', 'adhesion_ue')].pop('rapporte')   # citation du communiqué de LFI : pas une reformulation
 def lots4():
     import glob
     out = []
@@ -334,12 +354,19 @@ def positions4(publique):
             D = {}
             for q in qs:
                 x = e.get(q)
-                if x: x = dict(x, **CORR4.get((e['nom'], q), {}))
+                if not (x and x.get('reponse')) and (cle(e['nom']), q) in AJOUT4: x = AJOUT4[(cle(e['nom']), q)]
+                if x: x = dict(x, **CORR4.get((cle(e['nom']), q), {}))
                 if ok(x) and x.get('reponse'):
                     t = x.get('texte') or ''
                     D[q] = {'r': x['reponse'], 'txt': t, 'source': x['source'][:3], 'ok': x.get('verification') == 'verifie'}
+                    if x.get('rapporte'): D[q]['rap'] = True
             if D: res[th][sl] = D
-        refs = [{'sujet': sujet_ref(r.get('sujet')), 'txt': r.get('texte') or '', 'source': r['source'][:3], 'ok': r.get('verification') == 'verifie'} for r in (e.get('referendums') or []) if ok(r)]
+        refs = []
+        for r in (e.get('referendums') or []):
+            if any(n == cle(e['nom']) and m in (r.get('sujet') or '') for n, m in REF_RAP): r = dict(r, **RAP)
+            if ok(r):
+                refs.append({'sujet': sujet_ref(r.get('sujet')), 'txt': r.get('texte') or '', 'source': r['source'][:3], 'ok': r.get('verification') == 'verifie'})
+                if r.get('rapporte'): refs[-1]['rap'] = True
         if refs: res['referendums'][sl] = refs
     return res
 

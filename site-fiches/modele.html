@@ -142,6 +142,9 @@ body:not([data-vue=accueil]) h1 a:hover{text-decoration:underline;text-decoratio
 .jeu-bloc .jeu-ecran{width:230px;height:auto;border-radius:22px;border:6px solid #0d1f21;box-shadow:0 12px 28px rgba(0,0,0,.35);transform:rotate(2.5deg)}
 @media (prefers-reduced-motion:reduce){.jeu-bloc .jeu-ecran{transform:none}}
 .soutien{display:inline-block;margin-top:8px;font-size:13.5px}
+.rap-note{margin:4px 0 0;font-size:12.5px;font-style:italic;color:var(--texte-2)}
+dialog.fiche .rap-note{color:var(--encre-2)}
+.matrice .rep.rap{border-style:dotted}
 /* comparateur */
 .themes{display:flex;flex-wrap:wrap;gap:6px}
 .rangs{list-style:none;margin:18px 0 0;padding:0;border-top:2px solid var(--texte)}
@@ -597,7 +600,7 @@ main .f-src{color:var(--texte-2)}
     <li><b>Europe en sept questions indépendantes</b>&nbsp;: rester dans l’Union, modifier les traités, primauté du droit national, budget de l’Union, emprunt commun, défense intégrée, coopération de défense entre États. On peut répondre oui à l’une et non à l’autre&nbsp;: aucune étiquette d’ensemble.</li>
     <li><b>Ukraine en cinq questions</b>&nbsp;: aide militaire, aide financière, soldats français ou européens en Ukraine, adhésion de l’Ukraine à l’Union, sanctions contre la Russie. Seule la position la plus récente est retenue, avec sa date.</li>
     <li><b>OTAN en trois questions</b>&nbsp;: rester dans l’Alliance, rester dans son commandement intégré, renforcer un pilier européen.</li>
-    <li><b>Déclarations directes</b>&nbsp;: une position vient de la personne elle-même (entretien, discours, tribune, programme). La reformulation d’un journaliste sans citation ne suffit pas. La position d’un parti n’est retenue que pour son candidat, et elle est signalée comme telle.</li>
+    <li><b>Déclarations directes</b>&nbsp;: une position vient de la personne elle-même (entretien, discours, tribune, programme). À défaut, une position rapportée par un média national daté, sans citation directe, est retenue et signalée par «&nbsp;°&nbsp;». Les déductions, les relais sur les réseaux sociaux et les sources non lues ne sont jamais retenus. La position d’un parti n’est retenue que pour son candidat, et elle est signalée comme telle.</li>
     <li><b>Source lue</b>&nbsp;: une réponse n’est publiée que si la page source a été ouverte et dit explicitement ce qui est écrit.</li>
     <li><b>Une proposition, pas une étiquette</b>&nbsp;: une colonne décrit ce qui est proposé, pas la personne. Sans proposition trouvée, la case reste vide.</li>
     <li><b>Référendums</b>&nbsp;: la liste des référendums que chacun propose, regroupés par sujet, et le référendum d’initiative citoyenne (RIC) à part.</li>
@@ -845,7 +848,7 @@ function entreePos(p, x){
   const li = el('li', 'pos'), v = el('button', 'vignette'); li.dataset.bloc = p.bloc; v.type = 'button'; v.setAttribute('aria-label', 'Fiche de ' + p.nom);
   const img = el('img'); img.src = 'img/' + p.slug + '.webp'; img.alt = ''; img.loading = 'lazy'; v.append(img); v.onclick = () => ouvrir(p.slug, v);
   const nb = el('button', 'nom', p.nom); nb.type = 'button'; nb.onclick = () => ouvrir(p.slug, nb);
-  li.append(v, nb, el('p', null, x.txt));
+  li.append(v, nb, el('p', null, x.txt), noteRap(x));
   const s = el('p', 'src'); s.append(lien(x.source)); li.append(s);
   if (INTERNE && !x.ok) li.append(el('span', 'fragile', 'à vérifier : non publié'));
   return li;
@@ -876,10 +879,12 @@ const QUK = [
   ['adhesion_ue', 'Ukraine dans l’Union européenne', {pour: 'Pour', contre: 'Contre', pas_maintenant: 'Pas maintenant'}],
   ['sanctions', 'Sanctions contre la Russie', {renforcer: 'Renforcer', maintenir: 'Maintenir', alleger: 'Alléger ou lever'}]
 ];
+const RAP_TXT = 'Position rapportée par un média, sans citation directe de la personne.';
+const noteRap = x => x && x.rap ? el('p', 'rap-note', '° ' + RAP_TXT) : '';
 const MATRICES = {
-  europe: [QUE, 'Sept questions indépendantes : on peut vouloir une coopération de défense et moins de budget européen, ou rester dans l’Union et réviser les traités. Chaque case reprend ce que la personne propose ; touchez-la pour lire la proposition et sa source.'],
-  otan: [QOTAN, 'Trois questions indépendantes : on peut rester dans l’Alliance, quitter son commandement intégré et vouloir un pilier européen. Le budget de défense visé, quand il est chiffré, suit sous le tableau.'],
-  ukraine: [QUK, 'Cinq questions indépendantes sur la guerre en Ukraine. L’aide militaire et l’aide financière sont distinguées. Chaque case reprend ce que la personne a dit ; touchez-la pour lire la position et sa source. Une position peut évoluer avec le conflit : la date compte.']
+  europe: [QUE, 'Sept questions indépendantes : on peut vouloir une coopération de défense et moins de budget européen, ou rester dans l’Union et réviser les traités. Chaque case reprend ce que la personne propose ; touchez-la pour lire la proposition et sa source. « ° » : position rapportée par un média, sans citation directe.'],
+  otan: [QOTAN, 'Trois questions indépendantes : on peut rester dans l’Alliance, quitter son commandement intégré et vouloir un pilier européen. Le budget de défense visé, quand il est chiffré, suit sous le tableau. « ° » : position rapportée par un média, sans citation directe.'],
+  ukraine: [QUK, 'Cinq questions indépendantes sur la guerre en Ukraine. L’aide militaire et l’aide financière sont distinguées. Chaque case reprend ce que la personne a dit ; touchez-la pour lire la position et sa source. « ° » : position rapportée par un média, sans citation directe. Une position peut évoluer avec le conflit : la date compte.']
 };
 function rendreEurope(z, D){
   const [QUE, intro] = MATRICES[theme];
@@ -893,8 +898,8 @@ function rendreEurope(z, D){
       const td = el('td'), x = D[p.slug][k];
       if (!x){ td.append(el('span', 'nr', '—')); td.title = 'Pas de position relevée'; }
       else {
-        const b = el('button', 'rep' + (INTERNE && !x.ok ? ' fragile' : ''), lab[x.r] || x.r); b.type = 'button';
-        b.onclick = () => { det.textContent = ''; det.append(el('p', 'q', p.nom + ' · ' + q), el('p', null, x.txt)); const s = el('p', 'f-src'); s.append(lien(x.source)); det.append(s); if (INTERNE && !x.ok) det.append(badge('à vérifier : non publié', 'alerte')); if (innerWidth < 760) det.scrollIntoView({block: 'nearest', behavior: 'smooth'}); };
+        const b = el('button', 'rep' + (INTERNE && !x.ok ? ' fragile' : '') + (x.rap ? ' rap' : ''), (lab[x.r] || x.r) + (x.rap ? ' °' : '')); b.type = 'button'; if (x.rap) b.title = RAP_TXT;
+        b.onclick = () => { det.textContent = ''; det.append(el('p', 'q', p.nom + ' · ' + q), el('p', null, x.txt), noteRap(x)); const s = el('p', 'f-src'); s.append(lien(x.source)); det.append(s); if (INTERNE && !x.ok) det.append(badge('à vérifier : non publié', 'alerte')); if (innerWidth < 760) det.scrollIntoView({block: 'nearest', behavior: 'smooth'}); };
         td.append(b);
       }
       tr.append(td);
@@ -1495,7 +1500,7 @@ function idees(p){
     d.append(b);
   });
   // Europe, OTAN, Ukraine, référendums : les mêmes réponses que dans le comparateur
-  const ligne = (titre, rep, x) => { const b = el('div', 'f-theme'); b.append(el('h3', 'f-rub', titre), el('p', null, (rep ? rep + ' : ' : '') + x.txt)); const s = el('p', 'f-src'); s.append(lien(x.source)); b.append(s); if (INTERNE && !x.ok) b.append(badge('à vérifier : non publié', 'alerte')); return b; };
+  const ligne = (titre, rep, x) => { const b = el('div', 'f-theme'); b.append(el('h3', 'f-rub', titre), el('p', null, (rep ? rep + ' : ' : '') + x.txt), noteRap(x)); const s = el('p', 'f-src'); s.append(lien(x.source)); b.append(s); if (INTERNE && !x.ok) b.append(badge('à vérifier : non publié', 'alerte')); return b; };
   [['europe', QUE, 'Europe'], ['otan', QOTAN, 'OTAN'], ['ukraine', QUK, 'Ukraine']].forEach(([k, Q, nom]) => {
     const D = (POS2[k] || {})[p.slug]; if (!D) return;
     Q.forEach(([q, titre, lab]) => { if (D[q]) d.append(ligne(nom + ' · ' + titre, lab[D[q].r] || D[q].r, D[q])); });
@@ -1595,7 +1600,7 @@ function questionsQuiz(){
   [['europe', 'Europe', QUE], ['otan', 'OTAN', QOTAN], ['ukraine', 'Ukraine', QUK]].forEach(([th, nomTh, QS]) => {
     const D = POS2[th] || {};
     QS.forEach(([k, titre, lab]) => {
-      const rep = Object.entries(D).filter(([s, v]) => declares.has(s) && v[k] && v[k].ok).map(([s, v]) => [s, v[k]]);
+      const rep = Object.entries(D).filter(([s, v]) => declares.has(s) && v[k] && v[k].ok && !v[k].rap).map(([s, v]) => [s, v[k]]);
       Object.keys(lab).forEach(r => {
         const oui = rep.filter(([, x]) => x.r === r), non = rep.filter(([, x]) => x.r !== r);
         if (!oui.length || non.length < 3) return;
@@ -1722,9 +1727,9 @@ function rendreFace(){
   THEMES.slice(0, 5).forEach(([k, n]) => lignes.push(['Programme', n, p => { const m = p.f.programme.mesures[k]; if (!m) return null; const d = el('div'); d.append(el('p', null, m.texte), src(m.source), frag(m)); return d; }]));
   [['europe', 'Europe', QUE], ['otan', 'OTAN et défense', QOTAN], ['ukraine', 'Ukraine', QUK]].forEach(([th, nm, QS]) => QS.forEach(([q, t, lab]) => lignes.push([nm, t, p => {
     const x = ((POS2[th] || {})[p.slug] || {})[q]; if (!x) return null;
-    const d = el('div'); d.append(el('p', 'face-rep', lab[x.r] || x.r), el('p', null, x.txt), src(x.source), frag(x)); return d; }])));
+    const d = el('div'); d.append(el('p', 'face-rep', (lab[x.r] || x.r) + (x.rap ? ' °' : '')), el('p', null, x.txt), noteRap(x), src(x.source), frag(x)); return d; }])));
   lignes.push(['Référendums', 'Référendums proposés', p => { const l = (POS2.referendums || {})[p.slug]; if (!l || !l.length) return null;
-    const u = el('ul'); l.forEach(r => { const li = el('li'); li.append(el('p', null, r.sujet + ' : ' + r.txt), src(r.source), frag(r)); u.append(li); }); return u; }]);
+    const u = el('ul'); l.forEach(r => { const li = el('li'); li.append(el('p', null, r.sujet + ' : ' + r.txt), noteRap(r), src(r.source), frag(r)); u.append(li); }); return u; }]);
   const t = el('table', 'face'), hr = t.createTHead().insertRow();
   hr.append(el('th', null, ''));
   L.forEach(p => { const th = el('th'); th.dataset.bloc = p.bloc; th.scope = 'col'; const b = el('button', null, p.nom); b.type = 'button'; b.onclick = () => ouvrir(p.slug, b); th.append(b, el('small', null, statut(p))); hr.append(th); });
