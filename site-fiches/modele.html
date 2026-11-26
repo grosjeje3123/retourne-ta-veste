@@ -140,6 +140,11 @@ body:not([data-vue=accueil]) h1 a:hover{text-decoration:underline;text-decoratio
 .jeu-bloc .jeu-aller:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--encre)}
 .jeu-bloc .jeu-ecran{width:230px;height:auto;border-radius:22px;border:6px solid #0d1f21;box-shadow:0 12px 28px rgba(0,0,0,.35);transform:rotate(2.5deg)}
 @media (prefers-reduced-motion:reduce){.jeu-bloc .jeu-ecran{transform:none}}
+.soutien{margin:0 0 26px;padding:18px 20px;border:1.5px solid var(--texte);border-radius:12px;max-width:760px;color:var(--texte)}
+.soutien h2{margin:0 0 6px;font-family:var(--titre);font-weight:900;font-size:21px}
+.soutien p{margin:0 0 8px;font-size:15px;line-height:1.5}
+.soutien .soutien-regles{font-size:13.5px;color:var(--texte-2)}
+.soutien-lien{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1.5px solid var(--encre);border-radius:8px;background:var(--fluo);color:var(--encre);font-family:var(--chiffre);font-weight:700;font-size:14px;text-decoration:none;box-shadow:2px 2px 0 var(--encre)}
 /* comparateur */
 .themes{display:flex;flex-wrap:wrap;gap:6px}
 .rangs{list-style:none;margin:18px 0 0;padding:0;border-top:2px solid var(--texte)}
@@ -576,7 +581,7 @@ dialog.fiche::backdrop{background:rgba(21,23,26,.62)}
     <li><b>Sans commentaire</b>&nbsp;: les faits sont rédigés sans adjectif ni appréciation. L’humour et les citations restent dans le jeu <i>Retourne ta veste</i>, un espace à part.</li>
     <li><b>Les rôles publics seulement</b>&nbsp;: ni proches, ni vie privée&nbsp;; une personne sans mandat ni fonction publique n’apparaît que si la presse nationale la cite dans son rôle.</li>
     <li><b>Corrigé</b>&nbsp;: toute personne concernée, ou tout lecteur, peut signaler une erreur, un oubli ou une information dépassée. Chaque demande est relue, et la correction est datée.</li>
-    <li><b>Indépendant</b>&nbsp;: sans publicité ni financement politique.</li>
+    <li><b>Indépendant</b>&nbsp;: sans publicité ni financement politique. Les contributions volontaires des lecteurs ne donnent aucun droit sur le contenu&nbsp;; aucun don de parti ni d’équipe de campagne n’est accepté.</li>
   </ul>
   <p>Les sections suivantes détaillent ces règles, rubrique par rubrique.</p>
   <h2>D’où viennent ces fiches</h2>
@@ -654,7 +659,12 @@ dialog.fiche::backdrop{background:rgba(21,23,26,.62)}
   <p class="ae-astuce">Astuce&nbsp;: depuis une fiche, le bouton «&nbsp;Signaler une erreur&nbsp;» précise de quelle personne il s’agit.</p>
   <button type="button" class="f-bouton" id="ae-fermer">Fermer</button>
 </dialog>
-<footer class="pied"><nav aria-label="Informations"><a href="#methode">La méthode</a><a href="#" id="pied-erreur">Signaler une erreur</a></nav>Projet indépendant, sans publicité ni financement politique. Portraits illustrés, générés par IA avec le même traitement pour tous. Données arrêtées au 25/11/2026.</footer>
+<footer class="pied"><div class="soutien" id="soutien" hidden>
+  <h2>Soutenir ce site</h2>
+  <p>Ce site est un projet citoyen indépendant, fait sur mon temps libre, sans publicité ni affiliation politique, et gratuit pour tous. Si ce travail vous est utile, vous pouvez contribuer librement à ses frais (hébergement, outils) et au temps passé à chercher, vérifier et corriger les informations.</p>
+  <p class="soutien-regles">Une contribution est facultative et ne donne aucun droit sur le contenu. Aucun don de parti ni d’équipe de campagne, aucun contenu sponsorisé. Le montant total reçu et les frais seront publiés régulièrement.</p>
+  <a class="soutien-lien" id="soutien-lien" target="_blank" rel="noopener">Contribuer ↗</a>
+</div><nav aria-label="Informations"><a href="#methode">La méthode</a><a href="#" id="pied-erreur">Signaler une erreur</a></nav>Projet indépendant, sans publicité ni financement politique. Portraits illustrés, générés par IA avec le même traitement pour tous. Données arrêtées au 25/11/2026.</footer>
 </div>
 
 <dialog class="fiche" id="fiche" aria-labelledby="f-nom">
@@ -674,6 +684,8 @@ dialog.fiche::backdrop{background:rgba(21,23,26,.62)}
 <script>
 {
 const INTERNE = /*INTERNE*/false;
+const DON = '/*DON*/';   /* page de dons (Ko-fi, Liberapay…) : vide = le bloc « Soutenir » reste caché */
+if (DON){ const b = document.getElementById('soutien'); b.hidden = false; document.getElementById('soutien-lien').href = DON; }
 const JEU = '/*JEU*/';   /* site du jeu Retourne ta veste : vide = aucun lien */
 const JEU_PARTIE = '/*JEU_PARTIE*/';   /* le jeu lui-même */
 document.body.classList.toggle('interne', INTERNE);   /* adresse du jeu Retourne ta veste : vide = aucun lien */
