@@ -459,7 +459,7 @@ def ecrire(dossier, donnees, est_interne):
     if est_interne:
         h = h.replace('<!--BANDEAU-->', '<div class="bandeau" role="note">Version de travail privée : elle contient des données non validées, dont le volet judiciaire. Ne pas partager.</div>')
         h = h.replace('<!--NAVQUIZ-->', '<a href="#apprendre" data-g="apprendre">Le quiz</a>').replace('<!--NAVVALIDER-->', '<a href="#valider" class="outil">À valider</a>').replace('<!--NAVJUSTICE-->', '<a href="#categories" class="outil">Justice par catégorie</a>')
-        h = h.replace('<title>Les fiches de la présidentielle 2027</title>', '<title>Fiches 2027 : version de travail</title>')
+        h = h.replace('<title>Le Trombi 2027 · Les fiches de la présidentielle</title>', '<title>Le Trombi 2027 : version de travail</title>')
     else:
         assert '"a_verifier"' not in h and '"verification"' not in h.split('id="donnees">')[1], 'donnée interne dans le site public'
         AUTORISES = {'condamnation_premiere_instance', 'condamnation_appel', 'condamnation_definitive', 'relaxe', 'non_lieu', 'classement_sans_suite',
