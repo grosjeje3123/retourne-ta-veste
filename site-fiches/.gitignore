@@ -2,3 +2,4 @@
 # public/ est suivi : c’est ce que Cloudflare Pages sert (version publique uniquement, sans les données brutes)
 travail/
 export/
+public/jeu/
