@@ -481,6 +481,70 @@ def axe_defense(publique):
         'positions': pos, 'autres': [], 'sansTexte': 'Pas d’objectif chiffré identifié',
         'note': 'Seulement le chiffre que chacun donne, avec sa source.'}}
 
+# ---------------------------------------------------------------- volet judiciaire : relecture des recours (27/11/2026)
+# Règle : une condamnation de première instance frappée d'appel n'est publiée que si l'état de l'appel est établi
+# (appel en cours confirmé, ou arrêt rendu). Sinon elle reste dans la version de travail, « hors_public ».
+# Les décisions favorables à la personne (relaxe, demande rejetée) restent publiées, avec la mention du recours non vérifié.
+J27 = '27 nov. 2026'
+ORDRE_AD = ['Ordre des avocats de Paris, décision disciplinaire du 8 oct. 2024 (publiée avec son suivi)', 'https://www.avocatparis.org/sites/bdp/files/2025-11/AD_241008_386422_387600_BRANCO.pdf', '27/11/2026']
+ORDRE_CA = ['Cour d’appel de Paris, 16 oct. 2025, n° 24-18012 (publié par l’Ordre des avocats de Paris)', 'https://www.avocatparis.org/sites/bdp/files/2025-11/CA_Paris_251016_24-18012_branco_0.pdf', '27/11/2026']
+CORR_JUSTICE = {
+    ('Jean-Luc Mélenchon', 'Diffamation envers un ancien journaliste du Monde'): {'hors_public': True,
+        'etape': (J27, 'Nouvelle recherche : appel formé (AFP, 29 juin 2022), arrêt non trouvé. Non publié tant que l’issue de l’appel n’est pas établie')},
+    ('Jean-Luc Mélenchon', 'Propos visant des journalistes de franceinfo'): {'hors_public': True,
+        'etape': (J27, 'Nouvelle recherche : appel annoncé en janvier 2022, arrêt non trouvé. Non publié tant que l’issue de l’appel n’est pas établie')},
+    ('Ségolène Royal', 'Diffamation envers un journaliste de Radio France'): {'hors_public': True,
+        'etape': (J27, 'Nouvelle recherche : appel indiqué par son avocat en avril 2023, arrêt non trouvé. Non publié tant que l’issue de l’appel n’est pas établie')},
+    ('Éric Zemmour', 'Propos sur l\'affaire de Crépol'): {'hors_public': True,
+        'etapes': [{'date': '26 mars 2025', 'texte': 'Condamné pour injure raciale à 60 jours-amende de 150 € (9 000 €) ; il annonce faire appel'},
+                   {'date': J27, 'texte': 'Arrêt d’appel non trouvé ; présumé innocent. Non publié tant que l’issue de l’appel n’est pas établie'}],
+        'sources_plus': [['Europe 1 (appel annoncé)', 'https://www.europe1.fr/node/669724', '26/03/2025']]},
+    ('Juan Branco', 'Procédure disciplinaire'): {'etat': 'en_cours_confirme',
+        'cadre': 'Conseil de discipline de l’Ordre des avocats de Paris, puis cour d’appel de Paris ; pourvoi en cassation (procédure ordinale, non pénale)',
+        'etapes': [{'date': '8 oct. 2024', 'texte': 'Le conseil de discipline prononce une interdiction d’exercer de trois ans, dont 27 mois avec sursis (soit neuf mois fermes) ; il fait appel'},
+                   {'date': '15 oct. 2025', 'texte': 'Jugé en première instance disciplinaire dans une autre procédure ordinale, qu’il conteste ; décision non trouvée'},
+                   {'date': '16 oct. 2025', 'texte': 'La cour d’appel de Paris confirme la décision en toutes ses dispositions'},
+                   {'date': J27, 'texte': 'Pourvoi en cassation formé contre cet arrêt, selon la mention portée par l’Ordre des avocats de Paris sur les décisions publiées ; pas encore jugé à notre connaissance. Aucune poursuite pénale connue à ce titre'}],
+        'sources_plus': [ORDRE_AD, ORDRE_CA]},
+    ('Éric Zemmour', 'Propos sur la déportation des homosexuels'): {
+        'dossier': 'Propos sur la déportation des homosexuels (livre paru en 2021)',
+        'etapes': [{'date': '10 juin 2025', 'texte': 'Relaxé par le tribunal correctionnel de Paris (contestation de crime contre l’humanité)'},
+                   {'date': '25 juin 2026', 'texte': 'La cour d’appel de Paris, saisie par les associations parties civiles sur le plan civil, confirme le jugement'},
+                   {'date': J27, 'texte': 'Pourvoi éventuel non signalé dans les sources consultées'}],
+        'sources': [['Actu-Juridique', 'https://www.actu-juridique.fr/penal/il-avait-conteste-la-deportation-dhomosexuels-entre-1940-et-1945-eric-zemmour-gagne-son-second-proces/', '25/06/2026']]},
+    ('Éric Zemmour', 'Injures à caractère homophobe'): {
+        'etape': ('12 sept. 2024', 'L’avocat d’une association partie civile annonce un pourvoi en cassation ; suite non trouvée au 27 nov. 2026'),
+        'sources_plus': [['La Libre (AFP)', 'https://www.lalibre.be/international/europe/2024/09/12/eric-zemmour-condamne-et-relaxe-en-appel-dans-deux-affaires-distinctes-5Q6K776HTBCJTKNFDMZNLIJN2Y/', '12/09/2024']]},
+    ('Sandrine Rousseau', 'Poursuites en diffamation d\'un ancien député'): {
+        'etape': ('19 avr. 2019', 'Le plaignant, débouté, est condamné pour procédure abusive ; son avocat annonce un appel de cette condamnation, suite non trouvée au 27 nov. 2026'),
+        'sources_plus': [['Puremédias (AFP)', 'https://www.ozap.com/actu/affaire-denis-baupin-mediapart-et-france-inter-relaxes/577655', '19/04/2019']]},
+    ('Sandrine Rousseau', 'Action civile pour « dénigrement »'): {
+        'etape_remplace': ('25 nov. 2026', (J27, 'Arrêt d’appel non trouvé ; aucune décision définitive'))},
+    ('Teddy Riner', 'Redressement fiscal'): {
+        'etape_remplace': ('25 nov. 2026', (J27, 'Délai de pourvoi devant le Conseil d’État encore ouvert (deux mois après la notification de l’arrêt) ; aucun pourvoi signalé'))},
+}
+def corriger_justice(base, public):
+    vus = set()
+    for (nom, debut), m in CORR_JUSTICE.items():
+        L = base[cle(nom)].get('justice') or []
+        for j in list(L):
+            if not j['dossier'].startswith(debut): continue
+            vus.add((nom, debut))
+            if m.get('hors_public') and public: L.remove(j); continue
+            if m.get('hors_public'): j['hors_public'] = True
+            for k in ('etat', 'cadre', 'dossier', 'etapes', 'sources'):
+                if k in m: j[k] = [dict(e) for e in m[k]] if k == 'etapes' else m[k]
+            if 'etape' in m: j['etapes'] = j['etapes'] + [{'date': m['etape'][0], 'texte': m['etape'][1]}]
+            if 'etape_remplace' in m:
+                anc, (d, t) = m['etape_remplace']
+                assert any(e['date'] == anc for e in j['etapes']), (nom, debut, anc)
+                j['etapes'] = [{'date': d, 'texte': t} if e['date'] == anc else e for e in j['etapes']]
+            if 'sources_plus' in m: j['sources'] = (j.get('sources') or []) + [s for s in m['sources_plus'] if s[1] not in [x[1] for x in j.get('sources') or []]]
+            j['etat_au'] = '27/11/2026'
+    return vus
+assert corriger_justice(PUB, True) == set(CORR_JUSTICE), 'dossier judiciaire introuvable (public)'
+assert corriger_justice(INT, False) == set(CORR_JUSTICE), 'dossier judiciaire introuvable (travail)'
+
 for i, c in enumerate(J['C']):
     b = base(c, i)
     b['espace'] = {'Laurent Wauquiez': 'retrait'}.get(b['nom'], espace(INT[b['nom']]['candidature']['statut']))   # LR a investi Retailleau
