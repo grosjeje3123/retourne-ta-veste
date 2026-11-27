@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources package="fr.apeupresdaccord.baston" id="0x7f">
+  <public id="0x7f010000" type="mipmap" name="ic_launcher"/>
+  <public id="0x7f010001" type="mipmap" name="ic_launcher_avant"/>
+  <public id="0x7f010002" type="mipmap" name="ic_launcher_fond"/>
+  <public id="0x7f020000" type="string" name="app_name"/>
+  <public id="0x7f030000" type="style" name="Theme.Hemicycle"/>
+</resources>

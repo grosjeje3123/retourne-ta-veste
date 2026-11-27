@@ -14,10 +14,13 @@
 !/valeurs/
 !/data_mv/
 !/data_mv2/
+!/baston/
 !/site-fiches/
 
 # Secrets : jamais dans le dépôt
 /apk/cle/
+/baston/android/cle/
+/baston/android/build/
 *.pem
 *.p12
 *.mdp
