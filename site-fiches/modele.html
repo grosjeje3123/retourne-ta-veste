@@ -364,6 +364,18 @@ main .f-src{color:var(--texte-2)}
 .q-cat-titre{margin:26px 0 0;font-family:var(--titre);font-weight:900;font-size:24px}
 .q-cats{margin-top:10px}
 .q-grille{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))!important}
+.q-intro{margin:6px 0 4px;font-family:var(--titre);font-weight:600;font-size:clamp(22px,3.4vw,28px);line-height:1.2}
+.q-bref{margin:16px 0 18px;border:2px solid var(--texte);border-radius:12px;padding:12px 14px 8px;background:light-dark(#fff,#1b1e22);box-shadow:3px 3px 0 var(--texte)}
+.q-bref h2{margin:0 0 2px;font-size:19px}
+.q-bref .unite{margin:0 0 8px;font-family:var(--chiffre);font-size:12px;color:var(--texte-2)}
+.q-bref table{width:100%;border-collapse:collapse;font-size:14px}
+.q-bref th,.q-bref td{padding:7px 6px;border-top:1px solid var(--ligne);text-align:right;vertical-align:top}
+.q-bref th[scope=row]{text-align:left;font-weight:400}
+.q-bref thead th{border-top:0;font-family:var(--chiffre);font-size:12px;font-weight:700;color:var(--texte-2)}
+.q-bref td{font-family:var(--chiffre);white-space:nowrap}
+.q-bref td.evo{font-weight:700}
+.q-bref small{display:block;font-family:var(--chiffre);font-size:11px;color:var(--texte-2);font-weight:400}
+@media (max-width:600px){.q-bref{padding:10px 10px 6px}.q-bref table{font-size:13px}.q-bref th,.q-bref td{padding:6px 3px}.q-bref td.evo{font-size:12.5px}}
 .q-ind h3{font-size:15px!important}
 .q-ind .unite{margin:2px 0 4px;font-family:var(--chiffre);font-size:12px;color:var(--texte-2)}
 .q-ind text.an{font-size:12px;fill:var(--texte-2)}
@@ -475,16 +487,16 @@ main .f-src{color:var(--texte-2)}
   <h1><a href="#accueil"><img class="logo" src="img/logo-trombi.webp" alt="Le Trombi 2027" width="1781" height="730"></a></h1>
   <p class="chapo">43&nbsp;personnalités politiques pour comprendre les enjeux de la présidentielle de 2027. Parcours, mandats et propositions&nbsp;: des faits, des sources, aucun jugement. À chacun de se faire son opinion.<span class="chapo-date">Informations vérifiées au 25&nbsp;novembre 2026.</span></p>
   <nav class="vues" aria-label="Rubriques">
-    <a href="#accueil" data-g="accueil">Accueil</a><a href="#candidats" data-g="personnalites">Les candidats</a><a href="#programmes" data-g="comparer">Les programmes</a><a href="#quinquennat" data-g="quinquennat">Le quinquennat</a><!--NAVVALIDER--><!--NAVJUSTICE-->
+    <a href="#accueil" data-g="accueil">Accueil</a><a href="#quinquennat" data-g="quinquennat">Le quinquennat</a><a href="#candidats" data-g="personnalites">Les candidats</a><a href="#programmes" data-g="comparer">Les programmes</a><!--NAVVALIDER--><!--NAVJUSTICE-->
   </nav>
 </header>
 
 <main>
 <section id="v-accueil">
   <div class="portes">
-    <div class="porte"><span class="num">1</span><h2><a class="porte-lien" href="#candidats">Qui sont-ils&nbsp;?</a></h2><p>Portraits, parcours, mandats et équipes de campagne.</p><p class="porte-chiffre" id="pc-1"></p><ul class="porte-sous"><li><a href="#candidats"><span>Le trombinoscope</span></a></li><li><a href="#equipes"><span>Les équipes de campagne</span></a></li><li><a href="#parcours-en-chiffres"><span>Les parcours en chiffres</span></a></li><li><a href="#justice"><span>Les décisions de justice</span></a></li></ul></div>
-    <div class="porte"><span class="num">2</span><h2><a class="porte-lien" href="#programmes">Que proposent-ils&nbsp;?</a></h2><p>Leurs propositions sujet par sujet, ou trois personnalités face à face.</p><p class="porte-chiffre" id="pc-2"></p><ul class="porte-sous"><li><a href="#programmes"><span>Par sujet</span></a></li><li><a href="#face-a-face"><span>Face à face</span></a></li></ul></div>
-    <div class="porte"><span class="num">3</span><h2><a class="porte-lien" href="#quinquennat">Que s’est-il passé depuis 2022&nbsp;?</a></h2><p>Gouvernements, Parlement, lois adoptées et chiffres officiels.</p><p class="porte-chiffre" id="pc-3"></p><ul class="porte-sous"><li><a href="#quinquennat"><span>Revoir le quinquennat</span></a></li></ul></div>
+    <div class="porte"><span class="num">1</span><h2><a class="porte-lien" href="#quinquennat">Que s’est-il passé depuis 2022&nbsp;?</a></h2><p>Avant de choisir, regarder d’où l’on part&nbsp;: gouvernements, lois votées, chiffres officiels.</p><p class="porte-chiffre" id="pc-3"></p><ul class="porte-sous"><li><a href="#quinquennat"><span>Revoir le quinquennat</span></a></li></ul></div><div class="porte"><span class="num">2</span><h2><a class="porte-lien" href="#candidats">Qui sont-ils&nbsp;?</a></h2><p>Portraits, parcours, mandats et équipes de campagne.</p><p class="porte-chiffre" id="pc-1"></p><ul class="porte-sous"><li><a href="#candidats"><span>Le trombinoscope</span></a></li><li><a href="#equipes"><span>Les équipes de campagne</span></a></li><li><a href="#parcours-en-chiffres"><span>Les parcours en chiffres</span></a></li><li><a href="#justice"><span>Les décisions de justice</span></a></li></ul></div>
+    <div class="porte"><span class="num">3</span><h2><a class="porte-lien" href="#programmes">Que proposent-ils&nbsp;?</a></h2><p>Leurs propositions sujet par sujet, ou trois personnalités face à face.</p><p class="porte-chiffre" id="pc-2"></p><ul class="porte-sous"><li><a href="#programmes"><span>Par sujet</span></a></li><li><a href="#face-a-face"><span>Face à face</span></a></li></ul></div>
+    
   </div>
   <div class="portes-2" id="portes-2"></div>
   <aside class="jeu-bloc" id="jeu-bloc" aria-labelledby="jeu-titre" hidden>
@@ -550,7 +562,9 @@ main .f-src{color:var(--texte-2)}
 </section>
 
 <section id="v-quinquennat" hidden>
-  <p class="compte">Le second mandat d’Emmanuel Macron, du 14 mai 2022 à aujourd’hui : ce qui s’est passé, ce qui a été voté, ce que disent les chiffres officiels. Ni bilan noté ni jugement.</p>
+  <p class="q-intro">Avant de choisir, regarder d’où l’on part.</p>
+  <p class="compte">Le second mandat d’Emmanuel Macron, du 14 mai 2022 à aujourd’hui&nbsp;: ce qui s’est passé, ce qui a été voté, ce que disent les chiffres officiels. Ni bilan noté ni jugement&nbsp;: à chacun d’en tirer ses conclusions.</p>
+  <div id="q-bref"></div>
   <div class="outils"><div class="puces" id="q-onglets" role="group" aria-label="Partie"></div></div>
   <div id="q-corps"></div>
   <p class="f-note-page">Un indicateur décrit une situation ; il ne mesure pas à lui seul l’effet d’une politique, car d’autres facteurs jouent (conjoncture mondiale, énergie, démographie…). Chaque chiffre est celui publié par l’organisme cité, à la date indiquée ; il peut être révisé.</p>
@@ -1388,7 +1402,33 @@ function frise(z){
   });
   z.append(hs);
 }
+/* « En bref » : chaque indicateur, de 2022 à la dernière valeur publiée ; flèches et couleurs neutres, sans jugement */
+function rendreEnBref(){
+  const z = $('q-bref'); if (!z || !QUINQ.indicateurs.length) return;
+  const pct = u => /^%/.test(u || '');
+  const fmt = (v, u) => nbFr(Math.round(v * 10) / 10) + (pct(u) ? ' %' : '');
+  const box = el('div', 'q-bref'); box.append(el('h2', null, 'En bref'), el('p', 'unite', 'Chaque indicateur au début du mandat (2022) et à la dernière valeur publiée. Les flèches indiquent un sens, pas un jugement.'));
+  const t = el('table'); const th = el('thead'); const tr = el('tr');
+  ['Indicateur', 'Début', 'Dernière', 'Écart'].forEach((x, i) => { const c = el('th', null, x); c.scope = 'col'; tr.append(c); }); th.append(tr); t.append(th);
+  const tb = el('tbody');
+  QUINQ.indicateurs.forEach(ind => {
+    const pts = (ind.serie || []).map(x => ({p: String(x.periode), v: +x.valeur}));
+    if (ind.derniere && ind.derniere.valeur != null) pts.push({p: String(ind.derniere.periode), v: +ind.derniere.valeur});
+    if (pts.length < 2) return;
+    const a = pts.find(x => x.p === '2022') || pts[0], b = pts[pts.length - 1];
+    if (a === b) return;
+    const d = b.v - a.v, u = ind.unite || '';
+    const ecart = (d > 0 ? '↑\u00a0+' : d < 0 ? '↓\u00a0−' : '=\u00a0') + nbFr(Math.round(Math.abs(d) * 10) / 10) + (pct(u) ? '\u00a0pt' : '');
+    const m = ind.nom.match(/^(.*?)(?: \((.*)\))?$/), precis = [m[2], u && u !== '%' && u !== 'nombre' ? 'en ' + u : ''].filter(Boolean).join(' · ');
+    const r = el('tr'); const n = el('th', null, m[1]); n.scope = 'row'; if (precis) n.append(el('small', null, precis));
+    const c1 = el('td', null, fmt(a.v, u)); c1.append(el('small', null, a.p));
+    const c2 = el('td', null, fmt(b.v, u)); c2.append(el('small', null, b.p));
+    r.append(n, c1, c2, el('td', 'evo', ecart)); tb.append(r);
+  });
+  t.append(tb); box.append(t); z.replaceChildren(box);
+}
 function rendreQuinquennat(){
+  rendreEnBref();
   const o = $('q-onglets'); o.textContent = '';
   [['indicateurs', 'Les chiffres officiels'], ['lois', 'Les lois votées'], ['chronologie', 'La chronologie']].forEach(([k, n]) => {
     const b = el('button', null, n); b.type = 'button'; b.setAttribute('aria-pressed', String(k === qPartie)); b.onclick = () => { qPartie = k; rendreQuinquennat(); }; o.append(b);
