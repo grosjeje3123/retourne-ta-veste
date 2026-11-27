@@ -624,6 +624,7 @@ main .f-src{color:var(--texte-2)}
   <h2 id="journal">Journal des corrections</h2>
   <p>Les corrections importantes, les plus récentes en premier. Les mises à jour courantes (nouvelle déclaration, nouvelle nomination) n’y figurent pas.</p>
   <ul>
+    <li><b>27/11/2026</b>&nbsp;: volet judiciaire, les quinze dossiers dont le recours ou la suite n’étaient pas établis ont été repris. Quatre condamnations de première instance frappées d’appel, dont l’arrêt n’a pas été retrouvé, ne sont plus affichées (règle ajoutée à la charte). Juan Branco&nbsp;: la sanction disciplinaire est une interdiction d’exercer de trois ans dont 27 mois avec sursis, et un pourvoi en cassation est en cours. Éric Zemmour&nbsp;: dates et sources de deux relaxes précisées. Sandrine Rousseau, Teddy Riner&nbsp;: état des recours précisé.</li>
     <li><b>26/11/2026</b>&nbsp;: Marine Le Pen n’est plus présidente du groupe RN à l’Assemblée (Sébastien Chenu lui succède, fin octobre 2026).</li>
     <li><b>26/11/2026</b>&nbsp;: Ukraine, la position de Bruno Retailleau porte sur l’aide sans en préciser la nature&nbsp;: elle passe de l’aide militaire à l’aide financière. Teddy Riner&nbsp;: «&nbsp;Pas pendant la guerre&nbsp;» au lieu de «&nbsp;Non&nbsp;». Nouvelle question sur la saisie des avoirs russes gelés.</li>
     <li><b>26/11/2026</b>&nbsp;: deux positions de Bruno Retailleau retirées, leurs sources (Business AM, Forbes Ukraine) n’étant pas des médias nationaux français.</li>
@@ -634,7 +635,7 @@ main .f-src{color:var(--texte-2)}
   <p>Ce volet complète le portrait sans en être le centre. Les personnes présentées demandent à exercer la plus haute fonction de l’État&nbsp;: ce que la justice a décidé à leur sujet fait partie de l’information des électeurs. Il suit la charte ci-dessus, avec des règles plus strictes encore.</p>
   <ul>
     <li><b>Qui</b>&nbsp;: seulement les 43 personnalités du site. Jamais leurs proches, leurs collaborateurs ni les membres de leur équipe de campagne. Aucun plaignant, témoin ou victime n’est nommé.</li>
-    <li><b>Ce qui est publié</b>&nbsp;: les décisions rendues par un tribunal sur le fond. Une condamnation non définitive porte son stade (appel, pourvoi) et la mention de la présomption d’innocence. Une décision fiscale, électorale ou disciplinaire n’est jamais présentée comme une condamnation pénale.</li>
+    <li><b>Ce qui est publié</b>&nbsp;: les décisions rendues par un tribunal sur le fond. Une condamnation non définitive porte son stade (appel, pourvoi) et la mention de la présomption d’innocence. Une condamnation de première instance frappée d’appel n’est publiée que si l’état de cet appel est établi (appel en cours, ou arrêt rendu)&nbsp;; sinon elle n’apparaît pas. Une décision fiscale, électorale ou disciplinaire n’est jamais présentée comme une condamnation pénale.</li>
     <li><b>Ce qui est publié aussi</b>&nbsp;: les affaires closes en faveur de la personne (relaxe, non-lieu, classement sans suite, plainte irrecevable), pour que l’information soit complète.</li>
     <li><b>Ce qui n’est jamais publié</b>&nbsp;: tout ce qui n’est pas encore jugé (plainte, enquête, mise en examen, témoin assisté, renvoi en procès), les polémiques, la vie privée et les affaires où la personne est victime.</li>
     <li><b>Les mots</b>&nbsp;: la juridiction, la date, le stade et la décision telle qu’elle a été prononcée, sans adjectif ni commentaire. Quand l’issue d’un recours n’a pas été trouvée, c’est écrit.</li>
@@ -843,6 +844,7 @@ function justice(f){
     const ligne = el('p');
     ligne.append(badge(BADGES.nature[j.nature]), badge(BADGES.stade[j.stade]),
       badge((INTERNE ? BADGES.etat : ETAT_PUBLIC)[j.etat], j.etat === 'cloture' ? 'ok' : j.etat === 'en_cours_confirme' ? 'neutre' : 'alerte'));
+    if (INTERNE && j.hors_public) ligne.append(badge('non publié : issue de l’appel non établie', 'alerte'));
     if (INTERNE) ligne.append(badge(j.mise_en_cause_personnelle === 'oui' ? 'mise en cause personnelle' : 'mise en cause non établie', j.mise_en_cause_personnelle === 'oui' ? 'neutre' : 'alerte'),
       badge(BADGES.verification[j.verification], j.verification === 'verifie' ? 'ok' : 'alerte'),
       badge(j.publiable ? 'publiable' : 'non publiable', j.publiable ? 'ok' : 'alerte'));
